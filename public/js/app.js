@@ -2129,20 +2129,117 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      users: []
+      users: [],
+      currentUser: {
+        id: '',
+        name: ''
+      },
+      isOpen: false
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
     console.log('Component mounted.');
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/evertec/mercatodo/public/api/users').then(function (response) {
-      return _this.users = response.data;
-    });
+    this.getAllUsers();
+  },
+  methods: {
+    getAllUsers: function getAllUsers() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/evertec/mercatodo/public/api/users').then(function (response) {
+        return _this.users = response.data;
+      });
+    },
+    edit: function edit(user) {
+      this.currentUser = user;
+      this.isOpen = true;
+    },
+    update: function update() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/evertec/mercatodo/public/api/users/' + this.currentUser.id, this.currentUser).then(function (response) {
+        alert(response.data.message);
+      })["catch"](function (error) {
+        alert(JSON.stringify(error.response.data.errors));
+      });
+    }
   }
 });
 
@@ -2625,6 +2722,20 @@ var render = function () {
                     _c("td", [_vm._v(_vm._s(user.name))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(user.email))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          on: {
+                            click: function ($event) {
+                              return _vm.edit(user)
+                            },
+                          },
+                        },
+                        [_vm._v("Editar")]
+                      ),
+                    ]),
                   ])
                 }),
               ],
@@ -2632,6 +2743,150 @@ var render = function () {
             ),
           ]),
         ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container mx-auto" }, [
+      _c("div", { staticClass: "flex justify-center" }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.isOpen,
+                expression: "isOpen",
+              },
+            ],
+            staticClass:
+              "\n      absolute\n      inset-0\n      flex\n      items-center\n      justify-center\n      bg-gray-700 bg-opacity-50\n    ",
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "max-w-2xl p-6 bg-white rounded-md shadow-xl" },
+              [
+                _c(
+                  "div",
+                  { staticClass: "flex items-center justify-between" },
+                  [
+                    _c("h3", { staticClass: "text-2xl" }, [
+                      _vm._v("Editar usuario"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-8 h-8 text-red-900 cursor-pointer",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          fill: "none",
+                          viewBox: "0 0 24 24",
+                          stroke: "currentColor",
+                        },
+                        on: {
+                          click: function ($event) {
+                            _vm.isOpen = false
+                          },
+                        },
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "stroke-linecap": "round",
+                            "stroke-linejoin": "round",
+                            "stroke-width": "2",
+                            d: "M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z",
+                          },
+                        }),
+                      ]
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-4" }, [
+                  _c("table", [
+                    _c("tr", [
+                      _c("td", [_vm._v("Id")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.currentUser.id))]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Nombre")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.currentUser.name,
+                              expression: "currentUser.name",
+                            },
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.currentUser.name },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.currentUser,
+                                "name",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Nombre")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.currentUser.email))]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "px-6 py-2 text-blue-800 border border-blue-600 rounded",
+                      on: {
+                        click: function ($event) {
+                          _vm.isOpen = false
+                        },
+                      },
+                    },
+                    [
+                      _vm._v(
+                        "\n                            Cerrar\n                        "
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "px-6 py-2 ml-2 text-blue-100 bg-blue-600 rounded",
+                      on: { click: _vm.update },
+                    },
+                    [
+                      _vm._v(
+                        "\n                            Guardar\n                        "
+                      ),
+                    ]
+                  ),
+                ]),
+              ]
+            ),
+          ]
+        ),
       ]),
     ]),
   ])
@@ -2647,6 +2902,8 @@ var staticRenderFns = [
       _c("td", [_vm._v("Name")]),
       _vm._v(" "),
       _c("td", [_vm._v("Email")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Acción")]),
     ])
   },
 ]

@@ -19,4 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/users', [UserController::class, 'index'])->name('user.index');
+Route::resource('users', UserController::class)->only([
+    'index', 'update'
+]);
