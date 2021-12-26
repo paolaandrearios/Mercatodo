@@ -9,8 +9,9 @@
                         <table>
                             <tr>
                                 <td>Id</td>
-                                <td>Name</td>
+                                <td>Nombre</td>
                                 <td>Email</td>
+                                <td>Estado</td>
                                 <td>Acción</td>
                             </tr>
                             <tr v-for="user in users">
@@ -18,7 +19,20 @@
                                 <td>{{user.name}}</td>
                                 <td>{{user.email}}</td>
                                 <td>
-                                    <a v-on:click="edit(user)" >Editar</a>
+                                    <span v-if="user.status === 'active'">Activo</span>
+                                    <span v-if="user.status === 'inactive'">Inactivo</span>
+                                </td>
+                                <td>
+                                    <a v-on:click="edit(user)" >
+                                        <i class="fas fa-edit"></i>
+                                    </a> |
+
+                                    <a v-if="user.status === 'inactive'" v-on:click="setActive(user)" >
+                                        <i class="far fa-check-square"></i>
+                                    </a>
+                                    <a v-if="user.status === 'active'" v-on:click="setInactive(user)" >
+                                        <i class="fas fa-ban"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </table>
@@ -133,6 +147,18 @@ export default {
 
             }).catch(error => {
                 alert(JSON.stringify(error.response.data.errors))
+            })
+        },
+        setActive: function(user) {
+            axios.put('/evertec/mercatodo/public/api/users/'+user.id+'/status/active').then(response => {
+                this.getAllUsers()
+                alert(response.data.message)
+            })
+        },
+        setInactive: function(user) {
+            axios.put('/evertec/mercatodo/public/api/users/'+user.id+'/status/inactive').then(response => {
+                this.getAllUsers()
+                alert(response.data.message)
             })
         }
     }

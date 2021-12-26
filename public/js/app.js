@@ -2205,6 +2205,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2238,6 +2252,24 @@ __webpack_require__.r(__webpack_exports__);
         alert(response.data.message);
       })["catch"](function (error) {
         alert(JSON.stringify(error.response.data.errors));
+      });
+    },
+    setActive: function setActive(user) {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/evertec/mercatodo/public/api/users/' + user.id + '/status/active').then(function (response) {
+        _this2.getAllUsers();
+
+        alert(response.data.message);
+      });
+    },
+    setInactive: function setInactive(user) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/evertec/mercatodo/public/api/users/' + user.id + '/status/inactive').then(function (response) {
+        _this3.getAllUsers();
+
+        alert(response.data.message);
       });
     }
   }
@@ -2724,6 +2756,16 @@ var render = function () {
                     _c("td", [_vm._v(_vm._s(user.email))]),
                     _vm._v(" "),
                     _c("td", [
+                      user.status === "active"
+                        ? _c("span", [_vm._v("Activo")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      user.status === "inactive"
+                        ? _c("span", [_vm._v("Inactivo")])
+                        : _vm._e(),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
                       _c(
                         "a",
                         {
@@ -2733,8 +2775,36 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Editar")]
+                        [_c("i", { staticClass: "fas fa-edit" })]
                       ),
+                      _vm._v(" |\n\n                                "),
+                      user.status === "inactive"
+                        ? _c(
+                            "a",
+                            {
+                              on: {
+                                click: function ($event) {
+                                  return _vm.setActive(user)
+                                },
+                              },
+                            },
+                            [_c("i", { staticClass: "far fa-check-square" })]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      user.status === "active"
+                        ? _c(
+                            "a",
+                            {
+                              on: {
+                                click: function ($event) {
+                                  return _vm.setInactive(user)
+                                },
+                              },
+                            },
+                            [_c("i", { staticClass: "fas fa-ban" })]
+                          )
+                        : _vm._e(),
                     ]),
                   ])
                 }),
@@ -2899,9 +2969,11 @@ var staticRenderFns = [
     return _c("tr", [
       _c("td", [_vm._v("Id")]),
       _vm._v(" "),
-      _c("td", [_vm._v("Name")]),
+      _c("td", [_vm._v("Nombre")]),
       _vm._v(" "),
       _c("td", [_vm._v("Email")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Estado")]),
       _vm._v(" "),
       _c("td", [_vm._v("Acción")]),
     ])

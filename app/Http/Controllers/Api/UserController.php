@@ -38,4 +38,25 @@ class UserController extends Controller
             ]);
         }
     }
+
+    /**
+     * @param $id
+     * @param $status
+     * @return JsonResponse
+     */
+    public function updateStatus($id, $status): JsonResponse
+    {
+
+        $user = User::query()->where('id', $id)->firstOrFail();
+        $user->status = $status;
+        if($user->save()){
+            return response()->json([
+                'message' => 'Usuario modificado satisfactoriamente'
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'El usuario no pudo ser modificado'
+            ]);
+        }
+    }
 }
