@@ -2219,6 +2219,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2228,7 +2291,8 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         name: ''
       },
-      isOpen: false
+      isOpenEdit: false,
+      isOpenShow: false
     };
   },
   mounted: function mounted() {
@@ -2245,7 +2309,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     edit: function edit(user) {
       this.currentUser = user;
-      this.isOpen = true;
+      this.isOpenEdit = true;
     },
     update: function update() {
       axios__WEBPACK_IMPORTED_MODULE_0___default().put('/evertec/mercatodo/public/api/users/' + this.currentUser.id, this.currentUser).then(function (response) {
@@ -2271,6 +2335,10 @@ __webpack_require__.r(__webpack_exports__);
 
         alert(response.data.message);
       });
+    },
+    show: function show(user) {
+      this.currentUser = user;
+      this.isOpenShow = true;
     }
   }
 });
@@ -2771,6 +2839,18 @@ var render = function () {
                         {
                           on: {
                             click: function ($event) {
+                              return _vm.show(user)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fas fa-eye" })]
+                      ),
+                      _vm._v(" |\n                                "),
+                      _c(
+                        "a",
+                        {
+                          on: {
+                            click: function ($event) {
                               return _vm.edit(user)
                             },
                           },
@@ -2825,8 +2905,8 @@ var render = function () {
               {
                 name: "show",
                 rawName: "v-show",
-                value: _vm.isOpen,
-                expression: "isOpen",
+                value: _vm.isOpenEdit,
+                expression: "isOpenEdit",
               },
             ],
             staticClass:
@@ -2857,7 +2937,7 @@ var render = function () {
                         },
                         on: {
                           click: function ($event) {
-                            _vm.isOpen = false
+                            _vm.isOpenEdit = false
                           },
                         },
                       },
@@ -2928,7 +3008,7 @@ var render = function () {
                         "px-6 py-2 text-blue-800 border border-blue-600 rounded",
                       on: {
                         click: function ($event) {
-                          _vm.isOpen = false
+                          _vm.isOpenEdit = false
                         },
                       },
                     },
@@ -2949,6 +3029,111 @@ var render = function () {
                     [
                       _vm._v(
                         "\n                            Guardar\n                        "
+                      ),
+                    ]
+                  ),
+                ]),
+              ]
+            ),
+          ]
+        ),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container mx-auto" }, [
+      _c("div", { staticClass: "flex justify-center" }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.isOpenShow,
+                expression: "isOpenShow",
+              },
+            ],
+            staticClass:
+              "\n      absolute\n      inset-0\n      flex\n      items-center\n      justify-center\n      bg-gray-700 bg-opacity-50\n    ",
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "max-w-2xl p-6 bg-white rounded-md shadow-xl" },
+              [
+                _c(
+                  "div",
+                  { staticClass: "flex items-center justify-between" },
+                  [
+                    _c("h3", { staticClass: "text-2xl" }, [
+                      _vm._v("Ver usuario"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-8 h-8 text-red-900 cursor-pointer",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          fill: "none",
+                          viewBox: "0 0 24 24",
+                          stroke: "currentColor",
+                        },
+                        on: {
+                          click: function ($event) {
+                            _vm.isOpenShow = false
+                          },
+                        },
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "stroke-linecap": "round",
+                            "stroke-linejoin": "round",
+                            "stroke-width": "2",
+                            d: "M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z",
+                          },
+                        }),
+                      ]
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-4" }, [
+                  _c("table", [
+                    _c("tr", [
+                      _c("td", [_vm._v("Id")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.currentUser.id))]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Nombre")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.currentUser.name))]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Email")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.currentUser.email))]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "px-6 py-2 text-blue-800 border border-blue-600 rounded",
+                      on: {
+                        click: function ($event) {
+                          _vm.isOpenShow = false
+                        },
+                      },
+                    },
+                    [
+                      _vm._v(
+                        "\n                            Cerrar\n                        "
                       ),
                     ]
                   ),
