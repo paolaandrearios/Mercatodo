@@ -56,10 +56,9 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class=" " aria-labelledby="navbarDropdown">
-                                    <a class=" " href="{{ route('logout') }}"
-                                       onclick="preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                <div class="" aria-labelledby="navbarDropdown">
+                                    <a class="cursor-pointer"
+                                       onclick="document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
