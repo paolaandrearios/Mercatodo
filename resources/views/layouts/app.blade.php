@@ -18,58 +18,56 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class=" " >
+<body class="" >
     <div id="app">
         <nav class="header">
-            <div class="header-items">
-                <a class=" " href="{{ url('/') }}">
+            <div class="header__logo">
+                <img src="{{ asset('images/mercatodo-logo.png') }}">
+                <a href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class=" " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class=" "></span>
-                </button>
+            </div>
 
-                <div class=" " id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class=" ">
+            <div class="header__navbar" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class=" ">
 
-                    </ul>
+                </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class=" ">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class=" ">
-                                    <a class=" " href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                <!-- Right Side Of Navbar -->
+                <ul class="text-white font-bold">
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="">
+                                <a class="" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
 
-                            @if (Route::has('register'))
-                                <li class=" ">
-                                    <a class=" " href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class=" ">
-                                <a id="navbarDropdown" class=" " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                        @if (Route::has('register'))
+                            <li>
+                                <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li>
+                            <a id="navbarDropdown" href="#" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div>
+                                <a class="cursor-pointer"
+                                   onclick="document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="" aria-labelledby="navbarDropdown">
-                                    <a class="cursor-pointer"
-                                       onclick="document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class=" ">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class=" ">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
             </div>
         </nav>
 

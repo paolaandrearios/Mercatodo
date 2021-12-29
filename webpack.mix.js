@@ -21,7 +21,7 @@ mix
             require('tailwindcss'),
             require('autoprefixer'),
             require('postcss-preset-env')({
-                features: { 'nesting-rules': false }
+                "features": { 'nesting-rules': false }
             }),
         ])
     })

@@ -26,5 +26,8 @@ module.exports = {
     require('@tailwindcss/ui'),
     require('@tailwindcss/nesting'),
     require('autoprefixer')
-  ]
+  ],
+    experimental: {
+      applyComplexClasses: true,
+    },
 }

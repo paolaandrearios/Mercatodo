@@ -6,4 +6,20 @@
 @import "resources/scss/welcomePage";
 
 
+.header {
+    @apply block md:flex bg-orangePantone justify-between ;
+    &__logo {
+        @apply text-white flex justify-center md:justify-between;
+        img {
+            @apply self-center w-14 m-3;
+        }
+        a {
+            @apply self-center font-extrabold text-4xl;
+        }
+    }
+    &__navbar {
+        @apply flex text-center justify-center m-3;
+        }
+}
+
 
