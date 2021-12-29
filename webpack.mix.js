@@ -17,12 +17,19 @@ mix
     .options({
         postCss: ([
             require('postcss-import'),
+            require('@tailwindcss/nesting')(require('postcss-nesting')),
             require('tailwindcss'),
-            require('postcss-nested'),
             require('autoprefixer'),
+            require('postcss-preset-env')({
+                features: { 'nesting-rules': false }
+            }),
         ])
     })
-
+    .webpackConfig({
+        stats: {
+            children: true
+        }
+    })
 
 if (mix.inProduction()) {
   mix

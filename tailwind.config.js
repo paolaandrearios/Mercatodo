@@ -13,14 +13,18 @@ module.exports = {
             gainsboroGray: '#DBDBDB',
             spanishGray: '#9C9C9C',
             dimGray: '#616161',
+            atomicTangerine: '#FF925C',
+            culturedGray: '#F5F5F5'
         },
         fontFamily: {
             poppins: "'Poppins', sans-serif",
-        },
+        }
     },
   },
   variants: {},
   plugins: [
     require('@tailwindcss/ui'),
+    require('@tailwindcss/nesting'),
+    require('autoprefixer')
   ]
 }

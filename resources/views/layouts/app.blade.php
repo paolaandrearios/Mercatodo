@@ -13,7 +13,6 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700;900&display=swap" rel="stylesheet">
 
     <!-- Styles -->
@@ -59,7 +58,7 @@
 
                                 <div class=" " aria-labelledby="navbarDropdown">
                                     <a class=" " href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                       onclick="preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>

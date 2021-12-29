@@ -1,0 +1,7 @@
+.welcomePage {
+    @apply flex flex-col font-poppins h-screen bg-culturedGray;
+    &__header {
+        @apply flex font-bold text-orangePantone text-sm;
+        }
+    }
+
