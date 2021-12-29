@@ -16,29 +16,31 @@
 <body class="welcomePage">
 <div>
     @if(Route::has('login'))
-        <div class="welcomePage__header md:text-lg">
+        <div class="welcomePage__header">
             @auth
-                <a href="{{ url('/home') }}" class="m-4 hover:text-dimGray">{{ __('Home') }}</a>
+                <a href="{{ url('/home') }}">{{ __('Home') }}</a>
             @else
-                <a href="{{ route('login') }}" class="m-4 hover:text-dimGray">{{ __('Login') }}</a>
+                <a href="{{ route('login') }}">{{ __('Login') }}</a>
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="m-4 hover:text-dimGray">{{ __('Register') }}</a>
+                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
                 @endif
             @endauth
         </div>
     @endif
 
-    <div class="flex justify-center mt-8">
-        <div class="flex flex-col items-center mt-8">
-            <div class="flex flex-row font-bold mb-4">
+    <div class="welcomePage__content">
+        <div class="welcomePage__container">
+            <div class="welcomePage__container--logo">
                 <img class="w-14 md:w-24" src="{{ asset('images/mercatodo-logo.png') }}">
                 <h1 class="text-black text-2xl md:text-5xl m-2">
                     {{ config('app.name', 'Laravel') }}
                 </h1>
             </div>
-            <p class="text-sm md:text-xl my-4 text-center w-2/4"> Bienvenido a MercaTodo, tienda virtual donde podrás encontrar todo tipo de productos para ti y toda la familia </p>
-            <p class="text-orangePantone font-bold text-sm md:text-lg my-4">"MercaTodo donde lo tienes TODO"</p>
-            <img class="w-28 md:w-40" src="{{ asset('images/customer.png') }}">
+            <div class="welcomePage__container--description">
+                <p> Bienvenido a MercaTodo, tienda virtual donde podrás encontrar todo tipo de productos para ti y toda la familia </p>
+                <p>"MercaTodo donde lo tienes TODO"</p>
+                <img src="{{ asset('images/customer.png') }}">
+            </div>
         </div>
     </div>
 </div>
