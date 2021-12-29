@@ -31,8 +31,8 @@
     <div class="welcomePage__content">
         <div class="welcomePage__container">
             <div class="welcomePage__container--logo">
-                <img class="w-14 md:w-24" src="{{ asset('images/mercatodo-logo.png') }}">
-                <h1 class="text-black text-2xl md:text-5xl m-2">
+                <img src="{{ asset('images/mercatodo-logo.png') }}">
+                <h1>
                     {{ config('app.name', 'Laravel') }}
                 </h1>
             </div>
