@@ -19,4 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/users', [UserController::class, 'index'])->name('user.index');
+Route::resource('users', UserController::class)->only([
+    'index', 'update', 'updateStatus'
+]);
+Route::put('/users/{user}/status/{status}', [UserController::class, 'updateStatus'])->name('users.status');
+
