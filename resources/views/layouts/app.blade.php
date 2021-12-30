@@ -18,7 +18,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="" >
+<body>
     <div id="app">
         <nav class="header">
             <div class="header__logo">

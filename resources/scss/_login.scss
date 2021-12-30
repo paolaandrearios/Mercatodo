@@ -1,0 +1,56 @@
+.bodyLogin {
+    @apply flex bg-white md:bg-orangePantone;
+    &__image {
+        @apply absolute w-1/5 md:w-1/6 right-1/12 md:right-2/6 top-1/4 md:top-2/5;
+    }
+}
+
+.login {
+    @apply flex bg-white w-screen md:w-3/5 h-screen justify-center align-middle relative;
+    &__container {
+        @apply mx-2;
+        &--logo {
+            @apply flex flex-row font-bold my-10 md:m-16 justify-center;
+            img {
+                @apply w-14 md:w-24;
+            }
+            h1 {
+                @apply text-black font-extrabold text-4xl md:text-5xl m-2;
+            }
+        }
+        &--title {
+            @apply font-bold text-black text-2xl mb-10 mx-auto;
+        }
+        &--form {
+            @apply justify-center m-3;
+            label{
+                @apply font-bold text-black;
+            }
+            input {
+                @apply my-2 px-3 py-2 w-full md:w-8/12 rounded-3xl border-solid border-gray-400 border-2 hover:bg-gainsboroGray;
+
+            }
+        }
+    }
+    .input-error {
+        @apply text-orangePantone mb-3;
+    }
+    .input-checkbox {
+        @apply flex justify-center w-2/3;
+        input {
+            @apply w-auto mx-2;
+        }
+        label {
+            @apply font-normal;
+        }
+    }
+    .login-button {
+        @apply flex flex-col align-middle mt-3 w-full md:w-2/3;
+        button {
+            @apply bg-orangePantone w-full p-3 rounded-3xl border-2 text-white font-bold hover:bg-orange-600 mx-auto;
+        }
+        a {
+            @apply font-bold underline text-sm mx-auto;
+        }
+    }
+}
