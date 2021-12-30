@@ -2282,6 +2282,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2801,20 +2805,21 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
+  return _c("div", { staticClass: "users__container" }, [
+    _c("div", {}, [
+      _c("div", {}, [
+        _c("div", {}, [
+          _c("div", { staticClass: "users__container--title" }, [
             _vm._v("Listado de Usuarios"),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c(
-              "table",
-              [
-                _vm._m(0),
-                _vm._v(" "),
+          _c("div", { staticClass: "users__tableContainer" }, [
+            _c("table", [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                { staticClass: "users__table--body" },
                 _vm._l(_vm.users, function (user) {
                   return _c("tr", [
                     _c("td", [_vm._v(_vm._s(user.id))]),
@@ -2845,7 +2850,7 @@ var render = function () {
                         },
                         [_c("i", { staticClass: "fas fa-eye" })]
                       ),
-                      _vm._v(" |\n                                "),
+                      _vm._v(" |\n                                    "),
                       _c(
                         "a",
                         {
@@ -2857,7 +2862,7 @@ var render = function () {
                         },
                         [_c("i", { staticClass: "fas fa-edit" })]
                       ),
-                      _vm._v(" |\n\n                                "),
+                      _vm._v(" |\n\n                                    "),
                       user.status === "inactive"
                         ? _c(
                             "a",
@@ -2868,7 +2873,12 @@ var render = function () {
                                 },
                               },
                             },
-                            [_c("i", { staticClass: "far fa-check-square" })]
+                            [
+                              _c("i", {
+                                staticClass:
+                                  "far fa-check-square text-greenTem font-extrabold",
+                              }),
+                            ]
                           )
                         : _vm._e(),
                       _vm._v(" "),
@@ -2882,15 +2892,20 @@ var render = function () {
                                 },
                               },
                             },
-                            [_c("i", { staticClass: "fas fa-ban" })]
+                            [
+                              _c("i", {
+                                staticClass:
+                                  "fas fa-ban text-red-600 font-extrabold",
+                              }),
+                            ]
                           )
                         : _vm._e(),
                     ]),
                   ])
                 }),
-              ],
-              2
-            ),
+                0
+              ),
+            ]),
           ]),
         ]),
       ]),
@@ -2910,7 +2925,7 @@ var render = function () {
               },
             ],
             staticClass:
-              "\n      absolute\n      inset-0\n      flex\n      items-center\n      justify-center\n      bg-gray-700 bg-opacity-50\n    ",
+              "\n                  absolute\n                  inset-0\n                  flex\n                  items-center\n                  justify-center\n                  bg-gray-700 bg-opacity-50\n    ",
           },
           [
             _c(
@@ -3054,7 +3069,7 @@ var render = function () {
               },
             ],
             staticClass:
-              "\n      absolute\n      inset-0\n      flex\n      items-center\n      justify-center\n      bg-gray-700 bg-opacity-50\n    ",
+              "\n                  absolute\n                  inset-0\n                  flex\n                  items-center\n                  justify-center\n                  bg-gray-700 bg-opacity-50\n    ",
           },
           [
             _c(
@@ -3151,16 +3166,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("Id")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("Nombre")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("Email")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("Estado")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("Acción")]),
+    return _c("thead", { staticClass: "users__table--header" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Id")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estado")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acción")]),
+      ]),
     ])
   },
 ]

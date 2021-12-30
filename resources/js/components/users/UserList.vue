@@ -1,43 +1,47 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Listado de Usuarios</div>
+    <div class="users__container">
+        <div class="">
+            <div class="">
+                <div class="">
+                    <div class="users__container--title">Listado de Usuarios</div>
 
-                    <div class="card-body">
+                    <div class="users__tableContainer">
                         <table>
-                            <tr>
-                                <td>Id</td>
-                                <td>Nombre</td>
-                                <td>Email</td>
-                                <td>Estado</td>
-                                <td>Acción</td>
-                            </tr>
-                            <tr v-for="user in users">
-                                <td>{{user.id}}</td>
-                                <td>{{user.name}}</td>
-                                <td>{{user.email}}</td>
-                                <td>
-                                    <span v-if="user.status === 'active'">Activo</span>
-                                    <span v-if="user.status === 'inactive'">Inactivo</span>
-                                </td>
-                                <td>
-                                    <a v-on:click="show(user)" >
-                                        <i class="fas fa-eye"></i>
-                                    </a> |
-                                    <a v-on:click="edit(user)" >
-                                        <i class="fas fa-edit"></i>
-                                    </a> |
+                            <thead class="users__table--header">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody class="users__table--body">
+                                <tr v-for="user in users">
+                                    <td>{{user.id}}</td>
+                                    <td>{{user.name}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>
+                                        <span v-if="user.status === 'active'">Activo</span>
+                                        <span v-if="user.status === 'inactive'">Inactivo</span>
+                                    </td>
+                                    <td>
+                                        <a v-on:click="show(user)" >
+                                            <i class="fas fa-eye"></i>
+                                        </a> |
+                                        <a v-on:click="edit(user)" >
+                                            <i class="fas fa-edit"></i>
+                                        </a> |
 
-                                    <a v-if="user.status === 'inactive'" v-on:click="setActive(user)" >
-                                        <i class="far fa-check-square"></i>
-                                    </a>
-                                    <a v-if="user.status === 'active'" v-on:click="setInactive(user)" >
-                                        <i class="fas fa-ban"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                        <a v-if="user.status === 'inactive'" v-on:click="setActive(user)" >
+                                            <i class="far fa-check-square text-greenTem font-extrabold"></i>
+                                        </a>
+                                        <a v-if="user.status === 'active'" v-on:click="setInactive(user)" >
+                                            <i class="fas fa-ban text-red-600 font-extrabold"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -50,12 +54,12 @@
                 <div
                     v-show="isOpenEdit"
                     class="
-          absolute
-          inset-0
-          flex
-          items-center
-          justify-center
-          bg-gray-700 bg-opacity-50
+                      absolute
+                      inset-0
+                      flex
+                      items-center
+                      justify-center
+                      bg-gray-700 bg-opacity-50
         "
                 >
                     <div class="max-w-2xl p-6 bg-white rounded-md shadow-xl">
@@ -121,12 +125,12 @@
                 <div
                     v-show="isOpenShow"
                     class="
-          absolute
-          inset-0
-          flex
-          items-center
-          justify-center
-          bg-gray-700 bg-opacity-50
+                      absolute
+                      inset-0
+                      flex
+                      items-center
+                      justify-center
+                      bg-gray-700 bg-opacity-50
         "
                 >
                     <div class="max-w-2xl p-6 bg-white rounded-md shadow-xl">

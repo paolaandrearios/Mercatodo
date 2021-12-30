@@ -14,7 +14,9 @@ module.exports = {
             spanishGray: '#9C9C9C',
             dimGray: '#616161',
             atomicTangerine: '#FF925C',
-            culturedGray: '#F5F5F5'
+            culturedGray: '#F5F5F5',
+            greenTem: '#34e718',
+            seashell: '#FFF1EB',
         },
         fontFamily: {
             poppins: "'Poppins', sans-serif",
