@@ -54,3 +54,25 @@
         }
     }
 }
+
+.resetPassword {
+    @apply flex justify-center font-poppins relative;
+    &__container {
+        @apply p-5 bg-culturedGray w-5/6 lg:w-2/5 rounded-xl;
+        &--title {
+            @apply text-dimGray font-bold text-center text-xl md:text-2xl mb-8;
+        }
+        figure {
+            @apply absolute md:right-20 md:top-2/5 hidden lg:block;
+            img {
+                @apply w-1/4;
+            }
+        }
+        label {
+            @apply text-dimGray font-bold;
+        }
+    }
+    .resetError {
+        @apply text-orangePantone font-bold mb-2;
+    }
+}
