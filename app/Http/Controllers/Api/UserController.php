@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\StatusUserRequest;
 use App\Http\Requests\Api\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, int $id): JsonResponse
     {
-        $user = User::query()->where('id', $id)->first();
+        $user = User::query()->where('id', $id)->firstOrFail();
         $user->name = $request->name;
         if($user->save()){
             return response()->json([
@@ -40,15 +41,13 @@ class UserController extends Controller
     }
 
     /**
-     * @param $id
-     * @param $status
+     * @param StatusUserRequest $statusUserRequest
      * @return JsonResponse
      */
-    public function updateStatus($id, $status): JsonResponse
+    public function updateStatus(StatusUserRequest $statusUserRequest): JsonResponse
     {
-
-        $user = User::query()->where('id', $id)->firstOrFail();
-        $user->status = $status;
+        $user = User::query()->where('id', $statusUserRequest->id)->firstOrFail();
+        $user->status = $statusUserRequest->status;
         if($user->save()){
             return response()->json([
                 'message' => 'Usuario modificado satisfactoriamente'
