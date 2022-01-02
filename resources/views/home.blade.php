@@ -1,25 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-
-                        <example-component />
+    <div class="welcomePage__content">
+        <div class="welcomePage__container">
+            <div class="welcomePage__container--description">
+                <p>{{__('general.welcome.welcome_description')}}</p>
+                <p>{{__('general.welcome.slogan')}}</p>
+                <div class="flex">
+                    <img src="{{ asset('images/shopping-basket.png') }}">
+                    <img src="{{ asset('images/buy.png') }}">
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
