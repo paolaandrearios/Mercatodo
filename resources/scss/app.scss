@@ -1,0 +1,45 @@
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "resources/scss/welcomePage";
+@import "resources/scss/login";
+@import "resources/scss/register";
+@import "resources/scss/users";
+
+
+.header {
+    @apply block md:flex bg-orangePantone justify-between ;
+    &__logo {
+        @apply text-white flex justify-center md:justify-between;
+        img {
+            @apply self-center w-14 m-3;
+        }
+        a {
+            @apply self-center font-extrabold text-4xl;
+        }
+    }
+    &__navbar {
+        @apply flex text-center justify-center m-3;
+        }
+}
+
+.sidebar {
+    @apply h-full m-5 shadow-2xl;
+    &__menu {
+        li {
+            @apply text-center pt-5 font-bold text-lg text-dimGray hover:text-orangePantone;
+        }
+    }
+}
+
+
+
+.input {
+    @apply m-3 px-3 py-2 rounded-3xl border-solid border-gray-400 border-2 hover:bg-gainsboroGray text-black;
+}
+
+.button {
+    @apply bg-orangePantone p-3 rounded-3xl border-2 text-white font-bold hover:bg-orange-600 m-3;
+}

@@ -144,6 +144,10 @@ return [
         ],
     ],
 
+    'user' => [
+        'inactive' => 'The current user is not active in the platform',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
