@@ -19,10 +19,12 @@
     <div class="login">
         <div class="login__container">
             <div class="login__container--logo">
-                <img src="{{ asset('images/mercatodo-logo.png') }}">
-                <h1>
-                    {{ config('app.name', 'Laravel') }}
-                </h1>
+                <a class="flex" href="{{ url('/') }}">
+                    <img src="{{ asset('images/mercatodo-logo.png') }}">
+                    <h1>
+                        {{ config('app.name', 'Laravel') }}
+                    </h1>
+                </a>
             </div>
             <div class="login__container--title">{{ __('Login') }}</div>
             <div class="login__container--form">

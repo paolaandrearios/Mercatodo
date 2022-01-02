@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['showHeader' => true, 'showSidebar' => false ])
 
 @section('content')
 <div class="register">
@@ -33,7 +33,7 @@
                     <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                     @error('email')
-                    <div class="registerError" role="alert">
+                    <div class="registerError">
                         <strong>{{ $message }}</strong>
                     </div>
                     @enderror

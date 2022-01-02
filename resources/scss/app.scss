@@ -25,6 +25,17 @@
         }
 }
 
+.sidebar {
+    @apply h-full m-5 shadow-2xl;
+    &__menu {
+        li {
+            @apply text-center pt-5 font-bold text-lg text-dimGray hover:text-orangePantone;
+        }
+    }
+}
+
+
+
 .input {
     @apply m-3 px-3 py-2 rounded-3xl border-solid border-gray-400 border-2 hover:bg-gainsboroGray text-black;
 }

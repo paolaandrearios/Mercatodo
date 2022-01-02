@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['showHeader' => true, 'showSidebar' => false ])
 
 @section('content')
 <div class="">
