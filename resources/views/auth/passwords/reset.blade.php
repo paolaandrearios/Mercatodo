@@ -3,61 +3,61 @@
 @section('content')
 <div class="resetPassword">
       <div class="resetPassword__container">
-        <figure>
-            <img src="{{ asset('images/reset-password.png') }}">
-        </figure>
-        <div class="resetPassword__container--title">{{ __('Reset Password') }}</div>
-        <div>
-            <form method="POST" action="{{ route('password.update') }}">
-                @csrf
+          <div class="resetPassword__container--title">{{ __('Reset Password') }}</div>
+          <div class="flex">
+              <form class="w-full md:w-4/5" method="POST" action="{{ route('password.update') }}">
+                  @csrf
 
-                <input type="hidden" name="token" class="input" value="{{ $token }}">
+                  <input type="hidden" name="token" value="{{ $token }}">
 
-                <div>
-                    <label for="email" class="">{{ __('E-Mail Address') }}</label>
+                  <div>
+                      <label for="email">{{ __('E-Mail Address') }}</label>
 
-                    <div>
-                        <input id="email" type="email" class="input @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                      <div>
+                          <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
-                        @error('email')
-                            <div class="resetError" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </div>
-                        @enderror
-                    </div>
-                </div>
+                          @error('email')
+                          <div class="resetError" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </div>
+                          @enderror
+                      </div>
+                  </div>
 
-                <div>
-                    <label for="password">{{ __('Password') }}</label>
+                  <div>
+                      <label for="password">{{ __('Password') }}</label>
 
-                    <div>
-                        <input id="password" type="password" class="input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                      <div>
+                          <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                        @error('password')
-                            <div class="resetError" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </div>
-                        @enderror
-                    </div>
-                </div>
+                          @error('password')
+                          <div class="resetError" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </div>
+                          @enderror
+                      </div>
+                  </div>
 
-                <div>
-                    <label for="password-confirm">{{ __('Confirm Password') }}</label>
+                  <div>
+                      <label for="password-confirm">{{ __('Confirm Password') }}</label>
 
-                    <div>
-                        <input id="password-confirm" type="password" class="input" name="password_confirmation" required autocomplete="new-password">
-                    </div>
-                </div>
+                      <div>
+                          <input id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password">
+                      </div>
+                  </div>
 
-                <div>
-                    <div class="w-full md:w-2/3 mt-2">
-                        <button type="submit" class="button">
-                            {{ __('Reset Password') }}
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
+                  <div>
+                      <div>
+                          <button type="submit" class="button">
+                              {{ __('Reset Password') }}
+                          </button>
+                      </div>
+                  </div>
+              </form>
+              <figure class="w-full md:w-1/5">
+                  <img src="{{ asset('images/reset-password.png') }}">
+              </figure>
+          </div>
     </div>
 </div>
 @endsection

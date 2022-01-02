@@ -4,7 +4,7 @@
         <div class="">
             <div class="">
                 <div class="">
-                    <div class="users__container--title">Listado de Usuarios</div>
+                    <div class="users__container--title">User List</div>
 
                     <div class="users__tableContainer">
                         <table>
