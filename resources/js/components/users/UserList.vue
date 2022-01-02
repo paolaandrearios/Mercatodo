@@ -1,26 +1,30 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Listado de Usuarios</div>
+    <div>
+        <div>
+            <div>
+                <div>
+                    <div>Users</div>
 
-                    <div class="card-body">
+                    <div>
                         <table>
                             <tr>
                                 <td>Id</td>
-                                <td>Nombre</td>
+                                <td>Name</td>
                                 <td>Email</td>
-                                <td>Estado</td>
-                                <td>Acción</td>
+                                <td>Document</td>
+                                <td>Phone</td>
+                                <td>Status</td>
+                                <td>Action</td>
                             </tr>
                             <tr v-for="user in users">
                                 <td>{{user.id}}</td>
                                 <td>{{user.name}}</td>
                                 <td>{{user.email}}</td>
+                                <td>{{user.document_type}} {{user.document_number}}</td>
+                                <td>{{user.phone}}</td>
                                 <td>
-                                    <span v-if="user.status === 'active'">Activo</span>
-                                    <span v-if="user.status === 'inactive'">Inactivo</span>
+                                    <span v-if="user.status === 'active'">Active</span>
+                                    <span v-if="user.status === 'inactive'">Inactive</span>
                                 </td>
                                 <td>
                                     <a v-on:click="show(user)" >
@@ -50,17 +54,17 @@
                 <div
                     v-show="isOpenEdit"
                     class="
-          absolute
-          inset-0
-          flex
-          items-center
-          justify-center
-          bg-gray-700 bg-opacity-50
-        "
+                      absolute
+                      inset-0
+                      flex
+                      items-center
+                      justify-center
+                      bg-gray-700 bg-opacity-50
+                    "
                 >
                     <div class="max-w-2xl p-6 bg-white rounded-md shadow-xl">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-2xl">Editar usuario</h3>
+                            <h3 class="text-2xl">Edit User</h3>
                             <svg
                                 @click="isOpenEdit = false"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -77,14 +81,14 @@
                                 />
                             </svg>
                         </div>
-                        <div class="mt-4">
+                        <div>
                             <table>
                                 <tr>
                                     <td>Id</td>
                                     <td>{{currentUser.id}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Nombre</td>
+                                    <td>Name</td>
                                     <td>
                                         <input
                                             type="text"
@@ -93,21 +97,67 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Nombre</td>
+                                    <td>Email</td>
                                     <td>{{currentUser.email}}</td>
                                 </tr>
+                                <tr>
+                                    <td>Document type</td>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            v-model="currentUser.document_type"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Document number</td>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            v-model="currentUser.document_number"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            v-model="currentUser.address"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>City</td>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            v-model="currentUser.city"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Phone</td>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            v-model="currentUser.phone"
+                                        />
+                                    </td>
+                                </tr>
+
                             </table>
                             <button
                                 @click="isOpenEdit = false"
                                 class="px-6 py-2 text-blue-800 border border-blue-600 rounded"
                             >
-                                Cerrar
+                                Close
                             </button>
                             <button
                                 class="px-6 py-2 ml-2 text-blue-100 bg-blue-600 rounded"
                                 v-on:click="update"
                             >
-                                Guardar
+                                Save
                             </button>
                         </div>
                     </div>
@@ -121,17 +171,17 @@
                 <div
                     v-show="isOpenShow"
                     class="
-          absolute
-          inset-0
-          flex
-          items-center
-          justify-center
-          bg-gray-700 bg-opacity-50
+                      absolute
+                      inset-0
+                      flex
+                      items-center
+                      justify-center
+                      bg-gray-700 bg-opacity-50
         "
                 >
                     <div class="max-w-2xl p-6 bg-white rounded-md shadow-xl">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-2xl">Ver usuario</h3>
+                            <h3 class="text-2xl">Show User</h3>
                             <svg
                                 @click="isOpenShow = false"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -155,12 +205,32 @@
                                     <td>{{currentUser.id}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Nombre</td>
+                                    <td>Name</td>
                                     <td>{{currentUser.name}}</td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
                                     <td>{{currentUser.email}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Document type</td>
+                                    <td>{{currentUser.document_type}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Document number</td>
+                                    <td>{{currentUser.document_number}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>{{currentUser.address}}</td>
+                                </tr>
+                                <tr>
+                                    <td>City</td>
+                                    <td>{{currentUser.city}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Phone</td>
+                                    <td>{{currentUser.phone}}</td>
                                 </tr>
                             </table>
                             <button
@@ -208,7 +278,7 @@ export default {
                 this.currentUser
             ).then(response => {
                 alert(response.data.message)
-
+                this.isOpenEdit = false
             }).catch(error => {
                 alert(JSON.stringify(error.response.data.errors))
             })

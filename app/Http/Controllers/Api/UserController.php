@@ -29,6 +29,12 @@ class UserController extends Controller
     {
         $user = User::query()->where('id', $id)->firstOrFail();
         $user->name = $request->name;
+        $user->document_type = $request->document_type;
+        $user->document_number = $request->document_number;
+        $user->address = $request->address;
+        $user->city = $request->city;
+        $user->phone = $request->phone;
+
         if($user->save()){
             return response()->json([
                 'message' => 'Usuario modificado satisfactoriamente'

@@ -2282,6 +2282,76 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2312,26 +2382,29 @@ __webpack_require__.r(__webpack_exports__);
       this.isOpenEdit = true;
     },
     update: function update() {
+      var _this2 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default().put('/evertec/mercatodo/public/api/users/' + this.currentUser.id, this.currentUser).then(function (response) {
         alert(response.data.message);
+        _this2.isOpenEdit = false;
       })["catch"](function (error) {
         alert(JSON.stringify(error.response.data.errors));
       });
     },
     setActive: function setActive(user) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().put('/evertec/mercatodo/public/api/users/' + user.id + '/status/active').then(function (response) {
-        _this2.getAllUsers();
+        _this3.getAllUsers();
 
         alert(response.data.message);
       });
     },
     setInactive: function setInactive(user) {
-      var _this3 = this;
+      var _this4 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().put('/evertec/mercatodo/public/api/users/' + user.id + '/status/inactive').then(function (response) {
-        _this3.getAllUsers();
+        _this4.getAllUsers();
 
         alert(response.data.message);
       });
@@ -2801,15 +2874,13 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Listado de Usuarios"),
-          ]),
+  return _c("div", [
+    _c("div", [
+      _c("div", [
+        _c("div", [
+          _c("div", [_vm._v("Users")]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
+          _c("div", [
             _c(
               "table",
               [
@@ -2824,12 +2895,22 @@ var render = function () {
                     _c("td", [_vm._v(_vm._s(user.email))]),
                     _vm._v(" "),
                     _c("td", [
+                      _vm._v(
+                        _vm._s(user.document_type) +
+                          " " +
+                          _vm._s(user.document_number)
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(user.phone))]),
+                    _vm._v(" "),
+                    _c("td", [
                       user.status === "active"
-                        ? _c("span", [_vm._v("Activo")])
+                        ? _c("span", [_vm._v("Active")])
                         : _vm._e(),
                       _vm._v(" "),
                       user.status === "inactive"
-                        ? _c("span", [_vm._v("Inactivo")])
+                        ? _c("span", [_vm._v("Inactive")])
                         : _vm._e(),
                     ]),
                     _vm._v(" "),
@@ -2910,7 +2991,7 @@ var render = function () {
               },
             ],
             staticClass:
-              "\n      absolute\n      inset-0\n      flex\n      items-center\n      justify-center\n      bg-gray-700 bg-opacity-50\n    ",
+              "\n                  absolute\n                  inset-0\n                  flex\n                  items-center\n                  justify-center\n                  bg-gray-700 bg-opacity-50\n                ",
           },
           [
             _c(
@@ -2922,7 +3003,7 @@ var render = function () {
                   { staticClass: "flex items-center justify-between" },
                   [
                     _c("h3", { staticClass: "text-2xl" }, [
-                      _vm._v("Editar usuario"),
+                      _vm._v("Edit User"),
                     ]),
                     _vm._v(" "),
                     _c(
@@ -2955,7 +3036,7 @@ var render = function () {
                   ]
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "mt-4" }, [
+                _c("div", [
                   _c("table", [
                     _c("tr", [
                       _c("td", [_vm._v("Id")]),
@@ -2964,7 +3045,7 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Nombre")]),
+                      _c("td", [_vm._v("Name")]),
                       _vm._v(" "),
                       _c("td", [
                         _c("input", {
@@ -2995,9 +3076,164 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Nombre")]),
+                      _c("td", [_vm._v("Email")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(_vm.currentUser.email))]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Document type")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.currentUser.document_type,
+                              expression: "currentUser.document_type",
+                            },
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.currentUser.document_type },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.currentUser,
+                                "document_type",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Document number")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.currentUser.document_number,
+                              expression: "currentUser.document_number",
+                            },
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.currentUser.document_number },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.currentUser,
+                                "document_number",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Address")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.currentUser.address,
+                              expression: "currentUser.address",
+                            },
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.currentUser.address },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.currentUser,
+                                "address",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("City")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.currentUser.city,
+                              expression: "currentUser.city",
+                            },
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.currentUser.city },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.currentUser,
+                                "city",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Phone")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.currentUser.phone,
+                              expression: "currentUser.phone",
+                            },
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.currentUser.phone },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.currentUser,
+                                "phone",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                      ]),
                     ]),
                   ]),
                   _vm._v(" "),
@@ -3014,7 +3250,7 @@ var render = function () {
                     },
                     [
                       _vm._v(
-                        "\n                            Cerrar\n                        "
+                        "\n                            Close\n                        "
                       ),
                     ]
                   ),
@@ -3028,7 +3264,7 @@ var render = function () {
                     },
                     [
                       _vm._v(
-                        "\n                            Guardar\n                        "
+                        "\n                            Save\n                        "
                       ),
                     ]
                   ),
@@ -3054,7 +3290,7 @@ var render = function () {
               },
             ],
             staticClass:
-              "\n      absolute\n      inset-0\n      flex\n      items-center\n      justify-center\n      bg-gray-700 bg-opacity-50\n    ",
+              "\n                  absolute\n                  inset-0\n                  flex\n                  items-center\n                  justify-center\n                  bg-gray-700 bg-opacity-50\n    ",
           },
           [
             _c(
@@ -3066,7 +3302,7 @@ var render = function () {
                   { staticClass: "flex items-center justify-between" },
                   [
                     _c("h3", { staticClass: "text-2xl" }, [
-                      _vm._v("Ver usuario"),
+                      _vm._v("Show User"),
                     ]),
                     _vm._v(" "),
                     _c(
@@ -3108,7 +3344,7 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Nombre")]),
+                      _c("td", [_vm._v("Name")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(_vm.currentUser.name))]),
                     ]),
@@ -3117,6 +3353,38 @@ var render = function () {
                       _c("td", [_vm._v("Email")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(_vm.currentUser.email))]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Document type")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.currentUser.document_type))]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Document number")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.currentUser.document_number)),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Address")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.currentUser.address))]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("City")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.currentUser.city))]),
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Phone")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.currentUser.phone))]),
                     ]),
                   ]),
                   _vm._v(" "),
@@ -3154,13 +3422,17 @@ var staticRenderFns = [
     return _c("tr", [
       _c("td", [_vm._v("Id")]),
       _vm._v(" "),
-      _c("td", [_vm._v("Nombre")]),
+      _c("td", [_vm._v("Name")]),
       _vm._v(" "),
       _c("td", [_vm._v("Email")]),
       _vm._v(" "),
-      _c("td", [_vm._v("Estado")]),
+      _c("td", [_vm._v("Document")]),
       _vm._v(" "),
-      _c("td", [_vm._v("Acción")]),
+      _c("td", [_vm._v("Phone")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Status")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Action")]),
     ])
   },
 ]
@@ -15334,7 +15606,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\evertec\\\\mercatodo"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\evertec\\\\mercatodo","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

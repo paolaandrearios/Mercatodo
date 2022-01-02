@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'document_number' => 77888999,
             'address' => 'calle 30 Nro 90 - 15',
             'city' => 'Bogota',
-            'phone' => '301 555 88 99',
+            'phone' => '3015558899',
         ]);
 
         DB::table('users')->insert([
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'document_number' => 77888989,
             'address' => 'calle 30 Nro 90 - 15',
             'city' => 'Bogota',
-            'phone' => '301 555 88 99',
+            'phone' => '3015558899',
         ]);
 
         DB::table('users')->insert([
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             'document_number' => 77888979,
             'address' => 'calle 30 Nro 90 - 15',
             'city' => 'Bogota',
-            'phone' => '301 555 88 99',
+            'phone' => '3015558899',
         ]);
     }
 }
