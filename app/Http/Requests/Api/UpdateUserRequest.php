@@ -39,9 +39,6 @@ class UpdateUserRequest extends FormRequest
         ];
     }
 
-    /**
-     *
-     */
     protected function prepareForValidation(): void
     {
         $this->merge(['id' => $this->route('user')]);

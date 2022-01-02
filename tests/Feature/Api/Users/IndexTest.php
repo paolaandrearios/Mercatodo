@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class IndexTest extends TestCase
 {
-    use RefreshDatabase ;
+    use RefreshDatabase;
 
     protected $endPoint = '/api/users';
 
@@ -18,13 +18,11 @@ class IndexTest extends TestCase
         $response->assertStatus(200);
     }
 
-
     public function test_check_users_empty(): void
     {
         $response = $this->get($this->endPoint);
         $this->assertCount(0, $response->json());
     }
-
 
     public function test_check_all_users(): void
     {

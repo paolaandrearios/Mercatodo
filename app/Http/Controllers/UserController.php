@@ -13,13 +13,13 @@ class UserController extends Controller
      */
     public function __construct()
     {
-
     }
 
     /**
      * @return Application|Factory|View
      */
-    public function index() {
+    public function index()
+    {
         return view('users.index');
     }
 }

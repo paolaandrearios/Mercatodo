@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class UpdateTest extends TestCase
 {
-    use RefreshDatabase ;
+    use RefreshDatabase;
 
     protected $endPoint = '/api/users';
 
@@ -16,18 +16,18 @@ class UpdateTest extends TestCase
     {
         $response = $this->putJson($this->endPoint . '/1', ['name' => 'test']);
         $response->assertStatus(422);
-        $response->assertJsonFragment(["id" =>["The selected id is invalid."]]);
+        $response->assertJsonFragment(['id' =>['The selected id is invalid.']]);
     }
 
-    public function test_update_existent_user():void
+    public function test_update_existent_user(): void
     {
         $user = User::factory(1)->create(['name' => 'Josh']);
 
         $response = $this->putJson($this->endPoint . '/' . $user[0]->id, ['name' => 'David']);
         $response->assertOk();
-        $response->assertJsonFragment(["message" => "Usuario modificado satisfactoriamente"]);
+        $response->assertJsonFragment(['message' => 'Usuario modificado satisfactoriamente']);
 
         $userUpdated = User::query()->where('id', $user[0]->id)->first();
-        $this->assertEquals("David", $userUpdated->name);
+        $this->assertEquals('David', $userUpdated->name);
     }
 }

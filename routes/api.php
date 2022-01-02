@@ -20,7 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('users', UserController::class)->only([
-    'index', 'update', 'updateStatus'
+    'index', 'update', 'updateStatus',
 ]);
 Route::put('/users/{user}/status/{status}', [UserController::class, 'updateStatus'])->name('users.status');
-

@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-
 class UserController extends Controller
 {
     /**
@@ -30,13 +29,13 @@ class UserController extends Controller
         $user = User::query()->where('id', $id)->firstOrFail();
         $user->name = $request->name;
 
-        if($user->save()){
+        if ($user->save()) {
             return response()->json([
-                'message' => 'Usuario modificado satisfactoriamente'
+                'message' => 'Usuario modificado satisfactoriamente',
             ]);
         } else {
             return response()->json([
-                'message' => 'El usuario no pudo ser modificado'
+                'message' => 'El usuario no pudo ser modificado',
             ]);
         }
     }
@@ -49,13 +48,13 @@ class UserController extends Controller
     {
         $user = User::query()->where('id', $statusUserRequest->id)->firstOrFail();
         $user->status = $statusUserRequest->status;
-        if($user->save()){
+        if ($user->save()) {
             return response()->json([
-                'message' => 'Usuario modificado satisfactoriamente'
+                'message' => 'Usuario modificado satisfactoriamente',
             ]);
         } else {
             return response()->json([
-                'message' => 'El usuario no pudo ser modificado'
+                'message' => 'El usuario no pudo ser modificado',
             ]);
         }
     }
