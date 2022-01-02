@@ -1,0 +1,25 @@
+.register {
+    @apply  m-auto mb-2 mt-2 text-xs rounded-lg bg-culturedGray w-5/6 md:w-2/4 h-4/5;
+    &__container {
+        @apply flex flex-col lg:grid lg:grid-cols-2 m-1 md:m-6 gap-x-6;
+
+        label {
+            @apply text-dimGray font-bold m-3;
+        }
+        input, select {
+            @apply input w-11/12;
+        }
+    }
+    &--title {
+        @apply text-dimGray font-bold text-xl md:text-2xl mt-5;
+    }
+    form {
+        @apply w-full;
+    }
+    .registerError {
+        @apply text-orangePantone text-xs font-bold mb-4 mx-3;
+    }
+    figure {
+        @apply w-8 md:w-10 mx-2 my-5;
+    }
+}

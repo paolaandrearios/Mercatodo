@@ -22,9 +22,9 @@
             @apply font-bold text-black text-2xl mb-10 mx-auto;
         }
         &--form {
-            @apply justify-center m-3;
+            @apply justify-center m-3 text-xs md:text-sm;
             label{
-                @apply font-bold text-black;
+                @apply font-bold text-dimGray;
             }
             input {
                 @apply my-2 px-3 py-2 w-full md:w-8/12 rounded-3xl border-solid border-gray-400 border-2 hover:bg-gainsboroGray;
@@ -33,15 +33,15 @@
         }
     }
     .input-error {
-        @apply text-orangePantone mb-3;
+        @apply text-orangePantone mb-3 text-xs;
     }
     .input-checkbox {
-        @apply flex justify-center w-2/3;
+        @apply flex justify-center w-2/3 mx-auto md:mr-1/2;
         input {
-            @apply w-auto mx-2;
+            @apply w-auto;
         }
         label {
-            @apply font-normal;
+            @apply font-normal mx-2 mt-1;
         }
     }
     .login-button {
@@ -50,7 +50,7 @@
             @apply bg-orangePantone w-full p-3 rounded-3xl border-2 text-white font-bold hover:bg-orange-600 mx-auto;
         }
         a {
-            @apply font-bold underline text-sm mx-auto;
+            @apply font-bold underline text-xs mx-auto;
         }
     }
 }

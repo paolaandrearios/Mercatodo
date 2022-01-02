@@ -37,8 +37,8 @@
                 </h1>
             </div>
             <div class="welcomePage__container--description">
-                <p> Bienvenido a MercaTodo, tienda virtual donde podrás encontrar todo tipo de productos para ti y toda la familia </p>
-                <p>"MercaTodo donde lo tienes TODO"</p>
+                <p>{{__('general.welcome.welcome_description')}}</p>
+                <p>{{__('general.welcome.slogan')}}</p>
                 <img src="{{ asset('images/customer.png') }}">
             </div>
         </div>
