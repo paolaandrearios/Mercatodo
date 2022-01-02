@@ -16,7 +16,7 @@
                 <label for="name">{{ __('Name') }}</label>
 
                 <div>
-                    <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <input id="name" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                     @error('name')
                     <div class="registerError" role="alert">

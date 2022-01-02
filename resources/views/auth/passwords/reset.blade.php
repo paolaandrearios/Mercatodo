@@ -14,10 +14,10 @@
                       <label for="email">{{ __('E-Mail Address') }}</label>
 
                       <div>
-                          <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                          <input id="email" type="email" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
                           @error('email')
-                          <div class="resetError" role="alert">
+                          <div class="resetError">
                               <strong>{{ $message }}</strong>
                           </div>
                           @enderror
@@ -28,10 +28,10 @@
                       <label for="password">{{ __('Password') }}</label>
 
                       <div>
-                          <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                          <input id="password" type="password" name="password" required autocomplete="new-password">
 
                           @error('password')
-                          <div class="resetError" role="alert">
+                          <div class="resetError">
                               <strong>{{ $message }}</strong>
                           </div>
                           @enderror
@@ -54,7 +54,7 @@
                       </div>
                   </div>
               </form>
-              <figure class="w-full md:w-1/5">
+              <figure class="w-full md:w-1/5 m-auto">
                   <img src="{{ asset('images/reset-password.png') }}">
               </figure>
           </div>
