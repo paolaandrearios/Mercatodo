@@ -2292,69 +2292,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2901,16 +2838,6 @@ var render = function () {
                     _c("td", [_vm._v(_vm._s(user.email))]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(
-                        _vm._s(user.document_type) +
-                          " " +
-                          _vm._s(user.document_number)
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(user.phone))]),
-                    _vm._v(" "),
-                    _c("td", [
                       user.status === "active"
                         ? _c("span", [_vm._v("Activo")])
                         : _vm._e(),
@@ -3012,15 +2939,23 @@ var render = function () {
           [
             _c(
               "div",
-              { staticClass: "max-w-2xl p-6 bg-white rounded-md shadow-xl" },
+              {
+                staticClass:
+                  "text-sm p-2 max-w-2xl p-6 bg-white rounded-md shadow-xl",
+              },
               [
                 _c(
                   "div",
                   { staticClass: "flex items-center justify-between" },
                   [
-                    _c("h3", { staticClass: "text-2xl" }, [
-                      _vm._v("Edit User"),
-                    ]),
+                    _c(
+                      "h3",
+                      {
+                        staticClass:
+                          "mx-auto mb-2 text-center font-bold text-dimGray text-2xl",
+                      },
+                      [_vm._v("Edit User")]
+                    ),
                     _vm._v(" "),
                     _c(
                       "svg",
@@ -3096,194 +3031,41 @@ var render = function () {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(_vm.currentUser.email))]),
                     ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("Document type")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.currentUser.document_type,
-                              expression: "currentUser.document_type",
-                            },
-                          ],
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.currentUser.document_type },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.currentUser,
-                                "document_type",
-                                $event.target.value
-                              )
-                            },
-                          },
-                        }),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("Document number")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.currentUser.document_number,
-                              expression: "currentUser.document_number",
-                            },
-                          ],
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.currentUser.document_number },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.currentUser,
-                                "document_number",
-                                $event.target.value
-                              )
-                            },
-                          },
-                        }),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("Address")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.currentUser.address,
-                              expression: "currentUser.address",
-                            },
-                          ],
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.currentUser.address },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.currentUser,
-                                "address",
-                                $event.target.value
-                              )
-                            },
-                          },
-                        }),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("City")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.currentUser.city,
-                              expression: "currentUser.city",
-                            },
-                          ],
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.currentUser.city },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.currentUser,
-                                "city",
-                                $event.target.value
-                              )
-                            },
-                          },
-                        }),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("Phone")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.currentUser.phone,
-                              expression: "currentUser.phone",
-                            },
-                          ],
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.currentUser.phone },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.currentUser,
-                                "phone",
-                                $event.target.value
-                              )
-                            },
-                          },
-                        }),
-                      ]),
-                    ]),
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "px-6 py-2 text-blue-800 border border-blue-600 rounded",
-                      on: {
-                        click: function ($event) {
-                          _vm.isOpenEdit = false
+                  _c("div", { staticClass: "text-center p-2 mt-3" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "px-6 py-2 text-orangePantone border border-orangePantone rounded font-bold",
+                        on: {
+                          click: function ($event) {
+                            _vm.isOpenEdit = false
+                          },
                         },
                       },
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Close\n                        "
-                      ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "px-6 py-2 ml-2 text-blue-100 bg-blue-600 rounded",
-                      on: { click: _vm.update },
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Save\n                        "
-                      ),
-                    ]
-                  ),
+                      [
+                        _vm._v(
+                          "\n                                Close\n                            "
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "px-6 py-2 ml-2 text-white bg-orangePantone rounded",
+                        on: { click: _vm.update },
+                      },
+                      [
+                        _vm._v(
+                          "\n                                Save\n                            "
+                        ),
+                      ]
+                    ),
+                  ]),
                 ]),
               ]
             ),
@@ -3311,15 +3093,23 @@ var render = function () {
           [
             _c(
               "div",
-              { staticClass: "max-w-2xl p-6 bg-white rounded-md shadow-xl" },
+              {
+                staticClass:
+                  "text-sm max-w-2xl p-6 bg-white rounded-md shadow-xl",
+              },
               [
                 _c(
                   "div",
                   { staticClass: "flex items-center justify-between" },
                   [
-                    _c("h3", { staticClass: "text-2xl" }, [
-                      _vm._v("Show User"),
-                    ]),
+                    _c(
+                      "h3",
+                      {
+                        staticClass:
+                          "mx-auto mb-2 font-bold text-dimGray text-2xl",
+                      },
+                      [_vm._v("Show User")]
+                    ),
                     _vm._v(" "),
                     _c(
                       "svg",
@@ -3370,57 +3160,27 @@ var render = function () {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(_vm.currentUser.email))]),
                     ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("Document type")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(_vm.currentUser.document_type))]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("Document number")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(_vm.currentUser.document_number)),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("Address")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(_vm.currentUser.address))]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("City")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(_vm.currentUser.city))]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("Phone")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(_vm.currentUser.phone))]),
-                    ]),
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "px-6 py-2 text-blue-800 border border-blue-600 rounded",
-                      on: {
-                        click: function ($event) {
-                          _vm.isOpenShow = false
+                  _c("div", { staticClass: "text-center p-2 mt-3" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "px-6 py-2 text-orangePantone border border-orangePantone rounded font-bold",
+                        on: {
+                          click: function ($event) {
+                            _vm.isOpenShow = false
+                          },
                         },
                       },
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Cerrar\n                        "
-                      ),
-                    ]
-                  ),
+                      [
+                        _vm._v(
+                          "\n                                Cerrar\n                            "
+                        ),
+                      ]
+                    ),
+                  ]),
                 ]),
               ]
             ),
@@ -3442,10 +3202,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Document")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Phone")]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),

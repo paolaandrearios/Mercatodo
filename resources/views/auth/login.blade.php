@@ -26,6 +26,11 @@
                     </h1>
                 </a>
             </div>
+            @error('msg')
+            <div class="text-orangePantone mb-3 text-sm">
+                <strong>{{ $message }}</strong>
+            </div>
+            @enderror
             <div class="login__container--title">{{ __('Login') }}</div>
             <div class="login__container--form">
                 <form method="POST" action="{{ route('login') }}">

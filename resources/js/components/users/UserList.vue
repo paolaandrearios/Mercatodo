@@ -13,8 +13,6 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Document</th>
-                                    <th>Phone</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -24,8 +22,6 @@
                                     <td>{{user.id}}</td>
                                     <td>{{user.name}}</td>
                                     <td>{{user.email}}</td>
-                                    <td>{{user.document_type}} {{user.document_number}}</td>
-                                    <td>{{user.phone}}</td>
                                     <td>
                                         <span v-if="user.status === 'active'">Activo</span>
                                         <span v-if="user.status === 'inactive'">Inactivo</span>
@@ -65,9 +61,9 @@
                       justify-center
                       bg-gray-700 bg-opacity-50"
                 >
-                    <div class="max-w-2xl p-6 bg-white rounded-md shadow-xl">
+                    <div class="text-sm p-2 max-w-2xl p-6 bg-white rounded-md shadow-xl">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-2xl">Edit User</h3>
+                            <h3 class="mx-auto mb-2 text-center font-bold text-dimGray text-2xl">Edit User</h3>
                             <svg
                                 @click="isOpenEdit = false"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -103,65 +99,23 @@
                                     <td>Email</td>
                                     <td>{{currentUser.email}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Document type</td>
-                                    <td>
-                                        <input
-                                            type="text"
-                                            v-model="currentUser.document_type"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Document number</td>
-                                    <td>
-                                        <input
-                                            type="text"
-                                            v-model="currentUser.document_number"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Address</td>
-                                    <td>
-                                        <input
-                                            type="text"
-                                            v-model="currentUser.address"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>City</td>
-                                    <td>
-                                        <input
-                                            type="text"
-                                            v-model="currentUser.city"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Phone</td>
-                                    <td>
-                                        <input
-                                            type="text"
-                                            v-model="currentUser.phone"
-                                        />
-                                    </td>
-                                </tr>
 
                             </table>
-                            <button
-                                @click="isOpenEdit = false"
-                                class="px-6 py-2 text-blue-800 border border-blue-600 rounded"
-                            >
-                                Close
-                            </button>
-                            <button
-                                class="px-6 py-2 ml-2 text-blue-100 bg-blue-600 rounded"
-                                v-on:click="update"
-                            >
-                                Save
-                            </button>
+
+                            <div class="text-center p-2 mt-3">
+                                <button
+                                    @click="isOpenEdit = false"
+                                    class="px-6 py-2 text-orangePantone border border-orangePantone rounded font-bold"
+                                >
+                                    Close
+                                </button>
+                                <button
+                                    class="px-6 py-2 ml-2 text-white bg-orangePantone rounded"
+                                    v-on:click="update"
+                                >
+                                    Save
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -182,9 +136,9 @@
                       bg-gray-700 bg-opacity-50
         "
                 >
-                    <div class="max-w-2xl p-6 bg-white rounded-md shadow-xl">
+                    <div class="text-sm max-w-2xl p-6 bg-white rounded-md shadow-xl">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-2xl">Show User</h3>
+                            <h3 class="mx-auto mb-2 font-bold text-dimGray text-2xl">Show User</h3>
                             <svg
                                 @click="isOpenShow = false"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -215,33 +169,16 @@
                                     <td>Email</td>
                                     <td>{{currentUser.email}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Document type</td>
-                                    <td>{{currentUser.document_type}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Document number</td>
-                                    <td>{{currentUser.document_number}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Address</td>
-                                    <td>{{currentUser.address}}</td>
-                                </tr>
-                                <tr>
-                                    <td>City</td>
-                                    <td>{{currentUser.city}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Phone</td>
-                                    <td>{{currentUser.phone}}</td>
-                                </tr>
                             </table>
-                            <button
-                                @click="isOpenShow = false"
-                                class="px-6 py-2 text-blue-800 border border-blue-600 rounded"
-                            >
-                                Cerrar
-                            </button>
+
+                            <div class="text-center p-2 mt-3">
+                                <button
+                                    @click="isOpenShow = false"
+                                    class="px-6 py-2 text-orangePantone border border-orangePantone rounded font-bold"
+                                >
+                                    Cerrar
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -26,11 +26,6 @@ class UpdateUserRequest extends FormRequest
         return [
             'id' => 'required|exists:users,id',
             'name' => 'required',
-            'document_type' => ['required', 'in:CC,CE,NIT'],
-            'document_number' => ['required', 'numeric'],
-            'address' => ['required'],
-            'city' => ['required'],
-            'phone' => ['required', 'numeric'],
         ];
     }
 
