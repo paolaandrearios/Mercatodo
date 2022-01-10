@@ -31,11 +31,11 @@ class UserController extends Controller
 
         if ($user->save()) {
             return response()->json([
-                'message' => 'Usuario modificado satisfactoriamente',
+                'message' => __('general.api.user.update_status_success'),
             ]);
         } else {
             return response()->json([
-                'message' => 'El usuario no pudo ser modificado',
+                'message' => __('general.api.user.update_status_error'),
             ]);
         }
     }
@@ -50,11 +50,11 @@ class UserController extends Controller
         $user->status = $statusUserRequest->status;
         if ($user->save()) {
             return response()->json([
-                'message' => 'Usuario modificado satisfactoriamente',
+                'message' => __('general.api.user.update_status_success'),
             ]);
         } else {
             return response()->json([
-                'message' => 'El usuario no pudo ser modificado',
+                'message' => __('general.api.user.update_status_error'),
             ]);
         }
     }
