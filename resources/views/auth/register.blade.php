@@ -3,7 +3,7 @@
 @section('content')
 <div class="register">
     <div class="flex justify-center">
-        <div class="register--title">{{ __('Register') }}</div>
+        <div class="register--title">{{ __('general.web.user.register') }}</div>
         <figure>
             <img src="{{ asset('images/register.png') }}">
         </figure>
@@ -13,7 +13,7 @@
             @csrf
 
             <div>
-                <label for="name">{{ __('Name') }}</label>
+                <label for="name">{{ __('general.web.user.name') }}</label>
 
                 <div>
                     <input id="name" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -27,7 +27,7 @@
             </div>
 
             <div>
-                <label for="email">{{ __('E-Mail Address') }}</label>
+                <label for="email">{{ __('general.web.user.email') }}</label>
 
                 <div>
                     <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -41,7 +41,7 @@
             </div>
 
             <div>
-                <label for="password">{{ __('Password') }}</label>
+                <label for="password">{{ __('general.web.user.password') }}</label>
 
                 <div>
                     <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -55,7 +55,7 @@
             </div>
 
             <div>
-                <label for="password-confirm">{{ __('Confirm Password') }}</label>
+                <label for="password-confirm">{{ __('general.web.user.confirm-password') }}</label>
 
                 <div>
                     <input id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password">
@@ -65,7 +65,7 @@
 
         <div class="flex justify-center pb-3">
             <button class="button w-5/6 md:w-2/6" type="submit">
-                {{ __('Register') }}
+                {{ __('general.web.user.register-in') }}
             </button>
         </div>
     </form>

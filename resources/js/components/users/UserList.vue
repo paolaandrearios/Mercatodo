@@ -4,17 +4,17 @@
         <div class="">
             <div class="">
                 <div class="">
-                    <div class="users__container--title">User List</div>
+                    <div class="users__container--title">{{__('general.web.user.userList')}}</div>
 
                     <div class="users__tableContainer">
                         <table>
                             <thead class="users__table--header">
                                 <tr>
                                     <th>Id</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>{{__('general.web.user.name')}}</th>
+                                    <th>{{__('general.web.user.email')}}</th>
+                                    <th>{{__('general.web.user.status')}}</th>
+                                    <th>{{__('general.web.user.actions')}}</th>
                                 </tr>
                             </thead>
                             <tbody class="users__table--body">

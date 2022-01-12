@@ -3,7 +3,7 @@
 @section('content')
 <div class="resetPassword">
       <div class="resetPassword__container">
-          <div class="resetPassword__container--title">{{ __('Reset Password') }}</div>
+          <div class="resetPassword__container--title">{{ __('passwords.reset-password') }}</div>
           <div class="flex">
               <form class="w-full md:w-4/5" method="POST" action="{{ route('password.update') }}">
                   @csrf
@@ -11,7 +11,7 @@
                   <input type="hidden" name="token" value="{{ $token }}">
 
                   <div>
-                      <label for="email">{{ __('E-Mail Address') }}</label>
+                      <label for="email">{{ __('general.web.user.email') }}</label>
 
                       <div>
                           <input id="email" type="email" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
@@ -25,7 +25,7 @@
                   </div>
 
                   <div>
-                      <label for="password">{{ __('Password') }}</label>
+                      <label for="password">{{ __('general.web.user.password') }}</label>
 
                       <div>
                           <input id="password" type="password" name="password" required autocomplete="new-password">
@@ -39,7 +39,7 @@
                   </div>
 
                   <div>
-                      <label for="password-confirm">{{ __('Confirm Password') }}</label>
+                      <label for="password-confirm">{{ __('general.web.user.confirm-password') }}</label>
 
                       <div>
                           <input id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password">
@@ -49,7 +49,7 @@
                   <div>
                       <div>
                           <button type="submit" class="button">
-                              {{ __('Reset Password') }}
+                              {{ __('passwords.reset-password') }}
                           </button>
                       </div>
                   </div>

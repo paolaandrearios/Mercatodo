@@ -23,6 +23,7 @@ window.Vue = require('vue').default;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('user-list', require('./components/users/UserList.vue').default);
+Vue.mixin(require('./trans'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

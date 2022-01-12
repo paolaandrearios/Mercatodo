@@ -20,6 +20,11 @@
     <link rel="icon" href="{{ url('images/mercatodo-logo.png') }}">
 
     <script src="https://kit.fontawesome.com/a6face6a40.js" crossorigin="anonymous"></script>
+
+    <script>
+        window._locale = '{{ app()->getLocale() }}';
+        window._translations = {!! cache('translations') !!};
+    </script>
 </head>
 <body>
     <div id="app">

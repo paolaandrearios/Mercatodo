@@ -21,9 +21,9 @@
             @auth
                 <a href="{{ url('/home') }}">{{ __('Home') }}</a>
             @else
-                <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                <a href="{{ route('login') }}">{{ __('auth.login.login') }}</a>
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <a href="{{ route('register') }}">{{ __('general.web.user.register-in') }}</a>
                 @endif
             @endauth
         </div>

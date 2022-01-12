@@ -19,13 +19,13 @@
                     @guest
                         @if (Route::has('login'))
                             <li class="">
-                                <a class="" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="" href="{{ route('login') }}">{{ __('auth.login.login') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li>
-                                <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a href="{{ route('register') }}">{{ __('genera.web.user.register-in') }}</a>
                             </li>
                         @endif
                     @else
@@ -37,7 +37,7 @@
                             <div>
                                 <a class="cursor-pointer"
                                    onclick="document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('auth.login.logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class=" ">

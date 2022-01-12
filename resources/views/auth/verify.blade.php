@@ -4,18 +4,18 @@
 <div class="verifyEmail">
     <div class="verifyEmail__container">
         <div class="m-2 text-center">
-            <div class="verifyEmail__container--title">{{ __('Verify Your Email Address') }}</div>
+            <div class="verifyEmail__container--title">{{ __('auth.login.verify-email') }}</div>
             @if (session('resent'))
                 <div class="message">
-                    {{ __('A fresh verification link has been sent to your email address.') }}
+                    {{ __('auth.login.verify-email-resent') }}
                 </div>
             @endif
 
-            {{ __('Before proceeding, please check your email for a verification link.') }}
-            {{ __('If you did not receive the email') }},
+            {{ __('auth.login.verify-email-message') }}
+            {{ __('auth.login.verify-email-message-check') }},
             <form method="POST" action="{{ route('verification.resend') }}">
                 @csrf
-                <button type="submit" class="button">{{ __('click here to request another') }}</button>
+                <button type="submit" class="button">{{ __('auth.login.verify-email-button') }}</button>
             </form>
         </div>
         <figure class="w-full md:w-1/5">

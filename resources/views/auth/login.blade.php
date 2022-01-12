@@ -32,13 +32,13 @@
                 <strong>{{ $message }}</strong>
             </div>
             @enderror
-            <div class="login__container--title">{{ __('Login') }}</div>
+            <div class="login__container--title">{{ __('auth.login.login') }}</div>
             <div class="login__container--form">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div>
-                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('auth.login.email') }}</label>
 
                         <div>
                             <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -52,7 +52,7 @@
                     </div>
 
                     <div>
-                        <label for="password" class="">{{ __('Password') }}</label>
+                        <label for="password" class="">{{ __('auth.login.password') }}</label>
 
                         <div>
                             <input id="password" type="password"  name="password" required autocomplete="current-password">
@@ -71,7 +71,7 @@
                                 <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                 <label for="remember">
-                                    {{ __('Remember Me') }}
+                                    {{ __('auth.login.remember-me') }}
                                 </label>
                             </div>
                         </div>
@@ -79,12 +79,12 @@
 
                     <div class="login-button">
                         <button type="submit">
-                            {{ __('Login') }}
+                            {{ __('auth.login.login') }}
                         </button>
 
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
+                                {{ __('auth.login.forgot-password') }}
                             </a>
                         @endif
                     </div>

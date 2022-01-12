@@ -2387,6 +2387,7 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('user-list', (__webpack_require__(/*! ./components/users/UserList.vue */ "./resources/js/components/users/UserList.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].mixin(__webpack_require__(/*! ./trans */ "./resources/js/trans.js"));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -2396,6 +2397,48 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('user-list', (__webpack_re
 var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
   el: '#app'
 });
+
+/***/ }),
+
+/***/ "./resources/js/trans.js":
+/*!*******************************!*\
+  !*** ./resources/js/trans.js ***!
+  \*******************************/
+/***/ ((module) => {
+
+module.exports = {
+  methods: {
+    /**
+     * Translate the given key.
+     */
+    __: function __(key, replace) {
+      var translation,
+          translationNotFound = true;
+
+      try {
+        translation = key.split('.').reduce(function (t, i) {
+          return t[i] || null;
+        }, window._translations[window._locale].php);
+
+        if (translation) {
+          translationNotFound = false;
+        }
+      } catch (e) {
+        translation = key;
+      }
+
+      if (translationNotFound) {
+        translation = window._translations[window._locale]['json'][key] ? window._translations[window._locale]['json'][key] : key;
+      }
+      /*_.forEach(replace, (value, key) => {
+          translation = translation.replace(':' + key, value)
+      })*/
+
+
+      return translation;
+    }
+  }
+};
 
 /***/ }),
 
@@ -2819,12 +2862,26 @@ var render = function () {
       _c("div", {}, [
         _c("div", {}, [
           _c("div", { staticClass: "users__container--title" }, [
-            _vm._v("User List"),
+            _vm._v(_vm._s(_vm.__("general.web.user.userList"))),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "users__tableContainer" }, [
             _c("table", [
-              _vm._m(0),
+              _c("thead", { staticClass: "users__table--header" }, [
+                _c("tr", [
+                  _c("th", [_vm._v("Id")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v(_vm._s(_vm.__("general.web.user.name")))]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v(_vm._s(_vm.__("general.web.user.email")))]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v(_vm._s(_vm.__("general.web.user.status")))]),
+                  _vm._v(" "),
+                  _c("th", [
+                    _vm._v(_vm._s(_vm.__("general.web.user.actions"))),
+                  ]),
+                ]),
+              ]),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -3190,26 +3247,7 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "users__table--header" }, [
-      _c("tr", [
-        _c("th", [_vm._v("Id")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Status")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Action")]),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

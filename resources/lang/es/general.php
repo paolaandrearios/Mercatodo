@@ -11,5 +11,24 @@ return [
              'update_status_success' => 'El usuario ha sido modificado satisfactoriamente',
             'update_status_error' => 'El usuario no pudo ser modificado'
         ]
-    ]
+    ],
+
+    'web' => [
+        'user' => [
+            'userList' => 'Lista de Usuarios',
+            'name' => 'Nombre',
+            'email' => 'Correo electrónico',
+            'status' => 'Estado',
+            'actions' => 'Acciones',
+            'password' => 'Contraseña',
+            'confirm-password' => 'Confirmar Contraseña',
+            'register' => 'Registro',
+            'register-in' => 'Registrarse',
+        ]
+    ],
+
+    'sidebar' => [
+        'home' => 'Inicio',
+        'users' => 'Usuarios',
+    ],
 ];

@@ -17,4 +17,20 @@ return [
     'password' => 'La contraseña proporcionada es incorrecta.',
     'throttle' => 'Demasiados intentos de acceso. Por favor inténtelo de nuevo en :seconds segundos.',
 
+    'login' => [
+
+        'email' => 'Correo electrónico',
+        'password' => 'Contraseña',
+        'remember-me' => 'Recuérdame',
+        'login' => 'Iniciar sesión',
+        'logout' => 'Cerrar sesión',
+        'forgot-password' => '¿Olvidó su contraseña?',
+        'verify-email' => 'Verifique Su Correo Electrónico',
+        'verify-email-message' => 'Antes de continuar, verifique su correo electrónico para obtener un enlace de verificación.',
+        'verify-email-message-check' => 'Si no recibió el correo electrónico,',
+        'verify-email-button' => 'haga clic aquí para solicitar otro',
+        'verify-email-resent' => 'Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.',
+
+    ]
+
 ];

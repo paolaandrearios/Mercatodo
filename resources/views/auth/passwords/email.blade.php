@@ -3,7 +3,7 @@
 @section('content')
 <div class="resetLink">
     <div class="resetLink__container">
-        <div class="resetLink__container--title">{{ __('Reset Password') }}</div>
+        <div class="resetLink__container--title">{{ __('passwords.reset-password') }}</div>
         <div class="flex">
             <div class="w-full md:w-4/5">
                 @if (session('status'))
@@ -16,7 +16,7 @@
                     @csrf
 
                     <div>
-                        <label for="email">{{ __('E-Mail Address') }}</label>
+                        <label for="email">{{ __('general.web.user.email') }}</label>
 
                         <div>
                             <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -32,7 +32,7 @@
                     <div>
                         <div>
                             <button type="submit" class="button">
-                                {{ __('Send Password Reset Link') }}
+                                {{ __('passwords.reset-password-link') }}
                             </button>
                         </div>
                     </div>
