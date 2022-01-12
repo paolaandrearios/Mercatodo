@@ -35,7 +35,7 @@ class UpdateUserRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'El nombre es requerido',
+            'name.required' => __( 'validation.required'),
         ];
     }
 

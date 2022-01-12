@@ -25,7 +25,7 @@ class UpdateTest extends TestCase
 
         $response = $this->putJson($this->endPoint . '/' . $user[0]->id, ['name' => 'David']);
         $response->assertOk();
-        $response->assertJsonFragment(['message' => 'Usuario modificado satisfactoriamente']);
+        $response->assertJsonFragment(['message' => __('general.api.user.update_status_success')]);
 
         $userUpdated = User::query()->where('id', $user[0]->id)->first();
         $this->assertEquals('David', $userUpdated->name);

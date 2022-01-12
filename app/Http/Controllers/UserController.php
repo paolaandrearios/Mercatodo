@@ -18,7 +18,7 @@ class UserController extends Controller
     /**
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(): view
     {
         return view('users.index');
     }

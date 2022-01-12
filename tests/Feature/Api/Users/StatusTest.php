@@ -32,7 +32,7 @@ class StatusTest extends TestCase
         $user = User::factory(1)->create(['status' => 'inactive']);
         $response = $this->putJson($this->endPoint . '/' . $user[0]->id . '/status/active');
         $response->assertOk();
-        $response->assertJsonFragment(['message' => 'Usuario modificado satisfactoriamente']);
+        $response->assertJsonFragment(['message' => __('general.api.user.update_status_success')]);
 
         $userUpdated = User::query()->where('id', $user[0]->id)->first();
         $this->assertEquals('active', $userUpdated->status);
@@ -43,21 +43,10 @@ class StatusTest extends TestCase
         $user = User::factory(1)->create(['status' => 'active']);
         $response = $this->putJson($this->endPoint . '/' . $user[0]->id . '/status/inactive');
         $response->assertOk();
-        $response->assertJsonFragment(['message' => 'Usuario modificado satisfactoriamente']);
+        $response->assertJsonFragment(['message' => __('general.api.user.update_status_success')]);
 
         $userUpdated = User::query()->where('id', $user[0]->id)->first();
         $this->assertEquals('inactive', $userUpdated->status);
     }
 
-//    public function test_update_existent_user():void
-//    {
-//        $user = User::factory(1)->create(['name' => 'Josh']);
-//
-//        $response = $this->putJson($this->endPoint . '/' . $user[0]->id, ['name' => 'David']);
-//        $response->assertOk();
-//        $response->assertJsonFragment(["message" => "Usuario modificado satisfactoriamente"]);
-//
-//        $userUpdated = User::query()->where('id', $user[0]->id)->first();
-//        $this->assertEquals("David", $userUpdated->name);
-//    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePasswordResetsTable extends Migration
+class AddEnumToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('password_resets', function (Blueprint $table) {
-            $table->string('email')->index();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->enum('status', ['active', 'inactive'])->default('active');
         });
     }
 
@@ -27,6 +25,6 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('password_resets');
+        Schema::dropColumns('enum');
     }
 }

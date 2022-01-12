@@ -17,6 +17,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url('images/mercatodo-logo.png') }}">
 
     <script src="https://kit.fontawesome.com/a6face6a40.js" crossorigin="anonymous"></script>
 </head>

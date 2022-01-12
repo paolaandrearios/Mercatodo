@@ -14,6 +14,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url('images/mercatodo-logo.png') }}">
 </head>
 <body class="bodyLogin">
     <div class="login">

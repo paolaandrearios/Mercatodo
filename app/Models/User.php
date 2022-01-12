@@ -8,6 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * Class User
+ * @package App\Models
+ * @method static create(array $params)
+ */
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -23,11 +29,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'document_type',
-        'document_number',
-        'address',
-        'city',
-        'phone',
     ];
 
     /**
@@ -48,12 +49,17 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+     * @var mixed
+     */
+
 
     /**
      * @return bool
      */
+
     public function isActive(): bool
     {
-        return $this->status === 'active';
+        return $this->status == 'active';
     }
 }
