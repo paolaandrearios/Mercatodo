@@ -21,8 +21,9 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-//administrator
+
 Route::middleware(['auth', 'verified', 'active'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/users', [UserController::class, 'index'])->name('user.index');
+    Route::get('/users', [UserController::class, 'index'])->middleware('can:user.index')->name('user.index');
 });
+
