@@ -23,7 +23,7 @@
 
     <script>
         window._locale = '{{ app()->getLocale() }}';
-        window._translations = {!! cache('translations') !!};
+        window._translations = {!! Helper::getTranslation() !!};
     </script>
 </head>
 <body>

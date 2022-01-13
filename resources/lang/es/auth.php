@@ -21,7 +21,7 @@ return [
 
         'email' => 'Correo electrónico',
         'password' => 'Contraseña',
-        'remember-me' => 'Recuérdame',
+        'remember-me' => 'Recuérdeme',
         'login' => 'Iniciar sesión',
         'logout' => 'Cerrar sesión',
         'forgot-password' => '¿Olvidó su contraseña?',

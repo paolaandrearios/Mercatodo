@@ -1,27 +1,23 @@
 <?php
 
-namespace App\Providers;
 
+namespace App\Helpers;
+
+
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\ServiceProvider;
 
-class TranslationServiceProvider extends ServiceProvider
+class Helper
 {
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
-    public function boot(): void
-    {
-        Cache::rememberForever('translations', function () {
+    public static function getTranslation(){
+        return Cache::remember('translations', Carbon::now()->endOfDay(), function () {
             $translations = collect();
 
             foreach (['en', 'es'] as $locale) { // suported locales
                 $translations[$locale] = [
-                    'php' => $this->phpTranslations($locale),
-                    'json' => $this->jsonTranslations($locale),
+                    'php' => self::phpTranslations($locale),
+                    'json' => self::jsonTranslations($locale),
                 ];
             }
 
@@ -29,7 +25,7 @@ class TranslationServiceProvider extends ServiceProvider
         });
     }
 
-    private function phpTranslations($locale): \Illuminate\Support\Collection
+    private static function phpTranslations($locale): \Illuminate\Support\Collection
     {
         $path = resource_path("lang/$locale");
 
@@ -40,7 +36,7 @@ class TranslationServiceProvider extends ServiceProvider
         });
     }
 
-    private function jsonTranslations($locale): array
+    private static function jsonTranslations($locale): array
     {
         $path = resource_path("lang/$locale.json");
 
@@ -50,5 +46,4 @@ class TranslationServiceProvider extends ServiceProvider
 
         return [];
     }
-
 }

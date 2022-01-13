@@ -9,6 +9,7 @@
 import Vue from "vue";
 
 window.Vue = require('vue').default;
+Vue.mixin(require('./trans'));
 
 /**
  * The following block of code may be used to automatically register your
@@ -23,7 +24,8 @@ window.Vue = require('vue').default;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('user-list', require('./components/users/UserList.vue').default);
-Vue.mixin(require('./trans'));
+Vue.component('user-edit', require('./components/users/modals/UserEdit.vue').default);
+Vue.component('user-show', require('./components/users/modals/UserShow.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,3 +36,4 @@ Vue.mixin(require('./trans'));
 const app = new Vue({
     el: '#app',
 });
+

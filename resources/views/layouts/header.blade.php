@@ -25,7 +25,7 @@
 
                         @if (Route::has('register'))
                             <li>
-                                <a href="{{ route('register') }}">{{ __('genera.web.user.register-in') }}</a>
+                                <a href="{{ route('register') }}">{{ __('general.web.user.register-in') }}</a>
                             </li>
                         @endif
                     @else

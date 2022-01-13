@@ -15,16 +15,24 @@ return [
     ],
 
     'web' => [
+
+        'close' => 'Close',
+        'save' => 'Save',
+
         'user' => [
             'userList' => 'User List',
             'name' => 'Name',
             'email' => 'Email',
             'status' => 'Status',
             'actions' => 'Actions',
+            'active' => 'Active',
+            'inactive' => 'Inactive',
             'password' => 'Password',
             'confirm-password' => 'Confirm Password',
             'register' => 'Register',
             'register-in' => 'Register',
+            'edit-user' => 'Edit User',
+            'show-user' => 'Show User',
         ]
     ],
 
