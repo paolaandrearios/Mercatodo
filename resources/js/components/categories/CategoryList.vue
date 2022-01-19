@@ -1,14 +1,14 @@
 <template>
 
-    <div class="users__container">
+    <div class="section__container">
         <div>
             <div>
                 <div>
-                    <div class="users__container--title">{{__('general.web.category.category_list')}}</div>
+                    <div class="section__container--title">{{__('general.web.category.category_list')}}</div>
 
-                    <div class="users__tableContainer">
+                    <div class="table__container">
                         <table>
-                            <thead class="users__table--header">
+                            <thead class="table__container--header">
                             <tr>
                                 <th>Id</th>
                                 <th>{{__('general.web.category.name')}}</th>
@@ -17,7 +17,7 @@
                                 <th>{{__('general.web.category.actions')}}</th>
                             </tr>
                             </thead>
-                            <tbody class="users__table--body">
+                            <tbody class="table__container--body">
                             <tr v-for="category in categories">
                                 <td>{{category.id}}</td>
                                 <td>{{category.name}}</td>

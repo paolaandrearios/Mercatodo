@@ -3269,17 +3269,17 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "users__container" }, [
+  return _c("div", { staticClass: "section__container" }, [
     _c("div", [
       _c("div", [
         _c("div", [
-          _c("div", { staticClass: "users__container--title" }, [
+          _c("div", { staticClass: "section__container--title" }, [
             _vm._v(_vm._s(_vm.__("general.web.category.category_list"))),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "users__tableContainer" }, [
+          _c("div", { staticClass: "table__container" }, [
             _c("table", [
-              _c("thead", { staticClass: "users__table--header" }, [
+              _c("thead", { staticClass: "table__container--header" }, [
                 _c("tr", [
                   _c("th", [_vm._v("Id")]),
                   _vm._v(" "),
@@ -3303,7 +3303,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "tbody",
-                { staticClass: "users__table--body" },
+                { staticClass: "table__container--body" },
                 _vm._l(_vm.categories, function (category) {
                   return _c("tr", [
                     _c("td", [_vm._v(_vm._s(category.id))]),
@@ -3393,18 +3393,18 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "users__container" },
+    { staticClass: "section__container" },
     [
-      _c("div", {}, [
-        _c("div", {}, [
-          _c("div", {}, [
-            _c("div", { staticClass: "users__container--title" }, [
+      _c("div", [
+        _c("div", [
+          _c("div", [
+            _c("div", { staticClass: "section__container--title" }, [
               _vm._v(_vm._s(_vm.__("general.web.user.user_list"))),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "users__tableContainer" }, [
+            _c("div", { staticClass: "table__container" }, [
               _c("table", [
-                _c("thead", { staticClass: "users__table--header" }, [
+                _c("thead", { staticClass: "table__container--header" }, [
                   _c("tr", [
                     _c("th", [_vm._v("Id")]),
                     _vm._v(" "),
@@ -3426,7 +3426,7 @@ var render = function () {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  { staticClass: "users__table--body" },
+                  { staticClass: "table__container--body" },
                   _vm._l(_vm.users, function (user) {
                     return _c("tr", [
                       _c("td", [_vm._v(_vm._s(user.id))]),

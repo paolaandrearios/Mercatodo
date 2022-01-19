@@ -1,14 +1,14 @@
 <template>
 
-    <div class="users__container">
-        <div class="">
-            <div class="">
-                <div class="">
-                    <div class="users__container--title">{{__('general.web.user.user_list')}}</div>
+    <div class="section__container">
+        <div>
+            <div>
+                <div>
+                    <div class="section__container--title">{{__('general.web.user.user_list')}}</div>
 
-                    <div class="users__tableContainer">
+                    <div class="table__container">
                         <table>
-                            <thead class="users__table--header">
+                            <thead class="table__container--header">
                                 <tr>
                                     <th>Id</th>
                                     <th>{{__('general.web.user.name')}}</th>
@@ -17,7 +17,7 @@
                                     <th>{{__('general.web.user.actions')}}</th>
                                 </tr>
                             </thead>
-                            <tbody class="users__table--body">
+                            <tbody class="table__container--body">
                                 <tr v-for="user in users">
                                     <td>{{user.id}}</td>
                                     <td>{{user.name}}</td>
