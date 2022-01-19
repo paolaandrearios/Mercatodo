@@ -4,7 +4,7 @@
         <div class="">
             <div class="">
                 <div class="">
-                    <div class="users__container--title">{{__('general.web.user.userList')}}</div>
+                    <div class="users__container--title">{{__('general.web.user.user_list')}}</div>
 
                     <div class="users__tableContainer">
                         <table>
@@ -23,8 +23,7 @@
                                     <td>{{user.name}}</td>
                                     <td>{{user.email}}</td>
                                     <td>
-                                        <span v-if="user.status === 'active'">{{__('general.web.user.active')}}</span>
-                                        <span v-if="user.status === 'inactive'">{{__('general.web.user.inactive')}}</span>
+                                        <span>{{__('general.web.user.'+ user.status)}}</span>
                                     </td>
                                     <td>
                                         <a v-on:click="show(user)" >

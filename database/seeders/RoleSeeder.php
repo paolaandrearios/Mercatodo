@@ -22,6 +22,7 @@ class RoleSeeder extends Seeder
         $role2 = Role::create(['name' => 'Client']);
 
         Permission::create(['name' => 'user.index'])->assignRole($role1);
+        Permission::create(['name' => 'category.index'])->assignRole($role1);
         Permission::create(['name' => 'home'])->syncRoles($role1, $role2);
     }
 }

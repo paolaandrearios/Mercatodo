@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\File;
 
 class Helper
 {
-    public static function getTranslation(){
+    public static function getTranslation()
+    {
         return Cache::remember('translations', Carbon::now()->endOfDay(), function () {
             $translations = collect();
 
@@ -45,5 +46,10 @@ class Helper
         }
 
         return [];
+    }
+
+    public static function slugCreate($category_name): string
+    {
+        return str_replace(' ', '-', trim($category_name));
     }
 }

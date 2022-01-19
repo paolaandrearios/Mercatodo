@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +26,6 @@ Auth::routes(['verify' => true]);
 Route::middleware(['auth', 'verified', 'active'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/users', [UserController::class, 'index'])->middleware('can:user.index')->name('user.index');
+    Route::get('/categories', [CategoryController::class, 'index'])->middleware('can:category.index')->name('category.index');
 });
 

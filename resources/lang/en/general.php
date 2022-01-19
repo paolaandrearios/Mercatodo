@@ -11,7 +11,13 @@ return [
         'user' => [
             'update_status_success' => 'User has been successfully modified',
             'update_status_error' => 'User could not be modified'
-        ]
+        ],
+
+        'category' => [
+            'update_status_success' => 'Category has been successfully modified',
+            'update_status_error' => 'Category could not be modified'
+        ],
+
     ],
 
     'web' => [
@@ -20,7 +26,7 @@ return [
         'save' => 'Save',
 
         'user' => [
-            'userList' => 'User List',
+            'user_list' => 'User List',
             'name' => 'Name',
             'email' => 'Email',
             'status' => 'Status',
@@ -33,13 +39,30 @@ return [
             'register-in' => 'Register',
             'edit-user' => 'Edit User',
             'show-user' => 'Show User',
-        ]
+        ],
+
+        'category' => [
+            'category_list' => 'Category List',
+            'name' => 'Category Name',
+            'description' => 'Description',
+            'outstanding_image' => 'Outstanding Image',
+            'slug' => 'Friendly Url',
+            'type' => 'Type',
+            'category' => 'Category',
+            'subcategory' => 'Sub-category',
+            'status' => 'Status',
+            'actions' => 'Actions',
+            'active' => 'Active',
+            'inactive' => 'Inactive',
+            'icon' => 'icon',
+        ],
     ],
 
 
     'sidebar' => [
         'home' => 'Home',
         'users' => 'Users',
+        'categories' => 'Categories',
     ],
 
 ];

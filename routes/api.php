@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,11 @@ Route::resource('users', UserController::class)->only([
     'index', 'update', 'updateStatus',
 ]);
 Route::put('/users/{user}/status/{status}', [UserController::class, 'updateStatus'])->name('users.status');
+
+
+//categories routes
+Route::resource('categories', CategoryController::class)->only([
+    'store', 'show', 'index', 'update',
+]);
+
+
