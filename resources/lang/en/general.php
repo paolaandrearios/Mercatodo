@@ -45,6 +45,7 @@ return [
         'category' => [
             'category_list' => 'Category List',
             'create_category' => 'Create Category',
+            'edit_category' => 'Edit Category',
             'name' => 'Category',
             'description' => 'Description',
             'outstanding_image' => 'Outstanding Image',

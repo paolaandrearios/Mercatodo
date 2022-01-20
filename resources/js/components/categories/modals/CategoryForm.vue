@@ -7,15 +7,15 @@
             <form v-on:submit.prevent="">
                 <div>
                     <label for="name">{{__('general.web.category.name')}}</label>
-                    <input text="text" id="name" v-model="category.name">
+                    <input type="text" id="name" v-model="category.name">
                 </div>
                 <div>
                     <label for="description">{{__('general.web.category.description')}}</label>
-                    <textarea text="text" id="description" v-model="category.description"></textarea>
+                    <textarea typeof="text" id="description" v-model="category.description"></textarea>
                 </div>
                 <div>
                     <label for="image">{{__('general.web.category.outstanding_image')}}</label>
-                    <input text="text" id="image" v-model="category.outstanding_image">
+                    <input type="text" id="image" v-model="category.outstanding_image">
                 </div>
                 <div>
                     <label for="type">{{__('general.web.category.type')}}</label>
@@ -35,7 +35,7 @@
                 </div>
                 <div>
                     <label for="icon">{{__('general.web.category.icon')}}</label>
-                    <input text="text" id="icon" v-model="category.icon">
+                    <input type="text" id="icon" v-model="category.icon">
                 </div>
 
                 <div class="text-center p-2 mt-3">
@@ -63,7 +63,7 @@ import Modal from "../../Modal";
 
 
 export default {
-    name: "FormCategory.vue",
+    name: "CategoryForm.vue",
     components: {
         Modal
     },

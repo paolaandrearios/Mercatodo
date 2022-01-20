@@ -43,6 +43,7 @@ return [
         'category' => [
             'category_list' => 'Lista de Categorías',
             'create_category' => 'Crear Categoría',
+            'edit_category' => 'Editar Categoría',
             'name' => 'Categoría',
             'description' => 'Descripción',
             'outstanding_image' => 'Imagen destacada',

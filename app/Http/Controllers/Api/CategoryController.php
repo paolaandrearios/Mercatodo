@@ -45,7 +45,6 @@ class CategoryController extends Controller
         return response()->json(compact('category'));
     }
 
-
     /**
      * @param Request $request
      * @param Category $category
@@ -54,9 +53,7 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category): JsonResponse
     {
-        $category = $category->update($request->all());
-
-        if ($category->save()) {
+        if ($category->update($request->all())) {
             return response()->json([
                 'message' => __('general.api.category.update_status_success'),
             ]);

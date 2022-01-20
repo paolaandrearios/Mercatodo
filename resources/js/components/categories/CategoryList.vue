@@ -33,7 +33,7 @@
                                     <a v-on:click="show(category)" >
                                         <i class="fas fa-eye"></i>
                                     </a> |
-                                    <a v-on:click="" >
+                                    <a v-on:click="edit(category)" >
                                         <i class="fas fa-edit"></i>
                                     </a> |
                                     <a v-if="category.status === 'inactive'" v-on:click="" >
@@ -53,6 +53,7 @@
 
         <category-form :isOpenAdd="isOpenAdd" @close="close"></category-form>
         <category-show :isOpenShow="isOpenShow" :category="currentCategory" @close="close"></category-show>
+        <category-edit :isOpenEdit="isOpenEdit" :category="currentCategory" @close="close"></category-edit>
 
     </div>
 </template>
@@ -61,6 +62,7 @@
 import axios from 'axios';
 import CategoryForm from "./modals/CategoryForm";
 import CategoryShow from "./modals/CategoryShow";
+import CategoryEdit from "./modals/CategoryEdit";
 
 export default {
 
@@ -68,6 +70,7 @@ export default {
     components: {
         CategoryForm,
         CategoryShow,
+        CategoryEdit,
     },
 
     data () {
@@ -76,6 +79,7 @@ export default {
             currentCategory: {},
             isOpenAdd: false,
             isOpenShow: false,
+            isOpenEdit: false,
         }
     },
     mounted() {
@@ -90,13 +94,18 @@ export default {
         add: function () {
             this.isOpenAdd = true
         },
-        show: function(category){
+        show: function(category) {
             this.currentCategory = category
             this.isOpenShow = true
+        },
+        edit: function(category) {
+            this.currentCategory = category
+            this.isOpenEdit = true
         },
         close: function () {
             this.isOpenAdd = false;
             this.isOpenShow = false;
+            this.isOpenEdit = false;
         }
 
     }

@@ -26,6 +26,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, int $id): JsonResponse
     {
+        //TODO: Refactor to user
         $user = User::query()->where('id', $id)->firstOrFail();
         $user->name = $request->name;
 
