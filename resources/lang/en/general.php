@@ -24,6 +24,7 @@ return [
 
         'close' => 'Close',
         'save' => 'Save',
+        'select' => 'Select one option',
 
         'user' => [
             'user_list' => 'User List',
@@ -43,18 +44,20 @@ return [
 
         'category' => [
             'category_list' => 'Category List',
-            'name' => 'Category Name',
+            'create_category' => 'Create Category',
+            'name' => 'Category',
             'description' => 'Description',
             'outstanding_image' => 'Outstanding Image',
             'slug' => 'Friendly Url',
             'type' => 'Type',
             'category' => 'Category',
-            'subcategory' => 'Sub-category',
+            'subcategory' => 'Subcategory',
             'status' => 'Status',
             'actions' => 'Actions',
             'active' => 'Active',
             'inactive' => 'Inactive',
             'icon' => 'icon',
+            'add' => 'Add',
         ],
     ],
 

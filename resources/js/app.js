@@ -31,6 +31,7 @@ Vue.component('user-show', require('./components/users/modals/UserShow.vue').def
 
 //category
 Vue.component('category-list', require('./components/categories/CategoryList.vue').default);
+Vue.component('category-form', require('./components/categories/modals/FormCategory.vue').default);
 
 
 

@@ -5,7 +5,9 @@
             <div>
                 <div>
                     <div class="section__container--title">{{__('general.web.category.category_list')}}</div>
-
+                    <div class="section__container--add">
+                        <button  v-on:click="add()"><i class="text-white pr-1 fas fa-plus-circle"></i>{{__('general.web.category.add')}}</button>
+                    </div>
                     <div class="table__container">
                         <table>
                             <thead class="table__container--header">
@@ -49,20 +51,27 @@
             </div>
         </div>
 
+        <category-form :isOpenAdd="isOpenAdd" @close="close"></category-form>
+
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+import FormCategory from "./modals/FormCategory";
 
 
 export default {
 
     name: "CategoryList",
+    components: {
+      FormCategory
+    },
 
     data () {
         return {
             categories: [],
+            isOpenAdd: false,
         }
     },
     mounted() {
@@ -72,8 +81,14 @@ export default {
         getAllCategories:  function () {
             axios
                 .get('/evertec/mercatodo/public/api/categories')
-                .then(response => (this.categories = response.data.categories))
+                .then(response => (this.categories = response.data.categories.data))
         },
+        add: function () {
+            this.isOpenAdd = true
+        },
+        close: function () {
+            this.isOpenAdd = false
+        }
 
     }
 };

@@ -17,22 +17,21 @@ class CategoryController extends Controller
      */
     public function index(): JsonResponse
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('id', 'asc')->paginate();
         return response()->json(compact('categories'));
     }
 
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      */
-    public function store(Request $request): Response
+    public function store(Request $request): JsonResponse
     {
-         $category = Category::create($request->all());
-         $category->slug = Helper::slugCreate($category->name);
-         return response()->json(compact('category'));
+        $data = $request->all();
+        $data['slug'] =  Helper::generateSlug($data['name']);
+        $category = Category::create($data);
+        return response()->json(compact('category'));
     }
 
     /**

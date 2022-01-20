@@ -22,6 +22,7 @@ return [
 
         'close' => 'Cerrar',
         'save' => 'Guardar',
+        'select' => 'Seleccione una opción',
 
         'user' => [
             'user_list' => 'Lista de Usuarios',
@@ -41,18 +42,20 @@ return [
 
         'category' => [
             'category_list' => 'Lista de Categorías',
-            'name' => 'Nombre Categoría',
+            'create_category' => 'Crear Categoría',
+            'name' => 'Categoría',
             'description' => 'Descripción',
             'outstanding_image' => 'Imagen destacada',
             'slug' => 'Url amigable',
             'type' => 'Tipo',
             'category' => 'Categoría',
-            'subcategory' => 'Sub-categoría',
+            'subcategory' => 'Subcategoría',
             'status' => 'Estado',
             'actions' => 'Acciones',
             'active' => 'Activo',
             'inactive' => 'Inactivo',
             'icon' => 'ícono',
+            'add' => 'Agregar',
         ],
     ],
 
