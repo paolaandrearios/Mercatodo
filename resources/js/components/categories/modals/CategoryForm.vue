@@ -11,7 +11,7 @@
                 </div>
                 <div>
                     <label for="description">{{__('general.web.category.description')}}</label>
-                    <input text="text" id="description" v-model="category.description">
+                    <textarea text="text" id="description" v-model="category.description"></textarea>
                 </div>
                 <div>
                     <label for="image">{{__('general.web.category.outstanding_image')}}</label>

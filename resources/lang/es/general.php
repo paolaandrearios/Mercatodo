@@ -37,7 +37,7 @@ return [
             'register' => 'Registro',
             'register-in' => 'Registrarse',
             'edit-user' => 'Editar Usuario',
-            'show-user' => 'Mostrar Usuario',
+            'show-user' => 'Usuario',
         ],
 
         'category' => [

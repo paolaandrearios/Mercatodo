@@ -30,7 +30,7 @@
                                     <span>{{__('general.web.category.'+ category.status)}}</span>
                                 </td>
                                 <td>
-                                    <a v-on:click="" >
+                                    <a v-on:click="show(category)" >
                                         <i class="fas fa-eye"></i>
                                     </a> |
                                     <a v-on:click="" >
@@ -52,26 +52,30 @@
         </div>
 
         <category-form :isOpenAdd="isOpenAdd" @close="close"></category-form>
+        <category-show :isOpenShow="isOpenShow" :category="currentCategory" @close="close"></category-show>
 
     </div>
 </template>
 
 <script>
 import axios from 'axios';
-import FormCategory from "./modals/FormCategory";
-
+import CategoryForm from "./modals/CategoryForm";
+import CategoryShow from "./modals/CategoryShow";
 
 export default {
 
     name: "CategoryList",
     components: {
-      FormCategory
+        CategoryForm,
+        CategoryShow,
     },
 
     data () {
         return {
             categories: [],
+            currentCategory: {},
             isOpenAdd: false,
+            isOpenShow: false,
         }
     },
     mounted() {
@@ -86,8 +90,13 @@ export default {
         add: function () {
             this.isOpenAdd = true
         },
+        show: function(category){
+            this.currentCategory = category
+            this.isOpenShow = true
+        },
         close: function () {
-            this.isOpenAdd = false
+            this.isOpenAdd = false;
+            this.isOpenShow = false;
         }
 
     }

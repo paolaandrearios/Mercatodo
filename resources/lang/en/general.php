@@ -39,7 +39,7 @@ return [
             'register' => 'Register',
             'register-in' => 'Register',
             'edit-user' => 'Edit User',
-            'show-user' => 'Show User',
+            'show-user' => 'User',
         ],
 
         'category' => [
