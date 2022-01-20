@@ -53,7 +53,9 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category): JsonResponse
     {
-        if ($category->update($request->all())) {
+        $data = $request->all();
+        $data['slug'] =  Helper::generateSlug($data['name']);
+        if ($category->update($data)) {
             return response()->json([
                 'message' => __('general.api.category.update_status_success'),
             ]);
@@ -64,18 +66,4 @@ class CategoryController extends Controller
         }
     }
 
-    public function updateStatus(StatusUserRequest $statusUserRequest): JsonResponse
-    {
-        $user = User::query()->where('id', $statusUserRequest->id)->firstOrFail();
-        $user->status = $statusUserRequest->status;
-        if ($user->save()) {
-            return response()->json([
-                'message' => __('general.api.user.update_status_success'),
-            ]);
-        } else {
-            return response()->json([
-                'message' => __('general.api.user.update_status_error'),
-            ]);
-        }
-    }
 }

@@ -36,10 +36,10 @@
                                     <a v-on:click="edit(category)" >
                                         <i class="fas fa-edit"></i>
                                     </a> |
-                                    <a v-if="category.status === 'inactive'" v-on:click="" >
+                                    <a v-if="category.status === 'inactive'" v-on:click="setActive(category)" >
                                         <i class="far fa-check-square text-greenTem font-extrabold"></i>
                                     </a>
-                                    <a v-if="category.status === 'active'" v-on:click="" >
+                                    <a v-if="category.status === 'active'" v-on:click="setInactive(category  )" >
                                         <i class="fas fa-ban text-red-600 font-extrabold"></i>
                                     </a>
                                 </td>
@@ -53,7 +53,7 @@
 
         <category-form :isOpenAdd="isOpenAdd" @close="close"></category-form>
         <category-show :isOpenShow="isOpenShow" :category="currentCategory" @close="close"></category-show>
-        <category-edit :isOpenEdit="isOpenEdit" :category="currentCategory" @close="close"></category-edit>
+        <category-edit :isOpenEdit="isOpenEdit" :category="currentCategory" @close="close" @getAllCategories="getAllCategories"></category-edit>
 
     </div>
 </template>
@@ -106,7 +106,19 @@ export default {
             this.isOpenAdd = false;
             this.isOpenShow = false;
             this.isOpenEdit = false;
-        }
+        },
+        setActive: function(category) {
+            axios.put('/evertec/mercatodo/public/api/categories/'+category.id+'/status/active').then(response => {
+                this.getAllCategories()
+                alert(response.data.message)
+            })
+        },
+        setInactive: function(category) {
+            axios.put('/evertec/mercatodo/public/api/categories/'+category.id+'/status/inactive').then(response => {
+                this.getAllCategories()
+                alert(response.data.message)
+            })
+        },
 
     }
 };

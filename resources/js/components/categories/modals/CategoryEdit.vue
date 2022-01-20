@@ -91,7 +91,7 @@ export default {
         category: Object,
     },
 
-    emits: ['close'],
+    emits: ['close', 'getAllCategories'],
 
     methods: {
 
@@ -104,6 +104,7 @@ export default {
                 this.category
             ).then(response => {
                 alert(response.data.message)
+                this.$emit('getAllCategories');
                 this.close()
             }).catch(error => {
                 alert(JSON.stringify(error.response.data.errors))

@@ -2250,6 +2250,24 @@ __webpack_require__.r(__webpack_exports__);
       this.isOpenAdd = false;
       this.isOpenShow = false;
       this.isOpenEdit = false;
+    },
+    setActive: function setActive(category) {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/evertec/mercatodo/public/api/categories/' + category.id + '/status/active').then(function (response) {
+        _this2.getAllCategories();
+
+        alert(response.data.message);
+      });
+    },
+    setInactive: function setInactive(category) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/evertec/mercatodo/public/api/categories/' + category.id + '/status/inactive').then(function (response) {
+        _this3.getAllCategories();
+
+        alert(response.data.message);
+      });
     }
   }
 });
@@ -2359,7 +2377,7 @@ __webpack_require__.r(__webpack_exports__);
     isOpenEdit: Boolean,
     category: Object
   },
-  emits: ['close'],
+  emits: ['close', 'getAllCategories'],
   methods: {
     close: function close() {
       this.$emit('close');
@@ -2369,6 +2387,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().put('/evertec/mercatodo/public/api/categories/' + this.category.id, this.category).then(function (response) {
         alert(response.data.message);
+
+        _this.$emit('getAllCategories');
 
         _this.close();
       })["catch"](function (error) {
@@ -4004,21 +4024,41 @@ var render = function () {
                         ),
                         _vm._v(" |\n                                "),
                         category.status === "inactive"
-                          ? _c("a", { on: { click: function ($event) {} } }, [
-                              _c("i", {
-                                staticClass:
-                                  "far fa-check-square text-greenTem font-extrabold",
-                              }),
-                            ])
+                          ? _c(
+                              "a",
+                              {
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.setActive(category)
+                                  },
+                                },
+                              },
+                              [
+                                _c("i", {
+                                  staticClass:
+                                    "far fa-check-square text-greenTem font-extrabold",
+                                }),
+                              ]
+                            )
                           : _vm._e(),
                         _vm._v(" "),
                         category.status === "active"
-                          ? _c("a", { on: { click: function ($event) {} } }, [
-                              _c("i", {
-                                staticClass:
-                                  "fas fa-ban text-red-600 font-extrabold",
-                              }),
-                            ])
+                          ? _c(
+                              "a",
+                              {
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.setInactive(category)
+                                  },
+                                },
+                              },
+                              [
+                                _c("i", {
+                                  staticClass:
+                                    "fas fa-ban text-red-600 font-extrabold",
+                                }),
+                              ]
+                            )
                           : _vm._e(),
                       ]),
                     ])
@@ -4043,7 +4083,7 @@ var render = function () {
       _vm._v(" "),
       _c("category-edit", {
         attrs: { isOpenEdit: _vm.isOpenEdit, category: _vm.currentCategory },
-        on: { close: _vm.close },
+        on: { close: _vm.close, getAllCategories: _vm.getAllCategories },
       }),
     ],
     1

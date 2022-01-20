@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CategoryStatusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,7 @@ Route::put('/users/{user}/status/{status}', [UserController::class, 'updateStatu
 Route::resource('categories', CategoryController::class)->only([
     'store', 'show', 'index', 'update',
 ]);
+
+Route::put('/categories/{category}/status/{status}', [CategoryStatusController::class, 'update'])->name('categories.status');
 
 
