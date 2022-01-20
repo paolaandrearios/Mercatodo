@@ -22,8 +22,6 @@ Vue.mixin(require('./trans'));
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
 //user
 Vue.component('user-list', require('./components/users/UserList.vue').default);
 Vue.component('user-edit', require('./components/users/modals/UserEdit.vue').default);
@@ -32,6 +30,7 @@ Vue.component('user-show', require('./components/users/modals/UserShow.vue').def
 //category
 Vue.component('category-list', require('./components/categories/CategoryList.vue').default);
 Vue.component('category-form', require('./components/categories/modals/FormCategory.vue').default);
+Vue.component('modal', require('./components/Modal.vue').default);
 
 
 

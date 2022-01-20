@@ -50,7 +50,6 @@
         <user-edit :edit="isOpenEdit" :user="currentUser" @close="close"></user-edit>
         <user-show :show="isOpenShow" :user="currentUser" @close="close"></user-show>
 
-
     </div>
 </template>
 
