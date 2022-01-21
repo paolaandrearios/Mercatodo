@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -22,6 +24,6 @@ class HomeController extends Controller
      */
     public function index(): Renderable
     {
-        return view('home');
+        return view('admin.dashboard.index');
     }
 }

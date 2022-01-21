@@ -31,7 +31,10 @@ class CategoryController extends Controller
         $data = $request->all();
         $data['slug'] =  Helper::generateSlug($data['name']);
         $category = Category::create($data);
-        return response()->json(compact('category'));
+        return response()->json([
+            'category' => $category,
+            'message' => __('general.api.category.create_status_success'),
+        ]);
     }
 
     /**

@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\ProductController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,10 +25,17 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-
-Route::middleware(['auth', 'verified', 'active'])->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/users', [UserController::class, 'index'])->middleware('can:user.index')->name('user.index');
-    Route::get('/categories', [CategoryController::class, 'index'])->middleware('can:category.index')->name('category.index');
+// Admin Routes
+Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
+    Route::middleware(['auth', 'verified', 'active'])->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+        Route::get('/users', [UserController::class, 'index'])->middleware('can:user.index')->name('user.index');
+        Route::get('/categories', [CategoryController::class, 'index'])->middleware('can:category.index')->name('category.index');
+    });
 });
+
+Route::group(['as'=>'client.'], function () {
+    Route::get('/', [ProductController::class, 'index'])->name('product.index');
+});
+
 

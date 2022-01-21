@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,5 +39,28 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+
+    protected function sendLoginResponse(Request $request)
+    {
+
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        if ($response = $this->authenticated($request, $this->guard()->user())) {
+            return $response;
+        }
+//        dd($this->redirectPath());
+
+        if($request->wantsJson()) {
+           return new JsonResponse([], 204);
+        }
+
+        if(Auth::user()->hasRole('Admin')) {
+            return redirect()->intended(route('admin.dashboard.index'));
+        }
+        return redirect()->intended(route('client.product.index'));
     }
 }
