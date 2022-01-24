@@ -30,7 +30,14 @@ class CategoryController extends Controller
     {
         $data = $request->all();
         $data['slug'] =  Helper::generateSlug($data['name']);
+
+        $file_name = time().'_'.$request->outstanding_image->getClientOriginalName();
+        $file_path = $request->file('outstanding_image')->storeAs('categories', $file_name, 'public');
+
+        $data['outstanding_image'] = '/storage/' . $file_path;
+
         $category = Category::create($data);
+
         return response()->json([
             'category' => $category,
             'message' => __('general.api.category.create_status_success'),

@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <category-form :isOpenAdd="isOpenAdd" @close="close"></category-form>
+        <category-add :isOpenAdd="isOpenAdd" @close="close"></category-add>
         <category-show :isOpenShow="isOpenShow" :category="currentCategory" @close="close"></category-show>
         <category-edit :isOpenEdit="isOpenEdit" :category="currentCategory" @close="close" @getAllCategories="getAllCategories"></category-edit>
 
@@ -60,7 +60,7 @@
 
 <script>
 import axios from 'axios';
-import CategoryForm from "./modals/CategoryForm";
+import CategoryAdd from "./modals/CategoryAdd";
 import CategoryShow from "./modals/CategoryShow";
 import CategoryEdit from "./modals/CategoryEdit";
 
@@ -68,7 +68,7 @@ export default {
 
     name: "CategoryList",
     components: {
-        CategoryForm,
+        CategoryAdd,
         CategoryShow,
         CategoryEdit,
     },

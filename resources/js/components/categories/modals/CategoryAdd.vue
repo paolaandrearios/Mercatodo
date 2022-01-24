@@ -4,7 +4,7 @@
             {{__('general.web.category.create_category')}}
         </template>
         <template v-slot:body>
-            <form v-on:submit.prevent="">
+            <form v-on:submit.prevent="" class="form">
                 <div>
                     <label for="name">{{__('general.web.category.name')}}</label>
                     <input type="text" id="name" v-model="category.name">
@@ -13,9 +13,9 @@
                     <label for="description">{{__('general.web.category.description')}}</label>
                     <textarea typeof="text" id="description" v-model="category.description"></textarea>
                 </div>
-                <div>
+                <div class="form-file">
                     <label for="image">{{__('general.web.category.outstanding_image')}}</label>
-                    <input type="text" id="image" v-model="category.outstanding_image">
+                    <input type="file" id="image" v-on:change="onChange">
                 </div>
                 <div>
                     <label for="type">{{__('general.web.category.type')}}</label>
@@ -38,7 +38,7 @@
                     <input type="text" id="icon" v-model="category.icon">
                 </div>
 
-                <div class="text-center p-2 mt-3">
+                <div class="flex justify-center mx-auto p-2 mt-3">
                     <button
                         v-on:click="close"
                         class="px-6 py-2 text-orangePantone border border-orangePantone rounded font-bold"
@@ -88,13 +88,33 @@ export default {
 
     methods: {
 
+        onChange(e) {
+            this.category.outstanding_image = e.target.files[0];
+        },
         close: function() {
             this.$emit('close')
         },
 
         create: function () {
+
+            const config = {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            }
+
+            let data = new FormData();
+            data.append('name', this.category.name);
+            data.append('description', this.category.description);
+            data.append('outstanding_image', this.category.outstanding_image);
+            data.append('type', this.category.type);
+            data.append('status', this.category.status);
+            data.append('icon', this.category.icon);
+
+
             axios.post('/evertec/mercatodo/public/api/categories',
-                this.category
+                data,
+                config
             ).then(response => {
                 alert(response.data.message)
                 this.close()

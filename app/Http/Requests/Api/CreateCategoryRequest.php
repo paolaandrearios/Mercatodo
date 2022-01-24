@@ -23,6 +23,13 @@ class CreateCategoryRequest extends FormRequest
      */
     public function rules()
     {
+        /*
+        name: obligatorio, 20 caracteres, unico
+        description: obligatorio, min 20 caracteres, max 100
+
+
+
+         */
         return [
             //
         ];

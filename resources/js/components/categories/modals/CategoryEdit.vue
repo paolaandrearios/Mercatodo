@@ -8,7 +8,7 @@
                 <table>
                     <tr>
                         <td>Id</td>
-                        <td>{{category.id}}</td>
+                        <td class="id">{{category.id}}</td>
                     </tr>
                     <tr>
                         <td>{{__('general.web.category.name')}}</td>
@@ -21,12 +21,10 @@
                     </tr>
                     <tr>
                         <td>{{__('general.web.category.description')}}</td>
-                        <td>
-                            <input
-                                type="text"
-                                v-model="category.description"
-                            />
-                        </td>
+                        <textarea
+                            type="text"
+                            v-model="category.description"
+                        />
                     </tr>
                     <tr>
                         <td>{{__('general.web.category.outstanding_image')}}</td>

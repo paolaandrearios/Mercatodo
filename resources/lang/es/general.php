@@ -45,7 +45,7 @@ return [
             'category_list' => 'Lista de Categorías',
             'create_category' => 'Crear Categoría',
             'edit_category' => 'Editar Categoría',
-            'name' => 'Categoría',
+            'name' => 'Nombre',
             'description' => 'Descripción',
             'outstanding_image' => 'Imagen destacada',
             'slug' => 'Url amigable',

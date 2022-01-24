@@ -1,26 +1,20 @@
 <template>
-    <div class="container mx-auto">
-        <div class="flex justify-center">
+    <div class="modal">
+        <div class="modal__container">
 
             <div
                 v-show="isVisible"
-                class="
-                  absolute
-                  inset-0
-                  flex
-                  items-center
-                  justify-center
-                  bg-gray-700 bg-opacity-50"
+                class="modal__container--bg"
             >
-                <div class="text-sm p-2 max-w-2xl p-6 bg-white rounded-md shadow-xl">
-                    <div class="flex items-center justify-between">
-                        <h3 class="mx-auto mb-2 text-center font-bold text-dimGray text-2xl">
+                <div class="modal__content">
+                    <div class="modal__content--header">
+                        <h3 class="modal__content--title">
                             <slot name="title"></slot>
                         </h3>
                         <svg
                             @click="close()"
                             xmlns="http://www.w3.org/2000/svg"
-                            class="w-8 h-8 text-red-900 cursor-pointer"
+                            class="w-8 h-8 text-orangePantone cursor-pointer"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
