@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,9 +11,9 @@ class CreateCategoryRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,17 +21,15 @@ class CreateCategoryRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        /*
-        name: obligatorio, 20 caracteres, unico
-        description: obligatorio, min 20 caracteres, max 100
-
-
-
-         */
         return [
-            //
+            'name_es' => 'required|unique:categories|min:10|max:60',
+            'name_en' => 'required|unique:categories|min:10|max:60',
+            'outstanding_image' => 'required|image|mimes:jpg,bmp,png',
+            'type' => 'required|in:category,subcategory',
+            'status' => 'required|in:active,inactive',
+            'icon' => 'required|min:10',
         ];
     }
 }

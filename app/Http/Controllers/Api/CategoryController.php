@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+
+use App\Http\Requests\Api\CreateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -23,10 +25,10 @@ class CategoryController extends Controller
 
 
     /**
-     * @param Request $request
+     * @param CreateCategoryRequest $request
      * @return JsonResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(CreateCategoryRequest $request): JsonResponse
     {
         $data = $request->all();
         $data['slug'] =  Helper::generateSlug($data['name_en']);
