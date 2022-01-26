@@ -5,37 +5,55 @@
         </template>
         <template v-slot:body>
             <form v-on:submit.prevent="" class="form">
-                <div>
+                <div class="div-form">
                     <label for="name_es">{{__('general.web.category.name_es')}}</label>
-                    <input type="text" id="name_es" v-model="category.name_es">
+                    <div class="div-input">
+                        <input type="text" id="name_es" v-model="category.name_es">
+                        <error :errors="__e(errors,'name_es')"></error>
+                    </div>
                 </div>
-                <div>
+                <div class="div-form">
                     <label for="name_en">{{__('general.web.category.name_en')}}</label>
-                    <input type="text" id="name_en" v-model="category.name_en">
+                    <div class="div-input">
+                        <input type="text" id="name_en" v-model="category.name_en">
+                        <error :errors="__e(errors,'name_en')"></error>
+                    </div>
                 </div>
                 <div class="form-file">
-                    <label for="image">{{__('general.web.category.outstanding_image')}}</label>
-                    <input type="file" id="image" v-on:change="onChange">
+                    <label for="outstanding_image">{{__('general.web.category.outstanding_image')}}</label>
+                    <div class="div-input">
+                        <input type="file" id="outstanding_image" v-on:change="onChange">
+                        <error :errors="__e(errors,'outstanding_image')"></error>
+                    </div>
                 </div>
-                <div>
+                <div class="div-form">
                     <label for="type">{{__('general.web.category.type')}}</label>
-                    <select  id="type" v-model="category.type">
-                        <option value="">{{__('general.web.select')}}</option>
-                        <option value="category">{{__('general.web.category.category')}}</option>
-                        <option value="subcategory">{{__('general.web.category.subcategory')}}</option>
-                    </select>
+                    <div class="div-input">
+                        <select  id="type" v-model="category.type">
+                            <option value="">{{__('general.web.select')}}</option>
+                            <option value="category">{{__('general.web.category.category')}}</option>
+                            <option value="subcategory">{{__('general.web.category.subcategory')}}</option>
+                        </select>
+                        <error :errors="__e(errors,'type')"></error>
+                    </div>
                 </div>
-                <div>
+                <div class="div-form">
                     <label for="status">{{__('general.web.category.status')}}</label>
-                    <select  id="status" v-model="category.status">
-                        <option value="">{{__('general.web.select')}}</option>
-                        <option value="active">{{__('general.web.category.active')}}</option>
-                        <option value="inactive">{{__('general.web.category.inactive')}}</option>
-                    </select>
+                    <div class="div-input">
+                        <select  id="status" v-model="category.status">
+                            <option value="">{{__('general.web.select')}}</option>
+                            <option value="active">{{__('general.web.category.active')}}</option>
+                            <option value="inactive">{{__('general.web.category.inactive')}}</option>
+                        </select>
+                        <error :errors="__e(errors,'status')"></error>
+                    </div>
                 </div>
-                <div>
+                <div class="div-form">
                     <label for="icon">{{__('general.web.category.icon')}}</label>
-                    <input type="text" id="icon" v-model="category.icon">
+                    <div class="div-input">
+                        <input type="text" id="icon" v-model="category.icon">
+                        <error :errors="__e(errors,'icon')"></error>
+                    </div>
                 </div>
 
                 <div class="flex justify-center mx-auto p-2 mt-3">
@@ -83,6 +101,7 @@ export default {
                 status: '',
                 icon: '',
             },
+            errors: [],
         }
     },
 
@@ -92,6 +111,7 @@ export default {
             this.category.outstanding_image = e.target.files[0];
         },
         close: function() {
+            this.errors = []
             this.$emit('close')
         },
 
@@ -120,7 +140,7 @@ export default {
                 this.$emit('getAllCategories');
                 this.close()
             }).catch(error => {
-                alert(JSON.stringify(error.response.data.errors))
+                this.errors = error.response.data.errors
             })
         },
     },

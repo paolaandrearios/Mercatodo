@@ -9,7 +9,7 @@
 import Vue from "vue";
 
 window.Vue = require('vue').default;
-Vue.mixin(require('./trans'));
+Vue.mixin(require('./helper'));
 
 /**
  * The following block of code may be used to automatically register your
@@ -36,6 +36,9 @@ Vue.component('modal', require('./components/Modal.vue').default);
 
 //Products
 Vue.component('product-list', require('./components/products/ProductList.vue').default);
+
+//utils
+Vue.component('error', require('./components/Error.vue').default);
 
 
 /**
