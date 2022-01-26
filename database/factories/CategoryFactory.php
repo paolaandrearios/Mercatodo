@@ -16,7 +16,6 @@ class CategoryFactory extends Factory
         return [
             'name_es' => $this->faker->sentence(),
             'name_en' => $this->faker->sentence(),
-            'foreign_name' => $this->faker->sentence(),
             'outstanding_image' => $this->faker->imageUrl(),
             'slug' => $this->faker->slug(),
         ];
