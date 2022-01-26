@@ -45,7 +45,10 @@ return [
             'category_list' => 'Lista de Categorías',
             'create_category' => 'Crear Categoría',
             'edit_category' => 'Editar Categoría',
+            'foreign_name' => 'Nombre en inglés',
             'name' => 'Nombre',
+            'name_es' => 'Nombre en español',
+            'name_en' => 'Nombre en inglés',
             'description' => 'Descripción',
             'outstanding_image' => 'Imagen destacada',
             'slug' => 'Url amigable',
@@ -59,11 +62,25 @@ return [
             'icon' => 'ícono',
             'add' => 'Agregar',
         ],
+
+        'product' => [
+            'product_list' => 'Lista de Productos',
+            'name' => 'Nombre',
+            'image' => 'Imagen',
+            'description' => 'Descripción',
+            'price' => 'Precio',
+            'stock' => 'Inventario',
+            'status' => 'Estado',
+            'actions' => 'Acciones',
+            'active' => 'Activo',
+            'inactive' => 'Inactivo',
+        ]
     ],
 
     'sidebar' => [
         'home' => 'Inicio',
         'users' => 'Usuarios',
         'categories' => 'Categorías',
+        'products' => 'Productos',
     ],
 ];

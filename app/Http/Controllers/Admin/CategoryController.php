@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\View;
 class CategoryController extends Controller
 {
     /**
-     * UserController constructor.
+     * CategoryController constructor.
      */
     public function __construct()
     {
@@ -22,6 +22,6 @@ class CategoryController extends Controller
      */
     public function index(): view
     {
-        return view('categories.index');
+        return view('admin.categories.index');
     }
 }

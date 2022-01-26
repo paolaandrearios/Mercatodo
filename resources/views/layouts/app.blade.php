@@ -24,6 +24,7 @@
     <script>
         window._locale = '{{ app()->getLocale() }}';
         window._translations = {!! Helper::getTranslation() !!};
+        window._asset = '{{ asset('') }}';
     </script>
 </head>
 <body>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CategoryStatusController;
@@ -34,4 +35,7 @@ Route::resource('categories', CategoryController::class)->only([
 
 Route::put('/categories/{category}/status/{status}', [CategoryStatusController::class, 'update'])->name('categories.status');
 
-
+//Product routes
+Route::resource('products', ProductController::class)->only([
+    'store', 'show', 'index', 'update',
+]);

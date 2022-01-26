@@ -1,21 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+     * @return JsonResponse
      */
-    public function index(): Response
+
+    public function index(): JsonResponse
     {
-        //
+        $products = Product::orderBy('id', 'asc')->paginate();
+        return response()->json(compact('products'));
     }
 
     /**

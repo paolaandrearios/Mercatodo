@@ -34,6 +34,9 @@ Vue.component('category-show', require('./components/categories/modals/CategoryS
 Vue.component('category-edit', require('./components/categories/modals/CategoryEdit.vue').default);
 Vue.component('modal', require('./components/Modal.vue').default);
 
+//Products
+Vue.component('product-list', require('./components/products/ProductList.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

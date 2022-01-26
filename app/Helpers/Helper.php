@@ -48,9 +48,9 @@ class Helper
         return [];
     }
 
-    public static function generateSlug(string $category_name): string
+    public static function generateSlug(string $name): string
     {
-        $slug = str_replace(' ', '-', trim($category_name));
+        $slug = str_replace(' ', '-', trim($name));
         return strtolower($slug);
     }
 }

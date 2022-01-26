@@ -11,20 +11,22 @@
                         <td class="id">{{category.id}}</td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.name')}}</td>
+                        <td>{{__('general.web.category.name_es')}}</td>
                         <td>
                             <input
                                 type="text"
-                                v-model="category.name"
+                                v-model="category.name_es"
                             />
                         </td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.description')}}</td>
-                        <textarea
-                            type="text"
-                            v-model="category.description"
-                        />
+                        <td>{{__('general.web.category.name_en')}}</td>
+                        <td>
+                            <input
+                                type="text"
+                                v-model="category.name_en"
+                            />
+                        </td>
                     </tr>
                     <tr>
                         <td>{{__('general.web.category.outstanding_image')}}</td>
@@ -37,13 +39,11 @@
                     </tr>
                     <tr>
                         <td>{{__('general.web.category.type')}}</td>
-                        <td>
-                            <select  id="type" v-model="category.type">
-                                <option value="">{{__('general.web.select')}}</option>
-                                <option value="category">{{__('general.web.category.category')}}</option>
-                                <option value="subcategory">{{__('general.web.category.subcategory')}}</option>
-                            </select>
-                        </td>
+                        <select  id="type" v-model="category.type">
+                            <option value="">{{__('general.web.select')}}</option>
+                            <option value="category">{{__('general.web.category.category')}}</option>
+                            <option value="subcategory">{{__('general.web.category.subcategory')}}</option>
+                        </select>
                     </tr>
                     <tr>
                         <td>{{__('general.web.category.icon')}}</td>

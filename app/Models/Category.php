@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use phpDocumentor\Reflection\Types\True_;
 
 /**
  * Class Category
@@ -19,8 +21,8 @@ class Category extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'description',
+        'name_es',
+        'name_en',
         'outstanding_image',
         'icon',
         'status',
@@ -43,6 +45,15 @@ class Category extends Model
     public function isCategory(): bool
     {
         return $this->type == 'category';
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    //Relación muchos a muchos
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class);
     }
 
 }

@@ -22,7 +22,7 @@
                             <tbody class="table__container--body">
                             <tr v-for="category in categories">
                                 <td>{{category.id}}</td>
-                                <td>{{category.name}}</td>
+                                <td>{{category['name_' + __locale()]}}</td>
                                 <td>
                                     <span>{{__('general.web.category.'+ category.type)}}</span>
                                 </td>
@@ -39,7 +39,7 @@
                                     <a v-if="category.status === 'inactive'" v-on:click="setActive(category)" >
                                         <i class="far fa-check-square text-greenTem font-extrabold"></i>
                                     </a>
-                                    <a v-if="category.status === 'active'" v-on:click="setInactive(category  )" >
+                                    <a v-if="category.status === 'active'" v-on:click="setInactive(category)" >
                                         <i class="fas fa-ban text-red-600 font-extrabold"></i>
                                     </a>
                                 </td>
@@ -51,8 +51,8 @@
             </div>
         </div>
 
-        <category-add :isOpenAdd="isOpenAdd" @close="close"></category-add>
-        <category-show :isOpenShow="isOpenShow" :category="currentCategory" @close="close"></category-show>
+        <category-add :isOpenAdd="isOpenAdd" @close="close" @getAllCategories="getAllCategories"></category-add>
+        <category-show :isOpenShow="isOpenShow" :category="currentCategory" @close="close" ></category-show>
         <category-edit :isOpenEdit="isOpenEdit" :category="currentCategory" @close="close" @getAllCategories="getAllCategories"></category-edit>
 
     </div>

@@ -47,7 +47,10 @@ return [
             'category_list' => 'Category List',
             'create_category' => 'Create Category',
             'edit_category' => 'Edit Category',
+            'foreign_name' => 'Translated Name',
             'name' => 'Name',
+            'name_es' => 'Spanish Name',
+            'name_en' => 'English Name',
             'description' => 'Description',
             'outstanding_image' => 'Outstanding Image',
             'slug' => 'Friendly Url',
@@ -61,6 +64,19 @@ return [
             'icon' => 'icon',
             'add' => 'Add',
         ],
+
+        'product' => [
+            'product_list' => 'Product List',
+            'name' => 'Name',
+            'image' => 'Image',
+            'description' => 'Description',
+            'price' => 'Price',
+            'stock' => 'Stock',
+            'status' => 'Status',
+            'actions' => 'Actions',
+            'active' => 'Active',
+            'inactive' => 'Inactive',
+        ]
     ],
 
 
@@ -68,6 +84,7 @@ return [
         'home' => 'Home',
         'users' => 'Users',
         'categories' => 'Categories',
+        'products' => 'Products',
     ],
 
 ];

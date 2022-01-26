@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     public function index(): view
     {
-        return view('products.index');
+        return view('client.products.index');
     }
 
 }

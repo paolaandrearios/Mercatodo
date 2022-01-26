@@ -6,12 +6,12 @@
         <template v-slot:body>
             <form v-on:submit.prevent="" class="form">
                 <div>
-                    <label for="name">{{__('general.web.category.name')}}</label>
-                    <input type="text" id="name" v-model="category.name">
+                    <label for="name_es">{{__('general.web.category.name_es')}}</label>
+                    <input type="text" id="name_es" v-model="category.name_es">
                 </div>
                 <div>
-                    <label for="description">{{__('general.web.category.description')}}</label>
-                    <textarea typeof="text" id="description" v-model="category.description"></textarea>
+                    <label for="name_en">{{__('general.web.category.name_en')}}</label>
+                    <input type="text" id="name_en" v-model="category.name_en">
                 </div>
                 <div class="form-file">
                     <label for="image">{{__('general.web.category.outstanding_image')}}</label>
@@ -63,7 +63,7 @@ import Modal from "../../Modal";
 
 
 export default {
-    name: "CategoryForm.vue",
+    name: "CategoryAdd.vue",
     components: {
         Modal
     },
@@ -71,13 +71,13 @@ export default {
         isOpenAdd: Boolean,
     },
 
-    emits: ['close'],
+    emits: ['close', 'getAllCategories'],
 
     data() {
         return {
             category: {
-                name: '',
-                description: '',
+                name_en: '',
+                name_es: '',
                 outstanding_image: '',
                 type: '',
                 status: '',
@@ -104,8 +104,8 @@ export default {
             }
 
             let data = new FormData();
-            data.append('name', this.category.name);
-            data.append('description', this.category.description);
+            data.append('name_es', this.category.name_es);
+            data.append('name_en', this.category.name_en);
             data.append('outstanding_image', this.category.outstanding_image);
             data.append('type', this.category.type);
             data.append('status', this.category.status);
@@ -117,6 +117,7 @@ export default {
                 config
             ).then(response => {
                 alert(response.data.message)
+                this.$emit('getAllCategories');
                 this.close()
             }).catch(error => {
                 alert(JSON.stringify(error.response.data.errors))

@@ -11,16 +11,18 @@
                         <td>{{category.id}}</td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.name')}}</td>
-                        <td>{{category.name}}</td>
+                        <td>{{__('general.web.category.name_es')}}</td>
+                        <td>{{category.name_es}}</td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.description')}}</td>
-                        <td>{{category.description}}</td>
+                        <td>{{__('general.web.category.name_en')}}</td>
+                        <td>{{category.name_en}}</td>
                     </tr>
                     <tr>
                         <td>{{__('general.web.category.outstanding_image')}}</td>
-                        <td>{{category.outstanding_image}}</td>
+                        <figure>
+                            <img v-bind:src="__asset(category.outstanding_image)"/>
+                        </figure>
                     </tr>
                     <tr>
                         <td>{{__('general.web.category.slug')}}</td>

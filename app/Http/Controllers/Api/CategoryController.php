@@ -29,7 +29,7 @@ class CategoryController extends Controller
     public function store(Request $request): JsonResponse
     {
         $data = $request->all();
-        $data['slug'] =  Helper::generateSlug($data['name']);
+        $data['slug'] =  Helper::generateSlug($data['name_en']);
 
         $file_name = time().'_'.$request->outstanding_image->getClientOriginalName();
         $file_path = $request->file('outstanding_image')->storeAs('categories', $file_name, 'public');
@@ -64,7 +64,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category): JsonResponse
     {
         $data = $request->all();
-        $data['slug'] =  Helper::generateSlug($data['name']);
+        $data['slug'] =  Helper::generateSlug($data['name_en']);
         if ($category->update($data)) {
             return response()->json([
                 'message' => __('general.api.category.update_status_success'),

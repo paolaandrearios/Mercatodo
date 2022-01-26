@@ -27,6 +27,12 @@ module.exports = {
             })*/
 
             return translation
+        },
+        __locale() {
+            return window._locale
+        },
+        __asset: function __asset(resource) {
+            return window._asset + resource
         }
     },
 }
