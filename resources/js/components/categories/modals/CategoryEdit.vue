@@ -7,20 +7,23 @@
             <div>
                 <table>
                     <tr>
-                        <td>Id</td>
-                        <td class="id">{{category.id}}</td>
+                        <td class="label-table">Id</td>
+                        <td class="mx-auto">{{category.id}}</td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.name_es')}}</td>
+                        <td class="label-table">{{__('general.web.category.name_es')}}</td>
                         <td>
-                            <input
-                                type="text"
-                                v-model="category.name_es"
-                            />
+                            <div>
+                                <input
+                                    type="text"
+                                    v-model="category.name_es"
+                                />
+                                <error :errors="__e(errors,'name_es')"></error>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.name_en')}}</td>
+                        <td class="label-table">{{__('general.web.category.name_en')}}</td>
                         <td>
                             <input
                                 type="text"
@@ -29,7 +32,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.outstanding_image')}}</td>
+                        <td class="label-table">{{__('general.web.category.outstanding_image')}}</td>
                         <td>
                             <input
                                 type="text"
@@ -38,15 +41,17 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.type')}}</td>
-                        <select  id="type" v-model="category.type">
-                            <option value="">{{__('general.web.select')}}</option>
-                            <option value="category">{{__('general.web.category.category')}}</option>
-                            <option value="subcategory">{{__('general.web.category.subcategory')}}</option>
-                        </select>
+                        <td class="label-table">{{__('general.web.category.type')}}</td>
+                        <td>
+                            <select  id="type" v-model="category.type">
+                                <option value="">{{__('general.web.select')}}</option>
+                                <option value="category">{{__('general.web.category.category')}}</option>
+                                <option value="subcategory">{{__('general.web.category.subcategory')}}</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.icon')}}</td>
+                        <td class="label-table">{{__('general.web.category.icon')}}</td>
                         <td>
                             <input
                                 type="text"
@@ -88,6 +93,11 @@ export default {
         isOpenEdit: Boolean,
         category: Object,
     },
+    data() {
+        return {
+            errors: [],
+        }
+    },
 
     emits: ['close', 'getAllCategories'],
 
@@ -103,16 +113,16 @@ export default {
             ).then(response => {
                 alert(response.data.message)
                 this.$emit('getAllCategories');
-                this.close()
+                this.close();
             }).catch(error => {
-                alert(JSON.stringify(error.response.data.errors))
+                this.errors = error.response.data.errors;
             })
         },
     },
 
     watch: {
         edit: function(newVal, oldVal) {
-            this.isOpenEdit = newVal
+            this.isOpenEdit = newVal;
         }
     }
 }

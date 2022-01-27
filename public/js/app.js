@@ -2537,6 +2537,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2547,6 +2552,11 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     isOpenEdit: Boolean,
     category: Object
+  },
+  data: function data() {
+    return {
+      errors: []
+    };
   },
   emits: ['close', 'getAllCategories'],
   methods: {
@@ -2563,7 +2573,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.close();
       })["catch"](function (error) {
-        alert(JSON.stringify(error.response.data.errors));
+        _this.errors = error.response.data.errors;
       });
     }
   },
@@ -4866,44 +4876,58 @@ var render = function () {
             _c("div", [
               _c("table", [
                 _c("tr", [
-                  _c("td", [_vm._v("Id")]),
+                  _c("td", { staticClass: "label-table" }, [_vm._v("Id")]),
                   _vm._v(" "),
-                  _c("td", { staticClass: "id" }, [
+                  _c("td", { staticClass: "mx-auto" }, [
                     _vm._v(_vm._s(_vm.category.id)),
                   ]),
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
+                  _c("td", { staticClass: "label-table" }, [
                     _vm._v(_vm._s(_vm.__("general.web.category.name_es"))),
                   ]),
                   _vm._v(" "),
                   _c("td", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.category.name_es,
-                          expression: "category.name_es",
-                        },
+                    _c(
+                      "div",
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.category.name_es,
+                              expression: "category.name_es",
+                            },
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.category.name_es },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.category,
+                                "name_es",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("error", {
+                          attrs: { errors: _vm.__e(_vm.errors, "name_es") },
+                        }),
                       ],
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.category.name_es },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.category, "name_es", $event.target.value)
-                        },
-                      },
-                    }),
+                      1
+                    ),
                   ]),
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
+                  _c("td", { staticClass: "label-table" }, [
                     _vm._v(_vm._s(_vm.__("general.web.category.name_en"))),
                   ]),
                   _vm._v(" "),
@@ -4932,7 +4956,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
+                  _c("td", { staticClass: "label-table" }, [
                     _vm._v(
                       _vm._s(_vm.__("general.web.category.outstanding_image"))
                     ),
@@ -4967,62 +4991,66 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
+                  _c("td", { staticClass: "label-table" }, [
                     _vm._v(_vm._s(_vm.__("general.web.category.type"))),
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.category.type,
-                          expression: "category.type",
-                        },
-                      ],
-                      attrs: { id: "type" },
-                      on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.category,
-                            "type",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
+                  _c("td", [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.category.type,
+                            expression: "category.type",
+                          },
+                        ],
+                        attrs: { id: "type" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.category,
+                              "type",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
                         },
                       },
-                    },
-                    [
-                      _c("option", { attrs: { value: "" } }, [
-                        _vm._v(_vm._s(_vm.__("general.web.select"))),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "category" } }, [
-                        _vm._v(_vm._s(_vm.__("general.web.category.category"))),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "subcategory" } }, [
-                        _vm._v(
-                          _vm._s(_vm.__("general.web.category.subcategory"))
-                        ),
-                      ]),
-                    ]
-                  ),
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v(_vm._s(_vm.__("general.web.select"))),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "category" } }, [
+                          _vm._v(
+                            _vm._s(_vm.__("general.web.category.category"))
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "subcategory" } }, [
+                          _vm._v(
+                            _vm._s(_vm.__("general.web.category.subcategory"))
+                          ),
+                        ]),
+                      ]
+                    ),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
+                  _c("td", { staticClass: "label-table" }, [
                     _vm._v(_vm._s(_vm.__("general.web.category.icon"))),
                   ]),
                   _vm._v(" "),
@@ -5143,13 +5171,13 @@ var render = function () {
             _c("div", [
               _c("table", [
                 _c("tr", [
-                  _c("td", [_vm._v("Id")]),
+                  _c("td", { staticClass: "label-table" }, [_vm._v("Id")]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(_vm.category.id))]),
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
+                  _c("td", { staticClass: "label-table" }, [
                     _vm._v(_vm._s(_vm.__("general.web.category.name_es"))),
                   ]),
                   _vm._v(" "),
@@ -5157,7 +5185,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
+                  _c("td", { staticClass: "label-table" }, [
                     _vm._v(_vm._s(_vm.__("general.web.category.name_en"))),
                   ]),
                   _vm._v(" "),
@@ -5165,23 +5193,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(_vm.__("general.web.category.outstanding_image"))
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("figure", [
-                    _c("img", {
-                      attrs: {
-                        src: _vm.__asset(_vm.category.outstanding_image),
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [
+                  _c("td", { staticClass: "label-table" }, [
                     _vm._v(_vm._s(_vm.__("general.web.category.slug"))),
                   ]),
                   _vm._v(" "),
@@ -5189,7 +5201,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
+                  _c("td", { staticClass: "label-table" }, [
                     _vm._v(_vm._s(_vm.__("general.web.category.type"))),
                   ]),
                   _vm._v(" "),
@@ -5203,7 +5215,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
+                  _c("td", { staticClass: "label-table" }, [
                     _vm._v(_vm._s(_vm.__("general.web.category.status"))),
                   ]),
                   _vm._v(" "),
@@ -5217,11 +5229,27 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [
+                  _c("td", { staticClass: "label-table" }, [
                     _vm._v(_vm._s(_vm.__("general.web.category.icon"))),
                   ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(_vm.category.icon))]),
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", { staticClass: "label-table" }, [
+                    _vm._v(
+                      _vm._s(_vm.__("general.web.category.outstanding_image"))
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "w-3/12" }, [
+                    _c("img", {
+                      attrs: {
+                        src: _vm.__asset(_vm.category.outstanding_image),
+                      },
+                    }),
+                  ]),
                 ]),
               ]),
               _vm._v(" "),

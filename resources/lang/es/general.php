@@ -17,6 +17,10 @@ return [
             'update_status_error' => 'La Categoría no pudo ser modificada',
             'create_status_success' => 'La categoría ha sido creada con éxito',
         ],
+
+        'exceptions' => [
+            'model_not_found' => 'Elemento No Encontrado',
+        ],
     ],
 
     'web' => [

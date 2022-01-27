@@ -19,6 +19,10 @@ return [
             'create_status_success' => 'Category has been successfully created',
         ],
 
+        'exceptions' => [
+            'model_not_found' => 'Element Not Found',
+        ],
+
     ],
 
     'web' => [

@@ -138,9 +138,9 @@ export default {
             ).then(response => {
                 alert(response.data.message)
                 this.$emit('getAllCategories');
-                this.close()
+                this.close();
             }).catch(error => {
-                this.errors = error.response.data.errors
+                this.errors = error.response.data.errors;
             })
         },
     },

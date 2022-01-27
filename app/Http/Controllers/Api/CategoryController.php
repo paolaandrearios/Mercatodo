@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Api\CreateCategoryRequest;
+use App\Http\Requests\Api\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -58,12 +59,12 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UpdateCategoryRequest $request
      * @param Category $category
      * @return JsonResponse
      */
 
-    public function update(Request $request, Category $category): JsonResponse
+    public function update(UpdateCategoryRequest $request, Category $category): JsonResponse
     {
         $data = $request->all();
         $data['slug'] =  Helper::generateSlug($data['name_en']);

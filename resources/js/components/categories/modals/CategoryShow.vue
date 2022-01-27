@@ -7,38 +7,38 @@
             <div>
                 <table>
                     <tr>
-                        <td>Id</td>
+                        <td class="label-table">Id</td>
                         <td>{{category.id}}</td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.name_es')}}</td>
+                        <td class="label-table">{{__('general.web.category.name_es')}}</td>
                         <td>{{category.name_es}}</td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.name_en')}}</td>
+                        <td class="label-table">{{__('general.web.category.name_en')}}</td>
                         <td>{{category.name_en}}</td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.outstanding_image')}}</td>
-                        <figure>
-                            <img v-bind:src="__asset(category.outstanding_image)"/>
-                        </figure>
-                    </tr>
-                    <tr>
-                        <td>{{__('general.web.category.slug')}}</td>
+                        <td class="label-table">{{__('general.web.category.slug')}}</td>
                         <td>{{category.slug}}</td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.type')}}</td>
+                        <td class="label-table">{{__('general.web.category.type')}}</td>
                         <td>{{__('general.web.category.'+ category.type)}}</td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.status')}}</td>
+                        <td class="label-table">{{__('general.web.category.status')}}</td>
                         <td>{{__('general.web.category.'+ category.status)}}</td>
                     </tr>
                     <tr>
-                        <td>{{__('general.web.category.icon')}}</td>
+                        <td class="label-table">{{__('general.web.category.icon')}}</td>
                         <td>{{category.icon}}</td>
+                    </tr>
+                    <tr>
+                        <td class="label-table">{{__('general.web.category.outstanding_image')}}</td>
+                        <td class="w-3/12">
+                            <img v-bind:src="__asset(category.outstanding_image)"/>
+                        </td>
                     </tr>
                 </table>
                 <div class="text-center p-2 mt-3">
