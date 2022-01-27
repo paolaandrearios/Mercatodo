@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\CreateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+
 
 class ProductController extends Controller
 {
@@ -21,25 +23,27 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param CreateProductRequest $request
+     * @return JsonResponse
      */
-    public function create(): Response
+    public function store(CreateProductRequest $request): JsonResponse
     {
-        //
+        $data = $request->all();
+        $data['slug'] =  Helper::generateSlug($data['name_en']);
+
+        $file_name = time().'_'.$request->image->getClientOriginalName();
+        $file_path = $request->file('image')->storeAs('products', $file_name, 'public');
+
+        $data['image'] = '/storage/' . $file_path;
+
+        $product = Product::create($data);
+
+        return response()->json([
+            'product' => $product,
+            'message' => __('general.api.product.create_status_success'),
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.

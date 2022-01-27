@@ -16,10 +16,12 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('sku');
-            $table->String('name');
+            $table->String('name_en');
+            $table->text('description_en');
+            $table->String('name_es');
+            $table->text('description_es');
             $table->String('image');
-            $table->String('description');
-            $table->float('price');
+            $table->double('price',15,2);
             $table->float('taxes');
             $table->String('category');
             $table->enum('status', ['active', 'inactive'])->default('active');

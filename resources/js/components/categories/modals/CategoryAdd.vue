@@ -79,6 +79,19 @@
 import axios from "axios";
 import Modal from "../../Modal";
 
+function initialState() {
+    return {
+        category: {
+            name_en: '',
+            name_es: '',
+            outstanding_image: '',
+            type: '',
+            status: '',
+            icon: '',
+        },
+        errors: [],
+    }
+}
 
 export default {
     name: "CategoryAdd.vue",
@@ -91,18 +104,10 @@ export default {
 
     emits: ['close', 'getAllCategories'],
 
-    data() {
-        return {
-            category: {
-                name_en: '',
-                name_es: '',
-                outstanding_image: '',
-                type: '',
-                status: '',
-                icon: '',
-            },
-            errors: [],
-        }
+
+
+    data(){
+        return initialState();
     },
 
     methods: {
@@ -137,12 +142,18 @@ export default {
                 config
             ).then(response => {
                 alert(response.data.message)
+                this.reset();
                 this.$emit('getAllCategories');
                 this.close();
             }).catch(error => {
                 this.errors = error.response.data.errors;
             })
         },
+
+        reset: function (){
+            Object.assign(this.$data, initialState());
+        }
+
     },
 }
 </script>

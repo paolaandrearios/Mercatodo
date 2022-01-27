@@ -13,13 +13,13 @@ class StoreTest extends TestCase
 
     protected $endPoint = '/api/categories';
 
-    //TODO: enable this when I implement form request
-    /*    public function test_error_not_found_when_try_to_create_category(): void
-        {
-            $response = $this->putJson($this->endPoint . '/1', ['name_en' => 'test']);
-            $response->assertStatus(422);
-            $response->assertJsonFragment(['id' =>['The selected id is invalid.']]);
-        }*/
+
+    public function test_error_not_found_when_try_to_create_category(): void
+    {
+        $response = $this->putJson($this->endPoint . '/1', ['name_en' => 'test']);
+        $response->assertStatus(422);
+        $response->assertJsonFragment(['id' =>['The selected id is invalid.']]);
+    }
 
     public function test_create_category(): void
     {

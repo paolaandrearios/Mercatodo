@@ -6,7 +6,7 @@
                 <div>
                     <div class="section__container--title">{{__('general.web.product.product_list')}}</div>
                     <div class="section__container--add">
-                        <button  v-on:click=""><i class="text-white pr-1 fas fa-plus-circle"></i>{{__('general.web.category.add')}}</button>
+                        <button v-on:click="add()"><i class="text-white pr-1 fas fa-plus-circle"></i>{{__('general.web.product.add')}}</button>
                     </div>
                     <div class="table__container">
                         <table>
@@ -23,7 +23,7 @@
                             <tbody class="table__container--body">
                             <tr v-for="product in products">
                                 <td>{{product.id}}</td>
-                                <td>{{product.name}}</td>
+                                <td>{{product['name_' + __locale()]}}</td>
                                 <td>{{product.price}}</td>
                                 <td>{{product.stock}}</td>
                                 <td>
@@ -51,20 +51,26 @@
             </div>
         </div>
 
+        <product-add :isOpenAdd="isOpenAdd" @close="close" @getAllProducts="getAllProducts"></product-add>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+import ProductAdd from "./modals/ProductAdd";
 
 
 export default {
 
     name: "ProductList",
+    components: {
+        ProductAdd,
+    },
 
     data () {
         return {
             products: [],
+            isOpenAdd: false,
         }
     },
     mounted() {
@@ -75,6 +81,12 @@ export default {
             axios
                 .get('/evertec/mercatodo/public/api/products')
                 .then(response => (this.products = response.data.products.data))
+        },
+        add: function () {
+            this.isOpenAdd = true
+        },
+        close: function () {
+            this.isOpenAdd = false;
         },
     }
 };

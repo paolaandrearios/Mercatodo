@@ -19,6 +19,12 @@ return [
             'create_status_success' => 'Category has been successfully created',
         ],
 
+        'product' => [
+            'update_status_success' => 'Product has been successfully modified',
+            'update_status_error' => 'Product could not be modified',
+            'create_status_success' => 'Product has been successfully created',
+        ],
+
         'exceptions' => [
             'model_not_found' => 'Element Not Found',
         ],
@@ -51,11 +57,9 @@ return [
             'category_list' => 'Category List',
             'create_category' => 'Create Category',
             'edit_category' => 'Edit Category',
-            'foreign_name' => 'Translated Name',
             'name' => 'Name',
             'name_es' => 'Spanish Name',
             'name_en' => 'English Name',
-            'description' => 'Description',
             'outstanding_image' => 'Outstanding Image',
             'slug' => 'Friendly Url',
             'type' => 'Type',
@@ -71,15 +75,24 @@ return [
 
         'product' => [
             'product_list' => 'Product List',
+            'create_product' => 'Create Product',
+            'edit_product' => 'Edit Product',
+            'product' => 'Product',
             'name' => 'Name',
+            'sku' => 'sku',
+            'name_es' => 'Spanish Name',
+            'name_en' => 'English Name',
+            'description_es' => 'Spanish Description',
+            'description_en' => 'English Description',
             'image' => 'Image',
-            'description' => 'Description',
             'price' => 'Price',
+            'taxes' => 'Taxes',
             'stock' => 'Stock',
             'status' => 'Status',
             'actions' => 'Actions',
             'active' => 'Active',
             'inactive' => 'Inactive',
+            'add' => 'Add',
         ]
     ],
 

@@ -18,6 +18,12 @@ return [
             'create_status_success' => 'La categoría ha sido creada con éxito',
         ],
 
+        'product' => [
+            'update_status_success' => 'El producto ha sido modificado satisfactoriamente',
+            'update_status_error' => 'El producto no pudo ser modificado',
+            'create_status_success' => 'El producto ha sido creado con éxito',
+        ],
+
         'exceptions' => [
             'model_not_found' => 'Elemento No Encontrado',
         ],
@@ -49,11 +55,9 @@ return [
             'category_list' => 'Lista de Categorías',
             'create_category' => 'Crear Categoría',
             'edit_category' => 'Editar Categoría',
-            'foreign_name' => 'Nombre en inglés',
             'name' => 'Nombre',
             'name_es' => 'Nombre en español',
             'name_en' => 'Nombre en inglés',
-            'description' => 'Descripción',
             'outstanding_image' => 'Imagen destacada',
             'slug' => 'Url amigable',
             'type' => 'Tipo',
@@ -69,15 +73,24 @@ return [
 
         'product' => [
             'product_list' => 'Lista de Productos',
+            'create_product' => 'Crear Producto',
+            'edit_product' => 'Editar Producto',
+            'product' => 'Producto',
             'name' => 'Nombre',
+            'sku' => 'sku',
+            'name_es' => 'Nombre en Español',
+            'name_en' => 'Nombre en Inglés',
+            'description_es' => 'Descripción en Español',
+            'description_en' => 'Descripción en Inglés',
             'image' => 'Imagen',
-            'description' => 'Descripción',
             'price' => 'Precio',
+            'taxes' => 'Impuestos',
             'stock' => 'Inventario',
             'status' => 'Estado',
             'actions' => 'Acciones',
             'active' => 'Activo',
             'inactive' => 'Inactivo',
+            'add' => 'Agregar',
         ]
     ],
 

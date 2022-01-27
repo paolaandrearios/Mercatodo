@@ -9,16 +9,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Product extends Model
 {
     use HasFactory;
-    protected $guarded = [''];
-
-     /**
+    /**
      * @var string[]
      */
     protected $fillable = [
         'sku',
-        'name',
+        'name_en',
+        'description_en',
+        'name_es',
+        'description_es',
         'image',
-        'description',
         'price',
         'taxes',
         'category',
@@ -26,6 +26,8 @@ class Product extends Model
         'stock',
         'slug',
     ];
+
+    protected $guarded = [''];
 
     public function isActive(): bool
     {
