@@ -28,6 +28,7 @@
 .sidebar {
     @apply h-full m-5 shadow-2xl;
     &__menu {
+        @apply hidden md:block;
         li {
             @apply text-center pt-5 font-bold text-lg text-dimGray hover:text-orangePantone;
         }
@@ -52,25 +53,25 @@
         }
     }
     &__content {
-        @apply text-sm p-2 max-w-lg p-6 bg-white rounded-md shadow-xl;
+        @apply text-xs md:text-sm p-2 max-w-lg max-h-5/6 overflow-y-scroll overflow-x-hidden p-6 bg-white rounded-md shadow-xl;
         &--header {
-            @apply flex items-center justify-between;
+            @apply flex items-center justify-between text-lg md:text-xl font-extrabold;
         }
         &--title {
-            @apply mx-auto mb-4 text-center font-bold text-dimGray text-2xl;
+            @apply mx-auto mb-4 text-center font-bold text-dimGray ;
         }
     }
 
     .form {
         @apply flex flex-col m-2;
         .div-form {
-            @apply flex justify-between;
+            @apply block md:flex md:justify-between;
         }
         .div-input {
-            @apply w-3/5;
+            @apply w-full md:w-3/5;
         }
         .form-file {
-            @apply flex justify-between;
+            @apply block md:flex md:justify-between;
             input {
                 @apply border-none;
                 &:hover {
@@ -93,13 +94,13 @@
     table {
         @apply m-2;
         tr {
-            @apply grid grid-cols-2 mx-4;
+            @apply grid grid-cols-1 items-start md:items-center md:grid-cols-2 mx-4;
         }
         .label-table {
-            @apply font-bold text-dimGray my-auto;
+            @apply my-0 md:my-2 mb-2 md:mb-0 font-bold text-dimGray;
         }
         .input-table {
-            @apply my-1 mx-2 px-1 py-1 rounded-xl border-solid border-gray-300 border-2 hover:bg-gray-200 text-black;
+            @apply w-full my-1 md:my-2 mx-2 px-1 py-1 rounded-xl border-solid border-gray-300 border-2 hover:bg-gray-200 text-black;
             &:hover {
                 @apply bg-gainsboroGray outline-none;
             }

@@ -5233,7 +5233,7 @@ var render = function () {
                 _c("tr", [
                   _c("td", { staticClass: "label-table" }, [_vm._v("Id")]),
                   _vm._v(" "),
-                  _c("td", { staticClass: "mx-auto" }, [
+                  _c("td", { staticClass: "mx-0 md:mx-auto" }, [
                     _vm._v(_vm._s(_vm.category.id)),
                   ]),
                 ]),

@@ -8,7 +8,7 @@
                 <table>
                     <tr>
                         <td class="label-table">Id</td>
-                        <td class="mx-auto">{{category.id}}</td>
+                        <td class="mx-0 md:mx-auto">{{category.id}}</td>
                     </tr>
                     <tr>
                         <td class="label-table">{{__('general.web.category.name_es')}}</td>
