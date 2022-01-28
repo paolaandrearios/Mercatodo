@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Api\UpdateCategoryRequest;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Api\CreateCategoryRequest;
-use App\Http\Requests\Api\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 
 class CategoryController extends Controller
@@ -58,16 +58,18 @@ class CategoryController extends Controller
         return response()->json(compact('category'));
     }
 
-    /**
-     * @param UpdateCategoryRequest $request
-     * @param Category $category
-     * @return JsonResponse
-     */
+
 
     public function update(UpdateCategoryRequest $request, Category $category): JsonResponse
     {
         $data = $request->all();
         $data['slug'] =  Helper::generateSlug($data['name_en']);
+
+        $file_name = time().'_'.$request->outstanding_image->getClientOriginalName();
+        $file_path = $request->file('outstanding_image')->storeAs('categories', $file_name, 'public');
+
+        $data['outstanding_image'] = '/storage/' . $file_path;
+
         if ($category->update($data)) {
             return response()->json([
                 'message' => __('general.api.category.update_status_success'),

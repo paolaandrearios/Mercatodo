@@ -17,6 +17,7 @@ return [
             'update_status_success' => 'Category has been successfully modified',
             'update_status_error' => 'Category could not be modified',
             'create_status_success' => 'Category has been successfully created',
+            'name_category_rule_message' => 'Category name is used',
         ],
 
         'product' => [

@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Api;
 
+use App\Models\Category;
+use App\Rules\Api\Admin\NameCategoryRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCategoryRequest extends FormRequest
@@ -16,19 +18,38 @@ class UpdateCategoryRequest extends FormRequest
         return true;
     }
 
-    /**
-     * @return string[]
-     */
+
     public function rules(): array
     {
-        return [
-            'name_es' => 'required|unique:categories|min:10|max:60',
-            'name_en' => 'required|unique:categories|min:10|max:60',
-            'outstanding_image' => 'required|image|mimes:jpg,bmp,png',
-            'type' => 'required|in:category,subcategory',
-            'status' => 'required|in:active,inactive',
-            'icon' => 'required|min:10',
+        $rules = [
+            'name_es' => [
+                'required',
+                new NameCategoryRule($this->route('category')),
+                'min:4',
+                'max:60'
+            ],
+            'name_en' => [
+                'required',
+                new NameCategoryRule($this->route('category')),
+                'min:4',
+                'max:60'
+            ],
+            'type' => [
+                'required',
+                'in:category,subcategory',
+            ],
+
+            'icon' => [
+                'required',
+                'min:5',
+            ],
         ];
+
+        if($this->has('outstanding_image')){
+            $rules['outstanding_image'] = ['image', 'mimes:jpg,bmp,png' ];
+        }
+
+        return $rules;
     }
 
 }

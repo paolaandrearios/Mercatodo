@@ -36,8 +36,8 @@
                     </tr>
                     <tr>
                         <td class="label-table">{{__('general.web.category.outstanding_image')}}</td>
-                        <td class="w-3/12">
-                            <img v-bind:src="__asset(category.outstanding_image)"/>
+                        <td>
+                            <img class="w-5/6" v-bind:src="__asset(category.outstanding_image)"/>
                         </td>
                     </tr>
                 </table>

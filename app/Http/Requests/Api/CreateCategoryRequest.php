@@ -24,12 +24,35 @@ class CreateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_es' => 'required|unique:categories|min:10|max:60',
-            'name_en' => 'required|unique:categories|min:10|max:60',
-            'outstanding_image' => 'required|image|mimes:jpg,bmp,png',
-            'type' => 'required|in:category,subcategory',
-            'status' => 'required|in:active,inactive',
-            'icon' => 'required|min:10',
+            'name_es' => [
+                'required',
+                'unique:categories',
+                'min:4',
+                'max:60',
+            ],
+            'name_en' => [
+                'required',
+                'unique:categories',
+                'min:4',
+                'max:60',
+            ],
+            'outstanding_image' => [
+                'required',
+                'image',
+                'mimes:jpg,bmp,png',
+            ],
+            'type' => [
+                'required',
+                'in:category,subcategory',
+            ],
+            'status' => [
+                'required',
+                'in:active,inactive',
+            ],
+            'icon' => [
+                'required',
+                'min:10',
+            ],
         ];
     }
 }

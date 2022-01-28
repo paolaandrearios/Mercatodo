@@ -2471,6 +2471,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Modal */ "./resources/js/components/Modal.vue");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2570,13 +2587,35 @@ __webpack_require__.r(__webpack_exports__);
   },
   emits: ['close', 'getAllCategories'],
   methods: {
+    onChange: function onChange(e) {
+      this.category.outstanding_image = e.target.files[0];
+    },
     close: function close() {
       this.$emit('close');
     },
     update: function update() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().put('/evertec/mercatodo/public/api/categories/' + this.category.id, this.category).then(function (response) {
+      var config = {
+        headers: {
+          'accept': 'application/json',
+          'Accept-Language': 'en-US,en;q=0.8',
+          'Content-Type': 'multipart/form-data'
+        }
+      };
+      var data = new FormData();
+      data.append('name_es', this.category.name_es);
+      data.append('name_en', this.category.name_en);
+      data.append('type', this.category.type);
+      data.append('status', this.category.status);
+      data.append('icon', this.category.icon);
+      data.append('_method', 'PUT');
+
+      if (_typeof(this.category.outstanding_image) === 'object') {
+        data.append('outstanding_image', this.category.outstanding_image);
+      }
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/evertec/mercatodo/public/api/categories/' + this.category.id, data, config).then(function (response) {
         alert(response.data.message);
 
         _this.$emit('getAllCategories');
@@ -5217,6 +5256,7 @@ var render = function () {
                               expression: "category.name_es",
                             },
                           ],
+                          staticClass: "input-table",
                           attrs: { type: "text" },
                           domProps: { value: _vm.category.name_es },
                           on: {
@@ -5248,61 +5288,41 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("td", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.category.name_en,
-                          expression: "category.name_en",
-                        },
+                    _c(
+                      "div",
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.category.name_en,
+                              expression: "category.name_en",
+                            },
+                          ],
+                          staticClass: "input-table",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.category.name_en },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.category,
+                                "name_en",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("error", {
+                          attrs: { errors: _vm.__e(_vm.errors, "name_en") },
+                        }),
                       ],
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.category.name_en },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.category, "name_en", $event.target.value)
-                        },
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", { staticClass: "label-table" }, [
-                    _vm._v(
-                      _vm._s(_vm.__("general.web.category.outstanding_image"))
+                      1
                     ),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.category.outstanding_image,
-                          expression: "category.outstanding_image",
-                        },
-                      ],
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.category.outstanding_image },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.category,
-                            "outstanding_image",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
                   ]),
                 ]),
                 _vm._v(" "),
@@ -5313,54 +5333,67 @@ var render = function () {
                   _vm._v(" "),
                   _c("td", [
                     _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.category.type,
-                            expression: "category.type",
-                          },
-                        ],
-                        attrs: { id: "type" },
-                        on: {
-                          change: function ($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function (o) {
-                                return o.selected
-                              })
-                              .map(function (o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.category,
-                              "type",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          },
-                        },
-                      },
+                      "div",
                       [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(_vm.__("general.web.select"))),
-                        ]),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.category.type,
+                                expression: "category.type",
+                              },
+                            ],
+                            staticClass: "input-table",
+                            attrs: { id: "type" },
+                            on: {
+                              change: function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.category,
+                                  "type",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              },
+                            },
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v(_vm._s(_vm.__("general.web.select"))),
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "category" } }, [
+                              _vm._v(
+                                _vm._s(_vm.__("general.web.category.category"))
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "subcategory" } }, [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.__("general.web.category.subcategory")
+                                )
+                              ),
+                            ]),
+                          ]
+                        ),
                         _vm._v(" "),
-                        _c("option", { attrs: { value: "category" } }, [
-                          _vm._v(
-                            _vm._s(_vm.__("general.web.category.category"))
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "subcategory" } }, [
-                          _vm._v(
-                            _vm._s(_vm.__("general.web.category.subcategory"))
-                          ),
-                        ]),
-                      ]
+                        _c("error", {
+                          attrs: { errors: _vm.__e(_vm.errors, "type") },
+                        }),
+                      ],
+                      1
                     ),
                   ]),
                 ]),
@@ -5371,27 +5404,79 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("td", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.category.icon,
-                          expression: "category.icon",
-                        },
+                    _c(
+                      "div",
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.category.icon,
+                              expression: "category.icon",
+                            },
+                          ],
+                          staticClass: "input-table",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.category.icon },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.category,
+                                "icon",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("error", {
+                          attrs: { errors: _vm.__e(_vm.errors, "icon") },
+                        }),
                       ],
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.category.icon },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.category, "icon", $event.target.value)
-                        },
-                      },
-                    }),
+                      1
+                    ),
                   ]),
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", { staticClass: "label-table" }, [
+                    _vm._v(
+                      _vm._s(_vm.__("general.web.category.outstanding_image"))
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("div", [
+                        _c("img", {
+                          staticClass: "w-2/4 mb-2",
+                          attrs: {
+                            src: _vm.__asset(_vm.category.outstanding_image),
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("button", [
+                          _c("input", {
+                            staticClass: "overflow-x-scroll",
+                            attrs: { type: "file", id: "outstanding_image" },
+                            on: { change: _vm.onChange },
+                          }),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("error", {
+                        attrs: {
+                          errors: _vm.__e(_vm.errors, "outstanding_image"),
+                        },
+                      }),
+                    ],
+                    1
+                  ),
                 ]),
               ]),
               _vm._v(" "),
@@ -5559,8 +5644,9 @@ var render = function () {
                     ),
                   ]),
                   _vm._v(" "),
-                  _c("td", { staticClass: "w-3/12" }, [
+                  _c("td", [
                     _c("img", {
+                      staticClass: "w-5/6",
                       attrs: {
                         src: _vm.__asset(_vm.category.outstanding_image),
                       },

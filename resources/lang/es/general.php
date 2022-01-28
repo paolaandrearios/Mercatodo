@@ -16,6 +16,7 @@ return [
             'update_status_success' => 'La Categoría ha sido modificada satisfactoriamente',
             'update_status_error' => 'La Categoría no pudo ser modificada',
             'create_status_success' => 'La categoría ha sido creada con éxito',
+            'name_category_rule_message' => 'El nombre de la categoria ya existe',
         ],
 
         'product' => [

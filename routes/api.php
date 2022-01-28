@@ -28,12 +28,12 @@ Route::resource('users', UserController::class)->only([
 Route::put('/users/{user}/status/{status}', [UserController::class, 'updateStatus'])->name('users.status');
 
 
+Route::put('/categories/{category}/status/{status}', [CategoryStatusController::class, 'update'])->name('categories.status');
 //categories routes
 Route::resource('categories', CategoryController::class)->only([
     'store', 'show', 'index', 'update',
 ]);
 
-Route::put('/categories/{category}/status/{status}', [CategoryStatusController::class, 'update'])->name('categories.status');
 
 //Product routes
 Route::resource('products', ProductController::class)->only([

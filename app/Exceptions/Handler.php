@@ -41,7 +41,7 @@ class Handler extends ExceptionHandler
         });
     }
 
-    public function render($request, Throwable $t)
+    /*public function render($request, Throwable $t)
     {
         if($t instanceof ModelNotFoundException)
         {
@@ -50,5 +50,5 @@ class Handler extends ExceptionHandler
             ],404);
         }
         return parent::render($request, $t);
-    }
+    }*/
 }

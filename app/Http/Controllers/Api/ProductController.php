@@ -56,37 +56,25 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param UpdateProductRequest $request
+     * @param Product $product
+     * @return JsonResponse
      */
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
+    public function update(UpdateProductRequest $request, Product $product): JsonResponse
     {
-        //
+        $data = $request->all();
+        $data['slug'] =  Helper::generateSlug($data['name_en']);
+        if ($product->update($data)) {
+            return response()->json([
+                'message' => __('general.api.product.update_status_success'),
+            ]);
+        } else {
+            return response()->json([
+                'message' => __('general.api.product.update_status_error'),
+            ]);
+        }
     }
 }
