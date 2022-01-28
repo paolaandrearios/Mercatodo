@@ -18,14 +18,7 @@ class NameCategoryRule implements Rule
         $this->category = $category;
     }
 
-    /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
-     */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): bool
     {
         $count = Category::where($attribute, $value)
             ->where('id', '!=', $this->category->id)
@@ -36,12 +29,7 @@ class NameCategoryRule implements Rule
         return false;
     }
 
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
+    public function message(): string
     {
         return __('general.api.category.name_category_rule_message');
     }

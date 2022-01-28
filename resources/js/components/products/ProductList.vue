@@ -33,13 +33,13 @@
                                     <a v-on:click="" >
                                         <i class="fas fa-eye"></i>
                                     </a> |
-                                    <a v-on:click="" >
+                                    <a v-on:click="edit(product)" >
                                         <i class="fas fa-edit"></i>
                                     </a> |
-                                    <a v-if="product.status === 'inactive'" v-on:click="" >
+                                    <a v-if="product.status === 'inactive'" v-on:click="setActive(product)" >
                                         <i class="far fa-check-square text-greenTem font-extrabold"></i>
                                     </a>
-                                    <a v-if="product.status === 'active'" v-on:click="" >
+                                    <a v-if="product.status === 'active'" v-on:click="setInactive(product)" >
                                         <i class="fas fa-ban text-red-600 font-extrabold"></i>
                                     </a>
                                 </td>
@@ -52,12 +52,15 @@
         </div>
 
         <product-add :isOpenAdd="isOpenAdd" @close="close" @getAllProducts="getAllProducts"></product-add>
+        <product-edit :isOpenEdit="isOpenEdit" :product="currentProduct" @close="close" @getAllProducts="getAllProducts"></product-edit>
+
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 import ProductAdd from "./modals/ProductAdd";
+import ProductEdit from "./modals/ProductEdit";
 
 
 export default {
@@ -65,12 +68,15 @@ export default {
     name: "ProductList",
     components: {
         ProductAdd,
+        ProductEdit,
     },
 
     data () {
         return {
             products: [],
+            currentProduct: {},
             isOpenAdd: false,
+            isOpenEdit: false,
         }
     },
     mounted() {
@@ -83,10 +89,27 @@ export default {
                 .then(response => (this.products = response.data.products.data))
         },
         add: function () {
-            this.isOpenAdd = true
+            this.isOpenAdd = true;
+        },
+        edit: function(product) {
+            this.currentProduct = product;
+            this.isOpenEdit = true;
         },
         close: function () {
             this.isOpenAdd = false;
+            this.isOpenEdit = false;
+        },
+        setActive: function(product) {
+            axios.put('/evertec/mercatodo/public/api/products/'+product.id+'/status/active').then(response => {
+                this.getAllProducts()
+                alert(response.data.message)
+            })
+        },
+        setInactive: function(product) {
+            axios.put('/evertec/mercatodo/public/api/products/'+product.id+'/status/inactive').then(response => {
+                this.getAllProducts()
+                alert(response.data.message)
+            })
         },
     }
 };

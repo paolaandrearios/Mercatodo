@@ -43,21 +43,21 @@
                 <div class="div-form">
                     <label for="price">{{__('general.web.product.price')}}</label>
                     <div class="div-input">
-                        <input type="text" id="price" v-model="product.price">
+                        <input type="number" id="price" v-model="product.price">
                         <error :errors="__e(errors,'price')"></error>
                     </div>
                 </div>
                 <div class="div-form">
                     <label for="stock">{{__('general.web.product.stock')}}</label>
                     <div class="div-input">
-                        <input type="text" id="stock" v-model="product.stock">
+                        <input type="number" id="stock" v-model="product.stock">
                         <error :errors="__e(errors,'stock')"></error>
                     </div>
                 </div>
                 <div class="div-form">
                     <label for="taxes">{{__('general.web.product.taxes')}}</label>
                     <div class="div-input">
-                        <input type="text" id="taxes" v-model="product.taxes">
+                        <input type="number" id="taxes" v-model="product.taxes">
                         <error :errors="__e(errors,'taxes')"></error>
                     </div>
                 </div>
@@ -136,7 +136,7 @@ function initialState() {
 }
 
 export default {
-    name: "CategoryAdd.vue",
+    name: "ProductAdd.vue",
     components: {
         Modal
     },

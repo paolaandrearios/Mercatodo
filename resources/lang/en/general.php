@@ -24,6 +24,7 @@ return [
             'update_status_success' => 'Product has been successfully modified',
             'update_status_error' => 'Product could not be modified',
             'create_status_success' => 'Product has been successfully created',
+            'name_product_rule_message' => 'Product name is used',
         ],
 
         'exceptions' => [

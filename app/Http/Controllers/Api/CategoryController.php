@@ -15,9 +15,7 @@ use Illuminate\Http\JsonResponse;
 
 class CategoryController extends Controller
 {
-    /**
-     * @return JsonResponse
-     */
+
     public function index(): JsonResponse
     {
         $categories = Category::orderBy('id', 'asc')->paginate();
@@ -25,10 +23,6 @@ class CategoryController extends Controller
     }
 
 
-    /**
-     * @param CreateCategoryRequest $request
-     * @return JsonResponse
-     */
     public function store(CreateCategoryRequest $request): JsonResponse
     {
         $data = $request->all();
@@ -47,12 +41,6 @@ class CategoryController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param Category $category
-     * @return Response
-     */
     public function show(Category $category): Response
     {
         return response()->json(compact('category'));
@@ -65,10 +53,12 @@ class CategoryController extends Controller
         $data = $request->all();
         $data['slug'] =  Helper::generateSlug($data['name_en']);
 
-        $file_name = time().'_'.$request->outstanding_image->getClientOriginalName();
-        $file_path = $request->file('outstanding_image')->storeAs('categories', $file_name, 'public');
 
-        $data['outstanding_image'] = '/storage/' . $file_path;
+        if ($request->outstanding_image) {
+            $file_name = time().'_'.$request->outstanding_image->getClientOriginalName();
+            $file_path = $request->file('outstanding_image')->storeAs('categories', $file_name, 'public');
+            $data['outstanding_image'] = '/storage/' . $file_path;
+        }
 
         if ($category->update($data)) {
             return response()->json([

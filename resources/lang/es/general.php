@@ -23,6 +23,7 @@ return [
             'update_status_success' => 'El producto ha sido modificado satisfactoriamente',
             'update_status_error' => 'El producto no pudo ser modificado',
             'create_status_success' => 'El producto ha sido creado con éxito',
+            'name_product_rule_message' => 'El nombre del producto ya existe',
         ],
 
         'exceptions' => [

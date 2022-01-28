@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Api;
 
+use App\Rules\Api\Admin\NameProductRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProductRequest extends FormRequest
@@ -15,23 +16,23 @@ class UpdateProductRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
+        $rules = [
             'sku' => [
                 'required',
-                'unique:products',
+                new NameProductRule($this->route('product')),
                 'alpha_num',
                 'min:5',
                 'max:10',
             ],
             'name_es' => [
                 'required',
-                'unique:products',
+                new NameProductRule($this->route('product')),
                 'min:4',
                 'max:60',
             ],
             'name_en' => [
                 'required',
-                'unique:products',
+                new NameProductRule($this->route('product')),
                 'min:4',
                 'max:60',
             ],
@@ -44,11 +45,6 @@ class UpdateProductRequest extends FormRequest
                 'required',
                 'min:80',
                 'max:400',
-            ],
-            'image' => [
-                'required',
-                'image',
-                'mimes:jpg,bmp,png',
             ],
             'price' => [
                 'required',
@@ -73,5 +69,11 @@ class UpdateProductRequest extends FormRequest
                 'integer',
             ],
         ];
+
+        if($this->has('image')){
+            $rules['image'] = ['image', 'mimes:jpg,bmp,png' ];
+        }
+
+        return $rules;
     }
 }

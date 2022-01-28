@@ -5,16 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CreateProductRequest;
+use App\Http\Requests\Api\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 
 class ProductController extends Controller
 {
-    /**
-     * @return JsonResponse
-     */
 
     public function index(): JsonResponse
     {
@@ -22,10 +19,6 @@ class ProductController extends Controller
         return response()->json(compact('products'));
     }
 
-    /**
-     * @param CreateProductRequest $request
-     * @return JsonResponse
-     */
     public function store(CreateProductRequest $request): JsonResponse
     {
         $data = $request->all();
@@ -57,16 +50,19 @@ class ProductController extends Controller
     }
 
 
-    /**
-     * @param UpdateProductRequest $request
-     * @param Product $product
-     * @return JsonResponse
-     */
-
     public function update(UpdateProductRequest $request, Product $product): JsonResponse
     {
         $data = $request->all();
         $data['slug'] =  Helper::generateSlug($data['name_en']);
+
+        if ($request->image) {
+            $file_name = time().'_'.$request->image->getClientOriginalName();
+            $file_path = $request->file('image')->storeAs('products', $file_name, 'public');
+
+            $data['image'] = '/storage/' . $file_path;
+        }
+
+
         if ($product->update($data)) {
             return response()->json([
                 'message' => __('general.api.product.update_status_success'),

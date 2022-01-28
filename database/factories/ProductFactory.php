@@ -28,7 +28,7 @@ class ProductFactory extends Factory
             'description_es' => $this->faker->text(200),
             'image' => $this->faker->imageUrl(),
             'price' => $this->faker->randomFloat(2,25000,100000),
-            'category' => $this->faker->sentence(2),
+            'category' => $this->faker->numberBetween(1, 5),
             'taxes' => '19',
             'stock' => $this->faker->randomDigitNot(0),
             'slug' => $this->faker->slug(),

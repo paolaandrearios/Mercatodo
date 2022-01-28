@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\StatusCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 
 
 class CategoryStatusController extends Controller
 {
-    public function update(Category $category, string $status): JsonResponse
+    public function update(StatusCategoryRequest $request, Category $category, string $status): JsonResponse
     {
         $data = [
             'status' => $status
