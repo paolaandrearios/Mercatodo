@@ -38,6 +38,7 @@ Vue.component('modal', require('./components/Modal.vue').default);
 Vue.component('product-list', require('./components/products/ProductList.vue').default);
 Vue.component('product-add', require('./components/products/modals/ProductAdd.vue').default);
 Vue.component('product-edit', require('./components/products/modals/ProductEdit.vue').default);
+Vue.component('product-show', require('./components/products/modals/ProductShow.vue').default);
 
 //utils
 Vue.component('error', require('./components/Error.vue').default);

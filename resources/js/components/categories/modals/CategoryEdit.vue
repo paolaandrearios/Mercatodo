@@ -63,6 +63,19 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="label-table">{{__('general.web.category.status')}}</td>
+                        <td>
+                            <div>
+                                <select class="input-table" id="status" v-model="category.status">
+                                    <option value="">{{__('general.web.select')}}</option>
+                                    <option value="active">{{__('general.web.category.active')}}</option>
+                                    <option value="inactive">{{__('general.web.category.inactive')}}</option>
+                                </select>
+                                <error :errors="__e(errors,'status')"></error>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="label-table">{{__('general.web.category.outstanding_image')}}</td>
                         <td>
                             <div>

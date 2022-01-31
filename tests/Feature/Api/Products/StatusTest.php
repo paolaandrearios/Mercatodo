@@ -12,22 +12,21 @@ class StatusTest extends TestCase
 
     protected $endPoint = '/api/products';
 
-    //TODO: enable this when I implement form request
-    /*public function test_error_not_found_when_try_to_update_unknown_products(): void
+
+    public function test_error_not_found_when_try_to_update_unknown_products(): void
     {
         $response = $this->putJson($this->endPoint . '/1/status/active');
         $response->assertStatus(422);
         $response->assertJsonFragment(['id' =>['The selected id is invalid.']]);
-    }*/
+    }
 
-    //TODO: enable this when I implement form request
-    /*public function test_error_when_try_to_update_product_with_wrong_status(): void
+    public function test_error_when_try_to_update_product_with_wrong_status(): void
     {
         $product = Product::factory(1)->create();
         $response = $this->putJson($this->endPoint . '/' . $product[0]->id . '/status/ready');
         $response->assertStatus(422);
         $response->assertJsonFragment(['status' =>['The selected status is invalid.']]);
-    }*/
+    }
 
     public function test_change_status_to_active_for_an_inactive_product(): void
     {

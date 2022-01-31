@@ -14,13 +14,12 @@ class StoreTest extends TestCase
 
     protected $endPoint = '/api/products';
 
-    //TODO: enable this when I implement form request
-    /*    public function test_validation_errors_when_try_to_create_product(): void
-        {
-            $response = $this->putJson($this->endPoint . '/1', ['name_en' => 'test']);
-            $response->assertStatus(422);
-            $response->assertJsonFragment(['id' =>['The selected id is invalid.']]);
-        }*/
+    public function test_validation_errors_when_try_to_create_product(): void
+    {
+        $response = $this->putJson($this->endPoint . '/1', ['name_en' => 'test']);
+        $response->assertStatus(422);
+        $response->assertJsonFragment(['id' =>['The selected id is invalid.']]);
+    }
 
     public function test_create_product(): void
     {

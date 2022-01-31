@@ -25,6 +25,6 @@ class AddEnumToUsers extends Migration
      */
     public function down(): void
     {
-        Schema::dropColumns('enum');
+        Schema::dropColumns('users', ['status']);
     }
 }

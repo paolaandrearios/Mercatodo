@@ -30,7 +30,7 @@
                                     <span>{{__('general.web.product.'+ product.status)}}</span>
                                 </td>
                                 <td>
-                                    <a v-on:click="" >
+                                    <a v-on:click="show(product)" >
                                         <i class="fas fa-eye"></i>
                                     </a> |
                                     <a v-on:click="edit(product)" >
@@ -52,6 +52,7 @@
         </div>
 
         <product-add :isOpenAdd="isOpenAdd" @close="close" @getAllProducts="getAllProducts"></product-add>
+        <product-show :isOpenShow="isOpenShow" :product="currentProduct" @close="close" ></product-show>
         <product-edit :isOpenEdit="isOpenEdit" :product="currentProduct" @close="close" @getAllProducts="getAllProducts"></product-edit>
 
     </div>
@@ -61,6 +62,7 @@
 import axios from 'axios';
 import ProductAdd from "./modals/ProductAdd";
 import ProductEdit from "./modals/ProductEdit";
+import ProductShow from "./modals/ProductShow";
 
 
 export default {
@@ -69,6 +71,7 @@ export default {
     components: {
         ProductAdd,
         ProductEdit,
+        ProductShow,
     },
 
     data () {
@@ -77,6 +80,7 @@ export default {
             currentProduct: {},
             isOpenAdd: false,
             isOpenEdit: false,
+            isOpenShow: false,
         }
     },
     mounted() {
@@ -95,9 +99,14 @@ export default {
             this.currentProduct = product;
             this.isOpenEdit = true;
         },
+        show: function(product) {
+            this.currentProduct = product;
+            this.isOpenShow = true;
+        },
         close: function () {
             this.isOpenAdd = false;
             this.isOpenEdit = false;
+            this.isOpenShow = false;
         },
         setActive: function(product) {
             axios.put('/evertec/mercatodo/public/api/products/'+product.id+'/status/active').then(response => {
