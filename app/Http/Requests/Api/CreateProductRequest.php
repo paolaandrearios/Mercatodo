@@ -53,9 +53,11 @@ class CreateProductRequest extends FormRequest
                 'required',
                 'regex:/^\d*(\.\d{2})?$/',
                 'max:13',
+                'gt:0',
             ],
-            'category' => [
-                'required'
+            'categoryId' => [
+                'required',
+                'exists:categories,id',
             ],
             'status' => [
                 'required',
@@ -70,6 +72,7 @@ class CreateProductRequest extends FormRequest
             'stock' => [
                 'required',
                 'integer',
+                'min:0',
             ],
         ];
     }

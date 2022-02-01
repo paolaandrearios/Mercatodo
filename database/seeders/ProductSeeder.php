@@ -7,13 +7,11 @@ use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run(): void
     {
-        Product::factory(10)->create();
+        Product::factory(10)->create()->each(function($product){
+            $product->categories()->attach(rand(1, 5));
+        });
     }
 }

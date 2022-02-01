@@ -13,11 +13,7 @@ class ProductFactory extends Factory
      */
     protected $model = Product::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
+
     public function definition(): array
     {
         return [
@@ -26,10 +22,8 @@ class ProductFactory extends Factory
             'description_en' => $this->faker->text(200),
             'name_es' => $this->faker->sentence(2),
             'description_es' => $this->faker->text(200),
-//            'image' => $this->faker->imageUrl(),
             'image' => '/storage/products/new-product.jpg',
             'price' => $this->faker->randomFloat(2,25000,100000),
-            'category' => $this->faker->numberBetween(1, 5),
             'taxes' => '19',
             'stock' => $this->faker->randomDigitNot(0),
             'slug' => $this->faker->slug(),

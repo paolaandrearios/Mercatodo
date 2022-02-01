@@ -2,7 +2,6 @@
 
 namespace App\Rules\Api\Admin;
 
-use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Contracts\Validation\Rule;
 

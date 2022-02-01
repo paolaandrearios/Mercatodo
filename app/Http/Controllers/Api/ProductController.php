@@ -15,7 +15,7 @@ class ProductController extends Controller
 
     public function index(): JsonResponse
     {
-        $products = Product::orderBy('id', 'asc')->paginate();
+        $products = Product::with('categories')->orderBy('id', 'asc')->paginate();
         return response()->json(compact('products'));
     }
 
@@ -31,6 +31,8 @@ class ProductController extends Controller
 
         $product = Product::create($data);
 
+        $product->categories()->attach($request->input('categoryId'));
+
         return response()->json([
             'product' => $product,
             'message' => __('general.api.product.create_status_success'),
@@ -38,15 +40,9 @@ class ProductController extends Controller
     }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
+    public function show(Product $product): Response
     {
-        //
+        return response()->json(compact('product'));
     }
 
 
@@ -62,8 +58,9 @@ class ProductController extends Controller
             $data['image'] = '/storage/' . $file_path;
         }
 
-
         if ($product->update($data)) {
+            $product->categories()->sync($request->input('categoryId'));
+
             return response()->json([
                 'message' => __('general.api.product.update_status_success'),
             ]);

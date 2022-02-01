@@ -45,7 +45,7 @@
                     <tr>
                         <td class="label-table">{{__('general.web.category.category')}}</td>
                         <td>
-                            {{ categories[product.category]['name_' + __locale()]}}
+                            {{ product.categories[0]['name_' + __locale()]}}
                         </td>
                     </tr>
                     <tr>
@@ -78,7 +78,7 @@ import Modal from "../../Modal";
 import axios from "axios";
 
 export default {
-    name: "CategoryShow.vue",
+    name: "ProductShow.vue",
     components: {
         Modal
     },

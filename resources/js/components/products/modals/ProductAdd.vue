@@ -62,15 +62,15 @@
                     </div>
                 </div>
                 <div class="div-form">
-                    <label for="">{{__('general.web.category.category')}}</label>
+                    <label for="category">{{__('general.web.category.category')}}</label>
                     <div class="div-input">
-                        <select  id="category" v-model="product.category">
+                        <select  id="category" v-model="categoryId">
                             <option value="">{{__('general.web.select')}}</option>
                             <option v-for="category in categories" v-bind:value="category.id">
                                 {{category['name_' + __locale()]}}
                             </option>
                         </select>
-                        <error :errors="__e(errors,'status')"></error>
+                        <error :errors="__e(errors,'categoryId')"></error>
                     </div>
                 </div>
                 <div class="div-form">
@@ -126,10 +126,10 @@ function initialState() {
             image: '',
             price: '',
             taxes: '',
-            category: '',
             status: '',
             stock: '',
         },
+        categoryId: '',
         errors: [],
         categories: [],
     }
@@ -179,7 +179,7 @@ export default {
             data.append('image', this.product.image);
             data.append('price', this.product.price);
             data.append('taxes', this.product.taxes);
-            data.append('category', this.product.category);
+            data.append('categoryId', this.categoryId);
             data.append('status', this.product.status);
             data.append('stock', this.product.stock);
 

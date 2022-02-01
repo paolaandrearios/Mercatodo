@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
@@ -23,7 +19,6 @@ class CreateProductsTable extends Migration
             $table->String('image');
             $table->double('price',15,2);
             $table->float('taxes');
-            $table->String('category');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->integer('stock');
             $table->string('slug');
@@ -31,11 +26,7 @@ class CreateProductsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('products');
