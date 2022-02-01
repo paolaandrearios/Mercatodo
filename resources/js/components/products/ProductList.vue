@@ -46,6 +46,7 @@
                             </tr>
                             </tbody>
                         </table>
+                        <pagination :pagination="pagination" @paginate="getAllProducts" :offset="4"/>
                     </div>
                 </div>
             </div>
@@ -63,6 +64,7 @@ import axios from 'axios';
 import ProductAdd from "./modals/ProductAdd";
 import ProductEdit from "./modals/ProductEdit";
 import ProductShow from "./modals/ProductShow";
+import Pagination from "../Pagination";
 
 
 export default {
@@ -72,16 +74,18 @@ export default {
         ProductAdd,
         ProductEdit,
         ProductShow,
+        Pagination,
     },
 
     data () {
         return {
             products: [],
             currentProduct: {},
-            currentCategory: {},
+            currentCategory: 0,
             isOpenAdd: false,
             isOpenEdit: false,
             isOpenShow: false,
+            pagination: {},
         }
     },
     mounted() {
@@ -89,9 +93,17 @@ export default {
     },
     methods: {
         getAllProducts:  function () {
+
+            let currentPage = this.pagination.current_page;
+            let pageNum = currentPage ? currentPage: 1;
+
             axios
-                .get('/evertec/mercatodo/public/api/products')
-                .then(response => (this.products = response.data.products.data))
+                .get(`/evertec/mercatodo/public/api/products?page=${pageNum}`)
+                .then(response => {
+                    this.products = response.data.products.data
+                    this.pagination = response.data.products
+
+                })
         },
         add: function () {
             this.isOpenAdd = true;

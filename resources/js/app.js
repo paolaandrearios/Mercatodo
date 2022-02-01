@@ -32,7 +32,6 @@ Vue.component('category-list', require('./components/categories/CategoryList.vue
 Vue.component('category-add', require('./components/categories/modals/CategoryAdd.vue').default);
 Vue.component('category-show', require('./components/categories/modals/CategoryShow.vue').default);
 Vue.component('category-edit', require('./components/categories/modals/CategoryEdit.vue').default);
-Vue.component('modal', require('./components/Modal.vue').default);
 
 //Products
 Vue.component('product-list', require('./components/products/ProductList.vue').default);
@@ -41,7 +40,9 @@ Vue.component('product-edit', require('./components/products/modals/ProductEdit.
 Vue.component('product-show', require('./components/products/modals/ProductShow.vue').default);
 
 //utils
+Vue.component('modal', require('./components/Modal.vue').default);
 Vue.component('error', require('./components/Error.vue').default);
+Vue.component('pagination', require('./components/Pagination.vue').default);
 
 
 /**
