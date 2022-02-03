@@ -64,7 +64,7 @@ import axios from 'axios';
 import ProductAdd from "./modals/ProductAdd";
 import ProductEdit from "./modals/ProductEdit";
 import ProductShow from "./modals/ProductShow";
-import Pagination from "../Pagination";
+import Pagination from "../utils/Pagination";
 
 
 export default {

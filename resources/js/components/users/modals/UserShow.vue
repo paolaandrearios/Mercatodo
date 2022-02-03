@@ -36,7 +36,7 @@
 
 <script>
 
-import Modal from "../../Modal";
+import Modal from "../../utils/Modal";
 
 export default {
     props: {

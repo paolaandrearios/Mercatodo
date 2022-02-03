@@ -48,7 +48,7 @@
 
 <script>
 import axios from 'axios';
-import Modal from "../../Modal";
+import Modal from "../../utils/Modal";
 
 export default {
 

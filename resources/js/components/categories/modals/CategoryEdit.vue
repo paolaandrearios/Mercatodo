@@ -109,13 +109,14 @@
 
 <script>
 import axios from "axios";
-import Modal from "../../Modal";
-
+import Modal from "../../utils/Modal";
+import Error from "../../utils/Modal";
 
 export default {
     name: "CategoryEdit.vue",
     components: {
-        Modal
+        Modal,
+        Error,
     },
     props: {
         isOpenEdit: Boolean,

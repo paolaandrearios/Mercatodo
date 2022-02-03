@@ -113,7 +113,8 @@
 
 <script>
 import axios from "axios";
-import Modal from "../../Modal";
+import Modal from "../../utils/Modal";
+import Error from "../../utils/Modal";
 
 function initialState() {
     return {
@@ -138,7 +139,8 @@ function initialState() {
 export default {
     name: "ProductAdd.vue",
     components: {
-        Modal
+        Modal,
+        Error,
     },
     props: {
         isOpenAdd: Boolean,

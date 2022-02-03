@@ -27,8 +27,8 @@
         window._asset = '{{ asset('') }}';
     </script>
 </head>
-<body >
-    <div id="app">
+<body>
+    <div id="app" class="overflow-hidden">
         <div>
             @if(!isset($showHeader)  || (isset($showHeader) && $showHeader))
                 @include('layouts.header')

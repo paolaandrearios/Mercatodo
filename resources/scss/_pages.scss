@@ -1,0 +1,40 @@
+.homepage {
+    @apply font-poppins bg-white container px-4 sm:p-0 mx-auto overflow-hidden;
+    &__header {
+        @apply block sm:bg-transparent sm:flex items-center sm:justify-between sm:space-x-4 md:space-x-8 lg:space-x-12 h-auto md:h-1/4 w-full;
+    }
+    &__banner {
+        @apply hidden sm:block h-24 w-auto;
+        &--content {
+            @apply absolute flex items-center w-screen h-24 left-0 bg-orangePantone;
+        }
+    }
+    &__categoryList {
+        @apply w-full my-4;
+        &--title {
+            @apply my-5 text-orangePantone font-bold;
+        }
+        &--content {
+            @apply grid grid-cols-4 px-1 gap-4 place-self-center lg:grid-cols-6;
+            button {
+                @apply  text-xs md:text-sm w-auto h-12 border-2 border-gray-400 px-1 truncate rounded-lg transform focus:outline-none focus:border-greenTem hover:scale-105 hover:border-orangePantone hover:shadow-lg transition-all duration-300;
+            }
+        }
+    }
+    &__categoryActive {
+        @apply text-gray-400 mb-4 flex items-center space-x-2;
+        i {
+            @apply text-orangePantone;
+        }
+    }
+    &__productGrid {
+        @apply grid grid-cols-2 sm:grid-cols-3 px-1 gap-4 place-self-center lg:grid-cols-5;
+        &--content {
+            @apply m-auto w-auto h-auto p-4 bg-white overflow-hidden flex flex-col rounded-xl text-left
+            transform hover:-translate-y-1 hover:scale-105 transition-all duration-300;
+        }
+    }
+}
+
+
+

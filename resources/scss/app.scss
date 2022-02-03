@@ -7,7 +7,45 @@
 @import "resources/scss/login";
 @import "resources/scss/register";
 @import "resources/scss/table";
+@import "resources/scss/pages";
 
+.logo {
+    @apply flex justify-center items-center py-8 font-extrabold text-2xl md:text-4xl;
+    img {
+        @apply p-2 w-15;
+    }
+}
+
+.search {
+    @apply bg-white flex-auto flex space-x-2 pl-2 sm:px-1 items-center border-2 border-gray-200 sm:rounded-full h-12;
+    &__input {
+        @apply flex-1 py-1 focus:outline-none;
+    }
+    i {
+        @apply text-gray-400 p-2;
+    }
+}
+
+.cartButton {
+    @apply relative hidden sm:block w-15 bg-orangePantone hover:bg-orange-600 focus:outline-none rounded-full h-12 text-white;
+    &__counter {
+        @apply absolute top-0 right-0 h-6 w-6 bg-greenTem rounded-full transform -translate-y-3/5 -translate-x-1/2 text-white font-bold flex items-center justify-center;
+    }
+    i {
+        @apply text-xl;
+    }
+}
+
+.breadcrumb {
+    @apply text-xs md:text-sm;
+    &:not(:last-child)::after {
+        content: "  >  ";
+    }
+
+    &:last-child {
+        color: green;
+    }
+}
 
 .header {
     @apply block md:flex bg-orangePantone justify-between ;
@@ -47,13 +85,13 @@
 .modal {
     @apply container mx-auto;
     &__container {
-        @apply flex justify-center;
+        @apply flex justify-center align-middle;
         &--bg {
-            @apply absolute inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50;
+            @apply fixed inset-0 flex items-center justify-center align-middle bg-gray-700 bg-opacity-50;
         }
     }
     &__content {
-        @apply text-xs md:text-sm p-2 max-w-lg max-h-5/6 overflow-y-scroll overflow-x-hidden p-6 bg-white rounded-md shadow-xl;
+        @apply text-xs md:text-sm p-2 max-w-lg max-h-5/6 overflow-x-hidden p-6 bg-white rounded-md shadow-xl;
         &--header {
             @apply flex items-center justify-between text-lg md:text-xl font-extrabold;
         }

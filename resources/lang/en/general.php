@@ -38,6 +38,8 @@ return [
         'close' => 'Close',
         'save' => 'Save',
         'select' => 'Select one option',
+        'search' => 'Search',
+        'see_more' => 'See More',
 
         'user' => [
             'user_list' => 'User List',

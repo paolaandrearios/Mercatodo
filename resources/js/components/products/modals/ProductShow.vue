@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import Modal from "../../Modal";
+import Modal from "../../utils/Modal";
 import axios from "axios";
 
 export default {

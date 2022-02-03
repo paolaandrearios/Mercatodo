@@ -36,6 +36,8 @@ return [
         'close' => 'Cerrar',
         'save' => 'Guardar',
         'select' => 'Seleccione una opción',
+        'search' => 'Buscar',
+        'see_more' => 'Ver Más',
 
         'user' => [
             'user_list' => 'Lista de Usuarios',

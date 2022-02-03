@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import Modal from "../../Modal";
+import Modal from "../../utils/Modal";
 
 export default {
     name: "CategoryShow.vue",

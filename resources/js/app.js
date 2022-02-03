@@ -32,18 +32,32 @@ Vue.component('category-list', require('./components/categories/CategoryList.vue
 Vue.component('category-add', require('./components/categories/modals/CategoryAdd.vue').default);
 Vue.component('category-show', require('./components/categories/modals/CategoryShow.vue').default);
 Vue.component('category-edit', require('./components/categories/modals/CategoryEdit.vue').default);
+Vue.component('category-list-client', require('./components/categories/CategoryListClient.vue').default);
 
 //Products
 Vue.component('product-list', require('./components/products/ProductList.vue').default);
 Vue.component('product-add', require('./components/products/modals/ProductAdd.vue').default);
 Vue.component('product-edit', require('./components/products/modals/ProductEdit.vue').default);
+
+Vue.component('product-grid', require('./components/products/ProductGrid.vue').default);
+
 Vue.component('product-show', require('./components/products/modals/ProductShow.vue').default);
 
-//utils
-Vue.component('modal', require('./components/Modal.vue').default);
-Vue.component('error', require('./components/Error.vue').default);
-Vue.component('pagination', require('./components/Pagination.vue').default);
+//Home page
+Vue.component('home-page', require('./components/pages/homePage/HomePage.vue').default);
+Vue.component('header-home-page', require('./components/pages/homePage/HeaderHomePage.vue').default);
+Vue.component('banner-home-page', require('./components/pages/homePage/BannerHomePage.vue').default);
+Vue.component('category-home-page', require('./components/pages/homePage/CategoryHomePage.vue').default);
 
+//utils
+Vue.component('modal', require('./components/utils/Modal.vue').default);
+Vue.component('error', require('./components/utils/Error.vue').default);
+Vue.component('pagination', require('./components/utils/Pagination.vue').default);
+Vue.component('pagination', require('./components/utils/Pagination.vue').default);
+Vue.component('logo', require('./components/utils/Logo.vue').default);
+Vue.component('searcher', require('./components/utils/Searcher.vue').default);
+Vue.component('cart-button', require('./components/utils/CartButton.vue').default);
+Vue.component('bread-crumb', require('./components/utils/BreadCrumb.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
