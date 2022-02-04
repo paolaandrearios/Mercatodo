@@ -1,9 +1,9 @@
 <template>
     <div class="homepage">
-        <header-home-page></header-home-page>
+        <header-home-page @searchProducts="searchProducts"></header-home-page>
         <banner-home-page></banner-home-page>
         <category-home-page></category-home-page>
-        <product-grid></product-grid>
+        <product-grid :keyword="keyword"></product-grid>
     </div>
 </template>
 
@@ -21,6 +21,17 @@ export default {
         CategoryHomePage,
         ProductGrid,
     },
+    data() {
+        return{
+            keyword: '',
+        }
+    },
+    methods: {
+        searchProducts: function (keyword) {
+            console.log('jjj'+keyword)
+            this.keyword = keyword;
+        }
+    }
 
 };
 </script>

@@ -3,7 +3,7 @@
         class="homepage__header"
     >
         <logo></logo>
-        <searcher></searcher>
+        <searcher @searchProducts="searchProducts"></searcher>
         <cart-button></cart-button>
     </nav>
 
@@ -20,7 +20,14 @@ export default {
         Logo,
         Searcher,
         CartButton,
+    },
+    emit: ['searchProducts'],
+    methods: {
+        searchProducts: function (keyword) {
+            this.$emit('searchProducts', keyword)
+        }
     }
+
 }
 </script>
 

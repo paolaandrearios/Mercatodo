@@ -8,14 +8,25 @@ use App\Http\Requests\Api\CreateProductRequest;
 use App\Http\Requests\Api\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 
 class ProductController extends Controller
 {
 
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $products = Product::with('categories')->orderBy('id', 'asc')->paginate();
+        $keyword = $request->input('keyword')??'';
+
+        if(empty($keyword)) {
+            $products = Product::with('categories')->orderBy('id', 'asc')->paginate();
+        } else {
+            $products = Product::with('categories')
+                ->where('name_es', 'like', "%$keyword%")
+                ->orWhere('name_en', 'like', "%$keyword%")
+                ->orderBy('id', 'asc')->paginate();
+        }
+
         return response()->json(compact('products'));
     }
 

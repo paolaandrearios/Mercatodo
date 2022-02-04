@@ -30,13 +30,9 @@
 <body>
 <div id="app" class="overflow-x-hidden">
     <header class="flex justify-between list-none mx-5 mt-5 text-orangePantone font-bold">
-        <div>
-            <i class="text-xl fas fa-language"></i>
-            @if (app()->getLocale() === 'en')
-                <span class="cursor-pointer"">Spanish</span>
-            @else
-                <span class="cursor-pointer">English</span>
-            @endif
+        <div class="flex">
+            <img class="w-6 h-6 mx-2" src="{{asset('images/united-states.png')}}"/>
+            <img class="w-6 h-6" src="{{asset('images/spain.png')}}"/>
         </div>
         <div class="flex justify-end">
             @guest

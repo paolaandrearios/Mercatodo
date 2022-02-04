@@ -22,6 +22,9 @@ export default {
       ProductCard,
       Pagination,
     },
+    props: {
+        keyword: String,
+    },
     data () {
         return {
             products: [],
@@ -39,11 +42,17 @@ export default {
             let pageNum = currentPage ? currentPage: 1;
 
             axios
-                .get(`/evertec/mercatodo/public/api/products?page=${pageNum}`)
+                .get(`/evertec/mercatodo/public/api/products?page=${pageNum}&keyword=${this.keyword}`)
                 .then(response => {
                     this.products = response.data.products.data;
                     this.pagination = response.data.products;
                 })
+        },
+    },
+    watch: {
+        keyword: function(newVal, oldVal) {
+            console.log(newVal)
+            this.getAllProducts();
         },
     }
 }
