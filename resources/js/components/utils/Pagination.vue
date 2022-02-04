@@ -1,10 +1,10 @@
 <template>
-    <ul class="flex list-reset border border-grey-light rounded w-auto font-sans">
+    <ul class="flex list-reset border border-grey-light rounded w-auto font-poppins">
         <li v-if="pagination.current_page > 1">
             <a class="cursor-pointer block hover:text-white hover:bg-blue text-blue border-r border-grey-light px-3 py-2"
                @click.prevent="change(pagination.current_page -1)"
             >
-                Previous
+                {{__('general.web.previous')}}
             </a>
         </li>
         <li v-for="page in pages" :key="page" >
@@ -18,7 +18,7 @@
             <a class="cursor-pointer block hover:text-white hover:bg-blue text-blue px-3 py-2"
                @click.prevent="change(pagination.current_page + 1)"
             >
-                Next
+                {{__('general.web.next')}}
             </a>
         </li>
     </ul>

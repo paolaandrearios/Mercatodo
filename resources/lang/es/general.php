@@ -38,6 +38,9 @@ return [
         'select' => 'Seleccione una opción',
         'search' => 'Buscar',
         'see_more' => 'Ver Más',
+        'follow_us' => 'Síguenos',
+        'previous' => 'Anterior',
+        'next' => 'Siguiente',
 
         'user' => [
             'user_list' => 'Lista de Usuarios',

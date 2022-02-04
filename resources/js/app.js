@@ -58,6 +58,7 @@ Vue.component('logo', require('./components/utils/Logo.vue').default);
 Vue.component('searcher', require('./components/utils/Searcher.vue').default);
 Vue.component('cart-button', require('./components/utils/CartButton.vue').default);
 Vue.component('bread-crumb', require('./components/utils/BreadCrumb.vue').default);
+Vue.component('footer-page', require('./components/utils/FooterPage.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

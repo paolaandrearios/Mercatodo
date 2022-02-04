@@ -28,8 +28,8 @@
     </script>
 </head>
 <body>
-<div id="app" class="overflow-x-hidden">
-    <header class="flex justify-between list-none mx-5 mt-5 text-orangePantone font-bold">
+<div id="app" class="overflow-x-hidden h-full">
+    <header class="flex container justify-around md:justify-between list-none mx-auto mt-2 text-orangePantone font-bold w-screen">
         <div class="flex">
             <img class="w-6 h-6 mx-2" src="{{asset('images/united-states.png')}}"/>
             <img class="w-6 h-6" src="{{asset('images/spain.png')}}"/>

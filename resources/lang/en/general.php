@@ -40,6 +40,9 @@ return [
         'select' => 'Select one option',
         'search' => 'Search',
         'see_more' => 'See More',
+        'follow_us' => 'Follow Us',
+        'previous' => 'Previous',
+        'next' => 'Next',
 
         'user' => [
             'user_list' => 'User List',

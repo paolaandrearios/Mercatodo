@@ -1,12 +1,15 @@
 .homepage {
     @apply font-poppins bg-white container px-4 sm:p-0 mx-auto overflow-hidden;
     &__header {
-        @apply block sm:bg-transparent sm:flex items-center sm:justify-between sm:space-x-4 md:space-x-8 lg:space-x-12 h-auto md:h-1/4 w-full;
+        @apply block sm:bg-transparent sm:flex items-center sm:justify-between sm:space-x-4 md:space-x-8 lg:space-x-12 h-auto md:h-1/6 w-full;
     }
     &__banner {
-        @apply hidden sm:block h-24 w-auto;
+        @apply hidden sm:block h-auto w-auto mx-auto;
         &--content {
-            @apply absolute flex items-center w-screen h-24 left-0 bg-orangePantone;
+            @apply flex items-center w-screen h-auto left-0 bg-orangePantone;
+            img {
+                @apply content-center;
+            }
         }
     }
     &__categoryList {

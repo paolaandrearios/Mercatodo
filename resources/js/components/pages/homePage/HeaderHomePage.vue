@@ -1,8 +1,6 @@
 <template>
-    <nav
-        class="homepage__header"
-    >
-        <logo></logo>
+    <nav class="homepage__header">
+        <logo class="text-2xl md:text-4xl"></logo>
         <searcher @searchProducts="searchProducts"></searcher>
         <cart-button></cart-button>
     </nav>

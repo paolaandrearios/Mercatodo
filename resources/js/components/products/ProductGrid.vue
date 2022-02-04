@@ -5,8 +5,8 @@
                 <product-card :product="product"></product-card>
             </div>
         </div>
-        <div class="flex justify-center">
-            <pagination :pagination="pagination" @paginate="getAllProducts" :offset="4"/>
+        <div class="flex justify-center w-1/2 mx-auto">
+            <pagination class="text-sm" :pagination="pagination" @paginate="getAllProducts" :offset="4"/>
         </div>
     </div>
 </template>

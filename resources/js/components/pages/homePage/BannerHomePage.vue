@@ -1,7 +1,7 @@
 <template>
     <section class="homepage__banner">
         <div class="homepage__banner--content">
-            <p>Banner</p>
+            <img :src="__asset('images/banner.jpg')"/>
         </div>
     </section>
 </template>

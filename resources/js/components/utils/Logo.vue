@@ -7,7 +7,7 @@
 
 <script>
 export default {
-    name: "Logo.vue"
+    name: "Logo.vue",
 }
 </script>
 
