@@ -15,10 +15,6 @@ class StatusUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => [
-                'required',
-                'exists:users,id',
-            ],
             'status' => [
                 'required',
                 'in:active,inactive',
@@ -28,7 +24,6 @@ class StatusUserRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        $this->merge(['id' => $this->route('user')]);
         $this->merge(['status' => $this->route('status')]);
     }
 }

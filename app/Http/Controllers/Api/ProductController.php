@@ -51,7 +51,7 @@ class ProductController extends Controller
     }
 
 
-    public function show(Product $product): Response
+    public function show(Product $product): JsonResponse
     {
         return response()->json(compact('product'));
     }

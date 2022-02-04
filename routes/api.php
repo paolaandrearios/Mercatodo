@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ProductStatusController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CategoryStatusController;
+use App\Http\Controllers\Api\UserStatusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('users', UserController::class)->only([
-    'index', 'update', 'updateStatus',
+    'index', 'update',
 ]);
-Route::put('/users/{user}/status/{status}', [UserController::class, 'updateStatus'])->name('users.status');
+Route::put('/users/{user}/status/{status}', [UserStatusController::class, 'update'])->name('users.status');
 
 
 //categories routes

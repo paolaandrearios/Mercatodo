@@ -31,9 +31,4 @@ class UpdateUserRequest extends FormRequest
             'name.required' => __( 'validation.required'),
         ];
     }
-
-    protected function prepareForValidation(): void
-    {
-        $this->merge(['id' => $this->route('user')]);
-    }
 }
