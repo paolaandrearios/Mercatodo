@@ -3,12 +3,12 @@
         <i class="fas fa-search"></i>
         <input
             type="text"
-            :placeholder="__('general.web.search')"
+            :placeholder="__('general.web.search_sentence')"
             class="search__input"
             v-model="keyword"
             @change="search()"
         />
-
+        <button class="search__button" @click="search()">{{__('general.web.search')}}</button>
     </div>
 </template>
 
@@ -17,13 +17,11 @@ import axios from "axios";
 
 export default {
     name: "Searcher.vue",
-    props: {
-
-    },
     emits: ['searchProducts'],
     data () {
         return {
             keyword: '',
+            errors: [],
         }
     },
     methods: {

@@ -25,6 +25,7 @@ return [
             'update_status_error' => 'Product could not be modified',
             'create_status_success' => 'Product has been successfully created',
             'name_product_rule_message' => 'Product name is used',
+            'characters_number_product_rule_message' => 'Enter minimum 4 characters for the search',
         ],
 
         'exceptions' => [
@@ -39,6 +40,7 @@ return [
         'save' => 'Save',
         'select' => 'Select one option',
         'search' => 'Search',
+        'search_sentence' => 'What do you want to find?',
         'see_more' => 'See More',
         'follow_us' => 'Follow Us',
         'previous' => 'Previous',

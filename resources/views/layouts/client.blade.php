@@ -34,7 +34,7 @@
             <img class="w-6 h-6 mx-2" src="{{asset('images/united-states.png')}}"/>
             <img class="w-6 h-6" src="{{asset('images/spain.png')}}"/>
         </div>
-        <div class="flex justify-end">
+        <div class="block text-center sm:flex justify-end">
             @guest
                 @if (Route::has('login'))
                     <li class="px-3">

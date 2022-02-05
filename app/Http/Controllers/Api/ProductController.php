@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CreateProductRequest;
+use App\Http\Requests\Api\SearchProductRequest;
 use App\Http\Requests\Api\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 
 class ProductController extends Controller
 {
 
-    public function index(Request $request): JsonResponse
+    public function index(SearchProductRequest $request): JsonResponse
     {
         $keyword = $request->input('keyword')??'';
 
@@ -24,6 +24,7 @@ class ProductController extends Controller
             $products = Product::with('categories')
                 ->where('name_es', 'like', "%$keyword%")
                 ->orWhere('name_en', 'like', "%$keyword%")
+                ->orWhere('price', 'like', "$keyword%")
                 ->orderBy('id', 'asc')->paginate();
         }
 

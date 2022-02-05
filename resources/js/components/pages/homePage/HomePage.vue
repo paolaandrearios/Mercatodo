@@ -28,7 +28,6 @@ export default {
     },
     methods: {
         searchProducts: function (keyword) {
-            console.log('jjj'+keyword)
             this.keyword = keyword;
         }
     }

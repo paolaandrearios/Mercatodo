@@ -21,6 +21,9 @@
     &__input {
         @apply flex-1 py-1 focus:outline-none;
     }
+    &__button {
+        @apply inline bg-orangePantone hover:bg-orange-600 sm:rounded-full w-1/6 sm:w-auto sm:h-8 h-full text-white focus:outline-none px-2 text-center truncate;
+    }
     i {
         @apply text-gray-400 p-2;
     }

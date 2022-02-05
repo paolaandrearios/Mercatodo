@@ -24,6 +24,7 @@ return [
             'update_status_error' => 'El producto no pudo ser modificado',
             'create_status_success' => 'El producto ha sido creado con éxito',
             'name_product_rule_message' => 'El nombre del producto ya existe',
+            'characters_number_product_rule_message' => 'Ingrese mínimo 4 caracteres para la búsqueda ',
         ],
 
         'exceptions' => [
@@ -37,6 +38,7 @@ return [
         'save' => 'Guardar',
         'select' => 'Seleccione una opción',
         'search' => 'Buscar',
+        'search_sentence' => '¿Qué quieres encontrar?',
         'see_more' => 'Ver Más',
         'follow_us' => 'Síguenos',
         'previous' => 'Anterior',
