@@ -14,26 +14,23 @@ class StoreTest extends TestCase
 
     protected $endPoint = '/api/products';
 
-    public function test_validation_errors_when_try_to_create_product(): void
-    {
-        $response = $this->putJson($this->endPoint . '/1', ['name_en' => 'test']);
-        $response->assertStatus(422);
-        $response->assertJsonFragment(['id' =>['The selected id is invalid.']]);
-    }
 
     public function test_create_product(): void
     {
-        $category = Category::factory(1)->create(['status' => 'active']);
+        $category = Category::factory(1)->create(['status' => 'active'])->first();
         $data =  [
             'sku' => '123456',
-            'name' => 'Test product',
-            'description' => 'description',
+            'name_es' => 'Producto Prueba',
+            'name_en' => 'Test product',
+            'description_en' => 'This is a short description, This is a short description, This is a short description, This is a short description',
+            'description_es' => 'Esta es una corta descripcion, Esta es una corta descripcion,Esta es una corta descripcion, Esta es una corta descripcion',
             'image'  => new UploadedFile(resource_path('test-files/nueva-categoria.jpg'), 'nueva-categoria.jpg', null, null, true),
             'price' => '500000',
-            'category' => [$category->id],
+            'categoryId' => [$category->id],
             'taxes' => '19',
             'stock' => 10,
             'slug' => '/slug',
+            'status' => 'active',
         ];
 
         $response = $this->postJson($this->endPoint, $data);
@@ -41,6 +38,7 @@ class StoreTest extends TestCase
         $response->assertJsonFragment(['message' => __('general.api.product.create_status_success')]);
 
         $productCreated = Product::query()->where('id', $response->json()['product']['id'])->first();
-        $this->assertEquals('Test product', $productCreated->name);
+        $this->assertEquals('Producto Prueba', $productCreated->name_es);
+        $this->assertEquals('Test product', $productCreated->name_en);
     }
 }

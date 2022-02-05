@@ -29,18 +29,19 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    /**
-     * Register the exception handling callbacks for the application.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         $this->reportable(function (Throwable $e) {
             //
         });
     }
 
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param Throwable $t
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
+     * @throws Throwable
+     */
     public function render($request, Throwable $t)
     {
         if($t instanceof ModelNotFoundException)

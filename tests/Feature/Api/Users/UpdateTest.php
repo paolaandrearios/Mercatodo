@@ -15,19 +15,19 @@ class UpdateTest extends TestCase
     public function test_error_not_found_when_try_to_update_unknown_user(): void
     {
         $response = $this->putJson($this->endPoint . '/1', ['name' => 'test']);
-        $response->assertStatus(422);
-        $response->assertJsonFragment(['id' =>['The selected id is invalid.']]);
+        $response->assertStatus(404);
+        $response->assertJsonFragment(['message' => __('general.api.exceptions.model_not_found')]);
     }
 
     public function test_update_existent_user(): void
     {
-        $user = User::factory(1)->create(['name' => 'Josh']);
+        $user = User::factory(1)->create(['name' => 'Josh'])->first();
 
-        $response = $this->putJson($this->endPoint . '/' . $user[0]->id, ['name' => 'David']);
+        $response = $this->putJson($this->endPoint . '/' . $user->id, ['name' => 'David']);
         $response->assertOk();
         $response->assertJsonFragment(['message' => __('general.api.user.update_status_success')]);
 
-        $userUpdated = User::query()->where('id', $user[0]->id)->first();
+        $userUpdated = User::query()->where('id', $user->id)->first();
         $this->assertEquals('David', $userUpdated->name);
     }
 }
