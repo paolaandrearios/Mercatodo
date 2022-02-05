@@ -43,5 +43,12 @@ module.exports = {
         __isEmpty: function __isEmpty(obj) {
             return obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype;
         },
+
+        __currencyFormat: function __currencyFormat(num) {
+            const format = { style: 'currency', currency: 'COP' };
+            const numberFormat = new Intl.NumberFormat('es-CO', format);
+            return numberFormat.format(num);
+        },
+
     },
 }

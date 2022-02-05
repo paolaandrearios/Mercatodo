@@ -10,7 +10,7 @@
         <div class="text-xs md:text-sm font-semibold mt-4">{{product['name_' + __locale()]}}</div>
         <div class="text-xs md:text-sm text-gray-400">
             <span class="line-through mr-2"></span>
-            <span class="text-black">{{ product.price }}</span>
+            <span class="text-black">{{__currencyFormat(product.price)}}</span>
         </div>
         <div class="flex justify-center">
             <button

@@ -24,7 +24,7 @@
                             <tr v-for="product in products">
                                 <td>{{product.id}}</td>
                                 <td>{{product['name_' + __locale()]}}</td>
-                                <td>{{product.price}}</td>
+                                <td>{{__currencyFormat(product.price)}}</td>
                                 <td>{{product.stock}}</td>
                                 <td>
                                     <span>{{__('general.web.product.'+ product.status)}}</span>
