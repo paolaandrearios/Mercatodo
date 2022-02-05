@@ -114,7 +114,7 @@
 <script>
 import axios from "axios";
 import Modal from "../../utils/Modal";
-import Error from "../../utils/Modal";
+import Error from "../../utils/Error";
 
 function initialState() {
     return {
