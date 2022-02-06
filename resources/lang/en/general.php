@@ -102,6 +102,7 @@ return [
             'active' => 'Active',
             'inactive' => 'Inactive',
             'add' => 'Add',
+            'not_found' => 'Sorry, Product Not Found',
         ]
     ],
 

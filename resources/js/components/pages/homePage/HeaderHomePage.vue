@@ -1,10 +1,12 @@
 <template>
-    <nav class="homepage__header">
-        <logo class="text-2xl md:text-4xl"></logo>
-        <searcher @searchProducts="searchProducts"></searcher>
-        <cart-button></cart-button>
-    </nav>
-
+    <div>
+        <nav class="homepage__header">
+            <logo class="text-2xl md:text-4xl"></logo>
+            <searcher @searchProducts="searchProducts" :errors="errors"></searcher>
+            <cart-button></cart-button>
+        </nav>
+        <error class="text-xs text-center text-orangePantone font-bold mb-5" :errors="__e(errors, 'keyword')"></error>
+    </div>
 </template>
 
 <script>
@@ -19,16 +21,15 @@ export default {
         Searcher,
         CartButton,
     },
-    emit: ['searchProducts'],
+    props: {
+      errors: Array,
+    },
+    emit: ['searchProducts', 'getErrors'],
     methods: {
         searchProducts: function (keyword) {
             this.$emit('searchProducts', keyword)
-        }
+        },
     }
 
 }
 </script>
-
-<style scoped>
-
-</style>

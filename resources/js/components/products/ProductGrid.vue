@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div v-show="isProductNotFound" class="text-3xl text-dimGray text-center font-bold m-10">{{__('general.web.product.not_found')}}</div>
         <div class="homepage__productGrid">
             <div v-for="product in products" class="homepage__productGrid--content">
                 <product-card :product="product"></product-card>
@@ -30,11 +31,14 @@ export default {
             products: [],
             currentProduct: {},
             pagination: {},
+            isProductNotFound: false,
         }
     },
     mounted() {
         this.getAllProducts()
     },
+    emit: ['getErrors'],
+
     methods: {
         getAllProducts:  function () {
 
@@ -46,12 +50,18 @@ export default {
                 .then(response => {
                     this.products = response.data.products.data;
                     this.pagination = response.data.products;
-                })
+                    if(this.products.length === 0){
+                        this.isProductNotFound = true;
+                    } else {
+                        this.isProductNotFound = false;
+                    }
+                }).catch(error => {
+                this.$emit('getErrors', error.response.data.errors);
+            })
         },
     },
     watch: {
         keyword: function(newVal, oldVal) {
-            console.log(newVal)
             this.getAllProducts();
         },
     }

@@ -13,22 +13,25 @@
 </template>
 
 <script>
-import axios from "axios";
+
+import Error from "./Error";
 
 export default {
     name: "Searcher.vue",
+    components: {
+        Error,
+    },
     emits: ['searchProducts'],
     data () {
         return {
             keyword: '',
-            errors: [],
         }
     },
     methods: {
         search:  function () {
-            this.$emit('searchProducts', this.keyword)
+           this.$emit('searchProducts', this.keyword)
         },
-    }
+    },
 }
 </script>
 

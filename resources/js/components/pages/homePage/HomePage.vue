@@ -1,9 +1,9 @@
 <template>
     <div class="homepage">
-        <header-home-page @searchProducts="searchProducts"></header-home-page>
+        <header-home-page @searchProducts="searchProducts" :errors="errors"></header-home-page>
         <banner-home-page></banner-home-page>
         <category-home-page></category-home-page>
-        <product-grid :keyword="keyword"></product-grid>
+        <product-grid :keyword="keyword" @getErrors="getErrors"></product-grid>
     </div>
 </template>
 
@@ -24,19 +24,18 @@ export default {
     data() {
         return{
             keyword: '',
+            errors: [],
         }
     },
+    emit: ['searchProducts', 'getErrors'],
     methods: {
         searchProducts: function (keyword) {
             this.keyword = keyword;
+        },
+        getErrors: function (errors) {
+            this.errors = errors;
         }
     }
 
 };
 </script>
-
-<style lang="scss">
-html {
-    font-family: "Source Sans Pro", sans-serif !important;
-}
-</style>
