@@ -22,7 +22,7 @@
                 <div class="form-file">
                     <label for="outstanding_image">{{__('general.web.category.outstanding_image')}}</label>
                     <div class="div-input">
-                        <input type="file" id="outstanding_image" v-on:change="onChange">
+                        <input type="file" id="outstanding_image" ref="fileupload" v-on:change="onChange">
                         <error :errors="__e(errors,'outstanding_image')"></error>
                     </div>
                 </div>
@@ -154,6 +154,7 @@ export default {
 
         reset: function (){
             Object.assign(this.$data, initialState());
+            this.$refs.fileupload.value=null;
         }
 
     },

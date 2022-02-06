@@ -79,7 +79,7 @@
                         <td class="label-table">{{__('general.web.category.outstanding_image')}}</td>
                         <td>
                             <div>
-                                <img class="w-2/4 mb-2" v-bind:src="__asset(category.outstanding_image)"/>
+                                <img class="w-2/4 mb-2"  v-bind:src="__asset(category.outstanding_image)"/>
                                 <button>
                                     <input class="overflow-x-scroll" type="file" id="outstanding_image" v-on:change="onChange">
                                 </button>

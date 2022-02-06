@@ -32,7 +32,13 @@ module.exports = {
             return window._locale
         },
         __asset: function __asset(resource) {
-            return window._asset + resource
+            if(typeof resource === 'string'){
+                return window._asset + resource
+            }
+            if(typeof resource === 'object'){
+                return URL.createObjectURL(resource)
+            }
+            return '';
         },
         __e: function __e(object, key) {
             if(!object){

@@ -87,7 +87,7 @@
                 <div class="form-file">
                     <label for="image">{{__('general.web.product.image')}}</label>
                     <div class="div-input">
-                        <input type="file" id="image" v-on:change="onChange">
+                        <input type="file" id="image" ref="fileupload" v-on:change="onChange">
                         <error :errors="__e(errors,'image')"></error>
                     </div>
                 </div>
@@ -205,6 +205,7 @@ export default {
         },
         reset: function (){
             Object.assign(this.$data, initialState());
+            this.$refs.fileupload.value=null;
         }
     },
 }
