@@ -239,7 +239,7 @@ export default {
                 data.append('image', this.product.image);
             }
 
-            axios.post('/evertec/mercatodo/public/api/products/' + this.product.id,
+            axios.post('/evertec/mercatodo/public/api/admin/products/' + this.product.id,
                 data,
                 config
             ).then(response => {

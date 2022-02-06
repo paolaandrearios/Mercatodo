@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api\Products;
+namespace Tests\Feature\Api\Admin\Products;
 
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -10,7 +10,7 @@ class StatusTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $endPoint = '/api/products';
+    protected $endPoint = '/api/admin/products';
 
 
     public function test_error_not_found_when_try_to_update_unknown_products(): void

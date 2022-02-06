@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api\Products;
+namespace Tests\Feature\Api\Admin\Products;
 
 use App\Models\Category;
 use App\Models\Product;
@@ -12,7 +12,7 @@ class StoreTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $endPoint = '/api/products';
+    protected $endPoint = '/api/admin/products';
 
 
     public function test_create_product(): void

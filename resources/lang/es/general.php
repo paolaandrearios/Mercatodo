@@ -100,6 +100,8 @@ return [
             'active' => 'Activo',
             'inactive' => 'Inactivo',
             'add' => 'Agregar',
+            'products_found' => 'Productos Encontrados',
+            'product_found' => 'Producto Encontrado',
             'not_found' => 'Lo Sentimos, Producto No Encontrado',
         ]
     ],

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api\Products;
+namespace Tests\Feature\Api\Admin\Products;
 
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -10,7 +10,7 @@ class IndexTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $endPoint = '/api/admin/products';
+    protected $endPoint = '/api/products';
 
     public function test_service_available(): void
     {

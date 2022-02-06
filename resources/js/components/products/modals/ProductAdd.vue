@@ -186,7 +186,7 @@ export default {
             data.append('stock', this.product.stock);
 
 
-            axios.post('/evertec/mercatodo/public/api/products',
+            axios.post('/evertec/mercatodo/public/api/admin/products',
                 data,
                 config
             ).then(response => {

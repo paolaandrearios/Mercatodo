@@ -102,6 +102,8 @@ return [
             'active' => 'Active',
             'inactive' => 'Inactive',
             'add' => 'Add',
+            'products_found' => 'Products Found',
+            'product_found' => 'Product Found',
             'not_found' => 'Sorry, Product Not Found',
         ]
     ],

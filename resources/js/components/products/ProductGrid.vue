@@ -1,6 +1,10 @@
 <template>
     <div>
         <div v-show="isProductNotFound" class="text-3xl text-dimGray text-center font-bold m-10">{{__('general.web.product.not_found')}}</div>
+        <div v-if="keyword">
+            <p v-if="this.products.length == 1" class="text-xs text-dimGray ml-5">{{this.products.length}} {{__('general.web.product.product_found')}}</p>
+            <p v-if="this.products.length > 1" class="text-xs text-dimGray ml-5">{{this.products.length}} {{__('general.web.product.products_found')}}</p>
+        </div>
         <div class="homepage__productGrid">
             <div v-for="product in products" class="homepage__productGrid--content">
                 <product-card :product="product"></product-card>

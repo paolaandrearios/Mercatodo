@@ -31,8 +31,8 @@
 <div id="app" class="overflow-x-hidden h-full">
     <header class="flex container justify-around md:justify-between list-none mx-auto mt-2 text-orangePantone font-bold w-screen">
         <div class="flex">
-            <img class="w-6 h-6 mx-2" src="{{asset('images/united-states.png')}}"/>
-            <img class="w-6 h-6" src="{{asset('images/spain.png')}}"/>
+            <img class="cursor-pointer w-6 h-6 mx-2 transform hover:translate-y-1 hover:scale-105 transition-all duration-300" src="{{asset('images/united-states.png')}}"/>
+            <img class="cursor-pointer w-6 h-6 transform hover:translate-y-1 hover:scale-105 transition-all duration-300" src="{{asset('images/spain.png')}}"/>
         </div>
         <div class="block text-center sm:flex justify-end">
             @guest

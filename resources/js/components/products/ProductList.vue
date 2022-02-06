@@ -98,7 +98,7 @@ export default {
             let pageNum = currentPage ? currentPage: 1;
 
             axios
-                .get(`/evertec/mercatodo/public/api/products?page=${pageNum}`)
+                .get(`/evertec/mercatodo/public/api/admin/products?page=${pageNum}`)
                 .then(response => {
                     this.products = response.data.products.data
                     this.pagination = response.data.products
@@ -123,13 +123,13 @@ export default {
             this.isOpenShow = false;
         },
         setActive: function(product) {
-            axios.put('/evertec/mercatodo/public/api/products/'+product.id+'/status/active').then(response => {
+            axios.put('/evertec/mercatodo/public/api/admin/products/'+product.id+'/status/active').then(response => {
                 this.getAllProducts()
                 alert(response.data.message)
             })
         },
         setInactive: function(product) {
-            axios.put('/evertec/mercatodo/public/api/products/'+product.id+'/status/inactive').then(response => {
+            axios.put('/evertec/mercatodo/public/api/admin/products/'+product.id+'/status/inactive').then(response => {
                 this.getAllProducts()
                 alert(response.data.message)
             })

@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\ProductStatusController;
 use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\ProductStatusController;
+use App\Http\Controllers\Api\Admin\ProductController as ProductAdminController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CategoryStatusController;
@@ -38,7 +39,17 @@ Route::resource('categories', CategoryController::class)->only([
 
 
 //Product routes
-Route::put('/products/{product}/status/{status}', [ProductStatusController::class, 'update'])->name('product.status');
+
+Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
+
+    Route::put('/products/{product}/status/{status}', [ProductStatusController::class, 'update'])->name('product.status');
+
+    Route::resource('products', ProductAdminController::class)->only([
+        'store', 'show', 'index', 'update',
+    ]);
+});
+
+//client
 Route::resource('products', ProductController::class)->only([
-    'store', 'show', 'index', 'update',
+    'show', 'index',
 ]);
