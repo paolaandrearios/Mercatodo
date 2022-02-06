@@ -252,7 +252,7 @@ export default {
         },
         getAllCategories:  function () {
             axios
-                .get('/evertec/mercatodo/public/api/categories')
+                .get('/evertec/mercatodo/public/api/admin/categories')
                 .then(response => (this.categories = response.data.categories.data))
         },
     },

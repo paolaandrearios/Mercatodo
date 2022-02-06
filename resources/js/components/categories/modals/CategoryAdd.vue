@@ -139,7 +139,7 @@ export default {
             data.append('icon', this.category.icon);
 
 
-            axios.post('/evertec/mercatodo/public/api/categories',
+            axios.post('/evertec/mercatodo/public/api/admin/categories',
                 data,
                 config
             ).then(response => {

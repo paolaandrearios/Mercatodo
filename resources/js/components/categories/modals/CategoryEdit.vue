@@ -162,7 +162,7 @@ export default {
                 data.append('outstanding_image', this.category.outstanding_image);
             }
 
-            axios.post('/evertec/mercatodo/public/api/categories/' + this.category.id,
+            axios.post('/evertec/mercatodo/public/api/admin/categories/' + this.category.id,
                 data,
                 config
             ).then(response => {

@@ -5,7 +5,8 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\Admin\ProductController as ProductAdminController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\Api\CategoryStatusController;
+use App\Http\Controllers\Api\Admin\CategoryController as CategoryAdminController;
+use App\Http\Controllers\Api\Admin\CategoryStatusController;
 use App\Http\Controllers\Api\UserStatusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,11 @@ Route::resource('categories', CategoryController::class)->only([
 
 Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
 
+    Route::put('/categories/{category}/status/{status}', [CategoryStatusController::class, 'update'])->name('categories.status');
+    Route::resource('categories', CategoryAdminController::class)->only([
+        'store', 'show', 'index', 'update',
+    ]);
+
     Route::put('/products/{product}/status/{status}', [ProductStatusController::class, 'update'])->name('product.status');
 
     Route::resource('products', ProductAdminController::class)->only([
@@ -51,5 +57,9 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
 
 //client
 Route::resource('products', ProductController::class)->only([
+    'show', 'index',
+]);
+
+Route::resource('categories', CategoryController::class)->only([
     'show', 'index',
 ]);

@@ -88,7 +88,7 @@ export default {
     methods: {
         getAllCategories:  function () {
             axios
-                .get('/evertec/mercatodo/public/api/categories')
+                .get('/evertec/mercatodo/public/api/admin/categories')
                 .then(response => (this.categories = response.data.categories.data))
         },
         add: function () {
@@ -108,13 +108,13 @@ export default {
             this.isOpenEdit = false;
         },
         setActive: function(category) {
-            axios.put('/evertec/mercatodo/public/api/categories/'+category.id+'/status/active').then(response => {
+            axios.put('/evertec/mercatodo/public/api/admin/categories/'+category.id+'/status/active').then(response => {
                 this.getAllCategories()
                 alert(response.data.message)
             })
         },
         setInactive: function(category) {
-            axios.put('/evertec/mercatodo/public/api/categories/'+category.id+'/status/inactive').then(response => {
+            axios.put('/evertec/mercatodo/public/api/admin/categories/'+category.id+'/status/inactive').then(response => {
                 this.getAllCategories()
                 alert(response.data.message)
             })

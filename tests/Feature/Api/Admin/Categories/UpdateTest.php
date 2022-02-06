@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api\Categories;
+namespace Tests\Feature\Api\Admin\Categories;
 
 use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -11,7 +11,7 @@ class UpdateTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $endPoint = '/api/categories';
+    protected $endPoint = '/api/admin/categories';
 
 
     public function test_error_not_found_when_try_to_update_unknown_category(): void
