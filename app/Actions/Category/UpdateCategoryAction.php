@@ -8,6 +8,7 @@ use App\Helpers\Helper;
 use App\Models\Category;
 use App\Repositories\ImageRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class UpdateCategoryAction
 {
@@ -36,6 +37,9 @@ class UpdateCategoryAction
             $filePath = $this->imageRepository->upload('categories', $request->outstanding_image);
             $category['outstanding_image'] = config('general.custom_image_path') . $filePath;
         }
+
+        Cache::forget('categories');
+        Cache::forget('categories_status');
 
         return $category->save();
     }

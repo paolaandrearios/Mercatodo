@@ -8,6 +8,7 @@ use App\Helpers\Helper;
 use App\Models\Category;
 use App\Repositories\ImageRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class StoreCategoryAction
 {
@@ -34,6 +35,9 @@ class StoreCategoryAction
         $category->outstanding_image = config('general.custom_image_path') . $filePath;
 
         $category->save();
+
+        Cache::forget('categories');
+        Cache::forget('categories_status');
 
         return $category;
     }
