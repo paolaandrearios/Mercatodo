@@ -47,6 +47,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="flex justify-center w-1/2 mx-auto my-3">
+                        <pagination :pagination="pagination" @paginate="getAllCategories" :offset="4"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,6 +66,7 @@ import axios from 'axios';
 import CategoryAdd from "./modals/CategoryAdd";
 import CategoryShow from "./modals/CategoryShow";
 import CategoryEdit from "./modals/CategoryEdit";
+import Pagination from "../utils/Pagination";
 
 export default {
 
@@ -71,6 +75,7 @@ export default {
         CategoryAdd,
         CategoryShow,
         CategoryEdit,
+        Pagination,
     },
 
     data () {
@@ -80,6 +85,7 @@ export default {
             isOpenAdd: false,
             isOpenShow: false,
             isOpenEdit: false,
+            pagination: {},
         }
     },
     mounted() {
@@ -87,9 +93,16 @@ export default {
     },
     methods: {
         getAllCategories:  function () {
+
+            let currentPage = this.pagination.current_page;
+            let pageNum = currentPage ? currentPage: 1;
+
             axios
-                .get('/evertec/mercatodo/public/api/admin/categories')
-                .then(response => (this.categories = response.data.categories.data))
+                .get(`/evertec/mercatodo/public/api/admin/categories?page=${pageNum}`)
+                .then(response => {(
+                    this.categories = response.data.categories.data)
+                    this.pagination = response.data.categories
+                })
         },
         add: function () {
             this.isOpenAdd = true

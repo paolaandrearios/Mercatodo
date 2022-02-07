@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function index(SearchProductRequest $request): JsonResponse
     {
 
-        $products = $this->productRepository->get($request->input('keyword')??'', 'active');
+        $products = $this->productRepository->get($request->input('keyword')??'', 'active', 'active');
 
         return response()->json(compact('products'));
     }

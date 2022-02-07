@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
-use App\Helpers\Helper;
+use App\Actions\Product\StoreProductAction;
+use App\Actions\Product\UpdateProductAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CreateProductRequest;
 use App\Http\Requests\Api\SearchProductRequest;
@@ -29,22 +30,10 @@ class ProductController extends Controller
         return response()->json(compact('products'));
     }
 
-    public function store(CreateProductRequest $request): JsonResponse
+    public function store(CreateProductRequest $request, StoreProductAction $storeProductAction): JsonResponse
     {
-        $data = $request->all();
-        $data['slug'] =  Helper::generateSlug($data['name_en']);
-
-        $file_name = time().'_'.$request->image->getClientOriginalName();
-        $file_path = $request->file('image')->storeAs('products', $file_name, 'public');
-
-        $data['image'] = '/storage/' . $file_path;
-
-        $product = Product::create($data);
-
-        $product->categories()->attach($request->input('categoryId'));
-
         return response()->json([
-            'product' => $product,
+            'product' => $storeProductAction->execute($request),
             'message' => __('general.api.product.create_status_success'),
         ]);
     }
@@ -56,19 +45,9 @@ class ProductController extends Controller
     }
 
 
-    public function update(UpdateProductRequest $request, Product $product): JsonResponse
+    public function update(UpdateProductRequest $request, Product $product, UpdateProductAction $updateProductAction): JsonResponse
     {
-        $data = $request->all();
-        $data['slug'] =  Helper::generateSlug($data['name_en']);
-
-        if ($request->image) {
-            $file_name = time().'_'.$request->image->getClientOriginalName();
-            $file_path = $request->file('image')->storeAs('products', $file_name, 'public');
-
-            $data['image'] = '/storage/' . $file_path;
-        }
-
-        if ($product->update($data)) {
+        if ($updateProductAction->execute($product, $request)) {
             $product->categories()->sync($request->input('categoryId'));
 
             return response()->json([

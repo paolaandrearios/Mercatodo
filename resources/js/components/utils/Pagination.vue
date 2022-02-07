@@ -1,21 +1,21 @@
 <template>
-    <ul class="flex list-reset border border-grey-light rounded w-auto font-poppins">
+    <ul class="flex list-reset border border-grey-light rounded w-auto font-poppins font-bold">
         <li v-if="pagination.current_page > 1">
-            <a class="cursor-pointer block hover:text-white hover:bg-blue text-blue border-r border-grey-light px-3 py-2"
+            <a class="cursor-pointer block hover:text-white hover:bg-orangePantone text-orangePantone border-r border-grey-light px-3 py-2"
                @click.prevent="change(pagination.current_page -1)"
             >
                 {{__('general.web.previous')}}
             </a>
         </li>
         <li v-for="page in pages" :key="page" >
-            <a :class="[page == pagination.current_page ? 'text-dimGray bg-blue border-r border-blue':'hover:text-dimGray hover:bg-blue text-blue border-r border-grey-light', 'block px-3 py-2']"
+            <a :class="[page == pagination.current_page ? 'text-white bg-orangePantone border-r border-orangePantone':'hover:text-white hover:bg-orangePantone text-orangePantone border-r border-grey-light', 'block px-3 py-2']"
                @click.stop="change(page)"
             >
                 {{ page }}
             </a>
         </li>
         <li v-if="pagination.current_page < pagination.last_page">
-            <a class="cursor-pointer block hover:text-white hover:bg-blue text-blue px-3 py-2"
+            <a class="cursor-pointer block hover:text-white hover:bg-orangePantone text-orangePantone px-3 py-2"
                @click.prevent="change(pagination.current_page + 1)"
             >
                 {{__('general.web.next')}}

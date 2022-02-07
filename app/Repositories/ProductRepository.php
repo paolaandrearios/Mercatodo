@@ -9,7 +9,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ProductRepository
 {
-    public function get(string $keyword = null, string $status = null): LengthAwarePaginator
+    public function get(string $keyword = null, string $status = null, $statusCategory = null): LengthAwarePaginator
     {
         $products = Product::with('categories');
 
@@ -20,10 +20,16 @@ class ProductRepository
                 ->orWhere('price', 'like', "$keyword%");
         }
 
-        if(!is_null($status)){
+        if(!is_null($status)) {
             $products = $products->where('status', $status);
         }
 
-        return $products->orderBy('id', 'asc')->paginate();
+        if(!is_null($statusCategory)){
+            $products = $products->whereRelation('categories', function ($query) use ($statusCategory) {
+                $query->from('categories')->where('status', 'Like',  $statusCategory);
+            });
+        }
+
+        return $products->orderBy('id', 'asc')->paginate(20);
     }
 }

@@ -46,6 +46,8 @@
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="flex justify-center w-1/2 mx-auto my-3">
                         <pagination :pagination="pagination" @paginate="getAllProducts" :offset="4"/>
                     </div>
                 </div>
