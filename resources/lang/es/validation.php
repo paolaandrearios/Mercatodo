@@ -159,6 +159,22 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'nombre',
+        'name_es' => 'nombre en español',
+        'name_en' => 'nombre en ingles',
+        'outstanding_image' => 'imagen destacada',
+        'type' => 'tipo',
+        'image' => 'imagen',
+        'status' => 'estado',
+        'icon' => 'icono',
+        'description_es' => 'descripción en español',
+        'description_en' => 'descripción en ingles',
+        'price' => 'precio',
+        'stock' => 'inventario',
+        'taxes' => 'impuestos',
+        'categoryId' => 'categoría',
+        'keyword' => 'búsqueda',
+    ],
 
 ];

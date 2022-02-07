@@ -30,6 +30,6 @@ class ProductRepository
             });
         }
 
-        return $products->orderBy('id', 'asc')->paginate(20);
+        return $products->orderBy('id', 'asc')->paginate(config('general.custom_records_per_page'));
     }
 }

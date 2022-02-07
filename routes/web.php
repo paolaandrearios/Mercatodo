@@ -41,3 +41,12 @@ Route::group(['as'=>'client.'], function () {
 });
 
 
+Route::get('/locale/{locale?}', function ($locale = null) {
+    if (isset($locale) && in_array($locale, config('app.available_locales'))) {
+        app()->setLocale($locale);
+        \Illuminate\Support\Facades\Session::put('locale', $locale);
+    }
+
+    return redirect()->back();
+})->name('locale');
+

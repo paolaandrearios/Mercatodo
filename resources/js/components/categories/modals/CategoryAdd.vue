@@ -8,28 +8,28 @@
                 <div class="div-form">
                     <label for="name_es">{{__('general.web.category.name_es')}}</label>
                     <div class="div-input">
-                        <input type="text" id="name_es" v-model="category.name_es">
+                        <input name="name_es" type="text" id="name_es" v-model="category.name_es">
                         <error :errors="__e(errors,'name_es')"></error>
                     </div>
                 </div>
                 <div class="div-form">
                     <label for="name_en">{{__('general.web.category.name_en')}}</label>
                     <div class="div-input">
-                        <input type="text" id="name_en" v-model="category.name_en">
+                        <input name="name_en" type="text" id="name_en" v-model="category.name_en">
                         <error :errors="__e(errors,'name_en')"></error>
                     </div>
                 </div>
                 <div class="form-file">
                     <label for="outstanding_image">{{__('general.web.category.outstanding_image')}}</label>
                     <div class="div-input">
-                        <input type="file" id="outstanding_image" ref="fileupload" v-on:change="onChange">
+                        <input name="outstanding_image" type="file" id="outstanding_image" ref="fileupload" v-on:change="onChange">
                         <error :errors="__e(errors,'outstanding_image')"></error>
                     </div>
                 </div>
                 <div class="div-form">
                     <label for="type">{{__('general.web.category.type')}}</label>
                     <div class="div-input">
-                        <select  id="type" v-model="category.type">
+                        <select name="type" id="type" v-model="category.type">
                             <option value="">{{__('general.web.select')}}</option>
                             <option value="category">{{__('general.web.category.category')}}</option>
                             <option value="subcategory">{{__('general.web.category.subcategory')}}</option>
@@ -40,7 +40,7 @@
                 <div class="div-form">
                     <label for="status">{{__('general.web.category.status')}}</label>
                     <div class="div-input">
-                        <select  id="status" v-model="category.status">
+                        <select name="status" id="status" v-model="category.status">
                             <option value="">{{__('general.web.select')}}</option>
                             <option value="active">{{__('general.web.category.active')}}</option>
                             <option value="inactive">{{__('general.web.category.inactive')}}</option>
@@ -51,7 +51,7 @@
                 <div class="div-form">
                     <label for="icon">{{__('general.web.category.icon')}}</label>
                     <div class="div-input">
-                        <input type="text" id="icon" v-model="category.icon">
+                        <input name="icon" type="text" id="icon" v-model="category.icon">
                         <error :errors="__e(errors,'icon')"></error>
                     </div>
                 </div>

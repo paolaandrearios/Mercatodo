@@ -29,6 +29,14 @@
 </head>
 <body>
     <div id="app" class="overflow-hidden">
+        <div class="flex bg-orangePantone p-3">
+            <a href="{{ route('locale', 'en') }}">
+                <img class="cursor-pointer w-6 h-6 mx-2 transform hover:translate-y-1 hover:scale-105 transition-all duration-300" src="{{asset('images/united-states.png')}}"/>
+            </a>
+            <a href="{{ route('locale', 'es') }}">
+                <img class="cursor-pointer w-6 h-6 transform hover:translate-y-1 hover:scale-105 transition-all duration-300" src="{{asset('images/spain.png')}}"/>
+            </a>
+        </div>
         <div>
             @if(!isset($showHeader)  || (isset($showHeader) && $showHeader))
                 @include('layouts.header')

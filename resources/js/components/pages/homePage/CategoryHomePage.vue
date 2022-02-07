@@ -23,9 +23,9 @@ export default {
     },
     data() {
         return {
-            categoryActive:'Moda',
+            categoryActive:'Tecnología',
         };
-    }
+    },
 }
 </script>
 

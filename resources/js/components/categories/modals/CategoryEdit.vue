@@ -15,6 +15,7 @@
                         <td>
                             <div>
                                 <input
+                                    name="name_es"
                                     type="text"
                                     v-model="category.name_es"
                                     class="input-table"
@@ -28,6 +29,7 @@
                         <td>
                             <div>
                                 <input
+                                    name="name_en"
                                     type="text"
                                     v-model="category.name_en"
                                     class="input-table"
@@ -40,7 +42,7 @@
                         <td class="label-table">{{__('general.web.category.type')}}</td>
                         <td>
                             <div>
-                                <select class="input-table" id="type" v-model="category.type">
+                                <select name="type" class="input-table" id="type" v-model="category.type">
                                     <option value="">{{__('general.web.select')}}</option>
                                     <option value="category">{{__('general.web.category.category')}}</option>
                                     <option value="subcategory">{{__('general.web.category.subcategory')}}</option>
@@ -54,6 +56,7 @@
                         <td>
                             <div>
                                 <input
+                                    name="icon"
                                     type="text"
                                     v-model="category.icon"
                                     class="input-table"
@@ -66,7 +69,7 @@
                         <td class="label-table">{{__('general.web.category.status')}}</td>
                         <td>
                             <div>
-                                <select class="input-table" id="status" v-model="category.status">
+                                <select name="status" class="input-table" id="status" v-model="category.status">
                                     <option value="">{{__('general.web.select')}}</option>
                                     <option value="active">{{__('general.web.category.active')}}</option>
                                     <option value="inactive">{{__('general.web.category.inactive')}}</option>
@@ -81,7 +84,7 @@
                             <div>
                                 <img class="w-2/4 mb-2"  v-bind:src="__asset(category.outstanding_image)"/>
                                 <button>
-                                    <input class="overflow-x-scroll" type="file" id="outstanding_image" v-on:change="onChange">
+                                    <input name="outstanding_image" class="overflow-x-scroll" type="file" id="outstanding_image" v-on:change="onChange">
                                 </button>
                             </div>
                             <error :errors="__e(errors,'outstanding_image')"></error>

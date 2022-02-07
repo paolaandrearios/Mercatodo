@@ -1,5 +1,5 @@
-<?php
 
+<?php
 return [
 
     /*
@@ -159,7 +159,23 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'name',
+        'name_es' => 'spanish name',
+        'name_en' => 'english name',
+        'outstanding_image' => 'outstanding image',
+        'type' => 'type',
+        'image' => 'image',
+        'status' => 'status',
+        'icon' => 'icon',
+        'description_es' => 'spanish description',
+        'description_en' => 'english description',
+        'price' => 'price',
+        'stock' => 'stock',
+        'taxes' => 'taxes',
+        'categoryId' => 'category',
+        'keyword' => 'search',
+    ],
 
 
 ];
