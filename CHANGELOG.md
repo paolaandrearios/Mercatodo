@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] 2022-02-06
+### Added
+- Install laravel-permission and configure roles and access 
+- Create categories and implement controller for index,store,show and updated methods
+- Organize application routes based on roles
+- Create Products and implement controller for index,store,show and update methods
+- Implement form request for validation in all fields entered by the user
+- Implement many to many relationship between categories and products
+- Create homepage for products in vue components
+- Implement product searcher in homepage
+- Implement product filtering by category
+- Implement helper to currency local format
+- Adding language picker to switch languages (spanish and english)
+- Add categories to cache
+- Implement environment variables for pagination and images route
+
+### Changed
+- Refactor code using repositories and actions
+
+
 ## [1.0.1] 2022-01-02
 ### Added
 - Configuration to verify email for new users
