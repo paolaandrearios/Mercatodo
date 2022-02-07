@@ -7,10 +7,8 @@ use App\Http\Requests\Api\StatusUserRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
-
 class UserStatusController extends Controller
 {
-
     public function update(StatusUserRequest $statusUserRequest, User $user): JsonResponse
     {
         $user->status = $statusUserRequest->status;

@@ -31,6 +31,6 @@ return [
         'verify-email-button' => 'haga clic aquí para solicitar otro',
         'verify-email-resent' => 'Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.',
 
-    ]
+    ],
 
 ];

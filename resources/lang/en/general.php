@@ -10,7 +10,7 @@ return [
     'api' => [
         'user' => [
             'update_status_success' => 'User has been successfully modified',
-            'update_status_error' => 'User could not be modified'
+            'update_status_error' => 'User could not be modified',
         ],
 
         'category' => [
@@ -105,9 +105,8 @@ return [
             'products_found' => 'Products Found',
             'product_found' => 'Product Found',
             'not_found' => 'Sorry, Product Not Found',
-        ]
+        ],
     ],
-
 
     'sidebar' => [
         'home' => 'Home',

@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StatusCategoryRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;

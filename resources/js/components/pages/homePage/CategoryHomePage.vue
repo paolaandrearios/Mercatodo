@@ -1,6 +1,6 @@
 <template>
     <div>
-        <bread-crumb></bread-crumb>
+<!--        <bread-crumb></bread-crumb>-->
         <category-list-client @setActive="setActive"></category-list-client>
 
         <div class="homepage__categoryActive" v-show="categoryActive !== ''">

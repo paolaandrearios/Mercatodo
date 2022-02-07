@@ -10,7 +10,7 @@ class IndexTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $endPoint = '/api/products';
+    protected $endPoint = '/api/admin/products';
 
     public function test_service_available(): void
     {

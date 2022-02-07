@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\CreateProductRequest;
 use App\Http\Requests\Api\SearchProductRequest;
-use App\Http\Requests\Api\UpdateProductRequest;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\JsonResponse;
-
 
 class ProductController extends Controller
 {
@@ -23,12 +19,11 @@ class ProductController extends Controller
 
     public function index(SearchProductRequest $request): JsonResponse
     {
-
         $products = $this->productRepository->get(
-            $request->input('keyword')??'',
+            $request->input('keyword') ?? '',
             'active',
             'active',
-            $request->input('category')??''
+            $request->input('category') ?? ''
         );
 
         return response()->json(compact('products'));
@@ -38,5 +33,4 @@ class ProductController extends Controller
     {
         return response()->json(compact('product'));
     }
-
 }

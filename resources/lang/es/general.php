@@ -9,7 +9,7 @@ return [
     'api' => [
         'user' => [
              'update_status_success' => 'El usuario ha sido modificado satisfactoriamente',
-            'update_status_error' => 'El usuario no pudo ser modificado'
+            'update_status_error' => 'El usuario no pudo ser modificado',
         ],
 
         'category' => [
@@ -103,7 +103,7 @@ return [
             'products_found' => 'Productos Encontrados',
             'product_found' => 'Producto Encontrado',
             'not_found' => 'Lo Sentimos, Producto No Encontrado',
-        ]
+        ],
     ],
 
     'sidebar' => [

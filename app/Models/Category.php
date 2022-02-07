@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use phpDocumentor\Reflection\Types\True_;
 
 /**
- * Class Category
- * @package App\Models
+ * Class Category.
  * @property string name
  * @method static create(array $params)
  */
@@ -42,7 +40,6 @@ class Category extends Model
     /**
      * @return bool
      */
-
     public function isCategory(): bool
     {
         return $this->type == 'category';
@@ -56,5 +53,4 @@ class Category extends Model
     {
         return $this->belongsToMany(Product::class);
     }
-
 }

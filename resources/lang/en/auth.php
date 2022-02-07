@@ -30,6 +30,6 @@ return [
         'verify-email-message-check' => 'If you did not receive the email,',
         'verify-email-button' => 'click here to request another',
         'verify-email-resent' => 'A fresh verification link has been sent to your email address.',
-    ]
+    ],
 
 ];

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Actions\Category;
-
 
 use App\Helpers\Helper;
 use App\Models\Category;
@@ -27,11 +25,10 @@ class UpdateCategoryAction
         $category->status = $request->input('status');
         $category->icon = $request->input('icon');
 
-        $category->slug =  Helper::generateSlug($category['name_en']);
+        $category->slug = Helper::generateSlug($category['name_en']);
 
         $filePath = $this->imageRepository->upload('categories', $request->outstanding_image);
         $category->outstanding_image = config('general.custom_image_path') . $filePath;
-
 
         if ($request->outstanding_image) {
             $filePath = $this->imageRepository->upload('categories', $request->outstanding_image);

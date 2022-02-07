@@ -2,12 +2,12 @@
 
 namespace App\Rules\Api\Client;
 
-
 use Illuminate\Contracts\Validation\Rule;
 
 class SearchProductRule implements Rule
 {
     private $characters;
+
     /**
      * Create a new rule instance.
      *
@@ -28,6 +28,7 @@ class SearchProductRule implements Rule
             if ($characters >= $minCharacters) {
                 return true;
             }
+
             return false;
         }
     }

@@ -19,9 +19,10 @@ class NameProductRule implements Rule
         $count = Product::where($attribute, $value)
             ->where('id', '!=', $this->product->id)
             ->count();
-        if($count === 0){
+        if ($count === 0) {
             return true;
         }
+
         return false;
     }
 

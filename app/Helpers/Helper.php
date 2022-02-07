@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Helpers;
-
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -51,6 +49,7 @@ class Helper
     public static function generateSlug(string $name): string
     {
         $slug = str_replace(' ', '-', trim($name));
+
         return strtolower($slug);
     }
 }

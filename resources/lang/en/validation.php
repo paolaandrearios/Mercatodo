@@ -177,5 +177,4 @@ return [
         'keyword' => 'search',
     ],
 
-
 ];

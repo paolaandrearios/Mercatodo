@@ -8,6 +8,7 @@ use Illuminate\Contracts\Validation\Rule;
 class NameCategoryRule implements Rule
 {
     private $category;
+
     /**
      * Create a new rule instance.
      *
@@ -23,9 +24,10 @@ class NameCategoryRule implements Rule
         $count = Category::where($attribute, $value)
             ->where('id', '!=', $this->category->id)
             ->count();
-        if($count === 0){
+        if ($count === 0) {
             return true;
         }
+
         return false;
     }
 

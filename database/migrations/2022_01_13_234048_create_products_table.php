@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductsTable extends Migration
 {
-
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
@@ -17,7 +16,7 @@ class CreateProductsTable extends Migration
             $table->String('name_es');
             $table->text('description_es');
             $table->String('image');
-            $table->double('price',15,2);
+            $table->double('price', 15, 2);
             $table->float('taxes');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->integer('stock');
@@ -25,7 +24,6 @@ class CreateProductsTable extends Migration
             $table->timestamps();
         });
     }
-
 
     public function down(): void
     {

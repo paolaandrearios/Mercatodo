@@ -4,14 +4,12 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Actions\Category\StoreCategoryAction;
 use App\Actions\Category\UpdateCategoryAction;
-use App\Http\Requests\Api\UpdateCategoryRequest;
-use App\Repositories\CategoryRepository;
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests\Api\CreateCategoryRequest;
+use App\Http\Requests\Api\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Repositories\CategoryRepository;
 use Illuminate\Http\JsonResponse;
-
 
 class CategoryController extends Controller
 {
@@ -27,7 +25,6 @@ class CategoryController extends Controller
         return response()->json(['categories' => $this->categoryRepository->get()]);
     }
 
-
     public function store(CreateCategoryRequest $request, StoreCategoryAction $storeCategoryAction): JsonResponse
     {
         return response()->json([
@@ -41,8 +38,6 @@ class CategoryController extends Controller
         return response()->json(compact('category'));
     }
 
-
-
     public function update(UpdateCategoryRequest $request, Category $category, UpdateCategoryAction $updateCategoryAction): JsonResponse
     {
         if ($updateCategoryAction->execute($category, $request)) {
@@ -55,5 +50,4 @@ class CategoryController extends Controller
             ]);
         }
     }
-
 }

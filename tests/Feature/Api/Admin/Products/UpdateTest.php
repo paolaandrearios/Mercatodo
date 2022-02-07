@@ -13,7 +13,6 @@ class UpdateTest extends TestCase
 
     protected $endPoint = '/api/admin/products';
 
-
     public function test_error_not_found_when_try_to_update_unknown_product(): void
     {
         $response = $this->putJson($this->endPoint . '/1', ['name_en' => 'test']);
@@ -27,7 +26,7 @@ class UpdateTest extends TestCase
         $product = Product::factory(1)
             ->create(
                 [
-                    "sku" => "47880868",
+                    'sku' => '47880868',
                     'name_es' => 'Computador Hp',
                     'name_en' => 'Hp computer',
                     'description_es' => 'Computador Hp 200 G4 Todo en Uno 4GB Intel Pentium J5040',
@@ -36,9 +35,10 @@ class UpdateTest extends TestCase
                     'status' => 'active',
                     'stock' => '3',
                     'taxes' => '19',
-                ])->first();
+                ]
+            )->first();
         $data = [
-            'sku' => "57880868",
+            'sku' => '57880868',
             'name_es' => 'Computador Lenovo',
             'name_en' => 'Lenovo Computer',
             'description_es' => 'Procesador Intel Core i3 1005G1 (4 MB cache 1,2 hasta 3,4 GHZ), Memoria  4GB DDR4-2400, Disco duro de 256 SSD M.2 PCIE y Monitor 14 pulgadas HD (1366 x 768) TN 220 NITS Antirreflejo',

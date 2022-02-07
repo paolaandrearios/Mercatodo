@@ -14,11 +14,10 @@ class StoreTest extends TestCase
 
     protected $endPoint = '/api/admin/products';
 
-
     public function test_create_product(): void
     {
         $category = Category::factory(1)->create(['status' => 'active'])->first();
-        $data =  [
+        $data = [
             'sku' => '123456',
             'name_es' => 'Producto Prueba',
             'name_en' => 'Test product',

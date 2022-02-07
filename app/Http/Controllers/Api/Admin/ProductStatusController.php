@@ -7,13 +7,12 @@ use App\Http\Requests\Api\StatusProductRequest;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 
-
 class ProductStatusController extends Controller
 {
     public function update(StatusProductRequest $request, Product $product, string $status): JsonResponse
     {
         $data = [
-            'status' => $status
+            'status' => $status,
         ];
 
         if ($product->update($data)) {

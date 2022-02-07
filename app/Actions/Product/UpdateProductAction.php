@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Actions\Product;
-
 
 use App\Helpers\Helper;
 use App\Models\Product;
@@ -30,7 +28,7 @@ class UpdateProductAction
         $product->status = $request->input('status');
         $product->stock = $request->input('stock');
 
-        $product->slug =  Helper::generateSlug($product['name_en']);
+        $product->slug = Helper::generateSlug($product['name_en']);
 
         if ($request->image) {
             $filePath = $this->imageRepository->upload('products', $request->image);

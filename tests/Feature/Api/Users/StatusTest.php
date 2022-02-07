@@ -24,7 +24,7 @@ class StatusTest extends TestCase
         $user = User::factory(1)->create();
         $response = $this->putJson($this->endPoint . '/' . $user[0]->id . '/status/ready');
         $response->assertStatus(422);
-        $response->assertJsonFragment(['status' =>[__('validation.in',['attribute' => 'status'])]]);
+        $response->assertJsonFragment(['status' =>[__('validation.in', ['attribute' => 'status'])]]);
     }
 
     public function test_change_status_to_active_for_an_inactive_user(): void
@@ -48,5 +48,4 @@ class StatusTest extends TestCase
         $userUpdated = User::query()->where('id', $user[0]->id)->first();
         $this->assertEquals('inactive', $userUpdated->status);
     }
-
 }

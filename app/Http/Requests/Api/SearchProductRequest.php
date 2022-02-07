@@ -7,7 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SearchProductRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;

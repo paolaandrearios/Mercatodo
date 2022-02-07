@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Actions\Product;
 
 use App\Helpers\Helper;
@@ -31,7 +30,7 @@ class StoreProductAction
         $product->status = $request->input('status');
         $product->stock = $request->input('stock');
 
-        $product->slug =  Helper::generateSlug($product['name_en']);
+        $product->slug = Helper::generateSlug($product['name_en']);
 
         $filePath = $this->imageRepository->upload('products', $request->image);
         $product->image = config('general.custom_image_path') . $filePath;
@@ -42,5 +41,4 @@ class StoreProductAction
 
         return $product;
     }
-
 }

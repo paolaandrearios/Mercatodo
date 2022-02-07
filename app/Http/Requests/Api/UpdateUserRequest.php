@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUserRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -24,7 +23,7 @@ class UpdateUserRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => __( 'validation.required'),
+            'name.required' => __('validation.required'),
         ];
     }
 }

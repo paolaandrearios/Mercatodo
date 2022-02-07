@@ -41,10 +41,8 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
     protected function sendLoginResponse(Request $request)
     {
-
         $request->session()->regenerate();
 
         $this->clearLoginAttempts($request);
@@ -54,13 +52,14 @@ class LoginController extends Controller
         }
 //        dd($this->redirectPath());
 
-        if($request->wantsJson()) {
-           return new JsonResponse([], 204);
+        if ($request->wantsJson()) {
+            return new JsonResponse([], 204);
         }
 
-        if(Auth::user()->hasRole('Admin')) {
+        if (Auth::user()->hasRole('Admin')) {
             return redirect()->intended(route('admin.dashboard.index'));
         }
+
         return redirect()->intended(route('client.product.index'));
     }
 }

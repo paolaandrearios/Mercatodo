@@ -7,12 +7,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProductRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
     }
-
 
     public function rules(): array
     {
@@ -73,8 +71,8 @@ class UpdateProductRequest extends FormRequest
             ],
         ];
 
-        if($this->has('image')){
-            $rules['image'] = ['image', 'mimes:jpg,bmp,png' ];
+        if ($this->has('image')) {
+            $rules['image'] = ['image', 'mimes:jpg,bmp,png'];
         }
 
         return $rules;

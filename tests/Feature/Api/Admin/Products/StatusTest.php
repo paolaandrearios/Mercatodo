@@ -12,7 +12,6 @@ class StatusTest extends TestCase
 
     protected $endPoint = '/api/admin/products';
 
-
     public function test_error_not_found_when_try_to_update_unknown_products(): void
     {
         $response = $this->putJson($this->endPoint . '/1/status/active');
@@ -25,7 +24,7 @@ class StatusTest extends TestCase
         $product = Product::factory(1)->create();
         $response = $this->putJson($this->endPoint . '/' . $product[0]->id . '/status/ready');
         $response->assertStatus(422);
-        $response->assertJsonFragment(['status' =>[__('validation.in',['attribute' => 'status'])]]);
+        $response->assertJsonFragment(['status' =>[__('validation.in', ['attribute' => 'status'])]]);
     }
 
     public function test_change_status_to_active_for_an_inactive_product(): void
@@ -49,5 +48,4 @@ class StatusTest extends TestCase
         $productUpdated = Product::query()->where('id', $product[0]->id)->first();
         $this->assertEquals('inactive', $productUpdated->status);
     }
-
 }

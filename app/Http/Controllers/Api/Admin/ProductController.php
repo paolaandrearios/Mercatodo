@@ -12,7 +12,6 @@ use App\Models\Product;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\JsonResponse;
 
-
 class ProductController extends Controller
 {
     private ProductRepository $productRepository;
@@ -24,8 +23,7 @@ class ProductController extends Controller
 
     public function index(SearchProductRequest $request): JsonResponse
     {
-
-        $products = $this->productRepository->get($request->input('keyword')??'');
+        $products = $this->productRepository->get($request->input('keyword') ?? '');
 
         return response()->json(compact('products'));
     }
@@ -38,12 +36,10 @@ class ProductController extends Controller
         ]);
     }
 
-
     public function show(Product $product): JsonResponse
     {
         return response()->json(compact('product'));
     }
-
 
     public function update(UpdateProductRequest $request, Product $product, UpdateProductAction $updateProductAction): JsonResponse
     {
