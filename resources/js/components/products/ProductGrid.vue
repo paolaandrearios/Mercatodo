@@ -29,6 +29,7 @@ export default {
     },
     props: {
         keyword: String,
+        category: Object,
     },
     data () {
         return {
@@ -50,7 +51,7 @@ export default {
             let pageNum = currentPage ? currentPage: 1;
 
             axios
-                .get(`/evertec/mercatodo/public/api/products?page=${pageNum}&keyword=${this.keyword}`)
+                .get(`/evertec/mercatodo/public/api/products?page=${pageNum}&keyword=${this.keyword}&category=${this.category.id}`)
                 .then(response => {
                     this.products = response.data.products.data;
                     this.pagination = response.data.products;
@@ -68,6 +69,9 @@ export default {
         keyword: function(newVal, oldVal) {
             this.getAllProducts();
         },
+        category: function(newVal, oldVal){
+            this.getAllProducts();
+        }
     }
 }
 </script>

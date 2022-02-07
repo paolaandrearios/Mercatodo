@@ -2,8 +2,8 @@
     <div class="homepage">
         <header-home-page @searchProducts="searchProducts" :errors="errors"></header-home-page>
         <banner-home-page></banner-home-page>
-        <category-home-page></category-home-page>
-        <product-grid :keyword="keyword" @getErrors="getErrors"></product-grid>
+        <category-home-page @categoryFilter="categoryFilter"></category-home-page>
+        <product-grid :keyword="keyword" :category="category" @getErrors="getErrors"></product-grid>
     </div>
 </template>
 
@@ -25,6 +25,7 @@ export default {
         return{
             keyword: '',
             errors: [],
+            category: {id:''},
         }
     },
     emit: ['searchProducts', 'getErrors'],
@@ -34,6 +35,9 @@ export default {
         },
         getErrors: function (errors) {
             this.errors = errors;
+        },
+        categoryFilter: function(category) {
+            this.category = category
         }
     }
 

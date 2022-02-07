@@ -1,9 +1,9 @@
 <template>
     <div>
         <bread-crumb></bread-crumb>
-        <category-list-client></category-list-client>
+        <category-list-client @setActive="setActive"></category-list-client>
 
-        <div class="homepage__categoryActive">
+        <div class="homepage__categoryActive" v-show="categoryActive !== ''">
             <i class="fas fa-thumbtack"></i>
             <span>
 				{{categoryActive}}
@@ -23,9 +23,17 @@ export default {
     },
     data() {
         return {
-            categoryActive:'Tecnología',
+            categoryActive:'',
         };
     },
+    emit: ['categoryFilter'],
+    methods: {
+        setActive(category){
+            this.categoryActive = category['name_'+window._locale];
+            this.$emit('categoryFilter', category);
+        }
+    },
+
 }
 </script>
 
