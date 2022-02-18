@@ -27,9 +27,6 @@ class UpdateCategoryAction
 
         $category->slug = Helper::generateSlug($category['name_en']);
 
-        $filePath = $this->imageRepository->upload('categories', $request->outstanding_image);
-        $category->outstanding_image = config('general.custom_image_path') . $filePath;
-
         if ($request->outstanding_image) {
             $filePath = $this->imageRepository->upload('categories', $request->outstanding_image);
             $category['outstanding_image'] = config('general.custom_image_path') . $filePath;

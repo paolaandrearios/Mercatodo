@@ -11,6 +11,12 @@ import Vue from "vue";
 window.Vue = require('vue').default;
 Vue.mixin(require('./helper'));
 
+window.axios = require('axios');
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['locale'] = window._locale;
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

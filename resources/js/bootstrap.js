@@ -19,9 +19,12 @@ window._ = require('lodash');
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
+window.Vue = require('vue');
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['test'] = 'test2';
+
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

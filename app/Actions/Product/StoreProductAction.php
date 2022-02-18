@@ -37,7 +37,7 @@ class StoreProductAction
 
         $product->save();
 
-        $product->categories()->attach($request->input('categoryId'));
+        $product->categories()->attach($request->input('category_id'));
 
         return $product;
     }

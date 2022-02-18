@@ -21,7 +21,6 @@ class Product extends Model
         'image',
         'price',
         'taxes',
-        'category_id',
         'status',
         'stock',
         'slug',
