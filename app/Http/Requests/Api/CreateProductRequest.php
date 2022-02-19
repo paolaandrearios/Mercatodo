@@ -54,7 +54,7 @@ class CreateProductRequest extends FormRequest
                 'max:13',
                 'gt:0',
             ],
-            'categoryId' => [
+            'category_id' => [
                 'required',
                 'exists:categories,id',
             ],

@@ -118,7 +118,7 @@
                         <td class="label-table">{{__('general.web.category.category')}}</td>
                         <td>
                             <div v-if="!__isEmpty(product)">
-                                <select class="input-table" id="category" v-model="categoryId">
+                                <select class="input-table" id="category" v-model="category_id">
                                     <option value="">{{__('general.web.select')}}</option>
                                     <option v-for="category in categories" v-bind:value="category.id">
                                         {{category['name_' + __locale()]}}
@@ -188,7 +188,7 @@ export default {
     props: {
         isOpenEdit: Boolean,
         product: Object,
-        categoryId: Number,
+        category_id: Number,
     },
     data() {
         return {
@@ -216,8 +216,6 @@ export default {
 
             const config = {
                 headers: {
-                    'accept': 'application/json',
-                    'Accept-Language': 'en-US,en;q=0.8',
                     'Content-Type': 'multipart/form-data',
                 }
             }
@@ -231,7 +229,7 @@ export default {
             data.append('price', this.product.price);
             data.append('stock', this.product.stock);
             data.append('taxes', this.product.taxes);
-            data.append('categoryId', this.categoryId.toString());
+            data.append('category_id', this.category_id.toString());
             data.append('status', this.product.status);
             data.append('_method', 'PUT');
 

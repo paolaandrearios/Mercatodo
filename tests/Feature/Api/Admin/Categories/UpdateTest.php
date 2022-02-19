@@ -20,7 +20,7 @@ class UpdateTest extends TestCase
         $response->assertJsonFragment(['message' => __('general.api.exceptions.model_not_found')]);
     }
 
-/*    public function test_update_existent_category(): void
+    public function test_update_existent_category(): void
     {
         $data = [
             'name_es' => 'Tecnologia',
@@ -49,5 +49,5 @@ class UpdateTest extends TestCase
 
         $categoryUpdated = Category::query()->where('id', $category[0]->id)->first();
         $this->assertEquals('Sport', $categoryUpdated->name_en);
-    }*/
+    }
 }

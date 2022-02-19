@@ -25,7 +25,7 @@ class StoreTest extends TestCase
             'description_es' => 'Esta es una corta descripcion, Esta es una corta descripcion,Esta es una corta descripcion, Esta es una corta descripcion',
             'image'  => new UploadedFile(resource_path('test-files/nueva-categoria.jpg'), 'nueva-categoria.jpg', null, null, true),
             'price' => '500000',
-            'categoryId' => [$category->id],
+            'category_id' => [$category->id],
             'taxes' => '19',
             'stock' => 10,
             'slug' => '/slug',

@@ -44,7 +44,7 @@ class UpdateTest extends TestCase
             'description_es' => 'Procesador Intel Core i3 1005G1 (4 MB cache 1,2 hasta 3,4 GHZ), Memoria  4GB DDR4-2400, Disco duro de 256 SSD M.2 PCIE y Monitor 14 pulgadas HD (1366 x 768) TN 220 NITS Antirreflejo',
             'description_en' => 'Intel Core i3 1005G1 processor (4 MB cache 1.2 up to 3.4 GHZ), 4GB DDR4-2400 memory, 256 SSD M.2 PCIE hard drive and 14-inch HD (1366 x 768) TN 220 NITS Anti-glare monitor',
             'price' => '2000000',
-            'categoryId' => $category->id,
+            'category_id' => $category->id,
             'status' => 'active',
             'stock' => '3',
             'taxes' => '19',

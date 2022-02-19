@@ -56,7 +56,7 @@
 
         <product-add :isOpenAdd="isOpenAdd" @close="close" @getAllProducts="getAllProducts"></product-add>
         <product-show :isOpenShow="isOpenShow" :product="currentProduct" @close="close" ></product-show>
-        <product-edit :isOpenEdit="isOpenEdit" :product="currentProduct" :categoryId="currentCategory" @close="close" @getAllProducts="getAllProducts"></product-edit>
+        <product-edit :isOpenEdit="isOpenEdit" :product="currentProduct" :category_id="currentCategory" @close="close" @getAllProducts="getAllProducts"></product-edit>
 
     </div>
 </template>

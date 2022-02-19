@@ -64,13 +64,13 @@
                 <div class="div-form">
                     <label for="category">{{__('general.web.category.category')}}</label>
                     <div class="div-input">
-                        <select  id="category" v-model="categoryId">
+                        <select  id="category" v-model="category_id">
                             <option value="">{{__('general.web.select')}}</option>
                             <option v-for="category in categories" v-bind:value="category.id">
                                 {{category['name_' + __locale()]}}
                             </option>
                         </select>
-                        <error :errors="__e(errors,'categoryId')"></error>
+                        <error :errors="__e(errors,'category_id')"></error>
                     </div>
                 </div>
                 <div class="div-form">
@@ -130,7 +130,7 @@ function initialState() {
             status: '',
             stock: '',
         },
-        categoryId: '',
+        category_id: '',
         errors: [],
         categories: [],
     }
@@ -181,7 +181,7 @@ export default {
             data.append('image', this.product.image);
             data.append('price', this.product.price);
             data.append('taxes', this.product.taxes);
-            data.append('categoryId', this.categoryId);
+            data.append('category_id', this.category_id);
             data.append('status', this.product.status);
             data.append('stock', this.product.stock);
 
