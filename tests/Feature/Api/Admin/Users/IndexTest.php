@@ -21,7 +21,7 @@ class IndexTest extends TestCase
     public function test_check_users_empty(): void
     {
         $response = $this->get($this->endPoint);
-        $this->assertCount(0, $response->json());
+        $this->assertCount(0, $response->json()['data']);
     }
 
     public function test_check_all_users(): void
@@ -29,6 +29,6 @@ class IndexTest extends TestCase
         User::factory(3)->create();
 
         $response = $this->get($this->endPoint);
-        $this->assertCount(3, $response->json());
+        $this->assertCount(3, $response->json()['data']);
     }
 }

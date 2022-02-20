@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index(): JsonResponse
     {
-        return response()->json(User::all());
+        return response()->json(User::orderBy('id', 'asc')->paginate(config('general.custom_records_per_page')));
     }
 
     public function update(UpdateUserRequest $request, User $user): JsonResponse

@@ -43,6 +43,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="flex justify-center w-1/2 mx-auto my-3">
+                        <pagination :pagination="pagination" @paginate="getAllUsers" :offset="4"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,6 +60,7 @@
 import axios from 'axios';
 import UserEdit from "./modals/UserEdit";
 import UserShow from "./modals/UserShow";
+import Pagination from "../utils/Pagination";
 
 export default {
 
@@ -64,7 +68,8 @@ export default {
 
     components: {
         UserShow,
-        UserEdit
+        UserEdit,
+        Pagination
     },
     data () {
         return {
@@ -72,6 +77,7 @@ export default {
             currentUser: {id:'', name: ''},
             isOpenEdit: false,
             isOpenShow: false,
+            pagination: {},
         }
     },
     mounted() {
@@ -79,9 +85,16 @@ export default {
     },
     methods: {
         getAllUsers:  function () {
+
+            let currentPage = this.pagination.current_page;
+            let pageNum = currentPage ? currentPage: 1;
+
             axios
-                .get('/evertec/mercatodo/public/api/admin/users')
-                .then(response => (this.users = response.data))
+                .get(`/evertec/mercatodo/public/api/admin/users?page=${pageNum}`)
+                .then(response => {
+                    this.users = response.data.data
+                    this.pagination = response.data
+                })
         },
 
         edit: function(user){
