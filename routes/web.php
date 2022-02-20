@@ -35,6 +35,8 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     });
 });
 
+
+// Client Routes
 Route::group(['as'=>'client.'], function () {
     Route::get('/', [ClientProductController::class, 'index'])->name('product.index');
 });

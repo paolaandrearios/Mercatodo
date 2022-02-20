@@ -80,7 +80,7 @@ export default {
     methods: {
         getAllUsers:  function () {
             axios
-                .get('/evertec/mercatodo/public/api/users')
+                .get('/evertec/mercatodo/public/api/admin/users')
                 .then(response => (this.users = response.data))
         },
 
@@ -100,13 +100,13 @@ export default {
         },
 
         setActive: function(user) {
-            axios.put('/evertec/mercatodo/public/api/users/'+user.id+'/status/active').then(response => {
+            axios.put('/evertec/mercatodo/public/api/admin/users/'+user.id+'/status/active').then(response => {
                 this.getAllUsers()
                 alert(response.data.message)
             })
         },
         setInactive: function(user) {
-            axios.put('/evertec/mercatodo/public/api/users/'+user.id+'/status/inactive').then(response => {
+            axios.put('/evertec/mercatodo/public/api/admin/users/'+user.id+'/status/inactive').then(response => {
                 this.getAllUsers()
                 alert(response.data.message)
             })

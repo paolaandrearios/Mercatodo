@@ -35,6 +35,8 @@ class UpdateProductAction
             $product->image = config('general.custom_image_path') . $filePath;
         }
 
+        $product->categories()->sync($request->input('category_id'));
+
         return $product->save();
     }
 }

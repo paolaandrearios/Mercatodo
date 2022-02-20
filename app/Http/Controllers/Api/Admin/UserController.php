@@ -1,17 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\StatusUserRequest;
+use App\Http\Requests\Api\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
-class UserStatusController extends Controller
+class UserController extends Controller
 {
-    public function update(StatusUserRequest $statusUserRequest, User $user): JsonResponse
+    public function index(): JsonResponse
     {
-        $user->status = $statusUserRequest->status;
+        return response()->json(User::all());
+    }
+
+    public function update(UpdateUserRequest $request, User $user): JsonResponse
+    {
+        $user->name = $request->name;
 
         if ($user->save()) {
             return response()->json([

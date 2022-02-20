@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api\Users;
+namespace Tests\Feature\Api\Admin\Users;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -10,7 +10,7 @@ class UpdateTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $endPoint = '/api/users';
+    protected $endPoint = '/api/admin/users';
 
     public function test_error_not_found_when_try_to_update_unknown_user(): void
     {

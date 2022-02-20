@@ -6,8 +6,8 @@ use App\Http\Controllers\Api\Admin\ProductController as ProductAdminController;
 use App\Http\Controllers\Api\Admin\ProductStatusController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\UserStatusController;
+use App\Http\Controllers\Api\Admin\UserController;
+use App\Http\Controllers\Api\Admin\UserStatusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,24 +22,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::resource('users', UserController::class)->only([
-    'index', 'update',
-]);
-Route::put('/users/{user}/status/{status}', [UserStatusController::class, 'update'])->name('users.status');
-
-//categories routes
-Route::put('/categories/{category}/status/{status}', [CategoryStatusController::class, 'update'])->name('categories.status');
-Route::resource('categories', CategoryController::class)->only([
-    'store', 'show', 'index', 'update',
-]);
-
-//Product routes
+//Admin routes
 
 Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
+
+    Route::resource('users', UserController::class)->only([
+        'index', 'update',
+    ]);
+    Route::put('/users/{user}/status/{status}', [UserStatusController::class, 'update'])->name('users.status');
+
+
     Route::put('/categories/{category}/status/{status}', [CategoryStatusController::class, 'update'])->name('categories.status');
     Route::resource('categories', CategoryAdminController::class)->only([
         'store', 'show', 'index', 'update',
