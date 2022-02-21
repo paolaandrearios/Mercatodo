@@ -8,35 +8,35 @@
                 <div class="div-form">
                     <label for="sku">{{__('general.web.product.sku')}}</label>
                     <div class="div-input">
-                        <input type="text" id="sku" v-model="product.sku">
+                        <input type="text" id="sku" v-model="product.sku" required minlength="5" maxlength="10">
                         <error :errors="__e(errors,'sku')"></error>
                     </div>
                 </div>
                 <div class="div-form">
                     <label for="name_es">{{__('general.web.product.name_es')}}</label>
                     <div class="div-input">
-                        <input type="text" id="name_es" v-model="product.name_es">
+                        <input type="text" id="name_es" v-model="product.name_es" required minlength="4" maxlength="60">
                         <error :errors="__e(errors,'name_es')"></error>
                     </div>
                 </div>
                 <div class="div-form">
                     <label for="description_es">{{__('general.web.product.description_es')}}</label>
                     <div class="div-input">
-                        <textarea type="text" id="description_es" v-model="product.description_es"></textarea>
+                        <textarea type="text" id="description_es" v-model="product.description_es" required minlength="80" maxlength="400"></textarea>
                         <error :errors="__e(errors,'description_es')"></error>
                     </div>
                 </div>
                 <div class="div-form">
                     <label for="name_en">{{__('general.web.product.name_en')}}</label>
                     <div class="div-input">
-                        <input type="text" id="name_en" v-model="product.name_en">
+                        <input type="text" id="name_en" v-model="product.name_en" required minlength="4" maxlength="60">
                         <error :errors="__e(errors,'name_en')"></error>
                     </div>
                 </div>
                 <div class="div-form">
                     <label for="description_en">{{__('general.web.product.description_en')}}</label>
                     <div class="div-input">
-                        <textarea type="text" id="description_en" v-model="product.description_en"></textarea>
+                        <textarea type="text" id="description_en" v-model="product.description_en" required minlength="80" maxlength="400"></textarea>
                         <error :errors="__e(errors,'description_en')"></error>
                     </div>
                 </div>
@@ -50,21 +50,21 @@
                 <div class="div-form">
                     <label for="stock">{{__('general.web.product.stock')}}</label>
                     <div class="div-input">
-                        <input type="number" id="stock" v-model="product.stock">
+                        <input type="number" id="stock" v-model="product.stock" required>
                         <error :errors="__e(errors,'stock')"></error>
                     </div>
                 </div>
                 <div class="div-form">
                     <label for="taxes">{{__('general.web.product.taxes')}}</label>
                     <div class="div-input">
-                        <input type="number" id="taxes" v-model="product.taxes">
+                        <input type="number" id="taxes" v-model="product.taxes" required>
                         <error :errors="__e(errors,'taxes')"></error>
                     </div>
                 </div>
                 <div class="div-form">
                     <label for="category">{{__('general.web.category.category')}}</label>
                     <div class="div-input">
-                        <select  id="category" v-model="category_id">
+                        <select  id="category" v-model="category_id" required>
                             <option value="">{{__('general.web.select')}}</option>
                             <option v-for="category in categories" v-bind:value="category.id">
                                 {{category['name_' + __locale()]}}
@@ -76,7 +76,7 @@
                 <div class="div-form">
                     <label for="status">{{__('general.web.product.status')}}</label>
                     <div class="div-input">
-                        <select  id="status" v-model="product.status">
+                        <select  id="status" v-model="product.status" required>
                             <option value="">{{__('general.web.select')}}</option>
                             <option value="active">{{__('general.web.product.active')}}</option>
                             <option value="inactive">{{__('general.web.product.inactive')}}</option>
@@ -87,7 +87,7 @@
                 <div class="form-file">
                     <label for="image">{{__('general.web.product.image')}}</label>
                     <div class="div-input">
-                        <input type="file" id="image" ref="fileupload" v-on:change="onChange">
+                        <input type="file" id="image" ref="fileupload" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg" required>
                         <error :errors="__e(errors,'image')"></error>
                     </div>
                 </div>

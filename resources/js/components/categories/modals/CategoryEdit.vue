@@ -19,6 +19,9 @@
                                     type="text"
                                     v-model="category.name_es"
                                     class="input-table"
+                                    required
+                                    minlength="4"
+                                    maxlength="60"
                                 />
                                 <error :errors="__e(errors,'name_es')"></error>
                             </div>
@@ -33,6 +36,9 @@
                                     type="text"
                                     v-model="category.name_en"
                                     class="input-table"
+                                    required
+                                    minlength="4"
+                                    maxlength="60"
                                 />
                                 <error :errors="__e(errors,'name_en')"></error>
                             </div>
@@ -42,7 +48,7 @@
                         <td class="label-table">{{__('general.web.category.type')}}</td>
                         <td>
                             <div>
-                                <select name="type" class="input-table" id="type" v-model="category.type">
+                                <select name="type" class="input-table" id="type" v-model="category.type" required>
                                     <option value="">{{__('general.web.select')}}</option>
                                     <option value="category">{{__('general.web.category.category')}}</option>
                                     <option value="subcategory">{{__('general.web.category.subcategory')}}</option>
@@ -60,6 +66,8 @@
                                     type="text"
                                     v-model="category.icon"
                                     class="input-table"
+                                    required
+                                    minlength="5"
                                 />
                                 <error :errors="__e(errors,'icon')"></error>
                             </div>
@@ -69,7 +77,7 @@
                         <td class="label-table">{{__('general.web.category.status')}}</td>
                         <td>
                             <div>
-                                <select name="status" class="input-table" id="status" v-model="category.status">
+                                <select name="status" class="input-table" id="status" v-model="category.status" required>
                                     <option value="">{{__('general.web.select')}}</option>
                                     <option value="active">{{__('general.web.category.active')}}</option>
                                     <option value="inactive">{{__('general.web.category.inactive')}}</option>
@@ -84,7 +92,7 @@
                             <div>
                                 <img class="w-2/4 mb-2"  v-bind:src="__asset(category.outstanding_image)"/>
                                 <button>
-                                    <input name="outstanding_image" class="overflow-x-scroll" type="file" id="outstanding_image" v-on:change="onChange">
+                                    <input name="outstanding_image" class="overflow-x-scroll" type="file" id="outstanding_image" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg" required>
                                 </button>
                             </div>
                             <error :errors="__e(errors,'outstanding_image')"></error>
@@ -93,7 +101,7 @@
                 </table>
                 <div class="text-center p-2 mt-3">
                     <button
-                        @click="isOpenEdit = false"
+                        @click="close()"
                         class="px-6 py-2 text-orangePantone border border-orangePantone rounded font-bold"
                     >
                         {{__('general.web.close')}}
@@ -140,6 +148,7 @@ export default {
         },
 
         close: function() {
+            this.errors = [];
             this.$emit('close')
         },
 

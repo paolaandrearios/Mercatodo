@@ -51,7 +51,7 @@ class CreateCategoryRequest extends FormRequest
             ],
             'icon' => [
                 'required',
-                'min:10',
+                'min:5',
             ],
         ];
     }

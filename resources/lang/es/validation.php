@@ -173,7 +173,7 @@ return [
         'price' => 'precio',
         'stock' => 'inventario',
         'taxes' => 'impuestos',
-        'categoryId' => 'categoría',
+        'category_id' => 'categoría',
         'keyword' => 'búsqueda',
     ],
 
