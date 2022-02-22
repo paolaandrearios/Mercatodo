@@ -25,6 +25,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
+
 // Admin Routes
 Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     Route::middleware(['auth', 'verified', 'active'])->group(function () {

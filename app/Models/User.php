@@ -16,8 +16,8 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
-    use HasFactory;
     use Notifiable;
+    use HasFactory;
     use HasRoles;
 
     /**
@@ -30,6 +30,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
     ];
+
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -55,4 +57,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->status == 'active';
     }
+
+
 }

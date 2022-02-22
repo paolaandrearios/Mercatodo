@@ -22,9 +22,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Admin routes
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
-Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
+//Protected routes
+
+Route::group(['middleware' => 'auth:sanctum' ,'prefix' => 'admin', 'as'=>'admin.'], function () {
 
     Route::resource('users', UserController::class)->only([
         'index', 'update',
@@ -44,7 +48,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     ]);
 });
 
-//client
+//Public Routes
 Route::resource('products', ProductController::class)->only([
     'show', 'index',
 ]);

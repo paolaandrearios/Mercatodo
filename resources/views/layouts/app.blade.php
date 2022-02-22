@@ -25,6 +25,7 @@
         window._locale = '{{ app()->getLocale() }}';
         window._translations = {!! Helper::getTranslation() !!};
         window._asset = '{{ asset('') }}';
+        window._token = '{{ session()->get('token') }}';
     </script>
 </head>
 <body>
