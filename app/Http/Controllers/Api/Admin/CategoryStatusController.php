@@ -28,5 +28,6 @@ class CategoryStatusController extends Controller
                 'message' => __('general.api.category.update_status_error'),
             ]);
         }
+
     }
 }

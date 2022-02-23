@@ -6,13 +6,26 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Tests\Feature\Common\RequestFaker;
+use Tests\Feature\Common\User\UserApiFaker;
 use Tests\TestCase;
 
 class StoreTest extends TestCase
 {
     use RefreshDatabase;
+    use UserApiFaker;
+    use RequestFaker;
 
     protected $endPoint = '/api/admin/products';
+
+    public function test_error_401_when_user_is_unauthenticated(): void
+    {
+        $response = $this->get($this->endPoint, [
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ]);
+        $response->assertStatus(401);
+    }
 
     public function test_create_product(): void
     {
@@ -32,7 +45,7 @@ class StoreTest extends TestCase
             'status' => 'active',
         ];
 
-        $response = $this->postJson($this->endPoint, $data);
+        $response = $this->postJson($this->endPoint, $data, $this->headers);
         $response->assertOk();
         $response->assertJsonFragment(['message' => __('general.api.product.create_status_success')]);
 

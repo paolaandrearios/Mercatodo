@@ -26,6 +26,7 @@
         window._translations = {!! Helper::getTranslation() !!};
         window._asset = '{{ asset('') }}';
         window._token = '{{ session()->get('token') }}';
+        window._csrf_token = '{{ csrf_token() }}';
     </script>
 </head>
 <body>

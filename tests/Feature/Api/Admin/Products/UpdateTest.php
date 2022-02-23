@@ -5,17 +5,30 @@ namespace Tests\Feature\Api\Admin\Products;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Common\RequestFaker;
+use Tests\Feature\Common\User\UserApiFaker;
 use Tests\TestCase;
 
 class UpdateTest extends TestCase
 {
     use RefreshDatabase;
+    use UserApiFaker;
+    use RequestFaker;
 
     protected $endPoint = '/api/admin/products';
 
+    public function test_error_401_when_user_is_unauthenticated(): void
+    {
+        $response = $this->get($this->endPoint, [
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ]);
+        $response->assertStatus(401);
+    }
+
     public function test_error_not_found_when_try_to_update_unknown_product(): void
     {
-        $response = $this->putJson($this->endPoint . '/1', ['name_en' => 'test']);
+        $response = $this->putJson($this->endPoint . '/1', ['name_en' => 'test'], $this->headers);
         $response->assertStatus(404);
         $response->assertJsonFragment(['message' => __('general.api.exceptions.model_not_found')]);
     }
@@ -50,7 +63,7 @@ class UpdateTest extends TestCase
             'taxes' => '19',
         ];
 
-        $response = $this->putJson($this->endPoint . '/' . $product->id, $data);
+        $response = $this->putJson($this->endPoint . '/' . $product->id, $data, $this->headers);
         $response->assertOk();
         $response->assertJsonFragment(['message' => __('general.api.product.update_status_success')]);
 

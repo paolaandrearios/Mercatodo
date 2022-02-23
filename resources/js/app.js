@@ -14,8 +14,8 @@ Vue.mixin(require('./helper'));
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window._csrf_token;
 window.axios.defaults.headers.common['locale'] = window._locale;
-window.axios.defaults.headers.common['Cookie'] = '';
 if(window._token !== ''){
     window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + window._token;
 }
