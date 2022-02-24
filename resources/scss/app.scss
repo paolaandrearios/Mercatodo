@@ -87,6 +87,12 @@
 
 .modal {
     @apply container mx-auto;
+    &__tabs {
+        @apply flex flex-wrap border-b border-gray-200;
+    }
+    &-previous-next {
+        @apply inline-flex items-center py-2 px-4 mr-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer;
+    }
     &__container {
         @apply flex justify-center align-middle;
         &--bg {
@@ -151,5 +157,11 @@
         @apply ml-3 mb-2 text-xs text-orangePantone font-bold;
     }
 
+    .active-tab {
+        @apply inline-block py-4 px-4 text-sm font-medium text-center text-orangePantone bg-gray-300 rounded-t-lg cursor-pointer;
+    }
+    .inactive-tab {
+        @apply inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 cursor-pointer;
+    }
 }
 

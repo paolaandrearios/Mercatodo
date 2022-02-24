@@ -5,107 +5,128 @@
         </template>
         <template v-slot:body>
             <form v-on:submit.prevent="" class="form">
-                <div class="div-form">
-                    <label for="sku">{{__('general.web.product.sku')}}</label>
-                    <div class="div-input">
-                        <input type="text" id="sku" v-model="product.sku" required minlength="5" maxlength="10">
-                        <error :errors="__e(errors,'sku')"></error>
+                <ul class="modal__tabs dark:border-gray-700">
+                    <li class="mr-2">
+                        <a @click="setTab(1)" aria-current="page" v-bind:class="getTabPage1">{{__('general.web.product.information')}}</a>
+                    </li>
+                    <li class="mr-2">
+                        <a @click="setTab(2)" aria-current="page" v-bind:class="getTabPage2">{{__('general.web.product.images')}}</a>
+                    </li>
+                </ul>
+
+                <div v-if="tab==1">
+                    <div class="div-form mt-5">
+                        <label for="sku">{{__('general.web.product.sku')}}</label>
+                        <div class="div-input">
+                            <input type="text" id="sku" v-model="product.sku" required minlength="5" maxlength="10">
+                            <error :errors="__e(errors,'sku')"></error>
+                        </div>
+                    </div>
+                    <div class="div-form">
+                        <label for="name_es">{{__('general.web.product.name_es')}}</label>
+                        <div class="div-input">
+                            <input type="text" id="name_es" v-model="product.name_es" required minlength="4" maxlength="60">
+                            <error :errors="__e(errors,'name_es')"></error>
+                        </div>
+                    </div>
+                    <div class="div-form">
+                        <label for="description_es">{{__('general.web.product.description_es')}}</label>
+                        <div class="div-input">
+                            <textarea type="text" id="description_es" v-model="product.description_es" required minlength="80" maxlength="400"></textarea>
+                            <error :errors="__e(errors,'description_es')"></error>
+                        </div>
+                    </div>
+                    <div class="div-form">
+                        <label for="name_en">{{__('general.web.product.name_en')}}</label>
+                        <div class="div-input">
+                            <input type="text" id="name_en" v-model="product.name_en" required minlength="4" maxlength="60">
+                            <error :errors="__e(errors,'name_en')"></error>
+                        </div>
+                    </div>
+                    <div class="div-form">
+                        <label for="description_en">{{__('general.web.product.description_en')}}</label>
+                        <div class="div-input">
+                            <textarea type="text" id="description_en" v-model="product.description_en" required minlength="80" maxlength="400"></textarea>
+                            <error :errors="__e(errors,'description_en')"></error>
+                        </div>
+                    </div>
+                    <div class="div-form">
+                        <label for="price">{{__('general.web.product.price')}}</label>
+                        <div class="div-input">
+                            <input type="number" id="price" v-model="product.price">
+                            <error :errors="__e(errors,'price')"></error>
+                        </div>
+                    </div>
+                    <div class="div-form">
+                        <label for="stock">{{__('general.web.product.stock')}}</label>
+                        <div class="div-input">
+                            <input type="number" id="stock" v-model="product.stock" required>
+                            <error :errors="__e(errors,'stock')"></error>
+                        </div>
+                    </div>
+                    <div class="div-form">
+                        <label for="taxes">{{__('general.web.product.taxes')}}</label>
+                        <div class="div-input">
+                            <input type="number" id="taxes" v-model="product.taxes" required>
+                            <error :errors="__e(errors,'taxes')"></error>
+                        </div>
+                    </div>
+                    <div class="div-form">
+                        <label for="category">{{__('general.web.category.category')}}</label>
+                        <div class="div-input">
+                            <select  id="category" v-model="category_id" required>
+                                <option value="">{{__('general.web.select')}}</option>
+                                <option v-for="category in categories" v-bind:value="category.id">
+                                    {{category['name_' + __locale()]}}
+                                </option>
+                            </select>
+                            <error :errors="__e(errors,'category_id')"></error>
+                        </div>
+                    </div>
+                    <div class="div-form">
+                        <label for="status">{{__('general.web.product.status')}}</label>
+                        <div class="div-input">
+                            <select  id="status" v-model="product.status" required>
+                                <option value="">{{__('general.web.select')}}</option>
+                                <option value="active">{{__('general.web.product.active')}}</option>
+                                <option value="inactive">{{__('general.web.product.inactive')}}</option>
+                            </select>
+                            <error :errors="__e(errors,'status')"></error>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-5">
+                        <a @click="setTab(2)" class="modal-previous-next dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            {{__('general.web.next')}} >
+                        </a>
                     </div>
                 </div>
-                <div class="div-form">
-                    <label for="name_es">{{__('general.web.product.name_es')}}</label>
-                    <div class="div-input">
-                        <input type="text" id="name_es" v-model="product.name_es" required minlength="4" maxlength="60">
-                        <error :errors="__e(errors,'name_es')"></error>
+                <div v-if="tab==2">
+                    <div class="form-file mt-5 mb-10">
+                        <label for="image">{{__('general.web.product.image')}}</label>
+                        <div class="div-input">
+                            <input type="file" id="image" ref="fileupload" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg" required>
+                            <error :errors="__e(errors,'image')"></error>
+                        </div>
                     </div>
-                </div>
-                <div class="div-form">
-                    <label for="description_es">{{__('general.web.product.description_es')}}</label>
-                    <div class="div-input">
-                        <textarea type="text" id="description_es" v-model="product.description_es" required minlength="80" maxlength="400"></textarea>
-                        <error :errors="__e(errors,'description_es')"></error>
-                    </div>
-                </div>
-                <div class="div-form">
-                    <label for="name_en">{{__('general.web.product.name_en')}}</label>
-                    <div class="div-input">
-                        <input type="text" id="name_en" v-model="product.name_en" required minlength="4" maxlength="60">
-                        <error :errors="__e(errors,'name_en')"></error>
-                    </div>
-                </div>
-                <div class="div-form">
-                    <label for="description_en">{{__('general.web.product.description_en')}}</label>
-                    <div class="div-input">
-                        <textarea type="text" id="description_en" v-model="product.description_en" required minlength="80" maxlength="400"></textarea>
-                        <error :errors="__e(errors,'description_en')"></error>
-                    </div>
-                </div>
-                <div class="div-form">
-                    <label for="price">{{__('general.web.product.price')}}</label>
-                    <div class="div-input">
-                        <input type="number" id="price" v-model="product.price">
-                        <error :errors="__e(errors,'price')"></error>
-                    </div>
-                </div>
-                <div class="div-form">
-                    <label for="stock">{{__('general.web.product.stock')}}</label>
-                    <div class="div-input">
-                        <input type="number" id="stock" v-model="product.stock" required>
-                        <error :errors="__e(errors,'stock')"></error>
-                    </div>
-                </div>
-                <div class="div-form">
-                    <label for="taxes">{{__('general.web.product.taxes')}}</label>
-                    <div class="div-input">
-                        <input type="number" id="taxes" v-model="product.taxes" required>
-                        <error :errors="__e(errors,'taxes')"></error>
-                    </div>
-                </div>
-                <div class="div-form">
-                    <label for="category">{{__('general.web.category.category')}}</label>
-                    <div class="div-input">
-                        <select  id="category" v-model="category_id" required>
-                            <option value="">{{__('general.web.select')}}</option>
-                            <option v-for="category in categories" v-bind:value="category.id">
-                                {{category['name_' + __locale()]}}
-                            </option>
-                        </select>
-                        <error :errors="__e(errors,'category_id')"></error>
-                    </div>
-                </div>
-                <div class="div-form">
-                    <label for="status">{{__('general.web.product.status')}}</label>
-                    <div class="div-input">
-                        <select  id="status" v-model="product.status" required>
-                            <option value="">{{__('general.web.select')}}</option>
-                            <option value="active">{{__('general.web.product.active')}}</option>
-                            <option value="inactive">{{__('general.web.product.inactive')}}</option>
-                        </select>
-                        <error :errors="__e(errors,'status')"></error>
-                    </div>
-                </div>
-                <div class="form-file">
-                    <label for="image">{{__('general.web.product.image')}}</label>
-                    <div class="div-input">
-                        <input type="file" id="image" ref="fileupload" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg" required>
-                        <error :errors="__e(errors,'image')"></error>
+                    <div class="flex justify-center mx-auto p-2 mt-3">
+                        <a @click="setTab(1)"  class="modal-previous-next dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <{{__('general.web.previous')}}
+                        </a>
+                        <button
+                            v-on:click="close"
+                            class="px-6 py-2 text-orangePantone border border-orangePantone rounded font-bold"
+                        >
+                            {{__('general.web.close')}}
+                        </button>
+                        <button
+                            class="px-6 py-2 ml-2 text-white bg-orangePantone rounded"
+                            v-on:click="create"
+                        >
+                            {{__('general.web.save')}}
+                        </button>
                     </div>
                 </div>
 
-                <div class="flex justify-center mx-auto p-2 mt-3">
-                    <button
-                        v-on:click="close"
-                        class="px-6 py-2 text-orangePantone border border-orangePantone rounded font-bold"
-                    >
-                        {{__('general.web.close')}}
-                    </button>
-                    <button
-                        class="px-6 py-2 ml-2 text-white bg-orangePantone rounded"
-                        v-on:click="create"
-                    >
-                        {{__('general.web.save')}}
-                    </button>
-                </div>
             </form>
         </template>
     </Modal>
@@ -130,6 +151,7 @@ function initialState() {
             status: '',
             stock: '',
         },
+        tab: 1,
         category_id: '',
         errors: [],
         categories: [],
@@ -154,7 +176,24 @@ export default {
     mounted() {
         this.getAllCategories()
     },
+    computed: {
+        getTabPage1: function() {
+            return {
+                'active-tab active dark:bg-dimgray dark:text-orangePantone': this.tab === 1,
+                'inactive-tab dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300': this.tab !== 1,
+            }
+        },
+        getTabPage2: function() {
+            return {
+                'active-tab active dark:bg-dimgray dark:text-orangePantone': this.tab === 2,
+                'inactive-tab dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300': this.tab !== 2,
+            }
+        },
+    },
     methods: {
+        setTab(tab){
+          this.tab = tab
+        },
 
         onChange(e) {
             this.product.image = e.target.files[0];

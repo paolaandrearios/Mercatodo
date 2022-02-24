@@ -105,6 +105,8 @@ return [
             'products_found' => 'Products Found',
             'product_found' => 'Product Found',
             'not_found' => 'Sorry, Product Not Found',
+            'information' => 'Information',
+            'images' => 'Images',
         ],
     ],
 

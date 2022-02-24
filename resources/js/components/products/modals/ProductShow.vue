@@ -6,66 +6,88 @@
         <template v-slot:body>
             <div>
                 <table v-if="!__isEmpty(product)">
-                    <tr>
-                        <td class="label-table">Id</td>
-                        <td>{{product.id}}</td>
-                    </tr>
-                    <tr>
-                        <td class="label-table">{{__('general.web.product.sku')}}</td>
-                        <td>{{product.sku}}</td>
-                    </tr>
-                    <tr>
-                        <td class="label-table">{{__('general.web.product.name_es')}}</td>
-                        <td>{{product.name_es}}</td>
-                    </tr>
-                    <tr>
-                        <td class="label-table">{{__('general.web.product.description_es')}}</td>
-                        <td>{{product.description_es}}</td>
-                    </tr>
-                    <tr>
-                        <td class="label-table">{{__('general.web.product.name_en')}}</td>
-                        <td>{{product.name_en}}</td>
-                    </tr>
-                    <tr>
-                        <td class="label-table">{{__('general.web.product.description_en')}}</td>
-                        <td>{{product.description_en}}</td>
-                    </tr>
-                    <tr>
-                        <td class="label-table">{{__('general.web.product.price')}}</td>
-                        <td>{{product.price}}</td>
-                    </tr>
-                    <tr>
-                        <td class="label-table">{{__('general.web.product.stock')}}</td>
-                        <td>{{product.stock}}</td>
-                    </tr>
-                    <tr>
-                        <td class="label-table">{{__('general.web.product.taxes')}}</td>
-                        <td>{{product.taxes}}</td>
-                    </tr>
-                    <tr>
-                        <td class="label-table">{{__('general.web.category.category')}}</td>
-                        <td>
-                            {{ product.categories[0]['name_' + __locale()]}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="label-table">{{__('general.web.product.status')}}</td>
-                        <td>{{__('general.web.product.'+ product.status)}}</td>
-                    </tr>
-                    <tr>
-                        <td class="label-table">{{__('general.web.product.image')}}</td>
-                        <td>
-                            <img class="w-5/6" v-bind:src="__asset(product.image)"/>
-                        </td>
-                    </tr>
+                    <ul class="modal__tabs dark:border-gray-700">
+                        <li class="mr-2">
+                            <a @click="setTab(1)" aria-current="page" v-bind:class="getTabPage1">{{__('general.web.product.information')}}</a>
+                        </li>
+                        <li class="mr-2">
+                            <a @click="setTab(2)" aria-current="page" v-bind:class="getTabPage2">{{__('general.web.product.images')}}</a>
+                        </li>
+                    </ul>
+                    <div v-if="tab==1">
+                        <tr class="mt-5">
+                            <td class="label-table">Id</td>
+                            <td>{{product.id}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-table">{{__('general.web.product.sku')}}</td>
+                            <td>{{product.sku}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-table">{{__('general.web.product.name_es')}}</td>
+                            <td>{{product.name_es}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-table">{{__('general.web.product.description_es')}}</td>
+                            <td>{{product.description_es}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-table">{{__('general.web.product.name_en')}}</td>
+                            <td>{{product.name_en}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-table">{{__('general.web.product.description_en')}}</td>
+                            <td>{{product.description_en}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-table">{{__('general.web.product.price')}}</td>
+                            <td>{{product.price}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-table">{{__('general.web.product.stock')}}</td>
+                            <td>{{product.stock}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-table">{{__('general.web.product.taxes')}}</td>
+                            <td>{{product.taxes}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-table">{{__('general.web.category.category')}}</td>
+                            <td>
+                                {{ product.categories[0]['name_' + __locale()]}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-table">{{__('general.web.product.status')}}</td>
+                            <td>{{__('general.web.product.'+ product.status)}}</td>
+                        </tr>
+                        <div class="flex justify-center mt-5">
+                            <a @click="setTab(2)" class="modal-previous-next dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                {{__('general.web.next')}} >
+                            </a>
+                        </div>
+                    </div>
+                    <div v-if="tab==2">
+                        <tr class="mt-5 mb-10">
+                            <td class="label-table">{{__('general.web.product.image')}}</td>
+                            <td>
+                                <img class="w-5/6" v-bind:src="__asset(product.image)"/>
+                            </td>
+                        </tr>
+                    </div>
                 </table>
-                <div class="text-center p-2 mt-3">
-                    <button
-                        @click="close()"
-                        class="px-6 py-2 text-orangePantone border border-orangePantone rounded font-bold"
-                    >
-                        {{__('general.web.close')}}
-                    </button>
+                <div v-if="tab==2">
+                    <div class="text-center p-2 mt-3">
+                        <a @click="setTab(1)"  class="modal-previous-next dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <{{__('general.web.previous')}}
+                        </a>
+                        <button
+                            @click="close()"
+                            class="px-6 py-2 text-orangePantone border border-orangePantone rounded font-bold"
+                        >
+                            {{__('general.web.close')}}
+                        </button>
+                    </div>
                 </div>
             </div>
         </template>
@@ -89,16 +111,33 @@ export default {
     data() {
         return {
             categories: [],
+            tab: 1,
         }
     },
 
     mounted() {
         this.getAllCategories()
     },
+    computed: {
+        getTabPage1: function() {
+            return {
+                'active-tab active dark:bg-dimgray dark:text-orangePantone': this.tab === 1,
+                'inactive-tab dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300': this.tab !== 1,
+            }
+        },
+        getTabPage2: function() {
+            return {
+                'active-tab active dark:bg-dimgray dark:text-orangePantone': this.tab === 2,
+                'inactive-tab dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300': this.tab !== 2,
+            }
+        },
+    },
     emits: ['close'],
 
     methods: {
-
+        setTab(tab){
+            this.tab = tab
+        },
         close: function() {
             this.$emit('close')
         },

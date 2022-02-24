@@ -103,6 +103,8 @@ return [
             'products_found' => 'Productos Encontrados',
             'product_found' => 'Producto Encontrado',
             'not_found' => 'Lo Sentimos, Producto No Encontrado',
+            'information' => 'Información',
+            'images' => 'Imágenes',
         ],
     ],
 

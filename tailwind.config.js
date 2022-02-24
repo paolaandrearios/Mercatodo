@@ -5,6 +5,11 @@ module.exports = {
     './resources/**/*.js',
     './resources/**/*.vue',
   ],
+  experimental: {
+    applyComplexClasses: true,
+    darkModeVariant: true,
+  },
+  darkMode: 'class',
   theme: {
     extend: {
         colors: {
@@ -23,13 +28,14 @@ module.exports = {
         }
     },
   },
-  variants: {},
+  variants: {
+      boxShadow: ['responsive', 'hover', 'focus', 'active'],
+  },
   plugins: [
     require('@tailwindcss/ui'),
     require('@tailwindcss/nesting'),
-    require('autoprefixer')
+    require('autoprefixer'),
+    require('tailwindcss-dark-mode')()
   ],
-    experimental: {
-      applyComplexClasses: true,
-    },
+
 }
