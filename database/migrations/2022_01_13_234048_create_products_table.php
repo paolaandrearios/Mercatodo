@@ -15,7 +15,6 @@ class CreateProductsTable extends Migration
             $table->text('description_en');
             $table->String('name_es');
             $table->text('description_es');
-            $table->String('image');
             $table->double('price', 15, 2);
             $table->float('taxes');
             $table->enum('status', ['active', 'inactive'])->default('active');

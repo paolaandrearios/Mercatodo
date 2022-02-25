@@ -11,6 +11,7 @@ use App\Http\Requests\Api\UpdateProductRequest;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\JsonResponse;
+use function MongoDB\BSON\toJSON;
 
 class ProductController extends Controller
 {

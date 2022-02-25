@@ -101,13 +101,47 @@
                     </div>
                 </div>
                 <div v-if="tab==2">
-                    <div class="form-file mt-5 mb-10">
-                        <label for="image">{{__('general.web.product.image')}}</label>
-                        <div class="div-input">
-                            <input type="file" id="image" ref="fileupload" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg" required>
-                            <error :errors="__e(errors,'image')"></error>
+                    <div v-show="count_images < 5" class="flex justify-end mt-3">
+                        <div class="section__container--add">
+                            <button v-on:click="addImage()"><i class="text-white pr-1 fas fa-plus-circle"></i>{{__('general.web.product.add')}}</button>
                         </div>
                     </div>
+                    <div class="form-file mt-5 mb-10">
+                        <label for="image0">{{__('general.web.product.image')}}</label>
+                        <div class="div-input">
+                            <input type="file" id="image0" required data-index="0" ref="fileupload0" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg">
+                            <error :errors="__e(errors,'image0')"></error>
+                        </div>
+                    </div>
+                    <div v-if="count_images >= 2" class="form-file mt-5 mb-10">
+                        <label for="image1">{{__('general.web.product.image')}}</label>
+                        <div class="div-input">
+                            <input type="file" id="image1" ref="fileupload1" data-index="1" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg">
+                            <error :errors="__e(errors,'image1')"></error>
+                        </div>
+                    </div>
+                    <div v-if="count_images >= 3" class="form-file mt-5 mb-10">
+                        <label for="image2">{{__('general.web.product.image')}}</label>
+                        <div class="div-input">
+                            <input type="file" id="image2" ref="fileupload2" data-index="2" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg">
+                            <error :errors="__e(errors,'image2')"></error>
+                        </div>
+                    </div>
+                    <div v-if="count_images >= 4" class="form-file mt-5 mb-10">
+                        <label for="image3">{{__('general.web.product.image')}}</label>
+                        <div class="div-input">
+                            <input type="file" id="image3" data-index="3" ref="fileupload3" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg">
+                            <error :errors="__e(errors,'image3')"></error>
+                        </div>
+                    </div>
+                    <div v-if="count_images >= 5" class="form-file mt-5 mb-10">
+                        <label for="image4">{{__('general.web.product.image')}}</label>
+                        <div class="div-input">
+                            <input type="file" id="image4" ref="fileupload4" data-index="4" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg">
+                            <error :errors="__e(errors,'image4')"></error>
+                        </div>
+                    </div>
+
                     <div class="flex justify-center mx-auto p-2 mt-3">
                         <a @click="setTab(1)"  class="modal-previous-next dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                             <{{__('general.web.previous')}}
@@ -145,13 +179,14 @@ function initialState() {
             name_es: '',
             description_es: '',
             description_en: '',
-            image: '',
             price: '',
             taxes: '',
             status: '',
             stock: '',
         },
+        images: [{}, {}, {}, {}, {}],
         tab: 1,
+        count_images: 1,
         category_id: '',
         errors: [],
         categories: [],
@@ -191,12 +226,15 @@ export default {
         },
     },
     methods: {
+        addImage(e) {
+            this.count_images++;
+        },
         setTab(tab){
           this.tab = tab
         },
 
         onChange(e) {
-            this.product.image = e.target.files[0];
+            this.images[e.target.dataset.index] = e.target.files[0];
         },
         close: function() {
             this.errors = []
@@ -217,12 +255,19 @@ export default {
             data.append('name_en', this.product.name_en);
             data.append('description_en', this.product.description_en);
             data.append('description_es', this.product.description_es);
-            data.append('image', this.product.image);
             data.append('price', this.product.price);
             data.append('taxes', this.product.taxes);
             data.append('category_id', this.category_id);
             data.append('status', this.product.status);
             data.append('stock', this.product.stock);
+            let i = 0
+            for(let image of this.images) {
+                if(image instanceof File) {
+                    data.append('images[' + i + ']', image);
+                }
+                i++
+            }
+            // data.append('images', this.images);
 
 
             axios.post('/evertec/mercatodo/public/api/admin/products',
@@ -244,7 +289,11 @@ export default {
         },
         reset: function (){
             Object.assign(this.$data, initialState());
-            this.$refs.fileupload.value=null;
+            this.$refs.fileupload0.value=null;
+            this.$refs.fileupload1.value=null;
+            this.$refs.fileupload2.value=null;
+            this.$refs.fileupload3.value=null;
+            this.$refs.fileupload4.value=null;
         }
     },
 }

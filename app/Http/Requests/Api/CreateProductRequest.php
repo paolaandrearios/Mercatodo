@@ -43,8 +43,7 @@ class CreateProductRequest extends FormRequest
                 'min:80',
                 'max:400',
             ],
-            'image' => [
-                'required',
+            'images.*' => [
                 'image',
                 'mimes:jpg,bmp,png',
             ],
