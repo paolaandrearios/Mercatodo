@@ -175,18 +175,34 @@
                         </div>
                     </div>
                     <div v-if="tab==2">
-                        <tr class="mt-5 mb-10">
-                            <td class="label-table">{{__('general.web.product.image')}}</td>
-                            <td>
-                                <div>
-                                    <img class="w-2/4 mb-2" v-bind:src="__asset(product.image)"/>
-                                    <button>
-                                        <input class="overflow-x-scroll" type="file" id="image" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg" required>
-                                    </button>
-                                </div>
-                                <error :errors="__e(errors,'image')"></error>
-                            </td>
-                        </tr>
+                        <div v-show="count_images < 1" class="flex justify-end mt-3">
+                            <div class="section__container--add">
+                                <button v-on:click="addImage()"><i class="text-white pr-1 fas fa-plus-circle"></i>{{__('general.web.product.add')}}</button>
+                            </div>
+                        </div>
+                        <div v-for="(image, index) in images" :key="index">
+                            <tr v-if="!__isEmpty(image)" class="mt-5 mb-10">
+                                <td class="label-table">{{__('general.web.product.image')}}</td>
+                                <td>
+                                    <div>
+                                        <img class="w-2/4 mb-2" v-bind:src="__asset(image['url'])"/>
+                                        <button>
+                                            <input class="overflow-x-scroll" type="file" :ref="'fileupload'+index" :data-index="index" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg" required>
+                                        </button>
+                                    </div>
+                                    <error :errors="__e(errors,'image')"></error>
+                                </td>
+                            </tr>
+                            <div v-show="count_images === 1">
+                                <tr v-if="__isEmpty(image)" class="mt-5 mb-10">
+                                    <td class="label-table">{{__('general.web.product.image')}}</td>
+                                    <div class="div-input">
+                                        <input type="file" id="image" :ref="'fileupload'+index" :data-index="index" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg">
+                                        <error :errors="__e(errors,'image')"></error>
+                                    </div>
+                                </tr>
+                            </div>
+                        </div>
                     </div>
                 </table>
                 <div v-if="tab==2">
@@ -218,6 +234,11 @@ import axios from "axios";
 import Modal from "../../utils/Modal";
 import Error from "../../utils/Error";
 
+function initialState() {
+    return {
+        images: [{}, {}, {}, {}, {}],
+    }
+}
 
 export default {
     name: "ProductEdit.vue",
@@ -235,6 +256,9 @@ export default {
             errors: [],
             categories: [],
             tab: 1,
+            count_images: 0,
+            images: [{}, {}, {}, {}, {}],
+            updated_images: [0,0,0,0,0],
         }
     },
     mounted() {
@@ -258,17 +282,24 @@ export default {
     emits: ['close', 'getAllProducts'],
 
     methods: {
+        addImage(e) {
+            this.count_images++;
+        },
         setTab(tab){
             this.tab = tab
         },
 
         onChange(e) {
-            this.product.image = e.target.files[0];
+            if(!(this.images[e.target.dataset.index] instanceof File)){
+                this.updated_images[e.target.dataset.index] = this.images[e.target.dataset.index].id
+            }
+            this.images[e.target.dataset.index] = e.target.files[0];
         },
 
         close: function() {
             this.errors = [];
-            this.$emit('close')
+            this.$emit('close');
+            this.reset();
         },
 
         update: function () {
@@ -290,17 +321,22 @@ export default {
             data.append('taxes', this.product.taxes);
             data.append('category_id', this.category_id.toString());
             data.append('status', this.product.status);
-            data.append('_method', 'PUT');
-
-            if(typeof this.product.image === 'object') {
-                data.append('image', this.product.image);
+            data.append('updated_images', this.updated_images)
+            let i = 0
+            for(let image of this.images) {
+                if(image instanceof File) {
+                    data.append('images[' + i + ']', image);
+                }
+                i++
             }
+            data.append('_method', 'PUT');
 
             axios.post('/evertec/mercatodo/public/api/admin/products/' + this.product.id,
                 data,
                 config
             ).then(response => {
                 alert(response.data.message)
+                this.reset();
                 this.$emit('getAllProducts');
                 this.close();
             }).catch(error => {
@@ -312,6 +348,15 @@ export default {
                 .get('/evertec/mercatodo/public/api/admin/categories')
                 .then(response => (this.categories = response.data.categories.data))
         },
+        reset: function (){
+            Object.assign(this.$data, initialState());
+            this.$refs.fileupload0.value=null;
+            this.$refs.fileupload1.value=null;
+            this.$refs.fileupload2.value=null;
+            this.$refs.fileupload3.value=null;
+            this.$refs.fileupload4.value=null;
+            this.count_images= 0;
+        }
     },
 
 
@@ -319,6 +364,11 @@ export default {
         edit: function(newVal, oldVal) {
             this.isOpenEdit = newVal;
         },
+        product: function(newVal, oldVal){
+            this.product.images.map((image, index) => {
+                this.images[index] = image;
+            })
+        }
     }
 }
 </script>

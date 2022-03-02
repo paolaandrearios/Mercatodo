@@ -141,7 +141,6 @@
                             <error :errors="__e(errors,'image4')"></error>
                         </div>
                     </div>
-
                     <div class="flex justify-center mx-auto p-2 mt-3">
                         <a @click="setTab(1)"  class="modal-previous-next dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                             <{{__('general.web.previous')}}
@@ -267,8 +266,6 @@ export default {
                 }
                 i++
             }
-            // data.append('images', this.images);
-
 
             axios.post('/evertec/mercatodo/public/api/admin/products',
                 data,

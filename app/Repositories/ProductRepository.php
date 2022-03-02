@@ -9,7 +9,7 @@ class ProductRepository
 {
     public function get(string $keyword = null, string $status = null, $statusCategory = null, $category = ''): LengthAwarePaginator
     {
-        $products = Product::with('categories');
+        $products = Product::with('categories', 'images');
 
         if (!empty($keyword)) {
             $products = $products->where(function ($query) use ($keyword) {

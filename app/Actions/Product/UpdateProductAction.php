@@ -3,9 +3,12 @@
 namespace App\Actions\Product;
 
 use App\Helpers\Helper;
+use App\Models\Image;
 use App\Models\Product;
 use App\Repositories\ImageRepository;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\isInstanceOf;
 
 class UpdateProductAction
 {
@@ -30,13 +33,32 @@ class UpdateProductAction
 
         $product->slug = Helper::generateSlug($product['name_en']);
 
-        if ($request->image) {
-            $filePath = $this->imageRepository->upload('products', $request->image);
-            $product->image = config('general.custom_image_path') . $filePath;
-        }
-
         $product->categories()->sync($request->input('category_id'));
 
+        $this->imageUpdateUpload($request, $product);
+
         return $product->save();
+    }
+
+    public function imageUpdateUpload(Request $request, Product $product): void
+    {
+        $updated_images = explode(',',$request->updated_images);
+
+        if($request->images !== null)
+        {
+            foreach ($request->images as $index => $image_product){
+
+                if($updated_images[$index] === ''){
+                    $image = new Image();
+                }else {
+                    $image = Image::where('id', $updated_images[$index])->first();
+                }
+
+                $filePath = $this->imageRepository->upload('products', $image_product);
+                $image->url = config('general.custom_image_path') . $filePath;
+                $image->product_id = $product->id;
+                $image->save();
+            }
+        }
     }
 }

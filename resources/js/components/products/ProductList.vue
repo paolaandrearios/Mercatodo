@@ -102,9 +102,8 @@ export default {
             axios
                 .get(`/evertec/mercatodo/public/api/admin/products?page=${pageNum}`)
                 .then(response => {
-                    this.products = response.data.products.data
-                    this.pagination = response.data.products
-
+                    this.products = response.data.products.data;
+                    this.pagination = response.data.products;
                 })
         },
         add: function () {
