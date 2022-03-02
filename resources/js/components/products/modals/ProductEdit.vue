@@ -182,7 +182,7 @@
                         </div>
                         <div v-for="(image, index) in images" :key="index">
                             <tr v-if="!__isEmpty(image)" class="mt-5 mb-10">
-                                <td class="label-table">{{__('general.web.product.image')}}</td>
+                                <td class="label-table">{{__('general.web.product.image') + ' ' + (index+1)}}</td>
                                 <td>
                                     <div>
                                         <img class="w-2/4 mb-2" v-bind:src="__asset(image['url'])"/>
@@ -195,7 +195,7 @@
                             </tr>
                             <div v-show="count_images === 1">
                                 <tr v-if="__isEmpty(image)" class="mt-5 mb-10">
-                                    <td class="label-table">{{__('general.web.product.image')}}</td>
+                                    <td class="label-table">{{__('general.web.product.image') + ' ' + (index+1)}}</td>
                                     <div class="div-input">
                                         <input type="file" id="image" :ref="'fileupload'+index" :data-index="index" v-on:change="onChange" accept="image/png,image/jpeg,image/jpg">
                                         <error :errors="__e(errors,'image')"></error>

@@ -68,12 +68,16 @@
                         </div>
                     </div>
                     <div v-if="tab==2">
-                        <tr class="mt-5 mb-10">
-                            <td class="label-table">{{__('general.web.product.image')}}</td>
-                            <td>
-                                <img class="w-5/6" v-bind:src="__asset(product.image)"/>
-                            </td>
-                        </tr>
+                        <div v-for="(image, index) in images" :key="index">
+                            <tr v-if="!__isEmpty(image)" class="mt-5 mb-10">
+                                <td class="label-table">{{__('general.web.product.image') + ' ' + (index+1)}}</td>
+                                <td>
+                                    <div>
+                                        <img class="w-2/4 mb-2" v-bind:src="__asset(image['url'])"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </div>
                     </div>
                 </table>
                 <div v-if="tab==2">
@@ -112,6 +116,7 @@ export default {
         return {
             categories: [],
             tab: 1,
+            images: [{}, {}, {}, {}, {}],
         }
     },
 
@@ -151,6 +156,11 @@ export default {
     watch: {
         show: function(newVal, oldVal) {
             this.isOpenShow = newVal
+        },
+        product: function(newVal, oldVal){
+            this.product.images.map((image, index) => {
+                this.images[index] = image;
+            })
         }
     }
 }
