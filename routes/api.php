@@ -50,8 +50,10 @@ Route::group(['middleware' => 'auth:sanctum' ,'prefix' => 'admin', 'as'=>'admin.
 
 //Public Routes
 Route::resource('products', ProductController::class)->only([
-    'show', 'index',
+     'index',
 ]);
+
+Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
 
 Route::resource('categories', CategoryController::class)->only([
     'show', 'index',

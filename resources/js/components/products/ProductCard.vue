@@ -1,13 +1,15 @@
 <template>
     <div>
-        <img
-            width="288"
-            height="360"
-            class="object-contain rounded-lg mx-auto"
-            :src="__asset(product.images())"
-            alt="Product"
-        />
-        {{console.log(producto.image)}}
+        <div>
+            <img
+                width="288"
+                height="360"
+                class="object-contain rounded-lg mx-auto"
+                :src="__asset(product.images[0]['url'])"
+                alt="Product"
+            />
+        </div>
+
         <div class="text-xs md:text-sm font-semibold mt-4">{{product['name_' + __locale()]}}</div>
         <div class="text-xs md:text-sm text-gray-400">
             <span class="line-through mr-2"></span>
@@ -15,6 +17,7 @@
         </div>
         <div class="flex justify-center">
             <button
+                v-on:click="seeDetails"
                 class="text-center text-xs md:text-sm font-bold border-2 border-gray-400 rounded-full mt-1 px-4 py-1 text-gray-400 hover:text-greenTem hover:border-greenTem focus:outline-none transition-color duration-300">
                 {{__('general.web.see_more')}}
             </button>
@@ -23,11 +26,19 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     name: "ProductCard.vue",
     props: {
         product: Object,
-    }
+    },
+
+    methods: {
+        seeDetails(e){
+            window.location.href = '/evertec/mercatodo/public/product/'+ this.product['slug'];
+        }
+    },
 }
 </script>
 

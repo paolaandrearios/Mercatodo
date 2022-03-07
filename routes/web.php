@@ -40,6 +40,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
 // Client Routes
 Route::group(['as'=>'client.'], function () {
     Route::get('/', [ClientProductController::class, 'index'])->name('product.index');
+    Route::get('/product/{slug}', [ClientProductController::class, 'show'])->name('product.show');
 });
 
 Route::get('/locale/{locale?}', function ($locale = null) {

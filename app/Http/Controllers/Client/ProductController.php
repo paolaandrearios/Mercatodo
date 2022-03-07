@@ -32,4 +32,9 @@ class ProductController extends Controller
     {
         return view('client.index');
     }
+
+    public function show(): view
+    {
+        return view('client.product.show');
+    }
 }

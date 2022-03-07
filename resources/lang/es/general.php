@@ -105,6 +105,10 @@ return [
             'not_found' => 'Lo Sentimos, Producto No Encontrado',
             'information' => 'Información',
             'images' => 'Imágenes',
+            'cart' => 'Carrito',
+            'empty_cart' => 'Tu carrito esta vacío',
+            'checkout' => 'Comprar Ahora',
+            'add_to_cart' => 'Agregar al Carrito',
         ],
     ],
 

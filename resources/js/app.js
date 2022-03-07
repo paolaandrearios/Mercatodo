@@ -48,10 +48,10 @@ Vue.component('category-list-client', require('./components/categories/CategoryL
 Vue.component('product-list', require('./components/products/ProductList.vue').default);
 Vue.component('product-add', require('./components/products/modals/ProductAdd.vue').default);
 Vue.component('product-edit', require('./components/products/modals/ProductEdit.vue').default);
+Vue.component('product-show', require('./components/products/modals/ProductShow.vue').default);
 
 Vue.component('product-grid', require('./components/products/ProductGrid.vue').default);
-
-Vue.component('product-show', require('./components/products/modals/ProductShow.vue').default);
+Vue.component('product-detail', require('./components/products/ProductDetail.vue').default);
 
 //Home page
 Vue.component('home-page', require('./components/pages/homePage/HomePage.vue').default);

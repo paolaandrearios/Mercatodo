@@ -14,8 +14,8 @@ class ProductSeeder extends Seeder
             $product->categories()->attach(rand(1, 5));
             $product->images()->saveMany([
                 new Image(['url'=> '/images/new-product.jpg', 'product_id' => $product->id]),
-                new Image(['url'=> '/images/new-product.jpg', 'product_id' => $product->id]),
-                new Image(['url'=> '/images/new-product.jpg', 'product_id' => $product->id]),
+                new Image(['url'=> '/images/new-category.jpg', 'product_id' => $product->id]),
+                new Image(['url'=> '/images/fashion.jpg', 'product_id' => $product->id]),
             ]) ;
         });
     }

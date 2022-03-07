@@ -107,6 +107,10 @@ return [
             'not_found' => 'Sorry, Product Not Found',
             'information' => 'Information',
             'images' => 'Images',
+            'cart' => 'Cart',
+            'empty_cart' => 'Your cart is empty',
+            'checkout' => 'Checkout',
+            'add_to_cart' => 'Add to Cart',
         ],
     ],
 

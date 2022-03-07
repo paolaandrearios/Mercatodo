@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav class="homepage__header">
-            <logo class="text-2xl md:text-4xl"></logo>
+            <logo class="text-xl md:text-2xl"></logo>
             <searcher @searchProducts="searchProducts" :errors="errors"></searcher>
             <cart-button></cart-button>
         </nav>
