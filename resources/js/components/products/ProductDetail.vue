@@ -109,7 +109,7 @@
                         </div>
 
                         <div class="mt-2 mb-4">
-                          <span class="text-4xl font-extrabold text-black">
+                          <span class="text-xl md:text-4xl font-extrabold text-black">
                             {{ this.product['name_'+ __locale()] }}
                           </span>
                         </div>
@@ -123,7 +123,7 @@
                         <div class="grid grid-rows-1">
                             <div class="grid-cols-8 md:grid-cols-12 flex flex-row items-center">
                                 <div>
-                                  <span class="text-2xl font-extrabold text-black">
+                                  <span class="text-xl md:text-2xl font-extrabold text-black">
                                     {{__currencyFormat(product.price)}}
                                   </span>
                                 </div>
