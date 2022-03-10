@@ -9,7 +9,7 @@
             </div>
             <div class="relative" @click="showItems()" >
                 <i class="fas fa-shopping-cart productDetail__header--cart"></i>
-                <span v-if="cartItemsCount !== 0" class="productDetail__header--counter">
+                <span v-if="this.cartItems.length !== 0" class="productDetail__header--counter">
                     {{ cartItemsCount }}
                 </span>
             </div>
@@ -79,7 +79,7 @@
                     <div class="flex flex-col">
                         <div class="grid-cols-12 md:px-2 md:block">
                             <div class="cursor-pointer">
-                                <button class="productDetail__content--buttonImage" @click="changeMainImage(product.images[index])">
+                                <button v-if="product.images.length > 0" class="productDetail__content--buttonImage" @click="changeMainImage(product.images[index])">
                                     {{ (index+1) + '/' + product.images.length }}
                                 </button>
                                 <img :src="__asset(this.main_image)" class="relative z-0 w-full rounded-xl" @click="changeMainImage(product.images[index])">
@@ -103,7 +103,9 @@
                 <div class="grid-cols-12 md:grid-cols-6 text-left my-3">
                     <div>
                         <div>
-                          <span class="text-sm tracking-wide font-extrabold text-orangePantone">
+                          <span
+                              v-if="this.product['categories'].length > 0"
+                              class="text-sm tracking-wide font-extrabold text-orangePantone">
                             {{ this.product['categories'][0]['name_'+ __locale()] }}
                           </span>
                         </div>
@@ -178,31 +180,37 @@ import axios from "axios";
 import Logo from "../utils/Logo";
 
 export default {
-    name: "ProductShow.vue",
-    props: {
-    },
+    name: "ProductDetail.vue",
     components: {
         Logo,
     },
     data() {
         return {
-            product: {},
+            product: {images: [], categories:[]},
             main_image: '',
             count: 1,
             index: 1,
             cartItems: [],
             show_items: false,
+            accumItems: '',
         }
     },
     mounted() {
         this.getProduct();
-        const items = JSON.parse(localStorage.getItem('myCart'));
-        console.log('items', items);
+        let myCart = localStorage.getItem('myCart')
+        let items = []
+        if(myCart){
+            items = JSON.parse(myCart)
+        }
         this.cartItems = items;
     },
-    computed: {
+    computed:{
         cartItemsCount() {
-            return this.cartItems.length;
+            let accumItems = 0;
+            for(let i=0; i < this.cartItems.length; i++){
+                accumItems += this.cartItems[i].quantity
+            }
+            return accumItems;
         }
     },
     methods: {
@@ -240,11 +248,11 @@ export default {
             localStorage.setItem('myCart', JSON.stringify(this.cartItems));
         },
         addToCart() {
-
             let existingEntries = JSON.parse(localStorage.getItem("myCart"));
             if (existingEntries == null) existingEntries = [];
 
             let entry = {
+                id: this.product.id,
                 title: this.product['name_'+ this.__locale()],
                 price: this.product.price,
                 quantity: this.count,
@@ -254,7 +262,14 @@ export default {
             localStorage.setItem("latestItem", JSON.stringify(entry));
 
             // Save allEntries back to local storage
+            for(let i=0; i < existingEntries.length; i++){
+                if(entry.id === existingEntries[i].id){
+                    entry.quantity = existingEntries[i].quantity + entry.quantity;
+                    existingEntries.splice(i,1);
+                }
+            }
             existingEntries.push(entry);
+
             localStorage.setItem("myCart", JSON.stringify(existingEntries));
             this.cartItems = JSON.parse(localStorage.getItem('myCart'));
         },
