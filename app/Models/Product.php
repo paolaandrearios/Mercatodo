@@ -46,4 +46,11 @@ class Product extends Model
         return $this->hasMany(Image::class);
     }
 
+    //Relationship one to many
+
+    public function orderDetails(): HasMany
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
+
 }

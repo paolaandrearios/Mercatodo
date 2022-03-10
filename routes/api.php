@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Admin\CategoryStatusController;
 use App\Http\Controllers\Api\Admin\ProductController as ProductAdminController;
 use App\Http\Controllers\Api\Admin\ProductStatusController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Admin\UserStatusController;
@@ -58,3 +59,9 @@ Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product
 Route::resource('categories', CategoryController::class)->only([
     'show', 'index',
 ]);
+
+Route::resource('orders', OrderController::class)->only([
+    'show', 'store', 'update', 'destroy'
+]);
+
+Route::get('/orders/status/{status}', [OrderStatusController::class, 'show'])->name('product.show');
