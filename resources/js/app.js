@@ -53,6 +53,9 @@ Vue.component('product-show', require('./components/products/modals/ProductShow.
 Vue.component('product-grid', require('./components/products/ProductGrid.vue').default);
 Vue.component('product-detail', require('./components/products/ProductDetail.vue').default);
 
+//orders
+Vue.component('order-cart', require('./components/orders/Cart.vue').default);
+
 //Home page
 Vue.component('home-page', require('./components/pages/homePage/HomePage.vue').default);
 Vue.component('header-home-page', require('./components/pages/homePage/HeaderHomePage.vue').default);
@@ -66,7 +69,6 @@ Vue.component('pagination', require('./components/utils/Pagination.vue').default
 Vue.component('logo', require('./components/utils/Logo.vue').default);
 Vue.component('searcher', require('./components/utils/Searcher.vue').default);
 Vue.component('cart-button', require('./components/utils/CartButton.vue').default);
-Vue.component('bread-crumb', require('./components/utils/BreadCrumb.vue').default);
 Vue.component('footer-page', require('./components/utils/FooterPage.vue').default);
 
 /**

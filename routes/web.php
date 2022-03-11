@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\Order\CartController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
 Route::group(['as'=>'client.'], function () {
     Route::get('/', [ClientProductController::class, 'index'])->name('product.index');
     Route::get('/product/{slug}', [ClientProductController::class, 'show'])->name('product.show');
+    Route::get('/order/cart', [CartController::class, 'show'])->name('order.cart');
 });
 
 Route::get('/locale/{locale?}', function ($locale = null) {

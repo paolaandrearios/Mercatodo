@@ -40,6 +40,7 @@
 }
 
 .productDetail {
+    @apply font-poppins container mx-auto;
     &__header{
         @apply flex justify-between mx-10 md:mx-20 items-center;
         &--logo {

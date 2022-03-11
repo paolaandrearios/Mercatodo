@@ -2,8 +2,10 @@
     <div>
         <nav class="homepage__header">
             <logo class="text-xl md:text-2xl"></logo>
-            <searcher @searchProducts="searchProducts" :errors="errors"></searcher>
-            <cart-button></cart-button>
+            <div class="flex w-full items-center" >
+                <searcher @searchProducts="searchProducts" :errors="errors"></searcher>
+                <cart-button class="ml-2"></cart-button>
+            </div>
         </nav>
         <error class="text-xs text-center text-orangePantone font-bold mb-5" :errors="__e(errors, 'keyword')"></error>
     </div>

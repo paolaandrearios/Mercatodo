@@ -21,7 +21,7 @@
                         <div class="flex flex-col">
                             <div class="productDetail__cart--title">
                               <span class="font-bold">
-                                  {{ __('general.web.product.cart') }}
+                                  {{ __('general.web.order.cart') }}
                               </span>
                             </div>
                             <div class="productDetail__cart--content">
@@ -38,7 +38,7 @@
                                             </div>
                                             <div>
                                                 <span class="text-gray-500">
-                                                    {{ __currencyFormat(product.price)}} X {{ item.quantity }}
+                                                    {{ __currencyFormat(item.price)}} X {{ item.quantity }}
                                                 </span>
                                                 <span class="font-extrabold">
                                                     {{ calcPrice(item) }}
@@ -56,15 +56,15 @@
                                     <div class="grid-rows-1">
                                         <div class="grid-cols-12 w-72 text-center">
                                             <div class="text-gray-500 font-bold">
-                                                {{ __('general.web.product.empty_cart') }}
+                                                {{ __('general.web.order.empty_cart') }}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="grid-cols-12 my-3 mx-4">
-                                <button class="productDetail__cart--button">
-                                    {{ __('general.web.product.checkout') }}
+                                <button class="productDetail__cart--button" @click="seeCart(e)">
+                                    {{ __('general.web.order.see_cart') }}
                                 </button>
                             </div>
                         </div>
@@ -164,7 +164,7 @@
                                     <i class="fas fa-shopping-cart text-white"></i>
                                 </span>
                                 <span>
-                                    {{ __('general.web.product.add_to_cart') }}
+                                    {{ __('general.web.order.add_to_cart') }}
                                 </span>
                             </button>
                         </div>
@@ -241,7 +241,7 @@ export default {
             }
         },
         calcPrice(item) {
-            return  this.__currencyFormat(Number(this.product.price) * Number(item.quantity));
+            return  this.__currencyFormat(Number(item.price) * Number(item.quantity));
         },
         deleteItem(item, index) {
             this.cartItems.splice(index, 1);
@@ -253,6 +253,7 @@ export default {
 
             let entry = {
                 id: this.product.id,
+                category: this.product.category,
                 title: this.product['name_'+ this.__locale()],
                 price: this.product.price,
                 quantity: this.count,
@@ -278,6 +279,9 @@ export default {
         },
         goHome(e){
             window.location.href = '/evertec/mercatodo/public/';
+        },
+        seeCart(e){
+            window.location.href = '/evertec/mercatodo/public/order/cart';
         }
     },
 }

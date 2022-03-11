@@ -29,27 +29,6 @@
     }
 }
 
-.cartButton {
-    @apply relative hidden sm:block w-15 bg-orangePantone hover:bg-orange-600 focus:outline-none rounded-full h-12 text-white;
-    &__counter {
-        @apply absolute top-0 right-0 h-6 w-6 bg-greenTem rounded-full transform -translate-y-3/5 -translate-x-1/2 text-white font-bold flex items-center justify-center;
-    }
-    i {
-        @apply text-xl;
-    }
-}
-
-.breadcrumb {
-    @apply text-xs md:text-sm;
-    &:not(:last-child)::after {
-        content: "  >  ";
-    }
-
-    &:last-child {
-        color: green;
-    }
-}
-
 .header {
     @apply block md:flex bg-orangePantone justify-between ;
     &__logo {
