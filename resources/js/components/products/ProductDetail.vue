@@ -256,9 +256,11 @@ export default {
                 category: this.product.categories[0]['name_'+ this.__locale()],
                 title: this.product['name_'+ this.__locale()],
                 price: this.product.price,
+                taxes: this.product.taxes,
                 quantity: this.count,
                 image: '/evertec/mercatodo/public' + this.product.images[0]['url'],
             };
+
 
             localStorage.setItem("latestItem", JSON.stringify(entry));
 

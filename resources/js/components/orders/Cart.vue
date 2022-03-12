@@ -68,21 +68,21 @@
                     <h1 class="font-semibold text-lg md:text-2xl border-b pb-8">{{ __('general.web.order.order_summary') }}</h1>
                     <div class="flex justify-between mt-10 mb-5">
                         <span class="font-semibold text-sm uppercase">{{ __('general.web.order.items') }} {{ cartItemsCount }} </span>
-                        <span class="font-semibold text-sm">590$</span>
+                        <span class="font-semibold text-sm text-dimGray">{{ accumTotal }}</span>
                     </div>
 
                     <div class="border-t mt-8">
                         <div class="flex font-semibold justify-between py-6 text-sm uppercase">
                             <span>{{ __('general.web.order.taxes') }}</span>
-                            <span>$600</span>
+                            <span class="text-dimGray">{{ accumTaxes }}</span>
                         </div>
                         <div class="flex font-semibold justify-between py-6 text-sm uppercase">
                             <span>{{ __('general.web.order.subtotal') }}</span>
-                            <span>$600</span>
+                            <span class="text-dimGray">{{ accumSubtotal }}</span>
                         </div>
                         <div class="flex font-semibold justify-between py-6 text-sm uppercase">
                             <span>{{ __('general.web.order.total') }}</span>
-                            <span>$600</span>
+                            <span class="text-dimGray">{{ accumTotal }}</span>
                         </div>
 
                         <button class="bg-orangePantone font-semibold hover:bg-orange-600 py-3 rounded-xl text-sm text-white uppercase w-full">{{ __('general.web.order.checkout') }}</button>
@@ -129,9 +129,30 @@ export default {
         cartItemsCount() {
             let accumItems = 0;
             for(let i=0; i < this.cartItems.length; i++){
-                accumItems += this.cartItems[i].quantity
+                accumItems += this.cartItems[i].quantity;
             }
             return accumItems;
+        },
+        accumTaxes() {
+            let accumTaxes = 0;
+            for(let i=0; i < this.cartItems.length; i++){
+                accumTaxes += this.cartItems[i].taxes/100 * this.cartItems[i].price * this.cartItems[i].quantity;
+            }
+            return this.__currencyFormat(accumTaxes);
+        },
+        accumSubtotal() {
+            let accumSubtotal = 0;
+            for(let i=0; i < this.cartItems.length; i++){
+                accumSubtotal += (this.cartItems[i].price - this.cartItems[i].taxes/100 * this.cartItems[i].price) * this.cartItems[i].quantity;
+            }
+            return this.__currencyFormat(accumSubtotal);
+        },
+        accumTotal() {
+            let accumTotal = 0;
+            for(let i=0; i < this.cartItems.length; i++){
+                accumTotal += this.cartItems[i].price * this.cartItems[i].quantity;
+            }
+            return this.__currencyFormat(accumTotal);
         }
     },
     methods:{
@@ -170,6 +191,7 @@ export default {
                 category: item.category,
                 title: item.title,
                 price: item.price,
+                taxes: item.taxes,
                 quantity: item.quantity,
                 image: item.image,
             };
