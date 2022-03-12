@@ -3,7 +3,7 @@
         <div class="productDetail__header">
             <div class="productDetail__header--logo">
                 <logo class="text-xl md:text-4xl"></logo>
-                <button class="productDetail__header--button" @click="goHome(e)">
+                <button class="productDetail__header--button" @click="goHome()">
                     <i class="fas fa-home productDetail__header--icon"></i>
                 </button>
             </div>
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="grid-cols-12 my-3 mx-4">
-                                <button class="productDetail__cart--button" @click="seeCart(e)">
+                                <button class="productDetail__cart--button" @click="seeCart()">
                                     {{ __('general.web.order.see_cart') }}
                                 </button>
                             </div>
@@ -253,7 +253,7 @@ export default {
 
             let entry = {
                 id: this.product.id,
-                category: this.product.category,
+                category: this.product.categories[0]['name_'+ this.__locale()],
                 title: this.product['name_'+ this.__locale()],
                 price: this.product.price,
                 quantity: this.count,
@@ -277,10 +277,10 @@ export default {
         showItems(){
             this.show_items === true ? this.show_items = false : this.show_items = true;
         },
-        goHome(e){
+        goHome(){
             window.location.href = '/evertec/mercatodo/public/';
         },
-        seeCart(e){
+        seeCart(){
             window.location.href = '/evertec/mercatodo/public/order/cart';
         }
     },
