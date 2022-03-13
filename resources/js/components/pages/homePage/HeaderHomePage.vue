@@ -14,7 +14,7 @@
 <script>
 import Logo from "../../utils/Logo";
 import Searcher from "../../utils/Searcher";
-import CartButton from "../../utils/CartButton";
+import CartButton from "../../orders/CartButton";
 
 export default {
     name: "HeaderHomePage.vue",

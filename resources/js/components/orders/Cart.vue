@@ -63,32 +63,7 @@
                         {{ __('general.web.order.continue_shopping') }}
                     </a>
                 </div>
-
-                <div id="summary" class="w-full md:w-1/4 px-8 py-5">
-                    <h1 class="font-semibold text-lg md:text-2xl border-b pb-8">{{ __('general.web.order.order_summary') }}</h1>
-                    <div class="flex justify-between mt-10 mb-5">
-                        <span class="font-semibold text-sm uppercase">{{ __('general.web.order.items') }} {{ cartItemsCount }} </span>
-                        <span class="font-semibold text-sm text-dimGray">{{ accumTotal }}</span>
-                    </div>
-
-                    <div class="border-t mt-8">
-                        <div class="flex font-semibold justify-between py-6 text-sm uppercase">
-                            <span>{{ __('general.web.order.taxes') }}</span>
-                            <span class="text-dimGray">{{ accumTaxes }}</span>
-                        </div>
-                        <div class="flex font-semibold justify-between py-6 text-sm uppercase">
-                            <span>{{ __('general.web.order.subtotal') }}</span>
-                            <span class="text-dimGray">{{ accumSubtotal }}</span>
-                        </div>
-                        <div class="flex font-semibold justify-between py-6 text-sm uppercase">
-                            <span>{{ __('general.web.order.total') }}</span>
-                            <span class="text-dimGray">{{ accumTotal }}</span>
-                        </div>
-
-                        <button class="bg-orangePantone font-semibold hover:bg-orange-600 py-3 rounded-xl text-sm text-white uppercase w-full">{{ __('general.web.order.checkout') }}</button>
-                    </div>
-                </div>
-
+                <order-summary :cartItems="cartItems" :show_button="show_button" ></order-summary>
             </div>
         </div>
     </div>
@@ -112,6 +87,7 @@ export default {
             cartItems: [],
             show_items: false,
             accumItems: '',
+            show_button: true,
         }
     },
     mounted() {
@@ -213,6 +189,9 @@ export default {
         },
         goHome(){
             window.location.href = '/evertec/mercatodo/public/';
+        },
+        checkout(){
+            window.location.href = '/evertec/mercatodo/public/order/checkout';
         }
     },
 }

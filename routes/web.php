@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\Order\CartController;
+use App\Http\Controllers\Client\Order\CheckoutController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,13 @@ Route::group(['as'=>'client.'], function () {
     Route::get('/product/{slug}', [ClientProductController::class, 'show'])->name('product.show');
     Route::get('/order/cart', [CartController::class, 'show'])->name('order.cart');
 });
+
+// Client Routes Authenticated
+
+Route::middleware(['auth', 'verified', 'active'])->group(function () {
+    Route::get('/order/checkout', [CheckoutController::class, 'show'])->name('order.checkout');
+});
+
 
 Route::get('/locale/{locale?}', function ($locale = null) {
     if (isset($locale) && in_array($locale, config('app.available_locales'))) {

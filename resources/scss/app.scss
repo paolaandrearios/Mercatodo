@@ -19,7 +19,7 @@
 .search {
     @apply bg-white flex-auto flex space-x-2 pl-2 sm:px-1 items-center border-2 border-gray-200 sm:rounded-full h-12;
     &__input {
-        @apply flex-1 py-1 focus:outline-none;
+        @apply flex-1 py-1 focus:outline-none w-1/2;
     }
     &__button {
         @apply inline bg-orangePantone hover:bg-orange-600 sm:rounded-full w-1/6 sm:w-auto sm:h-8 h-full text-white focus:outline-none px-2 text-center truncate;
