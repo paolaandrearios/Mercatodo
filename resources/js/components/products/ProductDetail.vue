@@ -63,7 +63,8 @@
                                 </div>
                             </div>
                             <div class="grid-cols-12 my-3 mx-4">
-                                <button class="productDetail__cart--button" @click="seeCart()">
+                                <button :class="cartItems.length === 0  ? 'disabled' : ''" :disabled=" cartItems.length === 0"
+                                        class="productDetail__cart--button" @click="seeCart()">
                                     {{ __('general.web.order.see_cart') }}
                                 </button>
                             </div>

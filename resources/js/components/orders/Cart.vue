@@ -63,7 +63,7 @@
                         {{ __('general.web.order.continue_shopping') }}
                     </a>
                 </div>
-                <order-summary :cartItems="cartItems" :show_button="show_button" ></order-summary>
+                <order-summary v-show="cartItems.length > 0" :cartItems="cartItems" :show_button="show_button" ></order-summary>
             </div>
         </div>
     </div>

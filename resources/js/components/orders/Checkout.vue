@@ -4,80 +4,77 @@
         <div class="container p-12 mx-auto">
             <div class="flex flex-col w-full px-0 mx-auto md:flex-row">
                 <div class="flex flex-col md:w-full">
-                    <h2 class="mb-4 font-bold md:text-xl text-heading ">Shipping Address
+                    <h2 class="mb-4 font-bold md:text-xl text-heading ">{{__('general.web.order.shipping_information')}}
                     </h2>
-                    <form class="justify-center w-full mx-auto" method="post" action>
+                    <form class="justify-center w-full mx-auto">
                         <div class="">
                             <div class="space-x-0 lg:flex lg:space-x-4">
                                 <div class="w-full lg:w-1/2">
-                                    <label for="firstName" class="block mb-3 text-sm font-semibold text-gray-500">First
-                                        Name</label>
-                                    <input name="firstName" type="text" placeholder="First Name"
+                                    <label for="first_name" class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.first_name')}}</label>
+                                    <input name="first_name" id="first_name" type="text" :placeholder="__('general.web.order.first_name')" v-model="shipping.first_name"
                                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                                 </div>
                                 <div class="w-full lg:w-1/2 ">
-                                    <label for="firstName" class="block mb-3 text-sm font-semibold text-gray-500">Last
-                                        Name</label>
-                                    <input name="Last Name" type="text" placeholder="Last Name"
+                                    <label for="last_name" class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.last_name')}}</label>
+                                    <input name="last_name" id="last_name" type="text" :placeholder="__('general.web.order.last_name')" v-model="shipping.last_name"
                                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                                 </div>
                             </div>
                             <div class="mt-4">
                                 <div class="w-full">
-                                    <label for="Email"
-                                           class="block mb-3 text-sm font-semibold text-gray-500">Email</label>
-                                    <input name="Last Name" type="text" placeholder="Email"
+                                    <label for="email"
+                                           class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.email')}}</label>
+                                    <input name="email" id="email" type="text" :placeholder="__('general.web.order.email')" v-model="shipping.email"
                                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                                 </div>
                             </div>
                             <div class="mt-4">
                                 <div class="w-full">
-                                    <label for="Address"
-                                           class="block mb-3 text-sm font-semibold text-gray-500">Address</label>
+                                    <label for="address"
+                                           class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.address')}}</label>
                                     <textarea
                                         class="w-full px-4 py-3 text-xs border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                        name="Address" cols="20" rows="4" placeholder="Address"></textarea>
+                                        name="address" id="address" v-model="shipping.address" cols="20" rows="4" :placeholder="__('general.web.order.address')"></textarea>
                                 </div>
                             </div>
                             <div class="space-x-0 lg:flex lg:space-x-4">
                                 <div class="w-full lg:w-1/2">
                                     <label for="city"
-                                           class="block mb-3 text-sm font-semibold text-gray-500">City</label>
-                                    <input name="city" type="text" placeholder="City"
+                                           class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.city')}}</label>
+                                    <input name="city" id="city" type="text" :placeholder="__('general.web.order.city')" v-model="shipping.city"
                                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                                 </div>
                                 <div class="w-full lg:w-1/2 ">
-                                    <label for="postcode" class="block mb-3 text-sm font-semibold text-gray-500">
-                                        Postcode</label>
-                                    <input name="postcode" type="text" placeholder="Post Code"
+                                    <label for="postcode" class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.postcode')}}</label>
+                                    <input name="postcode" id="postcode" type="text" :placeholder="__('general.web.order.postcode')" v-model="shipping.postcode"
                                            class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                                 </div>
                             </div>
-                            <div class="flex items-center mt-4">
-                                <label class="flex items-center text-sm group text-heading">
-                                    <input type="checkbox"
-                                           class="w-5 h-5 border border-gray-300 rounded focus:outline-none focus:ring-1">
-                                    <span class="ml-2">Save this information for next time</span></label>
+                            <div class="w-full lg:w-1/2 mt-3">
+                                <label for="phone" class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.phone')}}</label>
+                                <input name="phone" id="phone" type="text" :placeholder="__('general.web.order.phone')" v-model="shipping.phone"
+                                       class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                             </div>
-                            <div class="relative pt-3 xl:pt-6"><label for="note"
-                                                                      class="block mb-3 text-sm font-semibold text-gray-500"> Notes
-                                (Optional)</label><textarea name="note"
+                            <div class="relative pt-3 xl:pt-6"><label for="note" class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.notes')}}</label><textarea name="note"
+                                                            id="note"
+                                                            v-model="shipping.notes"
                                                             class="flex items-center w-full px-4 py-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                                            rows="4" placeholder="Notes for delivery"></textarea>
+                                                            rows="4" :placeholder="__('general.web.order.notes_delivery')"></textarea>
                             </div>
                             <div class="mt-4">
-                                <button
-                                    class="w-full px-6 py-2 text-white font-bold bg-orangePantone hover:bg-orange-600 rounded-xl transform hover:scale-105 transition-all duration-300">Process</button>
+                                <button class="w-full px-6 py-2 text-white font-bold bg-orangePantone hover:bg-orange-600 rounded-xl transform hover:scale-105 transition-all duration-300 focus:outline-none"
+                                        :class="cartItems.length === 0  ? 'disabled' : ''" :disabled=" cartItems.length === 0">
+                                    {{__('general.web.order.process')}}
+                                </button>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="flex flex-col w-full ml-0 lg:ml-12 lg:w-2/5">
                     <div class="pt-12 md:pt-0 2xl:ps-4">
-                        <h2 class="text-xl font-bold">Order Summary
-                        </h2>
+                        <h2 class="text-xl font-bold">{{__('general.web.order.order_summary')}}</h2>
                         <cart-items :show_items="show_items" @changeItems="getAllItems()"></cart-items>
-                        <order-summary class="items-center" :cartItems="cartItems" :show_button="show_button" ></order-summary>
+                        <order-summary v-show="cartItems.length > 0" class="items-center" :cartItems="cartItems" :show_button="show_button" ></order-summary>
                     </div>
                 </div>
             </div>
@@ -102,6 +99,16 @@ export default {
             show_items: true,
             show_button: false,
             cartItems: [],
+            shipping: {
+                first_name: '',
+                last_name: '',
+                email: '',
+                address: '',
+                city: '',
+                postcode: '',
+                phone: '',
+                notes: '',
+            },
         }
     },
     mounted() {
@@ -123,3 +130,13 @@ export default {
 }
 </script>
 
+<style lang="scss">
+.disabled {
+    background-color: hsl(24, 91%, 86%);
+    @apply hover:scale-100 cursor-default;
+}
+.disabled:hover {
+    background-color: hsl(24, 91%, 86%);
+    @apply hover:scale-100 cursor-default;
+}
+</style>

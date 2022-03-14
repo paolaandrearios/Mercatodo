@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <div v-on:click="seeDetails">
             <img
                 width="288"
                 height="360"

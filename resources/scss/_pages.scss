@@ -71,7 +71,7 @@
             @apply grid-cols-12 px-1 mt-3 h-60 overflow-auto;
         }
         &--button {
-            @apply p-3 rounded-xl text-white border-0 w-full bg-orangePantone hover:bg-orange-600 transform hover:scale-105 transition-all duration-300 focus:outline-none;
+            @apply font-bold p-3 rounded-xl text-white border-0 w-full bg-orangePantone hover:bg-orange-600 transform hover:scale-105 transition-all duration-300 focus:outline-none;
         }
     }
     &__content{
