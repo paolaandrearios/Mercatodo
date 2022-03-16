@@ -60,8 +60,12 @@ Route::resource('categories', CategoryController::class)->only([
     'show', 'index',
 ]);
 
-Route::resource('orders', OrderController::class)->only([
-    'show', 'store', 'update', 'destroy'
-]);
+//client private Routes
+Route::group(['middleware' => 'auth:sanctum' ,'prefix' => 'client', 'as'=>'client.'], function () {
+    Route::resource('orders', OrderController::class)->only([
+        'show', 'store', 'update', 'destroy'
+    ]);
+});
+
 
 Route::get('/orders/status/{status}', [OrderStatusController::class, 'show'])->name('product.show');

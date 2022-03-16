@@ -3,12 +3,12 @@
         <div class="flex items-center mr-10">
             <div class="relative" @click="showItems()" >
                 <i class="fas fa-shopping-cart productDetail__header--cart"></i>
-                <span v-if="this.cartItems.length !== 0" class="productDetail__header--counter">
+                <span v-show="this.cartItems.length !== 0" class="productDetail__header--counter">
                     {{ cartItemsCount }}
                 </span>
             </div>
         </div>
-        <cart-items class="absolute z-10 right-10 top-52 md:top-32" :show_items="show_items"></cart-items>
+        <cart-items class="absolute z-10 right-10 top-52 md:top-32" :show_items="show_items" @changeItems="getAllItems()"></cart-items>
     </div>
 </template>
 
@@ -32,10 +32,7 @@ export default {
         }
     },
     mounted() {
-        let myCart = localStorage.getItem('myCart')
-        let existingEntries = JSON.parse(localStorage.getItem("myCart"));
-        if (existingEntries == null) existingEntries = [];
-        this.cartItems = JSON.parse(localStorage.getItem('myCart'));
+        this.getAllItems();
     },
     computed: {
         cartItemsCount() {
@@ -47,6 +44,12 @@ export default {
         }
     },
     methods: {
+        getAllItems(){
+            let myCart = localStorage.getItem('myCart')
+            let existingEntries = JSON.parse(localStorage.getItem("myCart"));
+            if (existingEntries == null) existingEntries = [];
+            this.cartItems = JSON.parse(localStorage.getItem('myCart'));
+        },
         deleteItem(item, index) {
             this.cartItems.splice(index, 1);
             localStorage.setItem('myCart', JSON.stringify(this.cartItems));

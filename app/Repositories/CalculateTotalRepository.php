@@ -6,7 +6,6 @@ namespace App\Repositories;
 
 class CalculateTotalRepository
 {
-
     public function calculateTotal(float $price, float $tax, int $quantity): array
     {
         $taxesAccum = $price * $tax/100 * $quantity;
