@@ -52,6 +52,7 @@ Vue.component('product-show', require('./components/products/modals/ProductShow.
 
 Vue.component('product-grid', require('./components/products/ProductGrid.vue').default);
 Vue.component('product-detail', require('./components/products/ProductDetail.vue').default);
+Vue.component('add-cart-modal', require('./components/products/modals/AddToCartModal.vue').default);
 
 //orders
 Vue.component('order-cart', require('./components/orders/Cart.vue').default);

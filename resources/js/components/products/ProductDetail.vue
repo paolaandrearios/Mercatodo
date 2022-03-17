@@ -173,6 +173,7 @@
                 </div>
             </div>
         </div>
+        <add-cart-modal :isVisible="isOpenShow" @goHome="goHome" @seeCart="seeCart"></add-cart-modal>
     </div>
 </template>
 
@@ -187,6 +188,7 @@ export default {
     },
     data() {
         return {
+            isOpenShow: false,
             product: {images: [], categories:[]},
             main_image: '',
             count: 1,
@@ -249,9 +251,8 @@ export default {
             localStorage.setItem('myCart', JSON.stringify(this.cartItems));
         },
         addToCart() {
-            let existingEntries = JSON.parse(localStorage.getItem("myCart"));
+            let existingEntries = JSON.parse(localStorage.getItem('myCart'));
             if (existingEntries == null) existingEntries = [];
-
             let entry = {
                 id: this.product.id,
                 category: this.product.categories[0]['name_'+ this.__locale()],
@@ -261,7 +262,6 @@ export default {
                 quantity: this.count,
                 image: '/evertec/mercatodo/public' + this.product.images[0]['url'],
             };
-
 
             localStorage.setItem("latestItem", JSON.stringify(entry));
 
@@ -274,18 +274,24 @@ export default {
             }
             existingEntries.push(entry);
 
+            console.log(existingEntries);
             localStorage.setItem("myCart", JSON.stringify(existingEntries));
             this.cartItems = JSON.parse(localStorage.getItem('myCart'));
+            this.show();
         },
         showItems(){
             this.show_items === true ? this.show_items = false : this.show_items = true;
         },
         goHome(){
+            this.isOpenShow = false;
             window.location.href = '/evertec/mercatodo/public/';
         },
         seeCart(){
             window.location.href = '/evertec/mercatodo/public/order/cart';
-        }
+        },
+        show: function() {
+            this.isOpenShow = true;
+        },
     },
 }
 </script>

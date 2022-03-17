@@ -68,12 +68,11 @@ export default {
     name: "CartButton.vue",
     props: {
         show_items: Boolean,
-        removeItems: Boolean,
-        cartItems: Array,
     },
     data() {
         return {
             product: {images: [], categories: []},
+            cartItems: [],
             count: 1,
             index: 1,
             accumItems: '',
@@ -93,7 +92,7 @@ export default {
             window.location.href = '/evertec/mercatodo/public/order/cart';
         },
         getAllItems(){
-            let myCart = localStorage.getItem('myCart')
+            let myCart = localStorage.getItem('myCart');
             let existingEntries = JSON.parse(localStorage.getItem("myCart"));
             if (existingEntries == null) existingEntries = [];
             this.cartItems = JSON.parse(localStorage.getItem('myCart'));
