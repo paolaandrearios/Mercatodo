@@ -139,6 +139,12 @@ return [
             'notes_delivery' => 'Notas de Entrega',
             'process' => 'Procesar Pago',
             'back_home' => 'Volver a inicio',
+            'our_payment_gateway' => 'Nuestra pasarela de pagos es',
+            'click_button_gateway' => 'Haga click en continuar con el pago y lo redirigiremos a la pasarela de pagos.',
+            'pay_with_confidence' => '¡Pague con confianza!',
+            'cancel' => 'Cancelar',
+            'continue_payment' => 'Continuar con el pago',
+            'orders_review' => 'Si desea volver a ver el pedido y reanudar el pago, consulte el historial en la sección de pedidos',
         ],
     ],
 

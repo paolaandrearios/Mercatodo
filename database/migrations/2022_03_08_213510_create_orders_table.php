@@ -15,23 +15,23 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('document_type');
-            $table->string('document_number');
-            $table->string('email');
-            $table->string('address');
-            $table->string('city');
-            $table->string('postcode');
-            $table->string('phone');
-            $table->text('notes');
+            $table->string('first_name')->nullable();;
+            $table->string('last_name')->nullable();;
+            $table->string('document_type')->nullable();;
+            $table->string('document_number')->nullable();;
+            $table->string('email')->nullable();;
+            $table->string('address')->nullable();;
+            $table->string('city')->nullable();;
+            $table->string('postcode')->nullable();;
+            $table->string('phone')->nullable();;
+            $table->text('notes')->nullable();;
             $table->foreignId('user_id');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
-            $table->float('taxes');;
-            $table->double('subtotal');;
-            $table->double('total');;
+            $table->float('taxes')->nullable();;
+            $table->double('subtotal')->nullable();;
+            $table->double('total')->nullable();;
             $table->enum('status', ['open', 'close'])->default('open');
             $table->timestamps();
         });

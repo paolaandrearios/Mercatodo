@@ -142,6 +142,12 @@ return [
             'notes_delivery' => 'Notes for delivery',
             'process' => 'Process Payment',
             'back_home' => 'Back Home',
+            'our_payment_gateway' => 'Our Payment Gateway is',
+            'click_button_gateway' => 'Click in continue with the payment and we redirect you to the payment gateway.',
+            'pay_with_confidence' => 'Pay with confidence!',
+            'cancel' => 'Cancel',
+            'continue_payment' => 'Continue with the payment',
+            'orders_review' => 'If you want to see the order again and resume the payment, check the history in the orders section',
         ],
     ],
 

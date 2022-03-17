@@ -68,13 +68,14 @@ export default {
     name: "CartButton.vue",
     props: {
         show_items: Boolean,
+        removeItems: Boolean,
+        cartItems: Array,
     },
     data() {
         return {
             product: {images: [], categories: []},
             count: 1,
             index: 1,
-            cartItems: [],
             accumItems: '',
         }
     },
@@ -96,7 +97,7 @@ export default {
             let existingEntries = JSON.parse(localStorage.getItem("myCart"));
             if (existingEntries == null) existingEntries = [];
             this.cartItems = JSON.parse(localStorage.getItem('myCart'));
-        }
+        },
     },
 }
 </script>
