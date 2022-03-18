@@ -15,7 +15,7 @@
                         <div class="mt-10 flex flex-col xl:flex-row justify-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
                             <div class="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
                                 <div class="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
-                                    <p class="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">Customer’s Cart</p>
+                                    <p class="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">{{ __('general.web.order.customer_cart') }}</p>
                                     <div class="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
                                         <div class="pb-4 md:pb-8 w-full md:w-32">
                                             <img class="w-full" :src="__asset('images/fashion.jpg')"/>
@@ -37,26 +37,26 @@
                                 </div>
                                 <div class="flex justify-center flex-col md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
                                     <div class="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
-                                        <h3 class="text-xl font-semibold leading-5 text-gray-800">Summary</h3>
+                                        <h3 class="text-xl font-semibold leading-5 text-gray-800">{{ __('general.web.order.order_summary') }}</h3>
                                         <div class="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
                                             <div class="flex justify-between w-full">
-                                                <p class="text-base leading-4 text-gray-800">Subtotal</p>
+                                                <p class="text-base leading-4 text-gray-800">{{ __('general.web.order.subtotal') }}</p>
                                                 <p class="text-base leading-4 text-gray-600">$22000</p>
                                             </div>
                                             <div class="flex justify-between items-center w-full">
-                                                <p class="text-base leading-4 text-gray-800">Taxes</p>
+                                                <p class="text-base leading-4 text-gray-800">{{ __('general.web.order.taxes') }}</p>
                                                 <p class="text-base leading-4 text-gray-600">$3000</p>
                                             </div>
                                         </div>
                                         <div class="flex justify-between items-center w-full">
-                                            <p class="text-base font-semibold leading-4 text-gray-800">Total</p>
+                                            <p class="text-base font-semibold leading-4 text-gray-800">{{ __('general.web.order.total') }}</p>
                                             <p class="text-base font-semibold leading-4 text-gray-600">$25000</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="bg-gray-50 w-full xl:w-96 flex justify-between items-center md:items-start px-4 py-6 md:p-6 xl:p-8 flex-col">
-                                <h3 class="text-xl font-semibold leading-5 text-gray-800">Customer</h3>
+                                <h3 class="text-xl font-semibold leading-5 text-gray-800">{{ __('general.web.order.customer') }}</h3>
                                 <div class="flex flex-col md:flex-row xl:flex-col justify-start items-stretch h-full w-full md:space-x-6 lg:space-x-8 xl:space-x-0">
                                     <div class="flex flex-col justify-start items-start flex-shrink-0">
                                         <div class="flex justify-center w-full md:justify-start items-center space-x-4 py-8 border-b border-gray-200">
@@ -75,11 +75,11 @@
                                     <div class="flex justify-between xl:h-full items-stretch w-full flex-col mt-6 md:mt-0">
                                         <div class="flex justify-center md:justify-start xl:flex-col flex-col md:space-x-6 lg:space-x-8 xl:space-x-0 space-y-4 xl:space-y-12 md:space-y-0 md:flex-row items-center md:items-start">
                                             <div class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4 xl:mt-8">
-                                                <p class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">Shipping Address</p>
+                                                <p class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">{{ __('general.web.order.shipping_address') }}</p>
                                                 <p class="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">Calle 35 44 39<span class="m-2"> - Medellín</span></p>
                                             </div>
                                             <div class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4">
-                                                <p class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">Note (for delivery)</p>
+                                                <p class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">{{ __('general.web.order.notes_delivery') }}</p>
                                                 <p class="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">Building next to school</p>
                                             </div>
                                         </div>
@@ -90,10 +90,12 @@
                     </div>
                     <div class="px-4 md:px-6 2xl:px-20">
                         <div class="flex justify-start item-start space-y-2 flex-col mb-3">
-                            <h1 class="text-xl lg:text-2xl font-semibold leading-7 lg:leading-9 text-gray-800">Payment Records</h1>
+                            <h1 class="text-xl lg:text-2xl font-semibold leading-7 lg:leading-9 text-gray-800">{{ __('general.web.payment.payment_record') }}</h1>
                         </div>
                         <div class="flex w-full justify-end mr-10">
-                            <button @click="show" class="mt-6 md:mt-0 py-5 bg-greenTem opacity-75 hover:bg-greenTem hover:opacity-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 w-1/5 text-base font-bold leading-4 text-black">Retry Payment</button>
+                            <button @click="show" class="mt-6 md:mt-0 py-5 bg-greenTem opacity-75 hover:bg-greenTem hover:opacity-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 w-1/5 text-base font-bold leading-4 text-black">
+                                {{ __('general.web.payment.retry_payment') }}
+                            </button>
                         </div>
                         <div class="mx-auto px-4 sm:px-8 py-4 overflow-x-auto w-5/6">
                             <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -137,7 +139,9 @@
                         </div>
                     </div>
                     <div class="flex w-full justify-center items-center mt-5">
-                        <button @click="close" class="mt-6 md:mt-0 py-5 bg-orangePantone hover:bg-orange-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 w-96 2xl:w-full text-base font-bold leading-4 text-white">Close</button>
+                        <button @click="close" class="mt-6 md:mt-0 py-5 bg-orangePantone hover:bg-orange-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 w-96 2xl:w-full text-base font-bold leading-4 text-white">
+                            {{ __('general.web.close') }}
+                        </button>
                     </div>
                 </div>
             </div>

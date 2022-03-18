@@ -2,7 +2,7 @@
     <div class="font-poppins">
         <logo-and-home></logo-and-home>
         <div class="container p-12 mx-auto">
-            <div class="flex flex-col w-full px-0 mx-auto md:flex-row">
+            <div class="checkout">
                 <div class="flex flex-col md:w-full">
                     <h2 class="mb-4 font-bold md:text-xl text-heading ">{{__('general.web.order.shipping_information')}}
                     </h2>
@@ -10,19 +10,19 @@
                         <div class="">
                             <div class="space-x-0 lg:flex lg:space-x-4">
                                 <div class="w-full lg:w-1/2">
-                                    <label for="first_name" class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.first_name')}}</label>
+                                    <label for="first_name" class="checkout__label">{{__('general.web.order.first_name')}}</label>
                                     <input name="first_name" id="first_name" type="text" :placeholder="__('general.web.order.first_name')" v-model="shipping.first_name"
-                                           class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                           class="checkout__input focus:ring-1 focus:ring-blue-600">
                                 </div>
-                                <div class="w-full lg:w-1/2 ">
-                                    <label for="last_name" class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.last_name')}}</label>
+                                <div class="w-full lg:w-1/2">
+                                    <label for="last_name" class="checkout__label">{{__('general.web.order.last_name')}}</label>
                                     <input name="last_name" id="last_name" type="text" :placeholder="__('general.web.order.last_name')" v-model="shipping.last_name"
-                                           class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                           class="checkout__input focus:ring-1 focus:ring-blue-600">
                                 </div>
                             </div>
                             <div class="space-x-0 lg:flex lg:space-x-4 mt-3">
                                 <div class="w-full lg:w-1/2">
-                                    <label for="document_type" class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.document_type')}}</label>
+                                    <label for="document_type" class="checkout__label">{{__('general.web.order.document_type')}}</label>
                                     <div class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
                                         <select class="w-full text-gray-400" name="document_type" id="document_type" v-model="shipping.document_type">
                                             <option value="">{{__('general.web.select')}}</option>
@@ -32,55 +32,52 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="w-full lg:w-1/2 ">
-                                    <label for="document_number" class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.document_number')}}</label>
+                                <div class="w-full lg:w-1/2">
+                                    <label for="document_number" class="checkout__label">{{__('general.web.order.document_number')}}</label>
                                     <input name="document_number" id="document_number" type="text" :placeholder="__('general.web.order.document_number')" v-model="shipping.document_number"
-                                           class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                           class="checkout__input focus:ring-1 focus:ring-blue-600">
                                 </div>
                             </div>
                             <div class="mt-4">
                                 <div class="w-full">
-                                    <label for="email"
-                                           class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.email')}}</label>
+                                    <label for="email" class="checkout__label">{{__('general.web.order.email')}}</label>
                                     <input name="email" id="email" type="text" :placeholder="__('general.web.order.email')" v-model="shipping.email"
-                                           class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                           class="checkout__input focus:ring-1 focus:ring-blue-600">
                                 </div>
                             </div>
                             <div class="mt-4">
                                 <div class="w-full">
-                                    <label for="address"
-                                           class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.address')}}</label>
+                                    <label for="address" class="checkout__label">{{__('general.web.order.address')}}</label>
                                     <textarea
-                                        class="w-full px-4 py-3 text-xs border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                        class="checkout__input focus:ring-1 focus:ring-blue-600"
                                         name="address" id="address" v-model="shipping.address" cols="20" rows="4" :placeholder="__('general.web.order.address')"></textarea>
                                 </div>
                             </div>
                             <div class="space-x-0 lg:flex lg:space-x-4">
-                                <div class="w-full lg:w-1/2">
-                                    <label for="city"
-                                           class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.city')}}</label>
+                                <div class="w-full lg:w-1/2 mt-3">
+                                    <label for="city" class="checkout__label">{{__('general.web.order.city')}}</label>
                                     <input name="city" id="city" type="text" :placeholder="__('general.web.order.city')" v-model="shipping.city"
-                                           class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                           class="checkout__input focus:ring-1 focus:ring-blue-600">
                                 </div>
-                                <div class="w-full lg:w-1/2 ">
-                                    <label for="postcode" class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.postcode')}}</label>
+                                <div class="w-full lg:w-1/2 mt-3">
+                                    <label for="postcode" class="checkout__label">{{__('general.web.order.postcode')}}</label>
                                     <input name="postcode" id="postcode" type="text" :placeholder="__('general.web.order.postcode')" v-model="shipping.postcode"
-                                           class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                           class="checkout__input focus:ring-1 focus:ring-blue-600">
                                 </div>
                             </div>
                             <div class="w-full lg:w-1/2 mt-3">
-                                <label for="phone" class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.phone')}}</label>
+                                <label for="phone" class="checkout__label">{{__('general.web.order.phone')}}</label>
                                 <input name="phone" id="phone" type="text" :placeholder="__('general.web.order.phone')" v-model="shipping.phone"
-                                       class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                       class="checkout__input focus:ring-1 focus:ring-blue-600">
                             </div>
-                            <div class="relative pt-3 xl:pt-6"><label for="note" class="block mb-3 text-sm font-semibold text-gray-500">{{__('general.web.order.notes')}}</label><textarea name="note"
-                                                            id="note"
-                                                            v-model="shipping.notes"
-                                                            class="flex items-center w-full px-4 py-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                                            rows="4" :placeholder="__('general.web.order.notes_delivery')"></textarea>
+                            <div class="relative pt-3 xl:pt-6"><label for="note" class="checkout__label">{{__('general.web.order.notes')}}</label><textarea name="note"
+                                id="note"
+                                v-model="shipping.notes"
+                                class="flex items-center checkout__input focus:ring-1 focus:ring-blue-600"
+                                rows="4" :placeholder="__('general.web.order.notes_delivery')"></textarea>
                             </div>
                             <div class="mt-4">
-                                <button class="flex justify-center w-full px-6 py-2 text-white font-bold bg-orangePantone hover:bg-orange-600 rounded-xl transform hover:scale-105 transition-all duration-300 focus:outline-none items-center"
+                                <button class="checkout__button--process"
                                         :class="cartItems.length === 0  ? 'disabled' : ''" :disabled=" cartItems.length === 0" v-on:click="create">
                                     <div v-if="show_spin">
                                         <svg class="animate-spin h-5 w-5 mr-3 text-gray-200 ..."  viewBox="0 0 100 101">
@@ -95,7 +92,7 @@
                             </div>
                         </div>
                     </form>
-                    <a class="flex font-semibold text-orangePantone text-sm mt-10 text-center cursor-pointer items-center" @click="goHome()">
+                    <a class="checkout__button--backHome" @click="goHome()">
                         <i class="fas fa-arrow-left mr-2"></i>
                         {{ __('general.web.order.back_home') }}
                     </a>

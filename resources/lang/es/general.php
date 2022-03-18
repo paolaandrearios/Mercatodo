@@ -36,6 +36,7 @@ return [
 
         'close' => 'Cerrar',
         'save' => 'Guardar',
+        'show' => 'Mostrar',
         'select' => 'Seleccione una opción',
         'search' => 'Buscar',
         'search_sentence' => '¿Qué quieres encontrar?',
@@ -111,6 +112,7 @@ return [
             'empty_cart' => 'Tu carrito esta vacío',
             'checkout' => 'Comprar Ahora',
             'add_to_cart' => 'Agregar al Carrito',
+            'added_successfully' => '¡Tu producto ha sido agregado exitosamente al carrito!',
             'see_cart' => 'Ver Carrito',
             'total_cost' => 'Costo Total',
             'taxes' => 'Impuestos',
@@ -149,10 +151,14 @@ return [
             'reference' => 'Referencia',
             'date' => 'Fecha',
             'status' => 'Estado',
+            'customer_cart' => 'Carrito del Cliente',
+            'customer' => 'Cliente',
+            'shipping_address' => 'Dirección de envío',
         ],
         'payment' => [
             'payment_attempt' => 'Id Intento de Pago',
             'retry_payment' => 'Reintentar Pago',
+            'payment_record' => 'Registro Intentos de Pago',
         ],
     ],
 

@@ -1,34 +1,34 @@
 <template>
-    <div class="font-poppins container mx-auto">
-        <div class="flex justify-center md:justify-start items-center">
-            <logo class="text-xl md:text-2xl"></logo>
-            <button class="p-1 md:hover:bg-orangePantone rounded-full ml-2 focus:outline-none" @click="goHome()">
-                <i class="fas fa-home text-orangePantone text-lg md:text-2xl hover:text-white m-2 cursor-pointer"></i>
+    <div class="cart">
+        <div class="cart__header">
+            <logo class="cart__header--logo"></logo>
+            <button class="cart__header--button" @click="goHome()">
+                <i class="fas fa-home"></i>
             </button>
         </div>
         <div class="bg-gray-100 mt-0">
             <div class="block md:flex shadow-md my-10">
-                <div class="w-full md:w-3/4 bg-white px-10 py-5">
-                    <div class="flex justify-between border-b pb-8">
-                        <h1 class="font-extrabold text-xl md:text-3xl">{{ __('general.web.order.cart') }}</h1>
-                        <h2 class="font-semibold text-lg md:text-2xl">{{ cartItemsCount }} {{ __('general.web.order.items') }}</h2>
+                <div class="cart__container">
+                    <div class="cart__container--header">
+                        <h1>{{ __('general.web.order.cart') }}</h1>
+                        <h2>{{ cartItemsCount }} {{ __('general.web.order.items') }}</h2>
                     </div>
-                    <div class="flex justify-between md:justify-center mt-10 mb-5">
-                        <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">{{ __('general.web.order.product_details') }}</h3>
-                        <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">{{ __('general.web.order.quantity') }}</h3>
-                        <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">{{ __('general.web.order.price') }}</h3>
-                        <h3 class="hidden md:block font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">{{ __('general.web.order.total') }}</h3>
+                    <div class="cart__titles">
+                        <h3 class="cart__titles--details">{{ __('general.web.order.product_details') }}</h3>
+                        <h3 class="cart__titles--priceQuantity">{{ __('general.web.order.quantity') }}</h3>
+                        <h3 class="cart__titles--priceQuantity">{{ __('general.web.order.price') }}</h3>
+                        <h3 class="cart__titles--total">{{ __('general.web.order.total') }}</h3>
                     </div>
                     <div v-if="cartItems && cartItems.length > 0">
-                        <div v-for="(item, index) in cartItems" :key="index" class="flex justify-between md:justify-center items-start md:items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+                        <div v-for="(item, index) in cartItems" :key="index" class="cart__content">
                             <div class="block md:flex w-2/5">
                                 <div class="w-20 md:w-32">
                                     <img class="rounded-lg" :src="item.image" alt="product Image">
                                 </div>
-                                <div class="block md:flex flex-col justify-between ml-4 flex-grow">
-                                    <span class="font-bold text-xs md:text-sm">{{ item.title }}</span>
-                                    <span class="hidden md:block text-orangePantone text-xs">{{ item.category}}</span>
-                                    <div class="grid-cols-1 px-1 text-gray-300 focus:text-red-600">
+                                <div class="cart__productDescription">
+                                    <span class="cart__productDescription--title">{{ item.title }}</span>
+                                    <span class="cart__productDescription--category">{{ item.category}}</span>
+                                    <div class="cart__productDescription--delete">
                                         <span @click="deleteItem(item, index)">
                                           <i class="fas fa-trash-alt hover:text-red-600"></i>
                                         </span>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="flex justify-center w-1/5">
                                 <div class="grid-cols-12 md:grid-cols-4 text-center md:px-0 mt-3">
-                                    <div class="bg-gray-200 rounded-2xl text-xs md:text-sm p-2 md:p-3 flex flex-row justify-between hover:bg-gray-300">
+                                    <div class="cart__counter">
                                         <div class="text-orangePantone cursor-pointer">
                                             <i class="fa fa-minus px-2" @click="decrement(item)"></i>
                                         </div>
@@ -58,7 +58,7 @@
                         </div>
 
                     </div>
-                    <a class="flex font-semibold text-orangePantone text-sm mt-10 text-center cursor-pointer items-center" @click="goHome()">
+                    <a class="cart__button" @click="goHome()">
                         <i class="fas fa-arrow-left mr-2"></i>
                         {{ __('general.web.order.continue_shopping') }}
                     </a>

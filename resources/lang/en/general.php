@@ -38,6 +38,7 @@ return [
 
         'close' => 'Close',
         'save' => 'Save',
+        'show' => 'Show',
         'select' => 'Select one option',
         'search' => 'Search',
         'search_sentence' => 'What do you want to find?',
@@ -114,6 +115,7 @@ return [
             'checkout' => 'Checkout',
             'empty_cart' => 'Your cart is empty',
             'add_to_cart' => 'Add to Cart',
+            'added_successfully' => 'Your product has been successfully added to cart!',
             'see_cart' => 'See Cart',
             'total_cost' => 'Total Cost',
             'taxes' => 'Taxes',
@@ -152,10 +154,14 @@ return [
             'reference' => 'Reference',
             'date' => 'Date',
             'status' => 'Status',
+            'customer_cart' => 'Customer\'s Cart',
+            'customer' => 'Customer',
+            'shipping_address' => 'Shipping Address',
         ],
         'payment' => [
             'payment_attempt' => 'Id Payment Attempt',
             'retry_payment' => 'Retry Payment',
+            'payment_record' => 'Record Payment Attempts',
         ],
     ],
 
