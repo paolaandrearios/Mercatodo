@@ -25,6 +25,7 @@ class StoreOrderAction
     public function execute(Request $request): Order
     {
         $order = new Order();
+        $order->reference = strtoupper(substr(md5(uniqid(rand(), true)),0,8));
         $shipping = $request->input('shipping');
         $order->first_name = $shipping['first_name'];
         $order->last_name = $shipping['last_name'];

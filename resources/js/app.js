@@ -60,7 +60,9 @@ Vue.component('cart-button', require('./components/orders/CartButton.vue').defau
 Vue.component('cart-items', require('./components/orders/CartItems.vue').default);
 Vue.component('order-checkout', require('./components/orders/Checkout.vue').default);
 Vue.component('order-summary', require('./components/orders/OrderSummary.vue').default);
-Vue.component('checkout-modal', require('./components/orders/CheckoutModal.vue').default);
+Vue.component('checkout-modal', require('./components/orders/modals/CheckoutModal.vue').default);
+Vue.component('order-history', require('./components/orders/OrderHistory.vue').default);
+Vue.component('order-history-modal', require('./components/orders/modals/OrderHistoryModal.vue').default);
 
 //Home page
 Vue.component('home-page', require('./components/pages/homePage/HomePage.vue').default);

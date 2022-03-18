@@ -148,6 +148,14 @@ return [
             'cancel' => 'Cancel',
             'continue_payment' => 'Continue with the payment',
             'orders_review' => 'If you want to see the order again and resume the payment, check the history in the orders section',
+            'your_orders' => 'Your Orders',
+            'reference' => 'Reference',
+            'date' => 'Date',
+            'status' => 'Status',
+        ],
+        'payment' => [
+            'payment_attempt' => 'Id Payment Attempt',
+            'retry_payment' => 'Retry Payment',
         ],
     ],
 

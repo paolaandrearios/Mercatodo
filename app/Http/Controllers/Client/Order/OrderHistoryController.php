@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 
 
-class CheckoutController extends Controller
+class OrderHistoryController extends Controller
 {
     public function show(): view
     {
-        return view('client.order.checkout');
+        return view('client.order.history');
     }
 }

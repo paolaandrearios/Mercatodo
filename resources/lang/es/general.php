@@ -145,6 +145,14 @@ return [
             'cancel' => 'Cancelar',
             'continue_payment' => 'Continuar con el pago',
             'orders_review' => 'Si desea volver a ver el pedido y reanudar el pago, consulte el historial en la sección de pedidos',
+            'your_orders' => 'Tus Pedidos',
+            'reference' => 'Referencia',
+            'date' => 'Fecha',
+            'status' => 'Estado',
+        ],
+        'payment' => [
+            'payment_attempt' => 'Id Intento de Pago',
+            'retry_payment' => 'Reintentar Pago',
         ],
     ],
 

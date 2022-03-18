@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\Order\CartController;
 use App\Http\Controllers\Client\Order\CheckoutController;
+use App\Http\Controllers\Client\Order\OrderHistoryController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +51,7 @@ Route::group(['as'=>'client.'], function () {
 
 Route::middleware(['auth', 'verified', 'active'])->group(function () {
     Route::get('/order/checkout', [CheckoutController::class, 'show'])->name('order.checkout');
+    Route::get('/order/history', [OrderHistoryController::class, 'show'])->name('order.history');
 });
 
 
