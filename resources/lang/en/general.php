@@ -170,6 +170,9 @@ return [
         'users' => 'Users',
         'categories' => 'Categories',
         'products' => 'Products',
+        'e-commerce' => 'E-commerce',
+        'dashboard' => 'Dashboard',
+        'customer_orders' => 'Customer Orders',
     ],
 
 ];

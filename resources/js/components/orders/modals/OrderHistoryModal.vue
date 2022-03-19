@@ -17,20 +17,20 @@
                                 <div class="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
                                     <p class="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">{{ __('general.web.order.customer_cart') }}</p>
                                     <div class="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
-                                        <div class="pb-4 md:pb-8 w-full md:w-32">
+                                        <div class="pb-4 md:pb-6 w-full md:w-32">
                                             <img class="w-full" :src="__asset('images/fashion.jpg')"/>
                                         </div>
                                         <div class="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
-                                            <div class="w-full flex flex-col justify-start items-start space-y-8">
+                                            <div class="w-full flex flex-col justify-start items-start space-y-6">
                                                 <h3 class="text-sm font-semibold leading-6 text-gray-800">Gym T-shirt</h3>
                                                 <div class="flex justify-start items-start flex-col">
                                                     <p class="text-sm leading-none text-gray-800">Sport</p>
                                                 </div>
                                             </div>
                                             <div class="flex justify-between space-x-8 items-start w-full">
-                                                <p class="text-base xl:text-sm leading-6">$25000</p>
-                                                <p class="text-base xl:text-sm leading-6 text-gray-800">1</p>
-                                                <p class="text-base xl:text-sm font-semibold leading-6 text-gray-800">$25000</p>
+                                                <p class="text-xs md:text-sm leading-6">$25000</p>
+                                                <p class="text-xs md:text-sm leading-6 text-gray-800">1</p>
+                                                <p class="text-xs md:text-sm font-semibold leading-6 text-gray-800">$25000</p>
                                             </div>
                                         </div>
                                     </div>
@@ -65,11 +65,15 @@
                                             </div>
                                         </div>
 
-                                        <div class="flex justify-center text-gray-800 md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
-                                            <i class="fas fa-envelope text-orangePantone"></i>
-                                            <p class="text-sm leading-5 ">prueba@gmail.com</p>
-                                            <i class="fas fa-mobile-alt text-orangePantone font-bold"></i>
-                                            <p class="cursor-pointer text-sm leading-5 ">3149887454</p>
+                                        <div class="block md:flex content-start md:justify-center text-gray-800 md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-envelope text-orangePantone mr-2"></i>
+                                                <p class="text-sm leading-5 ">prueba@gmail.com</p>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-mobile-alt text-orangePantone font-bold mr-2"></i>
+                                                <p class="cursor-pointer text-sm leading-5 ">3149887454</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="flex justify-between xl:h-full items-stretch w-full flex-col mt-6 md:mt-0">
@@ -90,10 +94,10 @@
                     </div>
                     <div class="px-4 md:px-6 2xl:px-20">
                         <div class="flex justify-start item-start space-y-2 flex-col mb-3">
-                            <h1 class="text-xl lg:text-2xl font-semibold leading-7 lg:leading-9 text-gray-800">{{ __('general.web.payment.payment_record') }}</h1>
+                            <h1 class="text-xl font-semibold leading-7 lg:leading-9 text-gray-800 mx-5">{{ __('general.web.payment.payment_record') }}</h1>
                         </div>
-                        <div class="flex w-full justify-end mr-10">
-                            <button @click="show" class="mt-6 md:mt-0 py-5 bg-greenTem opacity-75 hover:bg-greenTem hover:opacity-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 w-1/5 text-base font-bold leading-4 text-black">
+                        <div class="flex w-full justify-center md:justify-end mr-10">
+                            <button @click="show" class="mt-6 md:mt-0 py-2 text-sm bg-greenTem opacity-75 hover:bg-greenTem hover:opacity-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 text-base font-bold leading-4 text-black min-w-max-content w-36 p-4">
                                 {{ __('general.web.payment.retry_payment') }}
                             </button>
                         </div>
@@ -139,7 +143,7 @@
                         </div>
                     </div>
                     <div class="flex w-full justify-center items-center mt-5">
-                        <button @click="close" class="mt-6 md:mt-0 py-5 bg-orangePantone hover:bg-orange-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 w-96 2xl:w-full text-base font-bold leading-4 text-white">
+                        <button @click="close" class="mt-6 md:mt-0 py-4 bg-orangePantone hover:bg-orange-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 w-36 text-base font-bold leading-4 text-white">
                             {{ __('general.web.close') }}
                         </button>
                     </div>

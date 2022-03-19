@@ -38,6 +38,12 @@
             <a href="{{ route('locale', 'es') }}">
                 <img class="cursor-pointer w-6 h-6 transform hover:translate-y-1 hover:scale-105 transition-all duration-300" src="{{asset('images/spain.png')}}"/>
             </a>
+
+            @can('admin.user.index')
+                <div>
+                    @yield('dropdown-admin')
+                </div>
+            @endcan
         </div>
         <div class="block text-center sm:flex justify-end">
             @guest
@@ -54,23 +60,28 @@
                     </li>
                 @endif
             @else
-                <li>
-                    <a id="navbarDropdown" href="#" v-pre>
-                        <i class="fas fa-user"></i>
-                        {{ Auth::user()->name }}
-                    </a>
-
+                <div class="flex justify-between">
                     <div>
-                        <a class="cursor-pointer text-gray-400"
-                           onclick="document.getElementById('logout-form').submit();">
-                            {{ __('auth.login.logout') }}
+                        @yield('dropdown')
+                    </div>
+                    <li>
+                        <a id="navbarDropdown" href="#" v-pre>
+                            <i class="fas fa-user"></i>
+                            {{ Auth::user()->name }}
                         </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class=" ">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
+                        <div>
+                            <a class="cursor-pointer text-gray-400"
+                               onclick="document.getElementById('logout-form').submit();">
+                                {{ __('auth.login.logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class=" ">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                </div>
             @endguest
         </div>
 

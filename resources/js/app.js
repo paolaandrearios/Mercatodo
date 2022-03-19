@@ -78,6 +78,8 @@ Vue.component('logo', require('./components/utils/Logo.vue').default);
 Vue.component('searcher', require('./components/utils/Searcher.vue').default);
 Vue.component('footer-page', require('./components/utils/FooterPage.vue').default);
 Vue.component('logo-and-home', require('./components/utils/LogoAndHome.vue').default);
+Vue.component('dropdown', require('./components/utils/Dropdown.vue').default);
+Vue.component('dropdown-admin', require('./components/utils/DropdownAdmin.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

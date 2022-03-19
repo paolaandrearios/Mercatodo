@@ -167,5 +167,8 @@ return [
         'users' => 'Usuarios',
         'categories' => 'Categorías',
         'products' => 'Productos',
+        'e-commerce' => 'E-commerce',
+        'dashboard' => 'Tablero de Inicio',
+        'customer_orders' => 'Pedido de los clientes',
     ],
 ];

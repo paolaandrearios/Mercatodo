@@ -7,7 +7,7 @@
             >
                 <div class="modal__content">
                     <div class="modal__content--header flex-col">
-                        <h3 class="text-dimGray m-0 text-sm md:text-lg">
+                        <h3 class="text-dimGray mx-auto text-sm md:text-lg">
                             {{__('general.web.order.our_payment_gateway')}}
                         </h3>
                         <img class="w-40 mx-auto" :src="__asset('images/evertec.png')"/>
