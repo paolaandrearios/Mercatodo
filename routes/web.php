@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Client\Order\CartController;
 use App\Http\Controllers\Client\Order\CheckoutController;
 use App\Http\Controllers\Client\Order\OrderHistoryController;
@@ -36,6 +37,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
         Route::get('/users', [UserController::class, 'index'])->middleware('can:admin.user.index')->name('user.index');
         Route::get('/categories', [CategoryController::class, 'index'])->middleware('can:admin.category.index')->name('category.index');
         Route::get('/products', [ProductController::class, 'index'])->middleware('can:admin.product.index')->name('product.index');
+        Route::get('/orders/index', [OrderController::class, 'show'])->name('orders.index');
     });
 });
 
@@ -51,7 +53,7 @@ Route::group(['as'=>'client.'], function () {
 
 Route::middleware(['auth', 'verified', 'active'])->group(function () {
     Route::get('/order/checkout', [CheckoutController::class, 'show'])->name('order.checkout');
-    Route::get('/order/history', [OrderHistoryController::class, 'show'])->name('order.history');
+    Route::get('/orders/history', [OrderHistoryController::class, 'show'])->name('orders.history');
 });
 
 

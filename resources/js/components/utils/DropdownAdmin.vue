@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="relative">
+        <div class="relative z-10">
             <button
                 @click="show = !show"
                 class="flex text-center ml-5 py-2 px-2 focus:outline-none bg-white rounded-full">
@@ -47,7 +47,7 @@ export default {
             window.location.href = '/evertec/mercatodo/public/admin/products';
         },
         goOrders(){
-            window.location.href = '/evertec/mercatodo/public/';
+            window.location.href = '/evertec/mercatodo/public/admin/orders/index';
         },
     }
 };

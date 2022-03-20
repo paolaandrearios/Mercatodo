@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Admin\CategoryController as CategoryAdminController;
 use App\Http\Controllers\Api\Admin\CategoryStatusController;
+use App\Http\Controllers\Api\Admin\OrderAdminController;
 use App\Http\Controllers\Api\Admin\ProductController as ProductAdminController;
 use App\Http\Controllers\Api\Admin\ProductStatusController;
 use App\Http\Controllers\Api\CategoryController;
@@ -47,6 +48,12 @@ Route::group(['middleware' => 'auth:sanctum' ,'prefix' => 'admin', 'as'=>'admin.
     Route::resource('products', ProductAdminController::class)->only([
         'store', 'show', 'index', 'update',
     ]);
+
+    Route::resource('orders', OrderAdminController::class)->only([
+        'index',
+    ]);
+
+    Route::get('orders/order/{order}', [OrderAdminController::class, 'show'])->name('order.index');
 });
 
 //Public Routes
@@ -63,9 +70,12 @@ Route::resource('categories', CategoryController::class)->only([
 //client private Routes
 Route::group(['middleware' => 'auth:sanctum' ,'prefix' => 'client', 'as'=>'client.'], function () {
     Route::resource('orders', OrderController::class)->only([
-        'show', 'store', 'update', 'destroy'
+        'index', 'store',
     ]);
 });
 
+Route::group(['middleware' => 'auth:sanctum' ,'prefix' => 'client', 'as'=>'client.'], function () {
+    Route::get('orders/order/{order}', [OrderController::class, 'show'])->name('order.history');
+});
 
 Route::get('/orders/status/{status}', [OrderStatusController::class, 'show'])->name('product.show');

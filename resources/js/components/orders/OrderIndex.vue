@@ -1,14 +1,8 @@
 <template>
     <div class="orderHistory">
-        <div class="orderHistory__header">
-            <logo class="text-xl md:text-2xl"></logo>
-            <button class="orderHistory__header--button" @click="goHome()">
-                <i class="fas fa-home"></i>
-            </button>
-        </div>
         <div class=" flex items-center justify-between pb-6">
             <div>
-                <h2 class="text-2xl text-gray-600 font-semibold">{{ __('general.web.order.your_orders') }}</h2>
+                <h2 class="text-2xl text-gray-600 font-semibold">{{ __('general.sidebar.customer_orders') }}</h2>
             </div>
         </div>
         <div>
@@ -90,20 +84,20 @@
                 </div>
             </div>
         </div>
-        <order-history-modal :order="currentOrder" :isVisible="isOpenShow" :order_details="order_details" @close="close"></order-history-modal>
+        <order-index-modal :order="currentOrder" :isVisible="isOpenShow" :order_details="order_details" @close="close"></order-index-modal>
     </div>
 </template>
 
 <script>
 import Logo from "../utils/Logo";
-import OrderHistoryModal from "./modals/OrderHistoryModal";
 import axios from "axios";
+import OrderIndexModal from "./modals/OrderIndexModal";
 
 export default {
     name: "OrderHistory",
     components: {
         Logo,
-        OrderHistoryModal,
+        OrderIndexModal,
     },
     data() {
         return {
@@ -119,14 +113,14 @@ export default {
     methods:{
         getAllOrders:  function () {
             axios
-                .get('/evertec/mercatodo/public/api/client/orders')
+                .get('/evertec/mercatodo/public/api/admin/orders')
                 .then(response => {
                     this.orders = response.data.orders;
                 })
         },
         getOrder:  function (order) {
             axios
-                .get('/evertec/mercatodo/public/api/client/orders/order/' + order.id)
+                .get('/evertec/mercatodo/public/api/admin/orders/order/' + order.id)
                 .then(response => {
                     this.currentOrder = response.data.order;
                     this.order_details = this.currentOrder.order_details;

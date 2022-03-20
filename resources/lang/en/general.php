@@ -157,6 +157,7 @@ return [
             'customer_cart' => 'Customer\'s Cart',
             'customer' => 'Customer',
             'shipping_address' => 'Shipping Address',
+            'order' => 'Order',
         ],
         'payment' => [
             'payment_attempt' => 'Id Payment Attempt',

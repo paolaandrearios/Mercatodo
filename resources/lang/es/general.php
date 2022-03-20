@@ -154,6 +154,7 @@ return [
             'customer_cart' => 'Carrito del Cliente',
             'customer' => 'Cliente',
             'shipping_address' => 'Dirección de envío',
+            'order' => 'Pedido',
         ],
         'payment' => [
             'payment_attempt' => 'Id Intento de Pago',

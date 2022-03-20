@@ -25,6 +25,10 @@
             </li>
         @endcan
         <li>
+            <i class="fas fa-box-open"></i>
+            <a href="{{ route('admin.orders.index') }}">{{ __('general.sidebar.customer_orders') }}</a>
+        </li>
+        <li>
             <i class="fas fa-shopping-cart"></i>
             <a href="{{ route('client.product.index') }}">{{ __('general.sidebar.e-commerce') }}</a>
         </li>

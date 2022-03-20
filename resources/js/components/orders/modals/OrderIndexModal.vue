@@ -98,11 +98,6 @@
                         <div class="flex justify-start item-start space-y-2 flex-col mb-3">
                             <h1 class="text-xl font-semibold leading-7 lg:leading-9 text-gray-800 mx-5">{{ __('general.web.payment.payment_record') }}</h1>
                         </div>
-                        <div class="flex w-full justify-center md:justify-end mr-10">
-                            <button @click="show" class="mt-6 md:mt-0 py-2 text-sm bg-greenTem opacity-75 hover:bg-greenTem hover:opacity-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 text-base font-bold leading-4 text-black min-w-max-content w-36 p-4">
-                                {{ __('general.web.payment.retry_payment') }}
-                            </button>
-                        </div>
                         <div class="mx-auto px-4 sm:px-8 py-4 overflow-x-auto w-5/6">
                             <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
                                 <table class="min-w-full w-5/6 leading-normal">
@@ -152,7 +147,6 @@
                 </div>
             </div>
         </div>
-        <checkout-modal :isVisible="isOpenShow" @close="closeModal"></checkout-modal>
     </div>
 
 </template>
@@ -162,29 +156,15 @@
 import CheckoutModal from "./CheckoutModal";
 
 export default {
-    name: "OrderHistoryModal.vue",
+    name: "OrderIndexModal.vue",
 
-    components: {
-        CheckoutModal,
-    },
     props: {
         isVisible: Boolean,
         order: Object,
         order_details: Array,
     },
     emits: ['close'],
-    data() {
-        return {
-            isOpenShow: false,
-        }
-    },
     methods: {
-        show: function() {
-            this.isOpenShow = true;
-        },
-        closeModal: function () {
-            this.isOpenShow = false;
-        },
         close: function() {
             this.$emit('close')
         },
