@@ -175,6 +175,16 @@ return [
         'taxes' => 'taxes',
         'category_id' => 'category',
         'keyword' => 'search',
+        'shipping.first_name' => 'First Name',
+        'shipping.last_name' => 'Last Name',
+        'shipping.document_type' => 'Document Type',
+        'shipping.document_number' => 'Document Number',
+        'shipping.email' => 'Email',
+        'shipping.address' => 'Address',
+        'shipping.city' => 'City',
+        'shipping.postcode' => 'Post Code',
+        'shipping.phone' => 'Phone',
+        'shipping.notes' => 'Notes',
     ],
 
 ];

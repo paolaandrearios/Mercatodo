@@ -13,11 +13,13 @@
                                     <label for="first_name" class="checkout__label">{{__('general.web.order.first_name')}}</label>
                                     <input name="first_name" id="first_name" type="text" :placeholder="__('general.web.order.first_name')" v-model="shipping.first_name"
                                            class="checkout__input focus:ring-1 focus:ring-blue-600">
+                                    <error :errors="__e(errors,'shipping.first_name')"></error>
                                 </div>
                                 <div class="w-full lg:w-1/2">
                                     <label for="last_name" class="checkout__label">{{__('general.web.order.last_name')}}</label>
                                     <input name="last_name" id="last_name" type="text" :placeholder="__('general.web.order.last_name')" v-model="shipping.last_name"
                                            class="checkout__input focus:ring-1 focus:ring-blue-600">
+                                    <error :errors="__e(errors,'shipping.last_name')"></error>
                                 </div>
                             </div>
                             <div class="space-x-0 lg:flex lg:space-x-4 mt-3">
@@ -32,11 +34,13 @@
                                         </select>
                                     </div>
                                 </div>
+                                <error :errors="__e(errors,'shipping.document_type')"></error>
                                 <div class="w-full lg:w-1/2">
                                     <label for="document_number" class="checkout__label">{{__('general.web.order.document_number')}}</label>
                                     <input name="document_number" id="document_number" type="text" :placeholder="__('general.web.order.document_number')" v-model="shipping.document_number"
                                            class="checkout__input focus:ring-1 focus:ring-blue-600">
                                 </div>
+                                <error :errors="__e(errors,'shipping.document_number')"></error>
                             </div>
                             <div class="mt-4">
                                 <div class="w-full">
@@ -44,6 +48,7 @@
                                     <input name="email" id="email" type="text" :placeholder="__('general.web.order.email')" v-model="shipping.email"
                                            class="checkout__input focus:ring-1 focus:ring-blue-600">
                                 </div>
+                                <error :errors="__e(errors,'shipping.email')"></error>
                             </div>
                             <div class="mt-4">
                                 <div class="w-full">
@@ -52,6 +57,7 @@
                                         class="checkout__input focus:ring-1 focus:ring-blue-600"
                                         name="address" id="address" v-model="shipping.address" cols="20" rows="4" :placeholder="__('general.web.order.address')"></textarea>
                                 </div>
+                                <error :errors="__e(errors,'shipping.address')"></error>
                             </div>
                             <div class="space-x-0 lg:flex lg:space-x-4">
                                 <div class="w-full lg:w-1/2 mt-3">
@@ -59,23 +65,27 @@
                                     <input name="city" id="city" type="text" :placeholder="__('general.web.order.city')" v-model="shipping.city"
                                            class="checkout__input focus:ring-1 focus:ring-blue-600">
                                 </div>
+                                <error :errors="__e(errors,'shipping.city')"></error>
                                 <div class="w-full lg:w-1/2 mt-3">
                                     <label for="postcode" class="checkout__label">{{__('general.web.order.postcode')}}</label>
                                     <input name="postcode" id="postcode" type="text" :placeholder="__('general.web.order.postcode')" v-model="shipping.postcode"
                                            class="checkout__input focus:ring-1 focus:ring-blue-600">
                                 </div>
+                                <error :errors="__e(errors,'shipping.postcode')"></error>
                             </div>
                             <div class="w-full lg:w-1/2 mt-3">
                                 <label for="phone" class="checkout__label">{{__('general.web.order.phone')}}</label>
                                 <input name="phone" id="phone" type="text" :placeholder="__('general.web.order.phone')" v-model="shipping.phone"
                                        class="checkout__input focus:ring-1 focus:ring-blue-600">
                             </div>
+                            <error :errors="__e(errors,'shipping.phone')"></error>
                             <div class="relative pt-3 xl:pt-6"><label for="note" class="checkout__label">{{__('general.web.order.notes')}}</label><textarea name="note"
                                 id="note"
                                 v-model="shipping.notes"
                                 class="flex items-center checkout__input focus:ring-1 focus:ring-blue-600"
                                 rows="4" :placeholder="__('general.web.order.notes_delivery')"></textarea>
                             </div>
+                            <error :errors="__e(errors,'shipping.notes')"></error>
                             <div class="mt-4">
                                 <button class="checkout__button--process"
                                         :class="cartItems.length === 0  ? 'disabled' : ''" :disabled=" cartItems.length === 0" v-on:click="create">
@@ -114,6 +124,7 @@
 import CartItems from "./CartItems";
 import OrderSummary from "./OrderSummary";
 import LogoAndHome from "../utils/LogoAndHome";
+import Error from "../utils/Error";
 
 export default {
     name: 'Checkout',
@@ -121,6 +132,7 @@ export default {
         CartItems,
         OrderSummary,
         LogoAndHome,
+        Error,
     },
     data() {
         return {
@@ -142,6 +154,7 @@ export default {
                 phone: '',
                 notes: '',
             },
+            errors: [],
         }
     },
     mounted() {
@@ -150,7 +163,6 @@ export default {
     methods: {
         create: function (){
             this.show_spin = true;
-            this.show();
             let data = {
                 cartItems: this.cartItems,
                 shipping: this.shipping,
@@ -160,13 +172,14 @@ export default {
                 data,
             ).then(response => {
                 this.show_spin = false;
+                this.show();
                 this.deleteItems();
                 //alert(response.data.message)
                 // this.close();
             }).catch(error => {
                 this.show_spin = false;
-                // this.errors = error.response.data.errors;
-                // console.log(data)
+                this.errors = error.response.data.errors;
+                console.log(this.errors)
             })
 
         },

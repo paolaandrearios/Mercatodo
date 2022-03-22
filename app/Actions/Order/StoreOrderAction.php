@@ -2,11 +2,11 @@
 
 namespace App\Actions\Order;
 
+use App\Http\Requests\Api\StoreOrderRequest;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Repositories\CalculateTotalRepository;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class StoreOrderAction
@@ -22,7 +22,7 @@ class StoreOrderAction
         $this->calculateTotalRepository = $calculateTotalRepository;
     }
 
-    public function execute(Request $request): Order
+    public function execute(StoreOrderRequest $request): Order
     {
         $order = new Order();
         $order->reference = strtoupper(substr(md5(uniqid(rand(), true)),0,8));

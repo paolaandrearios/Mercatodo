@@ -175,6 +175,16 @@ return [
         'taxes' => 'impuestos',
         'category_id' => 'categoría',
         'keyword' => 'búsqueda',
+        'shipping.first_name' => 'Nombre',
+        'shipping.last_name' => 'Apellido',
+        'shipping.document_type' => 'Tipo de Documento',
+        'shipping.document_number' => 'Número de Documento',
+        'shipping.email' => 'Correo electrónico',
+        'shipping.address' => 'Dirección',
+        'shipping.city' => 'Ciudad',
+        'shipping.postcode' => 'Código Postal',
+        'shipping.phone' => 'Teléfono',
+        'shipping.notes' => 'Notas',
     ],
 
 ];

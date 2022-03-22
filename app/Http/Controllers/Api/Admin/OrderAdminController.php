@@ -12,7 +12,9 @@ class OrderAdminController extends Controller
 
     public function index(): JsonResponse
     {
-        $orders = Order::with('user','orderDetails.product.images')->get();
+        $orders = Order::with('user','orderDetails.product.images')
+            ->orderBy('id', 'desc')
+            ->paginate(config('general.custom_records_per_page'));
         return response()->json(compact('orders'));
     }
 

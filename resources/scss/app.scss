@@ -64,6 +64,10 @@
     @apply bg-orangePantone p-3 rounded-3xl border-2 text-white font-bold hover:bg-orange-600 m-3;
 }
 
+.modal-error {
+    @apply ml-3 mb-2 text-xs text-orangePantone font-bold;
+}
+
 .modal {
     @apply container mx-auto;
     &__tabs {

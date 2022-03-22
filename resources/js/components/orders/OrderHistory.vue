@@ -88,6 +88,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="flex justify-center w-1/2 mx-auto my-3">
+                    <pagination :pagination="pagination" @paginate="getAllOrders" :offset="4"/>
+                </div>
             </div>
         </div>
         <order-history-modal :order="currentOrder" :isVisible="isOpenShow" :order_details="order_details" @close="close"></order-history-modal>
@@ -98,12 +101,14 @@
 import Logo from "../utils/Logo";
 import OrderHistoryModal from "./modals/OrderHistoryModal";
 import axios from "axios";
+import Pagination from "../utils/Pagination";
 
 export default {
     name: "OrderHistory",
     components: {
         Logo,
         OrderHistoryModal,
+        Pagination,
     },
     data() {
         return {
@@ -111,6 +116,7 @@ export default {
             orders: [],
             currentOrder: {},
             order_details: [],
+            pagination: {},
         }
     },
     mounted() {
@@ -118,10 +124,15 @@ export default {
     },
     methods:{
         getAllOrders:  function () {
+
+            let currentPage = this.pagination.current_page;
+            let pageNum = currentPage ? currentPage: 1;
+
             axios
-                .get('/evertec/mercatodo/public/api/client/orders')
+                .get(`/evertec/mercatodo/public/api/client/orders?page=${pageNum}`)
                 .then(response => {
-                    this.orders = response.data.orders;
+                    this.orders = response.data.orders.data;
+                    this.pagination = response.data.orders;
                 })
         },
         getOrder:  function (order) {
