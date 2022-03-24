@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Client\Order\CartController;
 use App\Http\Controllers\Client\Order\CheckoutController;
 use App\Http\Controllers\Client\Order\OrderHistoryController;
+use App\Http\Controllers\Client\Order\OrderThanksController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,7 @@ Route::group(['as'=>'client.'], function () {
     Route::get('/', [ClientProductController::class, 'index'])->name('product.index');
     Route::get('/product/{slug}', [ClientProductController::class, 'show'])->name('product.show');
     Route::get('/order/cart', [CartController::class, 'show'])->name('order.cart');
+    Route::get('/order/thanks',[OrderThanksController::class, 'show'])->name('order.thanks');
 });
 
 // Client Routes Authenticated

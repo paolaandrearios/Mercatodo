@@ -30,9 +30,9 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
-            $table->float('taxes');
-            $table->double('subtotal');
-            $table->double('total');
+            $table->float('taxes')->nullable();
+            $table->double('subtotal')->nullable();
+            $table->double('total')->nullable();
             $table->enum('status', ['open', 'close'])->default('open');
             $table->timestamps();
         });
