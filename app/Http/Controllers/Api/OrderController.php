@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Actions\Order\CreatePaymentAction;
 use App\Actions\Order\StoreOrderAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\StoreOrderRequest;
@@ -12,10 +13,12 @@ use Illuminate\Http\JsonResponse;
 class OrderController extends Controller
 {
 
-    public function store(StoreOrderRequest $request, StoreOrderAction $storeOrderAction): JsonResponse
+    public function store(StoreOrderRequest $request, StoreOrderAction $storeOrderAction, CreatePaymentAction $createPaymentAction): JsonResponse
     {
+        $order = $storeOrderAction->execute($request);
         return response()->json([
-            'order' => $storeOrderAction->execute($request),
+            'order' => $order,
+            'payment' => $createPaymentAction->execute($order),
         ]);
     }
 

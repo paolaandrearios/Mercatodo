@@ -35,4 +35,11 @@ class Order extends Model
     {
         return $this->hasMany(OrderDetail::class);
     }
+
+    //Relationship one to many
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

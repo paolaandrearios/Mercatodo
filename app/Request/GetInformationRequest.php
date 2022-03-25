@@ -9,7 +9,8 @@ use Illuminate\Support\Str;
 
 class GetInformationRequest implements WebcheckoutRequestContract
 {
-    public function auth(){
+    public function auth(): array
+    {
         $seed = date('c');
         $nonce = Str::random(8);
         $tranKey = base64_encode(hash('sha1', $nonce.$seed.config('webcheckout.tranKey'), true));

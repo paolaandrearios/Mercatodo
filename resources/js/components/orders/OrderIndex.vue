@@ -15,6 +15,9 @@
                                 {{ __('general.web.order.reference') }}
                             </th>
                             <th>
+                                {{ __('general.web.order.customer') }}
+                            </th>
+                            <th>
                                 {{ __('general.web.order.address') }}
                             </th>
                             <th>
@@ -47,6 +50,9 @@
                                             </p>
                                         </div>
                                     </div>
+                                </td>
+                                <td>
+                                    <p class="text-gray-900 whitespace-no-wrap">{{ order.first_name }} {{ order.last_name }}  </p>
                                 </td>
                                 <td>
                                     <p class="text-gray-900 whitespace-no-wrap">{{ order.address }}</p>
@@ -82,9 +88,9 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="flex justify-center w-1/2 mx-auto my-3">
-                    <pagination :pagination="pagination" @paginate="getAllOrders" :offset="4"/>
-                </div>
+            </div>
+            <div class="flex justify-center w-1/2 mx-auto my-3">
+                <pagination :pagination="pagination" @paginate="getAllOrders" :offset="4"/>
             </div>
         </div>
         <order-index-modal :order="currentOrder" :isVisible="isOpenShow" :order_details="order_details" @close="close"></order-index-modal>

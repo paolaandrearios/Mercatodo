@@ -27,6 +27,10 @@ return [
             'characters_number_product_rule_message' => 'Ingrese mínimo 4 caracteres para la búsqueda',
         ],
 
+        'checkout' => [
+            'payment_description' => 'Pago del pedido - :attribute del comercio electrónico MercaTodo',
+        ],
+
         'exceptions' => [
             'model_not_found' => 'Elemento No Encontrado',
         ],

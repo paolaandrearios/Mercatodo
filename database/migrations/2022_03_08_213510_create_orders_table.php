@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->string('city');
             $table->string('postcode');
             $table->string('phone');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->foreignId('user_id');
             $table->foreign('user_id')
                 ->references('id')
@@ -33,7 +33,7 @@ class CreateOrdersTable extends Migration
             $table->float('taxes')->nullable();
             $table->double('subtotal')->nullable();
             $table->double('total')->nullable();
-            $table->enum('status', ['open', 'close'])->default('open');
+            $table->enum('status', ['pending', 'rejected', 'approved'])->default('pending');
             $table->timestamps();
         });
     }

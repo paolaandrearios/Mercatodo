@@ -116,7 +116,7 @@
                 </div>
             </div>
         </div>
-        <checkout-modal :isVisible="isOpenShow" @close="close"></checkout-modal>
+        <checkout-modal :isVisible="isOpenShow" @close="close" :payment="payment"></checkout-modal>
     </div>
 </template>
 
@@ -142,6 +142,7 @@ export default {
             cartItems: [],
             show_spin: false,
             isOpenShow: false,
+            payment: {},
             shipping: {
                 first_name: '',
                 last_name: '',
@@ -171,6 +172,7 @@ export default {
             axios.post('/evertec/mercatodo/public/api/client/orders',
                 data,
             ).then(response => {
+                this.payment = response.data.payment;
                 this.show_spin = false;
                 this.show();
                 this.deleteItems();
@@ -179,7 +181,6 @@ export default {
             }).catch(error => {
                 this.show_spin = false;
                 this.errors = error.response.data.errors;
-                console.log(this.errors)
             })
 
         },

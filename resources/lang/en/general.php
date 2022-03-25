@@ -28,6 +28,10 @@ return [
             'characters_number_product_rule_message' => 'Enter minimum 4 characters for the search',
         ],
 
+        'checkout' => [
+            'payment_description' => 'Payment of the order - :attribute of the e-commerce MercaTodo',
+        ],
+
         'exceptions' => [
             'model_not_found' => 'Element Not Found',
         ],
