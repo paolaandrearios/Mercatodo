@@ -11,6 +11,10 @@ class Payment extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'session' => 'array',
+    ];
+
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);

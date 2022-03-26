@@ -117,20 +117,20 @@
                                         </th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody v-for="payment in (order.payments)" :key="payment.id">
                                     <tr>
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <p class="text-gray-900 whitespace-no-wrap">2022-03-19</p>
+                                            <p class="text-gray-900 whitespace-no-wrap">{{ __dateFormatWithHour(payment.created_at) }}</p>
                                         </td>
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <p class="text-gray-900 whitespace-no-wrap">FCB50EA0</p>
+                                            <p class="text-gray-900 whitespace-no-wrap">{{ payment.reference }}</p>
                                         </td>
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <p class="text-gray-900 whitespace-no-wrap">$ 217.041,77</p>
+                                            <p class="text-gray-900 whitespace-no-wrap">{{ __currencyFormat(payment.total) }}</p>
                                         </td>
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <p class="text-gray-900 whitespace-no-wrap">
-                                                Rejected
+                                            <p class="whitespace-no-wrap p-1 uppercase rounded-xl text-xs text-center" :class="payment.status === 'approved'  ? 'bg-greenTemLight text-dimgray' : payment.status === 'rejected' ? 'bg-red-600 text-white': 'bg-yellow-300 text-gray-900'">
+                                                {{ payment.status }}
                                             </p>
                                         </td>
                                     </tr>

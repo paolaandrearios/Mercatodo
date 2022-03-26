@@ -76,7 +76,7 @@
                                     <span
                                         class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                         <span class="absolute inset-0 bg-greenTem opacity-50 rounded-full"></span>
-                                         <span class="relative">Pagado</span>
+                                         <span class="relative">{{ order.status }}</span>
                                     </span>
                                 </td>
                                 <td>
@@ -88,12 +88,12 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="flex justify-center w-1/2 mx-auto my-3">
-                    <pagination :pagination="pagination" @paginate="getAllOrders" :offset="4"/>
-                </div>
+            </div>
+            <div class="flex justify-center w-1/2 mx-auto my-3">
+                <pagination :pagination="pagination" @paginate="getAllOrders" :offset="4"/>
             </div>
         </div>
-        <order-history-modal :order="currentOrder" :isVisible="isOpenShow" :order_details="order_details" @close="close"></order-history-modal>
+        <order-history-modal :order="currentOrder" :isVisible="isOpenShow" :order_details="order_details" @close="close" @getOrder="getOrder"></order-history-modal>
     </div>
 </template>
 

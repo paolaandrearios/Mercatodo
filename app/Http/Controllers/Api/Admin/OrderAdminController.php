@@ -20,7 +20,7 @@ class OrderAdminController extends Controller
 
     public function show($order): JsonResponse
     {
-        $order = Order::query()->with(['user','orderDetails.product.images', 'orderDetails.product.categories'])->where('id',$order)->firstOrFail();
+        $order = Order::query()->with(['user','orderDetails.product.images', 'orderDetails.product.categories', 'payments'])->where('id',$order)->firstOrFail();
         return response()->json(compact('order'));
 
     }

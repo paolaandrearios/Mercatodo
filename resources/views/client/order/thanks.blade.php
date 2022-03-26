@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-
+    <payment-thanks></payment-thanks>
     <footer-page></footer-page>
 @endsection
 

@@ -24,7 +24,7 @@ class OrderController extends Controller
 
     public function index(): JsonResponse
     {
-        $orders = Order::with('user','orderDetails.product.images')
+        $orders = Order::with('user','orderDetails.product.images','payments')
             ->where('user_id', auth()
             ->user()['id'])
             ->orderBy('id', 'desc')
@@ -35,8 +35,7 @@ class OrderController extends Controller
 
     public function show($order): JsonResponse
     {
-        $order = Order::query()->with(['user','orderDetails.product.images', 'orderDetails.product.categories'])->where('id',$order)->firstOrFail();
+        $order = Order::query()->with(['user','orderDetails.product.images', 'orderDetails.product.categories', 'payments'])->where('id',$order)->firstOrFail();
         return response()->json(compact('order'));
-
     }
 }

@@ -7,9 +7,11 @@ use App\Http\Controllers\Api\Admin\ProductController as ProductAdminController;
 use App\Http\Controllers\Api\Admin\ProductStatusController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Admin\UserStatusController;
+use App\Http\Controllers\PaymentSyncStatusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -72,6 +74,9 @@ Route::group(['middleware' => 'auth:sanctum' ,'prefix' => 'client', 'as'=>'clien
     Route::resource('orders', OrderController::class)->only([
         'index', 'store',
     ]);
+
+    Route::post('/payments/store/{order}', [PaymentController::class, 'store'])->name('payments.store');
+    Route::get('/payments/syncstatus/{order}', [PaymentSyncStatusController::class, 'update'])->name('payments.syncstatus.update');
 });
 
 Route::group(['middleware' => 'auth:sanctum' ,'prefix' => 'client', 'as'=>'client.'], function () {

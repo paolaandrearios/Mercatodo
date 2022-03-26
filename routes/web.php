@@ -48,7 +48,7 @@ Route::group(['as'=>'client.'], function () {
     Route::get('/', [ClientProductController::class, 'index'])->name('product.index');
     Route::get('/product/{slug}', [ClientProductController::class, 'show'])->name('product.show');
     Route::get('/order/cart', [CartController::class, 'show'])->name('order.cart');
-    Route::get('/order/thanks',[OrderThanksController::class, 'show'])->name('order.thanks');
+    Route::get('/order/thanks/{order}',[OrderThanksController::class, 'show'])->name('order.thanks');
 });
 
 // Client Routes Authenticated

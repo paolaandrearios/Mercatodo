@@ -21,6 +21,7 @@ module.exports = {
             atomicTangerine: '#FF925C',
             culturedGray: '#F5F5F5',
             greenTem: '#34e718',
+            greenTemLight: '#9AF38C',
             seashell: '#FFF1EB',
         },
         fontFamily: {

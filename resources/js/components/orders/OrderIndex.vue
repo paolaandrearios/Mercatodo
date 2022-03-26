@@ -74,9 +74,9 @@
                                 </td>
                                 <td>
                                     <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span class="absolute inset-0 bg-greenTem opacity-50 rounded-full"></span>
-                                         <span class="relative">Pagado</span>
+                                        class="relative inline-block px-3 py-1 font-semibold leading-tight">
+                                        <span class="absolute inset-0 opacity-50 rounded-full" :class=" order.status === 'approved'  ? 'bg-greenTem text-green-900' : 'bg-yellow-300 text-dimGray'"></span>
+                                         <span class="relative uppercase">{{ order.status }}</span>
                                     </span>
                                 </td>
                                 <td>

@@ -98,8 +98,8 @@
                         <div class="flex justify-start item-start space-y-2 flex-col mb-3">
                             <h1 class="text-xl font-semibold leading-7 lg:leading-9 text-gray-800 mx-5">{{ __('general.web.payment.payment_record') }}</h1>
                         </div>
-                        <div class="flex w-full justify-center md:justify-end mr-10">
-                            <button @click="show" class="mt-6 md:mt-0 py-2 text-sm bg-greenTem opacity-75 hover:bg-greenTem hover:opacity-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 text-base font-bold leading-4 text-black min-w-max-content w-36 p-4">
+                        <div class="flex w-full justify-center md:justify-end mr-10" v-if="order.status !== 'approved'">
+                            <button @click="retryPay" class="mt-6 md:mt-0 py-2 text-sm bg-greenTem opacity-75 hover:bg-greenTem hover:opacity-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 text-base font-bold leading-4 text-black min-w-max-content w-36 p-4">
                                 {{ __('general.web.payment.retry_payment') }}
                             </button>
                         </div>
@@ -108,37 +108,37 @@
                                 <table class="min-w-full w-5/6 leading-normal">
                                     <thead>
                                     <tr>
-                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                             {{ __('general.web.order.date') }}
                                         </th>
-                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                             {{ __('general.web.payment.payment_attempt') }}
                                         </th>
-                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                             {{ __('general.web.order.total') }}
                                         </th>
-                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                             {{ __('general.web.order.status') }}
                                         </th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <p class="text-gray-900 whitespace-no-wrap">2022-03-19</p>
-                                        </td>
-                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <p class="text-gray-900 whitespace-no-wrap">FCB50EA0</p>
-                                        </td>
-                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <p class="text-gray-900 whitespace-no-wrap">$ 217.041,77</p>
-                                        </td>
-                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <p class="text-gray-900 whitespace-no-wrap">
-                                                Rejected
-                                            </p>
-                                        </td>
-                                    </tr>
+                                    <tbody v-for="payment in (order.payments)" :key="payment.id">
+                                        <tr>
+                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                <p class="text-gray-900 whitespace-no-wrap text-center">{{ __dateFormatWithHour(payment.created_at) }}</p>
+                                            </td>
+                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                <p class="text-gray-900 whitespace-no-wrap text-center">{{ payment.reference }}</p>
+                                            </td>
+                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                <p class="text-gray-900 whitespace-no-wrap text-center">{{ __currencyFormat(payment.total) }}</p>
+                                            </td>
+                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                <p class="text-gray-900 whitespace-no-wrap text-center">
+                                                    {{ payment.status }}
+                                                </p>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -152,7 +152,7 @@
                 </div>
             </div>
         </div>
-        <checkout-modal :isVisible="isOpenShow" @close="closeModal"></checkout-modal>
+        <checkout-modal :isVisible="isOpenShow" @close="closeModal" :payment="payment"></checkout-modal>
     </div>
 
 </template>
@@ -172,21 +172,41 @@ export default {
         order: Object,
         order_details: Array,
     },
-    emits: ['close'],
+    emits: ['close', 'getOrder'],
     data() {
         return {
             isOpenShow: false,
+            payment: {},
+            paymentUrl: '',
         }
     },
     methods: {
-        show: function() {
-            this.isOpenShow = true;
+        retryPay: function() {
+            this.show_spin = true;
+            let data = {}
+            axios.post('/evertec/mercatodo/public/api/client/payments/store/'+this.order.id,
+                data,
+            ).then(response => {
+                this.payment = response.data.payment;
+                this.show_spin = false;
+                this.show();
+                this.$emit('getOrder', this.order)
+                //this.deleteItems();
+                //alert(response.data.message)
+                // this.close();
+            }).catch(error => {
+                this.show_spin = false;
+                this.errors = error.response.data.errors;
+            })
         },
         closeModal: function () {
             this.isOpenShow = false;
         },
         close: function() {
             this.$emit('close')
+        },
+        show: function() {
+            this.isOpenShow = true;
         },
     },
 }

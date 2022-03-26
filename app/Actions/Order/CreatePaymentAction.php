@@ -18,7 +18,7 @@ class CreatePaymentAction
         $session = $this->createSessionWC($order);
 
         $payment = new Payment();
-        $payment->session = json_encode($session);
+        $payment->session = $session;
         $payment->reference = $this->reference;
         $payment->url = $session['processUrl'];
         $payment->order_id = $order->id;
@@ -53,9 +53,9 @@ class CreatePaymentAction
                 'total' => $order->total,
             ]
         ];
-        $data['returnUrl'] = route('client.order.thanks');
-        $data['cancelUrl'] = route('orders.history');
-        $data['expiration'] = date('c', strtotime('+2 days'));
+        $data['returnUrl'] = route('client.order.thanks', $order->id);
+        $data['cancelUrl'] = route('client.order.thanks', $order->id);
+        $data['expiration'] = date('c', strtotime( config('webcheckout.expiration_time')));
 //        Log::debug(json_encode($data));
         return (new WebcheckoutService())->createSession($data);
     }
