@@ -74,9 +74,9 @@
                                 </td>
                                 <td>
                                     <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span class="absolute inset-0 bg-greenTem opacity-50 rounded-full"></span>
-                                         <span class="relative">{{ order.status }}</span>
+                                        class="relative inline-block px-3 py-1 font-semibold leading-tight">
+                                         <span class="absolute inset-0 rounded-full" :class="order.status === 'approved'  ? 'bg-greenTemLight' : order.status === 'rejected' ? 'bg-red-300': 'bg-yellowLight'"></span>
+                                         <span class="relative uppercase">{{ __('general.web.payment.' + order.status) }}</span>
                                     </span>
                                 </td>
                                 <td>

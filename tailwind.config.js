@@ -22,6 +22,7 @@ module.exports = {
             culturedGray: '#F5F5F5',
             greenTem: '#34e718',
             greenTemLight: '#9AF38C',
+            yellowLight: '#FDE58A',
             seashell: '#FFF1EB',
         },
         fontFamily: {

@@ -164,9 +164,12 @@ return [
             'order' => 'Order',
         ],
         'payment' => [
-            'payment_attempt' => 'Id Payment Attempt',
+            'reference' => 'Reference',
             'retry_payment' => 'Retry Payment',
             'payment_record' => 'Record Payment Attempts',
+            'rejected' => 'Rejected',
+            'approved' => 'Approved',
+            'pending' => 'Pending',
         ],
     ],
 

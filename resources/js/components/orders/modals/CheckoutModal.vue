@@ -15,11 +15,11 @@
                     <p class="mx-5 mb-4 text-sm text-center">
                         {{__('general.web.order.click_button_gateway')}} <br>
                     </p>
-                    <p class="text-greenTem font-bold my-5 text-center">
+                    <p class="text-green-500 font-bold my-5 text-center">
                         {{__('general.web.order.pay_with_confidence')}}
                     </p>
                     <div class="flex justify-between">
-                        <button class="flex justify-center w-1/2 px-4 py-2 m-2 text-white bg-orangePantone hover:bg-orange-600 rounded-xl hover:bg-greenTem focus:bg-greenTem focus:outline-none items-center" @click="pay">
+                        <button class="flex justify-center w-1/2 px-4 py-2 m-2 text-white bg-orangePantone hover:bg-orange-600 rounded-xl hover:bg-greenTemLight hover:text-green-900 focus:bg-greenTemLight focus:text-green-900 focus:outline-none items-center" @click="pay">
                             <div v-if="show_spin">
                                 <svg class="animate-spin h-5 w-5 mr-3 text-gray-200 ..."  viewBox="0 0 100 101">
                                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>

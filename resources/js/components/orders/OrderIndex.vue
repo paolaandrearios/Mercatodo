@@ -12,6 +12,9 @@
                         <thead>
                         <tr>
                             <th>
+                                ID
+                            </th>
+                            <th>
                                 {{ __('general.web.order.reference') }}
                             </th>
                             <th>
@@ -39,6 +42,9 @@
                         </thead>
                         <tbody v-for="(order, index) in orders" :key="index" >
                             <tr>
+                                <td>
+                                    <p class="text-gray-900 whitespace-no-wrap">{{ order.id }}</p>
+                                </td>
                                 <td>
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 w-15 h-15 items-center">
@@ -75,8 +81,8 @@
                                 <td>
                                     <span
                                         class="relative inline-block px-3 py-1 font-semibold leading-tight">
-                                        <span class="absolute inset-0 opacity-50 rounded-full" :class=" order.status === 'approved'  ? 'bg-greenTem text-green-900' : 'bg-yellow-300 text-dimGray'"></span>
-                                         <span class="relative uppercase">{{ order.status }}</span>
+                                        <span class="absolute inset-0 rounded-full" :class="order.status === 'approved'  ? 'bg-greenTemLight' : order.status === 'rejected' ? 'bg-red-300': 'bg-yellowLight'"></span>
+                                         <span class="relative uppercase">{{ __('general.web.payment.' + order.status) }}</span>
                                     </span>
                                 </td>
                                 <td>

@@ -107,7 +107,7 @@
                                             {{ __('general.web.order.date') }}
                                         </th>
                                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            {{ __('general.web.payment.payment_attempt') }}
+                                            {{ __('general.web.payment.reference') }}
                                         </th>
                                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                             {{ __('general.web.order.total') }}
@@ -129,8 +129,8 @@
                                             <p class="text-gray-900 whitespace-no-wrap">{{ __currencyFormat(payment.total) }}</p>
                                         </td>
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <p class="whitespace-no-wrap p-1 uppercase rounded-xl text-xs text-center" :class="payment.status === 'approved'  ? 'bg-greenTemLight text-dimgray' : payment.status === 'rejected' ? 'bg-red-600 text-white': 'bg-yellow-300 text-gray-900'">
-                                                {{ payment.status }}
+                                            <p class="whitespace-no-wrap py-1 px-0.5 uppercase rounded-xl text-xs text-center font-bold" :class="payment.status === 'approved'  ? 'bg-greenTemLight text-green-600' : payment.status === 'rejected' ? 'bg-red-300 text-red-600': 'bg-yellowLight text-gray-900'">
+                                                {{ __('general.web.payment.' + payment.status) }}
                                             </p>
                                         </td>
                                     </tr>

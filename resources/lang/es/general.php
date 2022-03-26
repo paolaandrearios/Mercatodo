@@ -161,9 +161,12 @@ return [
             'order' => 'Pedido',
         ],
         'payment' => [
-            'payment_attempt' => 'Id Intento de Pago',
+            'reference' => 'Referencia',
             'retry_payment' => 'Reintentar Pago',
             'payment_record' => 'Registro Intentos de Pago',
+            'rejected' => 'Rechazado',
+            'approved' => 'Aprobado',
+            'pending' => 'Pendiente',
         ],
     ],
 

@@ -13,12 +13,12 @@
                         <img class="w-40 mx-auto" :src="__asset('images/add-to-cart.png')"/>
                     </div>
                     <div class="flex justify-between">
-                        <button class="flex justify-center w-1/2 px-4 py-2 m-2 text-white bg-orangePantone hover:bg-greenTem rounded-xl focus:bg-greenTem focus:outline-none items-center" @click="goHome">
+                        <button class="flex justify-center w-1/2 px-4 py-2 m-2 text-white bg-orangePantone hover:bg-greenTemLight hover:text-green-900 rounded-xl focus:bg-greenTem focus:outline-none items-center" @click="goHome">
                             <div>
                                 {{__('general.web.order.continue_shopping')}}
                             </div>
                         </button>
-                        <button class="flex justify-center w-1/2 px-4 py-2 m-2 text-white bg-orangePantone hover:bg-greenTem rounded-xl focus:outline-none items-center" @click="seeCart">
+                        <button class="flex justify-center w-1/2 px-4 py-2 m-2 text-white bg-orangePantone hover:bg-greenTemLight hover:text-green-900 rounded-xl focus:outline-none items-center" @click="seeCart">
                             <div>
                                 {{__('general.web.order.see_cart')}}
                             </div>
