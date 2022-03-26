@@ -64,6 +64,7 @@ Vue.component('checkout-modal', require('./components/orders/modals/CheckoutModa
 Vue.component('order-history', require('./components/orders/OrderHistory.vue').default);
 Vue.component('order-index', require('./components/orders/OrderIndex.vue').default);
 Vue.component('order-history-modal', require('./components/orders/modals/OrderHistoryModal.vue').default);
+Vue.component('order-edit-modal', require('./components/orders/modals/OrderEditModal.vue').default);
 Vue.component('order-index-modal', require('./components/orders/modals/OrderIndexModal.vue').default);
 Vue.component('payment-thanks', require('./components/orders/PaymentThanks').default);
 

@@ -40,7 +40,8 @@ return [
 
         'close' => 'Cerrar',
         'save' => 'Guardar',
-        'show' => 'Mostrar',
+        'show' => 'Ver',
+        'edit' => 'Editar',
         'select' => 'Seleccione una opción',
         'search' => 'Buscar',
         'search_sentence' => '¿Qué quieres encontrar?',
@@ -167,6 +168,13 @@ return [
             'rejected' => 'Rechazado',
             'approved' => 'Aprobado',
             'pending' => 'Pendiente',
+            'successful_payment' => '¡Pago Exitoso!',
+            'successful_description' => 'Gracias por completar su pago seguro en línea.',
+            'rejected_payment' => 'Pago Rechazado :(',
+            'rejected_description' => 'Lo sentimos, no se pudo realizar su pago, por favor intenta nuevamente',
+            'pending_payment' => 'Pago Pendiente',
+            'pending_description' => 'El proceso de pago está pendiente, consulte mas tarde.',
+            'great_day' => '¡Que tengas un gran día!',
         ],
     ],
 

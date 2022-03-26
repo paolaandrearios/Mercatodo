@@ -82,7 +82,7 @@
                                     <span
                                         class="relative inline-block px-3 py-1 font-semibold leading-tight">
                                         <span class="absolute inset-0 rounded-full" :class="order.status === 'approved'  ? 'bg-greenTemLight' : order.status === 'rejected' ? 'bg-red-300': 'bg-yellowLight'"></span>
-                                         <span class="relative uppercase">{{ __('general.web.payment.' + order.status) }}</span>
+                                         <span class="relative uppercase" :class="order.status === 'approved'  ? 'text-green-600' : order.status === 'rejected' ? 'text-red-600': 'text-dimgray'">{{ __('general.web.payment.' + order.status) }}</span>
                                     </span>
                                 </td>
                                 <td>
