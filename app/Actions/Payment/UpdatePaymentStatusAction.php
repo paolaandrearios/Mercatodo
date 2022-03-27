@@ -25,7 +25,7 @@ class UpdatePaymentStatusAction
             $status = $currentPaymentStatus['status']['status'];
         }
 
-        Log::debug(json_encode($currentPaymentStatus));
+//        Log::debug(json_encode($currentPaymentStatus));
         $payment->status = strtolower($status);
         $payment->save();
 

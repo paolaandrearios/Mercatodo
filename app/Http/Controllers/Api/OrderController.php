@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Actions\Order\CreatePaymentAction;
 use App\Actions\Order\StoreOrderAction;
+use App\Actions\Order\UpdateOrderAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\StoreOrderRequest;
 use App\Models\Order;
@@ -19,6 +20,7 @@ class OrderController extends Controller
         return response()->json([
             'order' => $order,
             'payment' => $createPaymentAction->execute($order),
+            'message' => __('general.api.order.create_status_success'),
         ]);
     }
 
@@ -37,5 +39,19 @@ class OrderController extends Controller
     {
         $order = Order::query()->with(['user','orderDetails.product.images', 'orderDetails.product.categories', 'payments'])->where('id',$order)->firstOrFail();
         return response()->json(compact('order'));
+    }
+
+    public function update(StoreOrderRequest $request, Order $order, UpdateOrderAction $updateOrderAction): JsonResponse
+    {
+        if ($updateOrderAction->execute($order, $request)) {
+
+            return response()->json([
+                'message' => __('general.api.order.update_status_success'),
+            ]);
+        } else {
+            return response()->json([
+                'message' => __('general.api.order.update_status_error'),
+            ]);
+        }
     }
 }

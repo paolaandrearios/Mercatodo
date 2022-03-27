@@ -81,4 +81,5 @@ Route::group(['middleware' => 'auth:sanctum' ,'prefix' => 'client', 'as'=>'clien
 
 Route::group(['middleware' => 'auth:sanctum' ,'prefix' => 'client', 'as'=>'client.'], function () {
     Route::get('orders/order/{order}', [OrderController::class, 'show'])->name('order.history');
+    Route::patch('orders/order/{order}', [OrderController::class, 'update'])->name('order.edit');
 });

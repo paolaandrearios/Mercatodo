@@ -28,6 +28,12 @@ return [
             'characters_number_product_rule_message' => 'Enter minimum 4 characters for the search',
         ],
 
+        'order' => [
+            'update_status_success' => 'Order has been successfully modified',
+            'update_status_error' => 'Order could not be modified',
+            'create_status_success' => 'Order has been successfully created',
+        ],
+
         'checkout' => [
             'payment_description' => 'Payment of the order - :attribute of the e-commerce MercaTodo',
         ],
@@ -163,6 +169,7 @@ return [
             'customer' => 'Customer',
             'shipping_address' => 'Shipping Address',
             'order' => 'Order',
+            'check_history_orders' => 'If you want to see the order again and resume the payment, check the history in the orders section',
         ],
         'payment' => [
             'reference' => 'Reference',
@@ -171,6 +178,7 @@ return [
             'rejected' => 'Rejected',
             'approved' => 'Approved',
             'pending' => 'Pending',
+            'cancelled' => 'Cancelled',
             'successful_payment' => 'Successful Payment!',
             'successful_description' => 'Thank you for completing your secure online payment.',
             'rejected_payment' => 'Payment Rejected :(',

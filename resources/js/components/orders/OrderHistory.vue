@@ -1,46 +1,47 @@
 <template>
-    <div class="orderHistory">
-        <div class="orderHistory__header">
-            <logo class="text-xl md:text-2xl"></logo>
-            <button class="orderHistory__header--button" @click="goHome()">
-                <i class="fas fa-home"></i>
-            </button>
-        </div>
-        <div class=" flex items-center justify-between pb-6">
-            <div>
-                <h2 class="text-2xl text-gray-600 font-semibold">{{ __('general.web.order.your_orders') }}</h2>
+    <div class="container mx-auto">
+        <div class="orderHistory">
+            <div class="orderHistory__header">
+                <logo class="text-xl md:text-2xl"></logo>
+                <button class="orderHistory__header--button" @click="goHome()">
+                    <i class="fas fa-home"></i>
+                </button>
             </div>
-        </div>
-        <div>
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div class="orderHistory__container">
-                    <table class="orderHistory__container--table">
-                        <thead>
-                        <tr>
-                            <th>
-                                {{ __('general.web.order.reference') }}
-                            </th>
-                            <th>
-                                {{ __('general.web.order.address') }}
-                            </th>
-                            <th>
-                                {{ __('general.web.order.city') }}
-                            </th>
-                            <th>
-                                {{ __('general.web.order.total') }}
-                            </th>
-                            <th>
-                                {{ __('general.web.order.date') }}
-                            </th>
-                            <th>
-                                {{ __('general.web.order.status') }}
-                            </th>
-                            <th>
-                                ...
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody v-for="(order, index) in orders" :key="index" >
+            <div class=" flex items-center justify-between pb-6">
+                <div>
+                    <h2 class="text-2xl text-gray-600 font-semibold">{{ __('general.web.order.your_orders') }}</h2>
+                </div>
+            </div>
+            <div>
+                <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                    <div class="orderHistory__container">
+                        <table class="orderHistory__container--table">
+                            <thead>
+                            <tr>
+                                <th>
+                                    {{ __('general.web.order.reference') }}
+                                </th>
+                                <th>
+                                    {{ __('general.web.order.address') }}
+                                </th>
+                                <th>
+                                    {{ __('general.web.order.city') }}
+                                </th>
+                                <th>
+                                    {{ __('general.web.order.total') }}
+                                </th>
+                                <th>
+                                    {{ __('general.web.order.date') }}
+                                </th>
+                                <th>
+                                    {{ __('general.web.order.status') }}
+                                </th>
+                                <th>
+                                    ...
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody v-for="(order, index) in orders" :key="index" >
                             <tr>
                                 <td>
                                     <div class="flex items-center">
@@ -80,23 +81,25 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <button class="orderHistory__button" @click="show(order)">
+                                    <button class="orderHistory__button m-1" @click="show(order)">
                                         {{ __('general.web.show') }}
                                     </button>
-                                    <button class="orderHistory__button" @click="show(order)">
+                                    <button class="orderHistory__button m-1" @click="showEdit(order)" :class=" order.status === 'approved'  ? 'disabled' : ''" :disabled="order.status === 'approved'">
                                         {{ __('general.web.edit') }}
                                     </button>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="flex justify-center w-1/2 mx-auto my-3">
+                    <pagination :pagination="pagination" @paginate="getAllOrders" :offset="4"/>
                 </div>
             </div>
-            <div class="flex justify-center w-1/2 mx-auto my-3">
-                <pagination :pagination="pagination" @paginate="getAllOrders" :offset="4"/>
-            </div>
+            <order-history-modal :order="currentOrder" :isVisible="isOpenShow" :order_details="order_details" @close="close" @getOrder="getOrder"></order-history-modal>
+            <order-edit-modal :order="currentOrder" :isVisible="isOpenShowEdit" :order_details="order_details" @close="closeEdit" @getOrder="getOrder"></order-edit-modal>
         </div>
-        <order-history-modal :order="currentOrder" :isVisible="isOpenShow" :order_details="order_details" @close="close" @getOrder="getOrder"></order-history-modal>
     </div>
 </template>
 
@@ -116,6 +119,7 @@ export default {
     data() {
         return {
             isOpenShow: false,
+            isOpenShowEdit: false,
             orders: [],
             currentOrder: {},
             order_details: [],
@@ -154,8 +158,16 @@ export default {
             this.currentOrder = order;
             this.getOrder(order);
         },
+        showEdit: function(order) {
+            this.isOpenShowEdit = true;
+            this.currentOrder = order;
+            this.getOrder(order);
+        },
         close: function () {
             this.isOpenShow = false;
+        },
+        closeEdit: function () {
+            this.isOpenShowEdit = false;
         },
     }
 }

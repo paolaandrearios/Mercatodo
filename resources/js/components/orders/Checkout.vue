@@ -164,8 +164,12 @@ export default {
     methods: {
         create: function (){
             this.show_spin = true;
+            let cartItems = this.cartItems.map((element)=>{
+                element.product_id = element.id
+                return element;
+            })
             let data = {
-                cartItems: this.cartItems,
+                cartItems: cartItems,
                 shipping: this.shipping,
             }
 
@@ -176,7 +180,6 @@ export default {
                 this.show_spin = false;
                 this.show();
                 this.deleteItems();
-                //alert(response.data.message)
                 // this.close();
             }).catch(error => {
                 this.show_spin = false;
@@ -207,7 +210,7 @@ export default {
         },
         close: function () {
             this.isOpenShow = false;
-            alert('If you want to see the order again and resume the payment, check the history in the orders section');
+            alert(__('general.web.order.check_history_orders'));
         },
     },
 }

@@ -27,6 +27,12 @@ return [
             'characters_number_product_rule_message' => 'Ingrese mínimo 4 caracteres para la búsqueda',
         ],
 
+        'order' => [
+            'update_status_success' => 'El pedido ha sido modificado satisfactoriamente',
+            'update_status_error' => 'El pedido no pudo ser modificado',
+            'create_status_success' => 'El pedido ha sido creado con éxito',
+        ],
+
         'checkout' => [
             'payment_description' => 'Pago del pedido - :attribute del comercio electrónico MercaTodo',
         ],
@@ -160,6 +166,7 @@ return [
             'customer' => 'Cliente',
             'shipping_address' => 'Dirección de envío',
             'order' => 'Pedido',
+            'check_history_orders' => 'Si desea ver el pedido nuevamente y reanudar el pago, consulte el historial en la sección de pedidos',
         ],
         'payment' => [
             'reference' => 'Referencia',
@@ -168,6 +175,7 @@ return [
             'rejected' => 'Rechazado',
             'approved' => 'Aprobado',
             'pending' => 'Pendiente',
+            'cancelled' => 'Cancelado',
             'successful_payment' => '¡Pago Exitoso!',
             'successful_description' => 'Gracias por completar su pago seguro en línea.',
             'rejected_payment' => 'Pago Rechazado :(',

@@ -140,7 +140,8 @@
                                                 <p class="text-gray-900 whitespace-no-wrap text-center">{{ __currencyFormat(payment.total) }}</p>
                                             </td>
                                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                <p class="whitespace-no-wrap py-1 px-0.5 uppercase rounded-xl text-xs text-center font-bold" :class="payment.status === 'approved'  ? 'bg-greenTemLight text-green-600' : payment.status === 'rejected' ? 'bg-red-300 text-red-600': 'bg-yellowLight text-gray-900'">
+                                                <p class="whitespace-no-wrap py-1 px-0.5 uppercase rounded-xl text-xs text-center font-bold" :class="payment.status === 'approved'  ? 'bg-greenTemLight text-green-600'
+                                                : payment.status === 'rejected' ? 'bg-red-300 text-red-600': 'bg-yellowLight text-gray-900' ?  payment.status === 'cancelled' ? 'bg-gray-400 text-dimgray' : 'bg-yellowLight text-gray-900' : ''">
                                                     {{ __('general.web.payment.' + payment.status) }}
                                                 </p>
                                             </td>

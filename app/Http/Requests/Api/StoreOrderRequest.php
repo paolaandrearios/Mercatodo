@@ -70,7 +70,7 @@ class StoreOrderRequest extends FormRequest
                 'max:255',
                 'nullable',
             ],
-            'cartItems.*.id' => [
+            'cartItems.*.product_id' => [
                 'required',
                 'exists:products,id',
             ],

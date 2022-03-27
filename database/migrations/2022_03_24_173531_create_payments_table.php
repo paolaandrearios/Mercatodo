@@ -13,7 +13,7 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->string('reference');
             $table->double('total');
-            $table->enum('status', ['pending', 'rejected', 'approved'])->default('pending');
+            $table->enum('status', ['pending', 'rejected', 'approved', 'cancelled'])->default('pending');
             $table->string('url');
             $table->json('session');
             $table->foreignId('order_id');
