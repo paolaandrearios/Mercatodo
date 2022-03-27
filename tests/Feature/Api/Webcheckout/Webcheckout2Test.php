@@ -19,7 +19,6 @@ class Webcheckout2Test extends TestCase
     {
         $request = (new CreateSessionRequest($this->getCreateSessionData()))->toArray();
         $this->assertAuthSuccess($request);
-
         $this->assertArrayHasKey('payment',$request);
         $this->assertArrayHasKey('expiration',$request);
         $this->assertArrayHasKey('locale',$request);
@@ -71,6 +70,7 @@ class Webcheckout2Test extends TestCase
     private function getCreateSessionData(): array
     {
         return [
+            'locale' => 'es_CO',
             'payment' => [
                 'reference' => 'TEST_0001',
                 'description' => 'conexion con webcheckout desde un test',
@@ -79,7 +79,8 @@ class Webcheckout2Test extends TestCase
                     'total' => '50000'
                 ]
             ],
-            'returnUrl' => route('client.order.thanks'),
+            'returnUrl' => route('client.order.thanks',1),
+            'cancelUrl' => route('client.order.thanks',1),
             'expiration' => date('c', strtotime('+2 days')),
         ];
     }

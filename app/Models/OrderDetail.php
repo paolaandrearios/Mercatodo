@@ -11,7 +11,7 @@ class OrderDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'quantity',
+        'quantity', 'product_id'
     ];
 
     public function order(): BelongsTo

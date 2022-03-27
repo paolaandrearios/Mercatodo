@@ -27,8 +27,7 @@ class OrderController extends Controller
     public function index(): JsonResponse
     {
         $orders = Order::with('user','orderDetails.product.images','payments')
-            ->where('user_id', auth()
-            ->user()['id'])
+            ->where('user_id', auth()->user()['id'])
             ->orderBy('id', 'desc')
             ->paginate(config('general.custom_client_records_per_page'));
 
