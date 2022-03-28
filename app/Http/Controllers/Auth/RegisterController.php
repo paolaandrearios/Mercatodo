@@ -57,18 +57,16 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
     protected function create(array $data): User
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ])->assignRole('Client');
+
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        return $user;
     }
 }

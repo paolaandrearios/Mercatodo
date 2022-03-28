@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -39,6 +40,13 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware(function ($request, $next) {
+            if (!is_null(Auth::user())) {
+                return app(\Illuminate\Auth\Middleware\EnsureEmailIsVerified::class)->handle($request, $next);
+            }
+
+            return $next($request);
+        });
     }
 
     protected function sendLoginResponse(Request $request)
@@ -47,10 +55,12 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
+        $token = Auth::user()->createToken('token')->plainTextToken;
+        session::put('token', $token);
+
         if ($response = $this->authenticated($request, $this->guard()->user())) {
             return $response;
         }
-//        dd($this->redirectPath());
 
         if ($request->wantsJson()) {
             return new JsonResponse([], 204);
@@ -61,5 +71,24 @@ class LoginController extends Controller
         }
 
         return redirect()->intended(route('client.product.index'));
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::user()->tokens()->delete();
+
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect('/');
     }
 }

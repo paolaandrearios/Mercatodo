@@ -3,6 +3,8 @@
 namespace App\Actions\Product;
 
 use App\Helpers\Helper;
+use App\Http\Requests\Api\CreateProductRequest;
+use App\Models\Image;
 use App\Models\Product;
 use App\Repositories\ImageRepository;
 use Illuminate\Http\Request;
@@ -16,7 +18,7 @@ class StoreProductAction
         $this->imageRepository = $imageRepository;
     }
 
-    public function execute(Request $request): Product
+    public function execute(CreateProductRequest $request): Product
     {
         $product = new Product();
 
@@ -32,13 +34,24 @@ class StoreProductAction
 
         $product->slug = Helper::generateSlug($product['name_en']);
 
-        $filePath = $this->imageRepository->upload('products', $request->image);
-        $product->image = config('general.custom_image_path') . $filePath;
-
         $product->save();
 
-        $product->categories()->attach($request->input('categoryId'));
+        $product->categories()->attach($request->input('category_id'));
+
+        $this->imageUpload($request, $product);
 
         return $product;
+    }
+
+    public function imageUpload(Request $request, Product $product): void
+    {
+        foreach ($request->images as $image_product) {
+            $image = new Image();
+
+            $filePath = $this->imageRepository->upload('products', $image_product);
+            $image->url = config('general.custom_image_path') . $filePath;
+            $image->product_id = $product->id;
+            $image->save();
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Api\Products;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -24,11 +25,15 @@ class IndexTest extends TestCase
         $this->assertCount(0, $response->json()['products']['data']);
     }
 
-/*    public function test_check_all_products(): void
+    public function test_check_all_products(): void
     {
-        $products = Product::factory(3)->create();
-//        dd(json_encode($products));
-        $response = $this->get($this->endPoint);
+        $keyword = '';
+        $category = Category::factory(3)->create();
+        $products = Product::factory(3)->create()->each(function ($product) {
+            $product->categories()->attach(rand(1, 3));
+        });
+        $response = $this->get($this->endPoint . '?page=1&keyword=' . $keyword);
+
         $this->assertCount(3, $response->json()['products']['data']);
-    }*/
+    }
 }

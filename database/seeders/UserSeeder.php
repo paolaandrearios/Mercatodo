@@ -16,16 +16,22 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'email_verified_at' => now(),
         ])->assignRole('Admin');
+
+        User::create([
+            'name' => 'Marcela Ramírez',
+            'email' => 'paomil999+1@gmail.com',
+            'password' => Hash::make('12345678'),
+        ])->assignRole('Admin');
 //
         User::create([
             'name' => 'Pedro perez',
-            'email' => 'paomil999+1@gmail.com',
+            'email' => 'paomil999+2@gmail.com',
             'password' => Hash::make('12345678'),
         ])->assignRole('Client');
 
         User::create([
             'name' => 'Andrea Tamayo',
-            'email' => 'paomil999+2@gmail.com',
+            'email' => 'paomil999+3@gmail.com',
             'password' => Hash::make('12345678'),
         ])->assignRole('Client');
     }

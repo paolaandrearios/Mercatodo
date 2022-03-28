@@ -87,6 +87,9 @@
                                 {{ __('auth.login.forgot-password') }}
                             </a>
                         @endif
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">{{ __('general.web.user.register-in') }}</a>
+                        @endif
                     </div>
                 </form>
             </div>

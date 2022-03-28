@@ -44,8 +44,6 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product, UpdateProductAction $updateProductAction): JsonResponse
     {
         if ($updateProductAction->execute($product, $request)) {
-            $product->categories()->sync($request->input('categoryId'));
-
             return response()->json([
                 'message' => __('general.api.product.update_status_success'),
             ]);

@@ -11,8 +11,17 @@ import Vue from "vue";
 window.Vue = require('vue').default;
 Vue.mixin(require('./helper'));
 
+window.axios = require('axios');
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['locale'] = window._locale;
+if(window._token !== ''){
+    window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + window._token;
+}
+
+
 /**
- * The following block of code may be used to automatically register your
+ * The following block of codeL may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
  *
@@ -39,26 +48,42 @@ Vue.component('category-list-client', require('./components/categories/CategoryL
 Vue.component('product-list', require('./components/products/ProductList.vue').default);
 Vue.component('product-add', require('./components/products/modals/ProductAdd.vue').default);
 Vue.component('product-edit', require('./components/products/modals/ProductEdit.vue').default);
+Vue.component('product-show', require('./components/products/modals/ProductShow.vue').default);
 
 Vue.component('product-grid', require('./components/products/ProductGrid.vue').default);
+Vue.component('product-detail', require('./components/products/ProductDetail.vue').default);
+Vue.component('add-cart-modal', require('./components/products/modals/AddToCartModal.vue').default);
 
-Vue.component('product-show', require('./components/products/modals/ProductShow.vue').default);
+//orders
+Vue.component('order-cart', require('./components/orders/Cart.vue').default);
+Vue.component('cart-button', require('./components/orders/CartButton.vue').default);
+Vue.component('cart-items', require('./components/orders/CartItems.vue').default);
+Vue.component('order-checkout', require('./components/orders/Checkout.vue').default);
+Vue.component('order-summary', require('./components/orders/OrderSummary.vue').default);
+Vue.component('checkout-modal', require('./components/orders/modals/CheckoutModal.vue').default);
+Vue.component('order-history', require('./components/orders/OrderHistory.vue').default);
+Vue.component('order-index', require('./components/orders/OrderIndex.vue').default);
+Vue.component('order-history-modal', require('./components/orders/modals/OrderHistoryModal.vue').default);
+Vue.component('order-edit-modal', require('./components/orders/modals/OrderEditModal.vue').default);
+Vue.component('order-index-modal', require('./components/orders/modals/OrderIndexModal.vue').default);
+Vue.component('payment-thanks', require('./components/orders/PaymentThanks').default);
 
 //Home page
 Vue.component('home-page', require('./components/pages/homePage/HomePage.vue').default);
 Vue.component('header-home-page', require('./components/pages/homePage/HeaderHomePage.vue').default);
 Vue.component('banner-home-page', require('./components/pages/homePage/BannerHomePage.vue').default);
-Vue.component('category-home-page', require('./components/pages/homePage/CategoryHomePage.vue').default);
 
+Vue.component('category-home-page', require('./components/pages/homePage/CategoryHomePage.vue').default);
 //utils
 Vue.component('modal', require('./components/utils/Modal.vue').default);
 Vue.component('error', require('./components/utils/Error.vue').default);
 Vue.component('pagination', require('./components/utils/Pagination.vue').default);
 Vue.component('logo', require('./components/utils/Logo.vue').default);
 Vue.component('searcher', require('./components/utils/Searcher.vue').default);
-Vue.component('cart-button', require('./components/utils/CartButton.vue').default);
-Vue.component('bread-crumb', require('./components/utils/BreadCrumb.vue').default);
 Vue.component('footer-page', require('./components/utils/FooterPage.vue').default);
+Vue.component('logo-and-home', require('./components/utils/LogoAndHome.vue').default);
+Vue.component('dropdown', require('./components/utils/Dropdown.vue').default);
+Vue.component('dropdown-admin', require('./components/utils/DropdownAdmin.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

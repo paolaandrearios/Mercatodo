@@ -29,8 +29,10 @@ class ProductController extends Controller
         return response()->json(compact('products'));
     }
 
-    public function show(Product $product): JsonResponse
+    public function show($slug): JsonResponse
     {
+        $product = Product::with('images', 'categories')->where('slug', $slug)->firstOrFail();
+
         return response()->json(compact('product'));
     }
 }

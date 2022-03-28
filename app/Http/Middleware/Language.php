@@ -22,6 +22,10 @@ class Language
     {
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
+        } else {
+            if ($request->hasHeader('locale')) {
+                App::setLocale($request->header('locale'));
+            }
         }
 
         return $next($request);

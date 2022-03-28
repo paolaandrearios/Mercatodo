@@ -20,7 +20,6 @@ class ProductFactory extends Factory
             'description_en' => $this->faker->text(200),
             'name_es' => $this->faker->sentence(2),
             'description_es' => $this->faker->text(200),
-            'image' => '/storage/products/new-product.jpg',
             'price' => $this->faker->randomFloat(2, 25000, 100000),
             'taxes' => '19',
             'stock' => $this->faker->randomDigitNot(0),

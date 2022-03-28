@@ -64,6 +64,9 @@ export default {
                 this.$emit('getErrors', error.response.data.errors);
             })
         },
+        seeCart(e){
+            window.location.href = '/evertec/mercatodo/public/order/cart';
+        }
     },
     watch: {
         keyword: function(newVal, oldVal) {

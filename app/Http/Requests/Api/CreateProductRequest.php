@@ -43,8 +43,7 @@ class CreateProductRequest extends FormRequest
                 'min:80',
                 'max:400',
             ],
-            'image' => [
-                'required',
+            'images.*' => [
                 'image',
                 'mimes:jpg,bmp,png',
             ],
@@ -54,7 +53,7 @@ class CreateProductRequest extends FormRequest
                 'max:13',
                 'gt:0',
             ],
-            'categoryId' => [
+            'category_id' => [
                 'required',
                 'exists:categories,id',
             ],

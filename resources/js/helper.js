@@ -55,6 +55,13 @@ module.exports = {
             const numberFormat = new Intl.NumberFormat('es-CO', format);
             return numberFormat.format(num);
         },
-
+        __dateFormat: function __dateFormat(date) {
+            let newDate = date.split('T')[0];
+            return newDate;
+        },
+        __dateFormatWithHour: function __dateFormat(date) {
+            let newDate = date.replace('T','_').split('.')[0];
+            return newDate;
+        },
     },
 }

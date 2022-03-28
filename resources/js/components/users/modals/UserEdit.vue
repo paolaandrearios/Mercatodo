@@ -73,7 +73,7 @@ export default {
         },
 
         update: function () {
-            axios.put('/evertec/mercatodo/public/api/users/' + this.user.id,
+            axios.put('/evertec/mercatodo/public/api/admin/users/' + this.user.id,
                 this.user
             ).then(response => {
                 alert(response.data.message)

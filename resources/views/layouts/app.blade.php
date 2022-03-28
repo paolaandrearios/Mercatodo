@@ -25,6 +25,7 @@
         window._locale = '{{ app()->getLocale() }}';
         window._translations = {!! Helper::getTranslation() !!};
         window._asset = '{{ asset('') }}';
+        window._token = '{{ session()->get('token') }}';
     </script>
 </head>
 <body>
@@ -36,6 +37,9 @@
             <a href="{{ route('locale', 'es') }}">
                 <img class="cursor-pointer w-6 h-6 transform hover:translate-y-1 hover:scale-105 transition-all duration-300" src="{{asset('images/spain.png')}}"/>
             </a>
+            <div>
+                @yield('dropdown-admin')
+            </div>
         </div>
         <div>
             @if(!isset($showHeader)  || (isset($showHeader) && $showHeader))
