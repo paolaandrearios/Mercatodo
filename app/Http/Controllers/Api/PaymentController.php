@@ -8,11 +8,11 @@ use App\Models\Order;
 use App\Models\Payment;
 use App\Services\WebcheckoutService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
     private WebcheckoutService $webCheckoutService;
+
     public function __construct(WebcheckoutService $webCheckoutService)
     {
         $this->webCheckoutService = $webCheckoutService;
@@ -26,11 +26,11 @@ class PaymentController extends Controller
             ->orderBy('id', 'desc')
             ->first();
 
-        if(is_null($currentPayment)){
+        if (is_null($currentPayment)) {
             $currentPayment = $createPaymentAction->execute($order);
         } else {
             $currentPaymentStatus = $this->webCheckoutService->getInformation($currentPayment->session['requestId']);
-            if($currentPaymentStatus['status']['status'] !== 'PENDING'){
+            if ($currentPaymentStatus['status']['status'] !== 'PENDING') {
                 $currentPayment = $createPaymentAction->execute($order);
             }
         }

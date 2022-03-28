@@ -15,10 +15,11 @@ class ProductController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(function($request, $next){
-            if(!is_null(Auth::user())) {
+        $this->middleware(function ($request, $next) {
+            if (!is_null(Auth::user())) {
                 return app(\Illuminate\Auth\Middleware\EnsureEmailIsVerified::class)->handle($request, $next);
             }
+
             return $next($request);
         });
     }

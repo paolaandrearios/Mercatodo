@@ -27,7 +27,7 @@ class StatusTest extends TestCase
 
     public function test_error_not_found_when_try_to_update_unknown_user(): void
     {
-        $response = $this->putJson($this->endPoint . '/2/status/active',[], $this->headers);
+        $response = $this->putJson($this->endPoint . '/2/status/active', [], $this->headers);
         $response->assertStatus(404);
         $response->assertJsonFragment(['message' => __('general.api.exceptions.model_not_found')]);
     }
@@ -43,7 +43,7 @@ class StatusTest extends TestCase
     public function test_change_status_to_active_for_an_inactive_user(): void
     {
         $user = User::factory(1)->create(['status' => 'inactive']);
-        $response = $this->putJson($this->endPoint . '/' . $user[0]->id . '/status/active',  [], $this->headers);
+        $response = $this->putJson($this->endPoint . '/' . $user[0]->id . '/status/active', [], $this->headers);
         $response->assertOk();
         $response->assertJsonFragment(['message' => __('general.api.user.update_status_success')]);
 

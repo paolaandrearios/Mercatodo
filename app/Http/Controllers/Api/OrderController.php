@@ -10,13 +10,12 @@ use App\Http\Requests\Api\StoreOrderRequest;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 
-
 class OrderController extends Controller
 {
-
     public function store(StoreOrderRequest $request, StoreOrderAction $storeOrderAction, CreatePaymentAction $createPaymentAction): JsonResponse
     {
         $order = $storeOrderAction->execute($request);
+
         return response()->json([
             'order' => $order,
             'payment' => $createPaymentAction->execute($order),
@@ -26,7 +25,7 @@ class OrderController extends Controller
 
     public function index(): JsonResponse
     {
-        $orders = Order::with('user','orderDetails.product.images','payments')
+        $orders = Order::with('user', 'orderDetails.product.images', 'payments')
             ->where('user_id', auth()->user()['id'])
             ->orderBy('id', 'desc')
             ->paginate(config('general.custom_client_records_per_page'));
@@ -36,14 +35,14 @@ class OrderController extends Controller
 
     public function show($order): JsonResponse
     {
-        $order = Order::query()->with(['user','orderDetails.product.images', 'orderDetails.product.categories', 'payments'])->where('id',$order)->firstOrFail();
+        $order = Order::query()->with(['user', 'orderDetails.product.images', 'orderDetails.product.categories', 'payments'])->where('id', $order)->firstOrFail();
+
         return response()->json(compact('order'));
     }
 
     public function update(StoreOrderRequest $request, Order $order, UpdateOrderAction $updateOrderAction): JsonResponse
     {
         if ($updateOrderAction->execute($order, $request)) {
-
             return response()->json([
                 'message' => __('general.api.order.update_status_success'),
             ]);

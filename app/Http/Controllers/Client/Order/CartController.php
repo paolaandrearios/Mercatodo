@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Client\Order;
-
 
 use Illuminate\Contracts\View\View;
 

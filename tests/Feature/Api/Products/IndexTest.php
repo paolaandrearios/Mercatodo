@@ -32,7 +32,7 @@ class IndexTest extends TestCase
         $products = Product::factory(3)->create()->each(function ($product) {
             $product->categories()->attach(rand(1, 3));
         });
-        $response = $this->get($this->endPoint.'?page=1&keyword='.$keyword);
+        $response = $this->get($this->endPoint . '?page=1&keyword=' . $keyword);
 
         $this->assertCount(3, $response->json()['products']['data']);
     }

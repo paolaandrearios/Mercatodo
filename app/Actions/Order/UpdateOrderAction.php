@@ -12,11 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 class UpdateOrderAction
 {
-    Private CalculateTotalRepository $calculateTotalRepository;
+    private CalculateTotalRepository $calculateTotalRepository;
     private float $accumTaxes = 0;
     private float $accumSubtotal = 0;
     private float $accumTotal = 0;
-
 
     public function __construct(CalculateTotalRepository $calculateTotalRepository)
     {
@@ -39,15 +38,14 @@ class UpdateOrderAction
 
         $order->save();
 
-        foreach ($request->input('cartItems') as $item){
-
-            $product = Product::query()->where('id',$item['product_id'])->firstOrFail();
+        foreach ($request->input('cartItems') as $item) {
+            $product = Product::query()->where('id', $item['product_id'])->firstOrFail();
             $orderDetails = OrderDetail::query()->where('product_id', $product['id'])
                                                  ->where('order_id', $item['order_id'])
                                                 ->firstOrFail();
             $orderDetails->product_id = $item['product_id'];
             $orderDetails->quantity = $item['quantity'];
-            list($taxes, $subtotal, $total)  =
+            list($taxes, $subtotal, $total) =
                 $this->calculateTotalRepository->calculateTotal($product->price, $product->taxes, $item['quantity']);
             $orderDetails->taxes = $taxes;
             $orderDetails->subtotal = $subtotal;
@@ -66,9 +64,9 @@ class UpdateOrderAction
         $order->save();
 
         $pendingPayments = Payment::query()->whereIn('status', ['pending', 'rejected'])
-            ->where('order_id',$order->id)
+            ->where('order_id', $order->id)
             ->get();
-        foreach ($pendingPayments as $pendingPayment){
+        foreach ($pendingPayments as $pendingPayment) {
             $pendingPayment->status = 'cancelled';
             $pendingPayment->save();
         }

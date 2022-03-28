@@ -11,7 +11,6 @@ use App\Http\Requests\Api\UpdateProductRequest;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\JsonResponse;
-use function MongoDB\BSON\toJSON;
 
 class ProductController extends Controller
 {
@@ -45,7 +44,6 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product, UpdateProductAction $updateProductAction): JsonResponse
     {
         if ($updateProductAction->execute($product, $request)) {
-
             return response()->json([
                 'message' => __('general.api.product.update_status_success'),
             ]);

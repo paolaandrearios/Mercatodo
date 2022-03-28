@@ -1,13 +1,12 @@
 <?php
 
-
 namespace App\Services;
+
 use App\Contracts\WebcheckoutContract;
 use App\Request\CreateSessionRequest;
 use App\Request\GetInformationRequest;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
-
 
 class WebcheckoutService implements WebcheckoutContract
 {
@@ -23,7 +22,8 @@ class WebcheckoutService implements WebcheckoutContract
         $getInformation = new GetInformationRequest();
         $data = $getInformation->auth();
         $url = $getInformation::url($session_id);
-        return $this->request($data,$url);
+
+        return $this->request($data, $url);
     }
 
     public function createSession(array $data): array
@@ -38,12 +38,13 @@ class WebcheckoutService implements WebcheckoutContract
 
     private function request(array $data, string $url): array
     {
-        $response = $this->client->request('post',$url,[
+        $response = $this->client->request('post', $url, [
             'json' => $data,
-            'verify' => false
+            'verify' => false,
         ]);
 
         $content = $response->getBody()->getContents();
+
         return json_decode($content, true);
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 class UpdatePaymentStatusAction
 {
     private WebcheckoutService $webCheckoutService;
+
     public function __construct(WebcheckoutService $webCheckoutService)
     {
         $this->webCheckoutService = $webCheckoutService;
@@ -19,7 +20,7 @@ class UpdatePaymentStatusAction
         $currentPaymentStatus = $this->webCheckoutService->getInformation($payment->session['requestId']);
 
         $status = '';
-        if(isset($currentPaymentStatus['payment'][0]['status']['status'])) {
+        if (isset($currentPaymentStatus['payment'][0]['status']['status'])) {
             $status = $currentPaymentStatus['payment'][0]['status']['status'];
         } else {
             $status = $currentPaymentStatus['status']['status'];
@@ -33,10 +34,6 @@ class UpdatePaymentStatusAction
         $order->status = strtolower($status);
         $order->save();
 
-
         return $payment;
     }
-
-
-
 }

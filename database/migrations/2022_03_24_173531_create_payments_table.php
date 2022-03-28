@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePaymentsTable extends Migration
 {
-
     public function up():void
     {
         Schema::create('payments', function (Blueprint $table) {

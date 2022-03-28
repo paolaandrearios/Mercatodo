@@ -50,7 +50,6 @@ class StoreTest extends TestCase
             'images' => $images,
         ];
 
-
         $response = $this->postJson($this->endPoint, $data, $this->headers);
         $response->assertOk();
         $response->assertJsonFragment(['message' => __('general.api.product.create_status_success')]);

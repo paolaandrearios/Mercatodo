@@ -36,19 +36,15 @@ class UpdateTest extends TestCase
 
     public function test_update_existent_order(): void
     {
-        $user =  $this->userConfig;
-
-
+        $user = $this->userConfig;
 
         $products = Product::factory(3)->create();
         //dd(json_encode($products));
         $order = Order::factory(1)->create(['user_id' => $user['user']['id']])->first();
-        dump(json_encode($order));
 
         OrderDetail::factory(1)->create(['order_id' => $order->id, 'product_id' => $products[0]->id]);
         OrderDetail::factory(1)->create(['order_id' => $order->id, 'product_id' => $products[1]->id]);
         OrderDetail::factory(1)->create(['order_id' => $order->id, 'product_id' => $products[2]->id]);
-
 
         $cartItems = [
             [
@@ -59,7 +55,6 @@ class UpdateTest extends TestCase
             ],
 
         ];
-
 
         $data = [
             'shipping' => [
@@ -79,13 +74,11 @@ class UpdateTest extends TestCase
 
         $response = $this->patchJson($this->endPoint . '/order/' . $order->id, $data, $this->headers);
 
-        dump(json_encode($response));
-
         $response->assertOk();
         $response->assertJsonFragment(['message' => __('general.api.order.update_status_success')]);
 
         $orderUpdated = Order::query()->with('orderDetails')->where('id', $order->id)->first();
         $this->assertEquals($data['shipping']['first_name'], $orderUpdated->first_name);
-        $this->assertEquals(18 , $orderUpdated->orderDetails[1]->quantity);
+        $this->assertEquals(18, $orderUpdated->orderDetails[1]->quantity);
     }
 }

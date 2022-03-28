@@ -6,9 +6,7 @@ use App\Helpers\Helper;
 use App\Models\Image;
 use App\Models\Product;
 use App\Repositories\ImageRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use function PHPUnit\Framework\isInstanceOf;
 
 class UpdateProductAction
 {
@@ -42,15 +40,13 @@ class UpdateProductAction
 
     public function imageUpdateUpload(Request $request, Product $product): void
     {
-        $updated_images = explode(',',$request->updated_images);
+        $updated_images = explode(',', $request->updated_images);
 
-        if($request->images !== null)
-        {
-            foreach ($request->images as $index => $image_product){
-
-                if($updated_images[$index] === ''){
+        if ($request->images !== null) {
+            foreach ($request->images as $index => $image_product) {
+                if ($updated_images[$index] === '') {
                     $image = new Image();
-                }else {
+                } else {
                     $image = Image::where('id', $updated_images[$index])->first();
                 }
 

@@ -8,7 +8,6 @@ use Illuminate\Console\Command;
 
 class WebCheckoutCheckOrderStatusCommand extends Command
 {
-
     private UpdatePaymentStatusAction $updatePaymentStatusAction;
 
     protected $signature = 'webcheckout:checkorderstatus';
@@ -24,9 +23,10 @@ class WebCheckoutCheckOrderStatusCommand extends Command
     public function handle(): int
     {
         $pendingPayments = Payment::query()->with('order')->where('status', 'pending')->get();
-        foreach ($pendingPayments as $pendingPayment){
+        foreach ($pendingPayments as $pendingPayment) {
             $this->updatePaymentStatusAction->execute($pendingPayment);
         }
+
         return 0;
     }
 }

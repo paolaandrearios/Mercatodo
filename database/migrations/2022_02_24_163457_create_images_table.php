@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateImagesTable extends Migration
 {
-
     public function up(): void
     {
         Schema::create('images', function (Blueprint $table) {
@@ -19,7 +18,6 @@ class CreateImagesTable extends Migration
             $table->timestamps();
         });
     }
-
 
     public function down(): void
     {

@@ -51,7 +51,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-
     public function isActive(): bool
     {
         return $this->status == 'active';
@@ -63,5 +62,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Order::class);
     }
-
 }

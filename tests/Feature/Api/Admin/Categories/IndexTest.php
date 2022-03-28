@@ -3,7 +3,6 @@
 namespace Tests\Feature\Api\Admin\Categories;
 
 use App\Models\Category;
-
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Feature\Common\RequestFaker;
 use Tests\Feature\Common\User\UserApiFaker;

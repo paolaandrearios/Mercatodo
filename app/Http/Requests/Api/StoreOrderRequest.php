@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreOrderRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -29,7 +28,7 @@ class StoreOrderRequest extends FormRequest
             ],
             'shipping.document_type' => [
                 'required',
-                'in:citizenship_id,foreigner_id,passport'
+                'in:citizenship_id,foreigner_id,passport',
             ],
             'shipping.document_number' => [
                 'required',

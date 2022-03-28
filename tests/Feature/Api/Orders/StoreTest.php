@@ -17,7 +17,6 @@ class StoreTest extends TestCase
 
     protected $endPoint = '/api/client/orders';
 
-
     public function test_error_401_when_user_is_unauthenticated(): void
     {
         $response = $this->get($this->endPoint, [
@@ -29,7 +28,7 @@ class StoreTest extends TestCase
 
     public function test_create_order(): void
     {
-        $user =  $this->userConfig;
+        $user = $this->userConfig;
 
         Product::factory(3)->create();
         $shipping = Order::factory(1)->create(['user_id' => $user['user']['id']])->first();
@@ -58,7 +57,6 @@ class StoreTest extends TestCase
         ];
 
         $response = $this->postJson($this->endPoint, $data, $this->headers);
-        dump($response->status());
         $response->assertOk();
         $response->assertJsonFragment(['message' => __('general.api.order.create_status_success')]);
     }

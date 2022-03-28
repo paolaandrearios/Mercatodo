@@ -40,21 +40,20 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware(function($request, $next){
-            if(!is_null(Auth::user())) {
+        $this->middleware(function ($request, $next) {
+            if (!is_null(Auth::user())) {
                 return app(\Illuminate\Auth\Middleware\EnsureEmailIsVerified::class)->handle($request, $next);
             }
+
             return $next($request);
         });
     }
-
 
     protected function sendLoginResponse(Request $request)
     {
         $request->session()->regenerate();
 
         $this->clearLoginAttempts($request);
-
 
         $token = Auth::user()->createToken('token')->plainTextToken;
         session::put('token', $token);

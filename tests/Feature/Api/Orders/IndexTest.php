@@ -39,7 +39,7 @@ class IndexTest extends TestCase
 
     public function test_check_all_orders(): void
     {
-        $user =  $this->userConfig;
+        $user = $this->userConfig;
 
         $orders = Order::factory(3)->create(['user_id' => $user['user']['id']]);
 

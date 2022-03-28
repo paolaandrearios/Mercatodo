@@ -9,7 +9,7 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            'reference' => strtoupper(substr(md5(uniqid(rand(), true)),0,8)),
+            'reference' => strtoupper(substr(md5(uniqid(rand(), true)), 0, 8)),
             'total' => $this->faker->numerify('######'),
             'status' => 'pending',
             'url' => $this->faker->url(),

@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Common\User;
 
-
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
 
@@ -23,12 +22,10 @@ trait UserApiFaker
     {
         $user = Sanctum::actingAs(User::factory()->create(), [], 'api');
         $token = $user->createToken('token')->plainTextToken;
+
         return [
             'user' => $user,
             'token' => $token,
         ];
     }
-
-
-
 }

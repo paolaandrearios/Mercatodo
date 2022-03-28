@@ -48,7 +48,6 @@ class CategoryController extends Controller
             return response()->json([
                 'message' => __('general.api.category.update_status_error'),
             ]);
-
         }
     }
 }

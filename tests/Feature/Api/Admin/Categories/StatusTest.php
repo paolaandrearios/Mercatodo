@@ -27,7 +27,7 @@ class StatusTest extends TestCase
 
     public function test_error_not_found_when_try_to_update_unknown_categories(): void
     {
-        $response = $this->putJson($this->endPoint .'/1/status/active', [], $this->headers);
+        $response = $this->putJson($this->endPoint . '/1/status/active', [], $this->headers);
         $response->assertStatus(404);
         $response->assertJsonFragment(['message' => __('general.api.exceptions.model_not_found')]);
     }

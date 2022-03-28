@@ -13,7 +13,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('webcheckout:checkorderstatus')->everyMinute();
     }
 
-
     protected function commands():void
     {
         $this->load(__DIR__ . '/Commands');

@@ -18,6 +18,7 @@ class Authenticate extends Middleware
         if (!$request->expectsJson()) {
             return route('login');
         }
-        return response()->json( Response::$statusTexts[Response::HTTP_UNAUTHORIZED], Response::HTTP_UNAUTHORIZED);
+
+        return response()->json(Response::$statusTexts[Response::HTTP_UNAUTHORIZED], Response::HTTP_UNAUTHORIZED);
     }
 }

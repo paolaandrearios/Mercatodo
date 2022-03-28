@@ -8,7 +8,6 @@ use App\Services\WebcheckoutService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 
-
 class CreatePaymentAction
 {
     private string $reference;
@@ -29,17 +28,16 @@ class CreatePaymentAction
         return $payment;
     }
 
-
     private function createSessionWC(Order $order): array
     {
         $data = [];
-        if(App::getLocale() == 'es'){
-            $locale = App::getLocale().'_'.'CO';
+        if (App::getLocale() == 'es') {
+            $locale = App::getLocale() . '_' . 'CO';
         } else {
-            $locale = App::getLocale().'_'.'US';
+            $locale = App::getLocale() . '_' . 'US';
         }
         $data['locale'] = $locale;
-        $this->reference = strtoupper(substr(md5(uniqid(rand(), true)),0,10));
+        $this->reference = strtoupper(substr(md5(uniqid(rand(), true)), 0, 10));
         $data['buyer'] = [
             'name' => $order->first_name,
             'surname' => $order->last_name,
@@ -51,11 +49,11 @@ class CreatePaymentAction
             'amount' => [
                 'currency' => 'COP',
                 'total' => $order->total,
-            ]
+            ],
         ];
         $data['returnUrl'] = route('client.order.thanks', $order->id);
         $data['cancelUrl'] = route('client.order.thanks', $order->id);
-        $data['expiration'] = date('c', strtotime( config('webcheckout.expiration_time')));
+        $data['expiration'] = date('c', strtotime(config('webcheckout.expiration_time')));
 //        Log::debug(json_encode($data));
         return (new WebcheckoutService())->createSession($data);
     }

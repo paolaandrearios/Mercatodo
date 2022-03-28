@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Client\Order\CartController;
 use App\Http\Controllers\Client\Order\CheckoutController;
 use App\Http\Controllers\Client\Order\OrderHistoryController;
@@ -30,7 +30,6 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-
 // Admin Routes
 Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     Route::middleware(['auth', 'verified', 'active'])->group(function () {
@@ -42,13 +41,12 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     });
 });
 
-
 // Client Routes
 Route::group(['as'=>'client.'], function () {
     Route::get('/', [ClientProductController::class, 'index'])->name('product.index');
     Route::get('/product/{slug}', [ClientProductController::class, 'show'])->name('product.show');
     Route::get('/order/cart', [CartController::class, 'show'])->name('order.cart');
-    Route::get('/order/thanks/{order}',[OrderThanksController::class, 'show'])->name('order.thanks');
+    Route::get('/order/thanks/{order}', [OrderThanksController::class, 'show'])->name('order.thanks');
 });
 
 // Client Routes Authenticated
@@ -57,7 +55,6 @@ Route::middleware(['auth', 'verified', 'active'])->group(function () {
     Route::get('/order/checkout', [CheckoutController::class, 'show'])->name('order.checkout');
     Route::get('/orders/history', [OrderHistoryController::class, 'show'])->name('orders.history');
 });
-
 
 Route::get('/locale/{locale?}', function ($locale = null) {
     if (isset($locale) && in_array($locale, config('app.available_locales'))) {

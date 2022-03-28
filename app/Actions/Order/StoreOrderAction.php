@@ -11,11 +11,10 @@ use Illuminate\Support\Facades\Auth;
 
 class StoreOrderAction
 {
-    Private CalculateTotalRepository $calculateTotalRepository;
+    private CalculateTotalRepository $calculateTotalRepository;
     private float $accumTaxes = 0;
     private float $accumSubtotal = 0;
     private float $accumTotal = 0;
-
 
     public function __construct(CalculateTotalRepository $calculateTotalRepository)
     {
@@ -25,7 +24,7 @@ class StoreOrderAction
     public function execute(StoreOrderRequest $request): Order
     {
         $order = new Order();
-        $order->reference = strtoupper(substr(md5(uniqid(rand(), true)),0,8));
+        $order->reference = strtoupper(substr(md5(uniqid(rand(), true)), 0, 8));
         $shipping = $request->input('shipping');
         $order->first_name = $shipping['first_name'];
         $order->last_name = $shipping['last_name'];
@@ -41,14 +40,13 @@ class StoreOrderAction
 
         $order->save();
 
-        foreach ($request->input('cartItems') as $item){
-
-            $product = Product::query()->where('id',$item['id'])->firstOrFail();
+        foreach ($request->input('cartItems') as $item) {
+            $product = Product::query()->where('id', $item['id'])->firstOrFail();
             $orderDetails = new OrderDetail();
             $orderDetails->product_id = $item['product_id'];
             $orderDetails->order_id = $order->id;
             $orderDetails->quantity = $item['quantity'];
-            list($taxes, $subtotal, $total)  =
+            list($taxes, $subtotal, $total) =
                 $this->calculateTotalRepository->calculateTotal($product->price, $product->taxes, $item['quantity']);
             $orderDetails->taxes = $taxes;
             $orderDetails->subtotal = $subtotal;

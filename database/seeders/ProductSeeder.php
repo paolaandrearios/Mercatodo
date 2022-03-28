@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
                 new Image(['url'=> '/images/new-product.jpg', 'product_id' => $product->id]),
                 new Image(['url'=> '/images/new-category.jpg', 'product_id' => $product->id]),
                 new Image(['url'=> '/images/fashion.jpg', 'product_id' => $product->id]),
-            ]) ;
+            ]);
         });
     }
 }

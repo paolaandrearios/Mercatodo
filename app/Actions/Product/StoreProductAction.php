@@ -45,8 +45,7 @@ class StoreProductAction
 
     public function imageUpload(Request $request, Product $product): void
     {
-        foreach ($request->images as $image_product){
-
+        foreach ($request->images as $image_product) {
             $image = new Image();
 
             $filePath = $this->imageRepository->upload('products', $image_product);
