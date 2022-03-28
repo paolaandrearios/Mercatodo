@@ -1,4 +1,4 @@
-# 🛒 Mercatodo, e-commerce web application 🛍️
+# 🛒 MercaTodo, e-commerce web application 🛍️
 
 Project created for the management of electronic commerce products, both from the client side and from the administrator side. The platform has an administrator panel from where you can create, edit, enable and disable products, view customer orders and also manage users who register on the platform.
 
