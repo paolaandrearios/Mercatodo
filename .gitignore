@@ -60,3 +60,4 @@ Thumbs.db
 
 .php-cs-fixer.cache
 
+coverage/

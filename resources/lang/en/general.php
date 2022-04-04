@@ -169,6 +169,7 @@ return [
             'customer' => 'Customer',
             'shipping_address' => 'Shipping Address',
             'order' => 'Order',
+            'see_orders' => 'See Orders',
             'check_history_orders' => 'If you want to see the order again and resume the payment, check the history in the orders section',
         ],
         'payment' => [

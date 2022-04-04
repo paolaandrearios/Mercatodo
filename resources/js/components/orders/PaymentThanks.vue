@@ -31,8 +31,11 @@
             </div>
         </div>
         <div class="py-10 text-center">
-            <button @click="goHome" class="px-12 bg-orangePantone text-white font-semibold py-3 rounded-xl transform transition-all duration-300  hover:scale-105 hover:bg-orange-600 focus:outline-none ">
+            <button @click="goHome" class="px-12 mx-2 my-2 bg-orangePantone text-white font-semibold py-3 rounded-xl transform transition-all duration-300  hover:scale-105 hover:bg-orange-600 focus:outline-none ">
                 {{ __('general.web.order.back_home') }}
+            </button>
+            <button @click="seeOrders" class="px-12 mx-2 my-2 bg-orangePantone text-white font-semibold py-3 rounded-xl transform transition-all duration-300  hover:scale-105 hover:bg-orange-600 focus:outline-none ">
+                {{ __('general.web.order.see_orders') }}
             </button>
         </div>
     </div>
@@ -56,24 +59,18 @@ export default {
             url = url.split('/')
             let order = url[url.length - 1]
 
-            // this.show_spin = true;
             let data = {}
             axios.get('/evertec/mercatodo/public/api/client/payments/syncstatus/'+order,
                 data,
             ).then(response => {
                 this.payment = response.data.payment;
-                console.table(response.data.payment.status)
-                // this.payment = response.data.payment;
-                // this.show_spin = false;
-                // this.show();
-                // this.$emit('getOrder', this.order)
-            }).catch(error => {
-                // this.show_spin = false;
-                // this.errors = error.response.data.errors;
             })
         },
         goHome(){
             window.location.href = '/evertec/mercatodo/public/';
+        },
+        seeOrders(){
+            window.location.href = '/evertec/mercatodo/public/orders/history';
         },
     }
 }

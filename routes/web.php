@@ -33,11 +33,11 @@ Auth::routes(['verify' => true]);
 // Admin Routes
 Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     Route::middleware(['auth', 'verified', 'active'])->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('can:admin.dashboard.index')->name('dashboard.index');
         Route::get('/users', [UserController::class, 'index'])->middleware('can:admin.user.index')->name('user.index');
         Route::get('/categories', [CategoryController::class, 'index'])->middleware('can:admin.category.index')->name('category.index');
         Route::get('/products', [ProductController::class, 'index'])->middleware('can:admin.product.index')->name('product.index');
-        Route::get('/orders/index', [OrderController::class, 'show'])->name('orders.index');
+        Route::get('/orders/index', [OrderController::class, 'show'])->middleware('can:admin.orders.index')->name('orders.index');
     });
 });
 

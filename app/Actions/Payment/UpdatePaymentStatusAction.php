@@ -19,11 +19,9 @@ class UpdatePaymentStatusAction
     {
         $currentPaymentStatus = $this->webCheckoutService->getInformation($payment->session['requestId']);
 
-        $status = '';
+        $status = $currentPaymentStatus['status']['status'];
         if (isset($currentPaymentStatus['payment'][0]['status']['status'])) {
             $status = $currentPaymentStatus['payment'][0]['status']['status'];
-        } else {
-            $status = $currentPaymentStatus['status']['status'];
         }
 
 //        Log::debug(json_encode($currentPaymentStatus));

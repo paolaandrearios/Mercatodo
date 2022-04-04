@@ -166,6 +166,7 @@ return [
             'customer' => 'Cliente',
             'shipping_address' => 'Dirección de envío',
             'order' => 'Pedido',
+            'see_orders' => 'Ver Pedidos',
             'check_history_orders' => 'Si desea ver el pedido nuevamente y reanudar el pago, consulte el historial en la sección de pedidos',
         ],
         'payment' => [

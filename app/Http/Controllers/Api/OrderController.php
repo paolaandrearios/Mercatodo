@@ -33,9 +33,9 @@ class OrderController extends Controller
         return response()->json(compact('orders'));
     }
 
-    public function show($order): JsonResponse
+    public function show(int $id): JsonResponse
     {
-        $order = Order::query()->with(['user', 'orderDetails.product.images', 'orderDetails.product.categories', 'payments'])->where('id', $order)->firstOrFail();
+        $order = Order::query()->with(['user', 'orderDetails.product.images', 'orderDetails.product.categories', 'payments'])->where('id', $id)->firstOrFail();
 
         return response()->json(compact('order'));
     }
