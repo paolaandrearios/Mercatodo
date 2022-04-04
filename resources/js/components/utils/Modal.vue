@@ -1,11 +1,7 @@
 <template>
     <div class="modal">
         <div class="modal__container">
-
-            <div
-                v-show="isVisible"
-                class="modal__container--bg"
-            >
+            <div v-show="isVisible" class="modal__container--bg">
                 <div class="modal__content">
                     <div class="modal__content--header">
                         <h3 class="modal__content--title">
@@ -14,7 +10,7 @@
                         <svg
                             @click="close()"
                             xmlns="http://www.w3.org/2000/svg"
-                            class="w-8 h-8 text-orangePantone cursor-pointer"
+                            class="h-8 w-8 cursor-pointer text-orangePantone"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -34,14 +30,13 @@
             </div>
         </div>
     </div>
-
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
-    name: "Modal.vue",
+    name: 'Modal.vue',
 
     props: {
         isVisible: Boolean,
@@ -49,11 +44,9 @@ export default {
 
     emits: ['close'],
     methods: {
-
-        close: function() {
-            this.$emit('close')
-        }
+        close: function () {
+            this.$emit('close');
+        },
     },
-}
+};
 </script>
-

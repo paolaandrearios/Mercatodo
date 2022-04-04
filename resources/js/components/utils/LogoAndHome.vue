@@ -1,30 +1,26 @@
 <template>
-    <div class="font-poppins container mx-auto">
-        <div class="flex justify-center md:justify-start items-center">
+    <div class="container mx-auto font-poppins">
+        <div class="flex items-center justify-center md:justify-start">
             <logo class="text-xl md:text-2xl"></logo>
-            <button class="p-1 md:hover:bg-orangePantone rounded-full ml-2 focus:outline-none" @click="goHome()">
-                <i class="fas fa-home text-orangePantone text-lg md:text-2xl hover:text-white m-2 cursor-pointer"></i>
+            <button class="focus:outline-none ml-2 rounded-full p-1 md:hover:bg-orangePantone" @click="goHome()">
+                <i class="fas fa-home m-2 cursor-pointer text-lg text-orangePantone hover:text-white md:text-2xl"></i>
             </button>
         </div>
     </div>
 </template>
 
 <script>
-
-import Logo from "../utils/Logo";
+import Logo from '../utils/Logo';
 
 export default {
-    name: "LogoAndHome.vue",
+    name: 'LogoAndHome.vue',
     components: {
         Logo,
     },
-    methods:{
-        goHome(){
+    methods: {
+        goHome() {
             window.location.href = '/evertec/mercatodo/public/';
         },
     },
-}
-
+};
 </script>
-
-

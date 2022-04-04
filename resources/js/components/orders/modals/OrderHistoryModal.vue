@@ -1,90 +1,168 @@
 <template>
     <div class="">
         <div class="modal__container font-poppins">
-            <div
-                v-if="isVisible"
-                class="modal__container--bg"
-            >
-                <div class="text-xs md:text-sm p-2 overflow-x-hidden p-6 bg-white rounded-md shadow-xl overflow-y-scroll w-5/6 h-11/12 mx-auto">
-                    <div class="py-14 px-4 md:px-6 2xl:px-20">
-
-                        <div class="flex justify-start item-start space-y-2 flex-col">
-                            <h1 class="text-xl lg:text-2xl font-semibold leading-7 lg:leading-9 text-gray-800">{{ __('general.web.order.order') }} - {{ order.reference }}</h1>
-                            <p class="text-base font-medium leading-6 text-gray-600">{{ __dateFormat(order.updated_at) }}</p>
+            <div v-if="isVisible" class="modal__container--bg">
+                <div
+                    class="mx-auto h-11/12 w-5/6 overflow-x-hidden overflow-y-scroll rounded-md bg-white p-2 p-6 text-xs shadow-xl md:text-sm"
+                >
+                    <div class="2xl:px-20 py-14 px-4 md:px-6">
+                        <div class="item-start flex flex-col justify-start space-y-2">
+                            <h1 class="text-xl font-semibold leading-7 text-gray-800 lg:text-2xl lg:leading-9">
+                                {{ __('general.web.order.order') }} - {{ order.reference }}
+                            </h1>
+                            <p class="text-base font-medium leading-6 text-gray-600">
+                                {{ __dateFormat(order.updated_at) }}
+                            </p>
                         </div>
-                        <div class="mt-10 flex flex-col xl:flex-row justify-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
-                            <div class="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
-                                <div class="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
-                                    <p class="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">{{ __('general.web.order.customer_cart') }}</p>
-                                    <div v-for="(detail, index) in order_details" :key="index" class="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
-                                        <div class="pb-4 md:pb-6 w-full md:w-32">
-                                            <img class="w-full" :src="__asset(detail.product.images[0].url)"/>
+                        <div
+                            class="mt-10 flex w-full flex-col items-stretch justify-center space-y-4 md:space-y-6 xl:flex-row xl:space-x-8 xl:space-y-0"
+                        >
+                            <div
+                                class="flex w-full flex-col items-start justify-start space-y-4 md:space-y-6 xl:space-y-8"
+                            >
+                                <div
+                                    class="flex w-full flex-col items-start justify-start bg-gray-50 px-4 py-4 md:p-6 md:py-6 xl:p-8"
+                                >
+                                    <p class="text-lg font-semibold leading-6 text-gray-800 md:text-xl xl:leading-5">
+                                        {{ __('general.web.order.customer_cart') }}
+                                    </p>
+                                    <div
+                                        v-for="(detail, index) in order_details"
+                                        :key="index"
+                                        class="mt-4 flex w-full flex-col items-start justify-start md:mt-6 md:flex-row md:items-center md:space-x-6 xl:space-x-8"
+                                    >
+                                        <div class="w-full pb-4 md:w-32 md:pb-6">
+                                            <img class="w-full" :src="__asset(detail.product.images[0].url)" />
                                         </div>
-                                        <div class="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
-                                            <div class="w-full flex flex-col justify-start items-start space-y-6">
-                                                <h3 class="text-sm font-semibold leading-6 text-gray-800">{{ detail.product['name_'+ __locale()]}}</h3>
-                                                <div class="flex justify-start items-start flex-col">
-                                                    <p class="text-sm leading-none text-gray-800">{{ detail.product.categories[0]['name_'+ __locale()] }}</p>
+                                        <div
+                                            class="border-b flex w-full flex-col items-start justify-between space-y-4 border-gray-200 pb-8 md:flex-row md:space-y-0"
+                                        >
+                                            <div class="flex w-full flex-col items-start justify-start space-y-6">
+                                                <h3 class="text-sm font-semibold leading-6 text-gray-800">
+                                                    {{ detail.product['name_' + __locale()] }}
+                                                </h3>
+                                                <div class="flex flex-col items-start justify-start">
+                                                    <p class="text-sm leading-none text-gray-800">
+                                                        {{ detail.product.categories[0]['name_' + __locale()] }}
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <div class="flex justify-between space-x-8 items-start w-full">
-                                                <p class="text-xs md:text-sm leading-6">{{ __currencyFormat(detail.product.price) }}</p>
-                                                <p class="text-xs md:text-sm leading-6 text-gray-800">{{ detail.quantity }}</p>
-                                                <p class="text-xs md:text-sm font-semibold leading-6 text-gray-800">{{ __currencyFormat(detail.total)}}</p>
+                                            <div class="flex w-full items-start justify-between space-x-8">
+                                                <p class="text-xs leading-6 md:text-sm">
+                                                    {{ __currencyFormat(detail.product.price) }}
+                                                </p>
+                                                <p class="text-xs leading-6 text-gray-800 md:text-sm">
+                                                    {{ detail.quantity }}
+                                                </p>
+                                                <p class="text-xs font-semibold leading-6 text-gray-800 md:text-sm">
+                                                    {{ __currencyFormat(detail.total) }}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex justify-center flex-col md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
-                                    <div class="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
-                                        <h3 class="text-xl font-semibold leading-5 text-gray-800">{{ __('general.web.order.order_summary') }}</h3>
-                                        <div class="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
-                                            <div class="flex justify-between w-full">
-                                                <p class="text-base leading-4 text-gray-800">{{ __('general.web.order.subtotal') }}</p>
-                                                <p class="text-base leading-4 text-gray-600">{{ __currencyFormat(order.subtotal) }}</p>
+                                <div
+                                    class="flex w-full flex-col flex-col items-stretch justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-6 xl:space-x-8"
+                                >
+                                    <div class="flex w-full flex-col space-y-6 bg-gray-50 px-4 py-6 md:p-6 xl:p-8">
+                                        <h3 class="text-xl font-semibold leading-5 text-gray-800">
+                                            {{ __('general.web.order.order_summary') }}
+                                        </h3>
+                                        <div
+                                            class="border-b flex w-full flex-col items-center justify-center space-y-4 border-gray-200 pb-4"
+                                        >
+                                            <div class="flex w-full justify-between">
+                                                <p class="text-base leading-4 text-gray-800">
+                                                    {{ __('general.web.order.subtotal') }}
+                                                </p>
+                                                <p class="text-base leading-4 text-gray-600">
+                                                    {{ __currencyFormat(order.subtotal) }}
+                                                </p>
                                             </div>
-                                            <div class="flex justify-between items-center w-full">
-                                                <p class="text-base leading-4 text-gray-800">{{ __('general.web.order.taxes') }}</p>
-                                                <p class="text-base leading-4 text-gray-600">{{ __currencyFormat(order.taxes) }}</p>
+                                            <div class="flex w-full items-center justify-between">
+                                                <p class="text-base leading-4 text-gray-800">
+                                                    {{ __('general.web.order.taxes') }}
+                                                </p>
+                                                <p class="text-base leading-4 text-gray-600">
+                                                    {{ __currencyFormat(order.taxes) }}
+                                                </p>
                                             </div>
                                         </div>
-                                        <div class="flex justify-between items-center w-full">
-                                            <p class="text-base font-semibold leading-4 text-gray-800">{{ __('general.web.order.total') }}</p>
-                                            <p class="text-base font-semibold leading-4 text-gray-600">{{ __currencyFormat(order.total) }}</p>
+                                        <div class="flex w-full items-center justify-between">
+                                            <p class="text-base font-semibold leading-4 text-gray-800">
+                                                {{ __('general.web.order.total') }}
+                                            </p>
+                                            <p class="text-base font-semibold leading-4 text-gray-600">
+                                                {{ __currencyFormat(order.total) }}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="bg-gray-50 w-full xl:w-96 flex justify-between items-center md:items-start px-4 py-6 md:p-6 xl:p-8 flex-col">
-                                <h3 class="text-xl font-semibold leading-5 text-gray-800">{{ __('general.web.order.customer') }}</h3>
-                                <div class="flex flex-col md:flex-row xl:flex-col justify-start items-stretch h-full w-full md:space-x-6 lg:space-x-8 xl:space-x-0">
-                                    <div class="flex flex-col justify-start items-start flex-shrink-0">
-                                        <div class="flex justify-center w-full md:justify-start items-center space-x-4 py-8 border-b border-gray-200">
-                                            <div class="flex justify-start items-start flex-col space-y-2">
-                                                <p class="text-base font-semibold leading-4 text-left text-gray-800">{{ order.first_name+' '+ order.last_name }}</p>
+                            <div
+                                class="flex w-full flex-col items-center justify-between bg-gray-50 px-4 py-6 md:items-start md:p-6 xl:w-96 xl:p-8"
+                            >
+                                <h3 class="text-xl font-semibold leading-5 text-gray-800">
+                                    {{ __('general.web.order.customer') }}
+                                </h3>
+                                <div
+                                    class="flex h-full w-full flex-col items-stretch justify-start md:flex-row md:space-x-6 lg:space-x-8 xl:flex-col xl:space-x-0"
+                                >
+                                    <div class="flex flex-shrink-0 flex-col items-start justify-start">
+                                        <div
+                                            class="border-b flex w-full items-center justify-center space-x-4 border-gray-200 py-8 md:justify-start"
+                                        >
+                                            <div class="flex flex-col items-start justify-start space-y-2">
+                                                <p class="text-left text-base font-semibold leading-4 text-gray-800">
+                                                    {{ order.first_name + ' ' + order.last_name }}
+                                                </p>
                                             </div>
                                         </div>
 
-                                        <div class="block md:flex content-start md:justify-center text-gray-800 md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
+                                        <div
+                                            class="border-b block w-full content-start items-center space-x-4 border-gray-200 py-4 text-gray-800 md:flex md:justify-start md:justify-center"
+                                        >
                                             <div class="flex items-center">
-                                                <i class="fas fa-envelope text-orangePantone mr-2"></i>
-                                                <p class="text-sm leading-5 ">{{ order.email }}</p>
+                                                <i class="fas fa-envelope mr-2 text-orangePantone"></i>
+                                                <p class="text-sm leading-5">{{ order.email }}</p>
                                             </div>
                                             <div class="flex items-center">
-                                                <i class="fas fa-mobile-alt text-orangePantone font-bold mr-2"></i>
-                                                <p class="cursor-pointer text-sm leading-5 ">{{ order.phone }}</p>
+                                                <i class="fas fa-mobile-alt mr-2 font-bold text-orangePantone"></i>
+                                                <p class="cursor-pointer text-sm leading-5">{{ order.phone }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="flex justify-between xl:h-full items-stretch w-full flex-col mt-6 md:mt-0">
-                                        <div class="flex justify-center md:justify-start xl:flex-col flex-col md:space-x-6 lg:space-x-8 xl:space-x-0 space-y-4 xl:space-y-12 md:space-y-0 md:flex-row items-center md:items-start">
-                                            <div class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4 xl:mt-8">
-                                                <p class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">{{ __('general.web.order.shipping_address') }}</p>
-                                                <p class="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">{{ order.address }}<span class="m-2"> - {{ order.city }}</span></p>
+                                    <div
+                                        class="mt-6 flex w-full flex-col items-stretch justify-between md:mt-0 xl:h-full"
+                                    >
+                                        <div
+                                            class="flex flex-col items-center justify-center space-y-4 md:flex-row md:items-start md:justify-start md:space-x-6 md:space-y-0 lg:space-x-8 xl:flex-col xl:space-x-0 xl:space-y-12"
+                                        >
+                                            <div
+                                                class="flex flex-col items-center justify-center space-y-4 md:items-start md:justify-start xl:mt-8"
+                                            >
+                                                <p
+                                                    class="text-center text-base font-semibold leading-4 text-gray-800 md:text-left"
+                                                >
+                                                    {{ __('general.web.order.shipping_address') }}
+                                                </p>
+                                                <p
+                                                    class="w-48 text-center text-sm leading-5 text-gray-600 md:text-left lg:w-full xl:w-48"
+                                                >
+                                                    {{ order.address }}<span class="m-2"> - {{ order.city }}</span>
+                                                </p>
                                             </div>
-                                            <div class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4">
-                                                <p class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">{{ __('general.web.order.notes_delivery') }}</p>
-                                                <p class="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">
+                                            <div
+                                                class="flex flex-col items-center justify-center space-y-4 md:items-start md:justify-start"
+                                            >
+                                                <p
+                                                    class="text-center text-base font-semibold leading-4 text-gray-800 md:text-left"
+                                                >
+                                                    {{ __('general.web.order.notes_delivery') }}
+                                                </p>
+                                                <p
+                                                    class="w-48 text-center text-sm leading-5 text-gray-600 md:text-left lg:w-full xl:w-48"
+                                                >
                                                     {{ order.notes }}
                                                 </p>
                                             </div>
@@ -94,54 +172,89 @@
                             </div>
                         </div>
                     </div>
-                    <div class="px-4 md:px-6 2xl:px-20">
-                        <div class="flex justify-start item-start space-y-2 flex-col mb-3">
-                            <h1 class="text-xl font-semibold leading-7 lg:leading-9 text-gray-800 mx-5">{{ __('general.web.payment.payment_record') }}</h1>
+                    <div class="2xl:px-20 px-4 md:px-6">
+                        <div class="item-start mb-3 flex flex-col justify-start space-y-2">
+                            <h1 class="mx-5 text-xl font-semibold leading-7 text-gray-800 lg:leading-9">
+                                {{ __('general.web.payment.payment_record') }}
+                            </h1>
                         </div>
-                        <div class="flex w-full justify-center md:justify-end mr-10" v-if="order.status !== 'approved'">
-                            <button @click="retryPay" class="mt-6 md:mt-0 py-2 text-sm bg-greenTem opacity-75 hover:bg-greenTem hover:opacity-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 text-base font-bold leading-4 text-black min-w-max-content w-36 p-4">
+                        <div class="mr-10 flex w-full justify-center md:justify-end" v-if="order.status !== 'approved'">
+                            <button
+                                @click="retryPay"
+                                class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 mt-6 w-36 min-w-max-content rounded-xl bg-greenTem p-4 py-2 text-sm text-base font-bold leading-4 text-black opacity-75 hover:bg-greenTem hover:opacity-100 md:mt-0"
+                            >
                                 {{ __('general.web.payment.retry_payment') }}
                             </button>
                         </div>
-                        <div class="mx-auto px-4 sm:px-8 py-4 overflow-x-auto w-5/6">
-                            <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                                <table class="min-w-full w-5/6 leading-normal">
+                        <div class="mx-auto w-5/6 overflow-x-auto px-4 py-4 sm:px-8">
+                            <div class="shadow inline-block min-w-full overflow-hidden rounded-lg">
+                                <table class="w-5/6 min-w-full leading-normal">
                                     <thead>
-                                    <tr>
-                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            ID
-                                        </th>
-                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            {{ __('general.web.order.date') }}
-                                        </th>
-                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            {{ __('general.web.payment.reference') }}
-                                        </th>
-                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            {{ __('general.web.order.total') }}
-                                        </th>
-                                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            {{ __('general.web.order.status') }}
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody v-for="payment in (order.payments)" :key="payment.id">
                                         <tr>
-                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                <p class="text-gray-900 whitespace-no-wrap text-center">{{ payment.id }}</p>
+                                            <th
+                                                class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-600"
+                                            >
+                                                ID
+                                            </th>
+                                            <th
+                                                class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-600"
+                                            >
+                                                {{ __('general.web.order.date') }}
+                                            </th>
+                                            <th
+                                                class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-600"
+                                            >
+                                                {{ __('general.web.payment.reference') }}
+                                            </th>
+                                            <th
+                                                class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-600"
+                                            >
+                                                {{ __('general.web.order.total') }}
+                                            </th>
+                                            <th
+                                                class="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-600"
+                                            >
+                                                {{ __('general.web.order.status') }}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody v-for="payment in order.payments" :key="payment.id">
+                                        <tr>
+                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                <p class="whitespace-no-wrap text-center text-gray-900">
+                                                    {{ payment.id }}
+                                                </p>
                                             </td>
-                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                <p class="text-gray-900 whitespace-no-wrap text-center">{{ __dateFormatWithHour(payment.created_at) }}</p>
+                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                <p class="whitespace-no-wrap text-center text-gray-900">
+                                                    {{ __dateFormatWithHour(payment.created_at) }}
+                                                </p>
                                             </td>
-                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                <p class="text-gray-900 whitespace-no-wrap text-center">{{ payment.reference }}</p>
+                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                <p class="whitespace-no-wrap text-center text-gray-900">
+                                                    {{ payment.reference }}
+                                                </p>
                                             </td>
-                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                <p class="text-gray-900 whitespace-no-wrap text-center">{{ __currencyFormat(payment.total) }}</p>
+                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                <p class="whitespace-no-wrap text-center text-gray-900">
+                                                    {{ __currencyFormat(payment.total) }}
+                                                </p>
                                             </td>
-                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                <p class="whitespace-no-wrap py-1 px-0.5 uppercase rounded-xl text-xs text-center font-bold" :class="payment.status === 'approved'  ? 'bg-greenTemLight text-green-600'
-                                                : payment.status === 'rejected' ? 'bg-red-300 text-red-600': 'bg-yellowLight text-gray-900' ?  payment.status === 'cancelled' ? 'bg-gray-400 text-dimgray' : 'bg-yellowLight text-gray-900' : ''">
+                                            <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                                                <p
+                                                    class="whitespace-no-wrap rounded-xl py-1 px-0.5 text-center text-xs font-bold uppercase"
+                                                    :class="
+                                                        payment.status === 'approved'
+                                                            ? 'bg-greenTemLight text-green-600'
+                                                            : payment.status === 'rejected'
+                                                            ? 'bg-red-300 text-red-600'
+                                                            : 'bg-yellowLight text-gray-900'
+                                                            ? payment.status === 'cancelled'
+                                                                ? 'text-dimgray bg-gray-400'
+                                                                : 'bg-yellowLight text-gray-900'
+                                                            : ''
+                                                    "
+                                                >
                                                     {{ __('general.web.payment.' + payment.status) }}
                                                 </p>
                                             </td>
@@ -151,8 +264,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex w-full justify-center items-center mt-5">
-                        <button @click="close" class="mt-6 md:mt-0 py-4 bg-orangePantone hover:bg-orange-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 w-36 text-base font-bold leading-4 text-white">
+                    <div class="mt-5 flex w-full items-center justify-center">
+                        <button
+                            @click="close"
+                            class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 mt-6 w-36 rounded-xl bg-orangePantone py-4 text-base font-bold leading-4 text-white hover:bg-orange-600 md:mt-0"
+                        >
                             {{ __('general.web.close') }}
                         </button>
                     </div>
@@ -161,15 +277,13 @@
         </div>
         <checkout-modal :isVisible="isOpenShow" @close="closeModal" :payment="payment"></checkout-modal>
     </div>
-
 </template>
 
 <script>
-
-import CheckoutModal from "./CheckoutModal";
+import CheckoutModal from './CheckoutModal';
 
 export default {
-    name: "OrderHistoryModal.vue",
+    name: 'OrderHistoryModal.vue',
 
     components: {
         CheckoutModal,
@@ -185,37 +299,37 @@ export default {
             isOpenShow: false,
             payment: {},
             paymentUrl: '',
-        }
+        };
     },
     methods: {
-        retryPay: function() {
+        retryPay: function () {
             this.show_spin = true;
-            let data = {}
-            axios.post('/evertec/mercatodo/public/api/client/payments/store/'+this.order.id,
-                data,
-            ).then(response => {
-                this.payment = response.data.payment;
-                this.show_spin = false;
-                this.show();
-                this.$emit('getOrder', this.order)
-                //this.deleteItems();
-                //alert(response.data.message)
-                // this.close();
-            }).catch(error => {
-                this.show_spin = false;
-                this.errors = error.response.data.errors;
-            })
+            let data = {};
+            axios
+                .post('/evertec/mercatodo/public/api/client/payments/store/' + this.order.id, data)
+                .then((response) => {
+                    this.payment = response.data.payment;
+                    this.show_spin = false;
+                    this.show();
+                    this.$emit('getOrder', this.order);
+                    //this.deleteItems();
+                    //alert(response.data.message)
+                    // this.close();
+                })
+                .catch((error) => {
+                    this.show_spin = false;
+                    this.errors = error.response.data.errors;
+                });
         },
         closeModal: function () {
             this.isOpenShow = false;
         },
-        close: function() {
-            this.$emit('close')
+        close: function () {
+            this.$emit('close');
         },
-        show: function() {
+        show: function () {
             this.isOpenShow = true;
         },
     },
-}
+};
 </script>
-

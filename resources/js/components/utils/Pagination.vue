@@ -1,24 +1,32 @@
 <template>
-    <ul class="flex list-reset border border-grey-light rounded w-auto font-poppins font-bold">
+    <ul class="list-reset border border-grey-light rounded flex w-auto font-poppins font-bold">
         <li v-if="pagination.current_page > 1">
-            <a class="cursor-pointer block hover:text-white hover:bg-orangePantone text-orangePantone border-r border-grey-light px-3 py-2"
-               @click.prevent="change(pagination.current_page -1)"
+            <a
+                class="border-r border-grey-light block cursor-pointer px-3 py-2 text-orangePantone hover:bg-orangePantone hover:text-white"
+                @click.prevent="change(pagination.current_page - 1)"
             >
-                {{__('general.web.previous')}}
+                {{ __('general.web.previous') }}
             </a>
         </li>
-        <li v-for="page in pages" :key="page" >
-            <a :class="[page == pagination.current_page ? 'text-white bg-orangePantone border-r border-orangePantone':'hover:text-white hover:bg-orangePantone text-orangePantone border-r border-grey-light', 'block px-3 py-2']"
-               @click.stop="change(page)"
+        <li v-for="page in pages" :key="page">
+            <a
+                :class="[
+                    page == pagination.current_page
+                        ? 'border-r border-orangePantone bg-orangePantone text-white'
+                        : 'border-r border-grey-light text-orangePantone hover:bg-orangePantone hover:text-white',
+                    'block px-3 py-2',
+                ]"
+                @click.stop="change(page)"
             >
                 {{ page }}
             </a>
         </li>
         <li v-if="pagination.current_page < pagination.last_page">
-            <a class="cursor-pointer block hover:text-white hover:bg-orangePantone text-orangePantone px-3 py-2"
-               @click.prevent="change(pagination.current_page + 1)"
+            <a
+                class="block cursor-pointer px-3 py-2 text-orangePantone hover:bg-orangePantone hover:text-white"
+                @click.prevent="change(pagination.current_page + 1)"
             >
-                {{__('general.web.next')}}
+                {{ __('general.web.next') }}
             </a>
         </li>
     </ul>
@@ -30,12 +38,12 @@ export default {
     props: {
         pagination: {
             type: Object,
-            required: true
+            required: true,
         },
         offset: {
             type: Number,
-            default: 4
-        }
+            default: 4,
+        },
     },
     computed: {
         pages() {
@@ -47,7 +55,7 @@ export default {
             if (from < 1) {
                 from = 1;
             }
-            let to = from + (this.offset * 2);
+            let to = from + this.offset * 2;
             if (to >= this.pagination.last_page) {
                 to = this.pagination.last_page;
             }
@@ -59,10 +67,10 @@ export default {
         },
     },
     methods: {
-        change: function(page) {
+        change: function (page) {
             this.pagination.current_page = page;
             this.$emit('paginate');
-        }
-    }
-}
+        },
+    },
+};
 </script>
