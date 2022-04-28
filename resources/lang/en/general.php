@@ -45,7 +45,6 @@ return [
     ],
 
     'web' => [
-
         'close' => 'Close',
         'save' => 'Save',
         'show' => 'Show',
@@ -57,6 +56,9 @@ return [
         'follow_us' => 'Follow Us',
         'previous' => 'Previous',
         'next' => 'Next',
+        'file_import' => 'File to Import',
+        'choose_file' => 'Choose File',
+        'download' => 'Download',
 
         'user' => [
             'user_list' => 'User List',
@@ -110,6 +112,7 @@ return [
             'taxes' => 'Taxes',
             'stock' => 'Stock',
             'status' => 'Status',
+            'slug' => 'Friendly Url',
             'actions' => 'Actions',
             'active' => 'Active',
             'inactive' => 'Inactive',
@@ -187,6 +190,10 @@ return [
             'pending_payment' => 'Payment Pending',
             'pending_description' => 'The payment process is pending, check later',
             'great_day' => 'Have a great day!',
+        ],
+        'data_management' => [
+            'import_products' => 'Import Products',
+            'import_description' => 'The import file must be in xlsx format. In order to import the products correctly, please download the sample file with the required format.',
         ],
     ],
 

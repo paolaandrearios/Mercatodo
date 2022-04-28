@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Admin\CategoryController as CategoryAdminController;
 use App\Http\Controllers\Api\Admin\CategoryStatusController;
+use App\Http\Controllers\Api\Admin\ImportController;
 use App\Http\Controllers\Api\Admin\OrderAdminController;
 use App\Http\Controllers\Api\Admin\ProductController as ProductAdminController;
 use App\Http\Controllers\Api\Admin\ProductStatusController;
@@ -48,6 +49,8 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'admin', 'as'=>'admin.
     Route::resource('products', ProductAdminController::class)->only([
         'store', 'show', 'index', 'update',
     ]);
+
+    Route::post('/products/import', [ImportController::class, 'import'])->name('products.import');
 
     Route::resource('orders', OrderAdminController::class)->only([
         'index',

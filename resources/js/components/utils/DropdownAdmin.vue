@@ -38,6 +38,12 @@
                 >
                     {{ __('general.sidebar.customer_orders') }}
                 </a>
+                <a
+                    @click="goImportProducts"
+                    class="block cursor-pointer px-4 py-2 text-xs font-extrabold uppercase text-orangePantone hover:bg-orangePantone hover:text-white"
+                >
+                    {{ __('general.web.data_management.import_products') }}
+                </a>
             </div>
         </div>
     </div>
@@ -64,6 +70,9 @@ export default {
         },
         goOrders() {
             window.location.href = '/evertec/mercatodo/public/admin/orders/index';
+        },
+        goImportProducts() {
+            window.location.href = '/evertec/mercatodo/public/admin/products/import';
         },
     },
 };

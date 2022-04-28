@@ -32,6 +32,12 @@
             <a href="{{ route('admin.orders.index') }}">{{ __('general.sidebar.customer_orders') }}</a>
         </li>
         @endcan
+        @can('admin.products.import')
+            <li>
+                <i class="fas fa-file-import"></i>
+                <a href="{{ route('admin.products.import') }}">{{ __('general.web.data_management.import_products') }}</a>
+            </li>
+        @endcan
         <li>
             <i class="fas fa-shopping-cart"></i>
             <a href="{{ route('client.product.index') }}">{{ __('general.sidebar.e-commerce') }}</a>

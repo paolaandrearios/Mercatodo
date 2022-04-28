@@ -55,6 +55,9 @@ return [
         'follow_us' => 'Síguenos',
         'previous' => 'Anterior',
         'next' => 'Siguiente',
+        'file_import' => 'Archivo para importar',
+        'choose_file' => 'Escoger archivo',
+        'download' => 'Descargar',
 
         'user' => [
             'user_list' => 'Lista de Usuarios',
@@ -108,6 +111,7 @@ return [
             'taxes' => 'Impuestos',
             'stock' => 'Inventario',
             'status' => 'Estado',
+            'slug' => 'Url amigable',
             'actions' => 'Acciones',
             'active' => 'Activo',
             'inactive' => 'Inactivo',
@@ -184,6 +188,10 @@ return [
             'pending_payment' => 'Pago Pendiente',
             'pending_description' => 'El proceso de pago está pendiente, consulte mas tarde.',
             'great_day' => '¡Que tengas un gran día!',
+        ],
+        'data_management' => [
+            'import_products' => 'Importar Productos',
+            'import_description' => 'El archivo de importación debe estar en formato xlsx. Para importar los productos correctamente, por favor descargue el archivo de ejemplo con el formato requerido.',
         ],
     ],
 
