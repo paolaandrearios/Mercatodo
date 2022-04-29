@@ -83,14 +83,11 @@ export default {
 
 
             axios.post('/evertec/mercatodo/public/api/admin/products/import', data, config).then((response) => {
-                //this.importedFile = response;
-                // this.product = response.data.product;
-                // this.main_image = this.product.images[0]['url'];
-                console.log(JSON.stringify(response));
+                alert(response.data.message);
             })
             .catch((error)=> {
                 this.errors = error.response.data.errors;
-                console.log(this.errors);
+                alert(error.response.data.message);
             });
         },
     }

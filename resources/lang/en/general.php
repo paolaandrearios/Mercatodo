@@ -38,6 +38,10 @@ return [
             'payment_description' => 'Payment of the order - :attribute of the e-commerce MercaTodo',
         ],
 
+        'data_management' => [
+            'import_status_success' => 'Successfully imported products',
+        ],
+
         'exceptions' => [
             'model_not_found' => 'Element Not Found',
         ],

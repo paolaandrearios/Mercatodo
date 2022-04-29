@@ -52,4 +52,14 @@ class Helper
 
         return strtolower($slug);
     }
+
+    public static function replace_key(array $array, string $oldKey, string $newKey): array
+    {
+        if(array_key_exists($oldKey, $array)) {
+            $keys = array_keys($array);
+            $keys[array_search($oldKey, $keys)] = $newKey;
+            return array_combine($keys, $array);
+        }
+        return $array;
+    }
 }

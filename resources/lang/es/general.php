@@ -37,6 +37,10 @@ return [
             'payment_description' => 'Pago del pedido - :attribute del comercio electrónico MercaTodo',
         ],
 
+        'data_management' => [
+            'import_status_success' => 'Productos importados exitosamente',
+        ],
+
         'exceptions' => [
             'model_not_found' => 'Elemento No Encontrado',
         ],

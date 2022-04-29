@@ -12,36 +12,20 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 
-
 HeadingRowFormatter::default('none');
 
-class ProductImport implements ToModel, WithHeadingRow
+class ProductImport implements ToModel, WithValidation, WithHeadingRow
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    public function model(array $row): Product
     {
-        $product = new Product([
-            'sku' => Arr::get($row, __('general.web.product.sku')),
-            'name_en' => Arr::get($row, __('general.web.product.name_en')),
-            'description_en' => Arr::get($row, __('general.web.product.description_en')),
-            'name_es' => Arr::get($row, __('general.web.product.name_es')),
-            'description_es' => Arr::get($row, __('general.web.product.description_es')),
-            'price' => Arr::get($row, __('general.web.product.price')),
-            'taxes' => Arr::get($row, __('general.web.product.taxes')),
-            'status' => Arr::get($row, __('general.web.product.status')),
-            'stock' => Arr::get($row, __('general.web.product.stock')),
-            'slug' => Helper::generateSlug($row[__('general.web.product.name_en')]),
-        ]);
+        $row['slug'] = Helper::generateSlug(Arr::get($row, 'name_en'));
+        $product = new Product($row);
 
         $product->save();
 
-        $product->categories()->attach(Arr::get($row, __('general.web.category.category')));
+        $product->categories()->attach($row['category_id']);
         $product->images()->saveMany([
-            $product->images[0] = new Image(['url'=> Arr::get($row, __('general.web.product.images')), 'product_id' => $product->id]),
+            $product->images[0] = new Image(['url'=> $row['images'], 'product_id' => $product->id]),
         ]);
 
         return $product;
@@ -52,9 +36,32 @@ class ProductImport implements ToModel, WithHeadingRow
         return 2;
     }
 
-//    public function rules(): array
-//    {
-//        return ProductRules::toArray();
-//    }
+    public function prepareForValidation(array $row): array
+    {
+        $conversions = [
+            ['current' => __('general.web.product.name_en'), 'base' => 'name_en'],
+            ['current' => __('general.web.product.description_en'), 'base' => 'description_en'],
+            ['current' => __('general.web.product.name_es'), 'base' => 'name_es'],
+            ['current' => __('general.web.product.description_es'), 'base' => 'description_es'],
+            ['current' => __('general.web.product.price'), 'base' => 'price'],
+            ['current' => __('general.web.product.taxes'), 'base' => 'taxes'],
+            ['current' => __('general.web.product.status'), 'base' => 'status'],
+            ['current' => __('general.web.product.stock'), 'base' => 'stock'],
+            ['current' => __('general.web.category.category'), 'base' => 'category_id'],
+            ['current' => __('general.web.product.images'), 'base' => 'images'],
+        ];
+
+        foreach ($conversions as $conversion){
+            $row = Helper::replace_key($row, $conversion['current'], $conversion['base']);
+        }
+
+        return $row;
+    }
+
+    public function rules(): array
+    {
+        return ProductRules::toArray();
+    }
+
 }
 
