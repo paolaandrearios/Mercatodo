@@ -14,7 +14,7 @@ class ImportController extends Controller
     {
         $importFile =  $request->file('products');
         $fileName = time() . '_' . $importFile->getClientOriginalName();
-        if(Excel::import(new ProductImport,$importFile, $importFile->storeAs('importedProducts', $fileName, 'public'))){
+        if(Excel::import(new ProductImport,$importFile, $importFile->storeAs('imported-products', $fileName, 'public'))){
             return response()->json([
                 'message' => __('general.api.data_management.import_status_success'),
             ]);

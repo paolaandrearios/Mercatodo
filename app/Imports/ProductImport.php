@@ -27,7 +27,10 @@ class ProductImport implements ToModel, WithValidation, WithHeadingRow
         for ($i = 0; $i < 5; $i++) {
             $currentImage = $row['images' . $i];
             if(!is_null($currentImage)) {
-                $image = (new Image(['url'=> $currentImage, 'product_id' => $product->id]))->save();
+                $filePath = 'imported-products/imported-images/'.time().'.jpg';
+                copy($currentImage, storage_path('/app/public/' . $filePath));
+
+                $image = (new Image(['url'=> 'storage/' . $filePath, 'product_id' => $product->id]))->save();
             }
         }
 

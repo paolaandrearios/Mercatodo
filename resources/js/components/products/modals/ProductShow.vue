@@ -166,7 +166,11 @@ export default {
         show: function (newVal, oldVal) {
             this.isOpenShow = newVal;
         },
+        isOpenShow: function (newVal, oldVal) {
+            this.tab = 1;
+        },
         product: function (newVal, oldVal) {
+            this.images = [{}, {}, {}, {}, {}];
             this.product.images.map((image, index) => {
                 this.images[index] = image;
             });
