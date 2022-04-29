@@ -126,6 +126,11 @@ return [
             'not_found' => 'Sorry, Product Not Found',
             'information' => 'Information',
             'images' => 'Images',
+            'images0' => 'Images0',
+            'images1' => 'Images1',
+            'images2' => 'Images2',
+            'images3' => 'Images3',
+            'images4' => 'Images4',
 
         ],
         'order' => [

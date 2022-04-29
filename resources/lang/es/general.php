@@ -125,6 +125,11 @@ return [
             'not_found' => 'Lo Sentimos, Producto No Encontrado',
             'information' => 'Información',
             'images' => 'Imágenes',
+            'images0' => 'Imágenes0',
+            'images1' => 'Imágenes1',
+            'images2' => 'Imágenes2',
+            'images3' => 'Imágenes3',
+            'images4' => 'Imágenes4',
         ],
         'order' => [
             'cart' => 'Carrito',

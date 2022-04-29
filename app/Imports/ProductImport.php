@@ -24,9 +24,12 @@ class ProductImport implements ToModel, WithValidation, WithHeadingRow
         $product->save();
 
         $product->categories()->attach($row['category_id']);
-        $product->images()->saveMany([
-            $product->images[0] = new Image(['url'=> $row['images'], 'product_id' => $product->id]),
-        ]);
+        for ($i = 0; $i < 5; $i++) {
+            $currentImage = $row['images' . $i];
+            if(!is_null($currentImage)) {
+                $image = (new Image(['url'=> $currentImage, 'product_id' => $product->id]))->save();
+            }
+        }
 
         return $product;
     }
@@ -48,7 +51,11 @@ class ProductImport implements ToModel, WithValidation, WithHeadingRow
             ['current' => __('general.web.product.status'), 'base' => 'status'],
             ['current' => __('general.web.product.stock'), 'base' => 'stock'],
             ['current' => __('general.web.category.category'), 'base' => 'category_id'],
-            ['current' => __('general.web.product.images'), 'base' => 'images'],
+            ['current' => __('general.web.product.images0'), 'base' => 'images0'],
+            ['current' => __('general.web.product.images1'), 'base' => 'images1'],
+            ['current' => __('general.web.product.images2'), 'base' => 'images2'],
+            ['current' => __('general.web.product.images3'), 'base' => 'images3'],
+            ['current' => __('general.web.product.images4'), 'base' => 'images4'],
         ];
 
         foreach ($conversions as $conversion){

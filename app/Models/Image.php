@@ -12,6 +12,7 @@ class Image extends Model
 
     protected $fillable = [
         'url',
+        'product_id',
     ];
 
     public function product(): BelongsTo
