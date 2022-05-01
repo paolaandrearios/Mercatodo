@@ -38,6 +38,12 @@
                 <a href="{{ route('admin.products.import') }}">{{ __('general.web.data_management.import_products') }}</a>
             </li>
         @endcan
+        @can('admin.products.export')
+            <li>
+                <i class="fas fa-file-export"></i>
+                <a href="{{ route('admin.products.export') }}">{{ __('general.web.data_management.export_products') }}</a>
+            </li>
+        @endcan
         <li>
             <i class="fas fa-shopping-cart"></i>
             <a href="{{ route('client.product.index') }}">{{ __('general.sidebar.e-commerce') }}</a>

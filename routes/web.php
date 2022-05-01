@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ExportController;
 use App\Http\Controllers\Admin\ImportController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -38,7 +39,8 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
         Route::get('/users', [UserController::class, 'index'])->middleware('can:admin.user.index')->name('user.index');
         Route::get('/categories', [CategoryController::class, 'index'])->middleware('can:admin.category.index')->name('category.index');
         Route::get('/products', [ProductController::class, 'index'])->middleware('can:admin.product.index')->name('product.index');
-        Route::get('/products/import', [ImportController::class, 'show'])->middleware('can:admin.products.import')->name('products.import');
+        Route::get('/import/products', [ImportController::class, 'show'])->middleware('can:admin.products.import')->name('products.import');
+        Route::get('/export/products', [ExportController::class, 'show'])->middleware('can:admin.products.export')->name('products.export');
         Route::get('/orders/index', [OrderController::class, 'show'])->middleware('can:admin.orders.index')->name('orders.index');
     });
 });

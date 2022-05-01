@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Admin\CategoryController as CategoryAdminController;
 use App\Http\Controllers\Api\Admin\CategoryStatusController;
+use App\Http\Controllers\Api\Admin\ExportController;
 use App\Http\Controllers\Api\Admin\ImportController;
 use App\Http\Controllers\Api\Admin\OrderAdminController;
 use App\Http\Controllers\Api\Admin\ProductController as ProductAdminController;
@@ -33,7 +34,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Protected routes
 
-Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'admin', 'as'=>'admin.'], function () {
+//Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'admin', 'as'=>'admin.'], function () {
+Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     Route::resource('users', UserController::class)->only([
         'index', 'update',
     ]);
@@ -50,7 +52,9 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'admin', 'as'=>'admin.
         'store', 'show', 'index', 'update',
     ]);
 
-    Route::post('/products/import', [ImportController::class, 'import'])->name('products.import');
+    Route::post('/import/products', [ImportController::class, 'import'])->name('products.import');
+
+    Route::get('/export/products', [ExportController::class, 'export'])->name('products.export');
 
     Route::resource('orders', OrderAdminController::class)->only([
         'index',

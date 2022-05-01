@@ -202,6 +202,7 @@ return [
         ],
         'data_management' => [
             'import_products' => 'Import Products',
+            'export_products' => 'Export Products',
             'import_description' => 'The import file must be in xlsx format. In order to import the products correctly, please download the sample file with the required format.',
         ],
     ],

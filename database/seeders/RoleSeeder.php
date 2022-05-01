@@ -19,6 +19,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.product.index'])->assignRole($role1);
         Permission::create(['name' => 'admin.orders.index'])->assignRole($role1);
         Permission::create(['name' => 'admin.products.import'])->assignRole($role1);
+        Permission::create(['name' => 'admin.products.export'])->assignRole($role1);
         Permission::create(['name' => 'home'])->syncRoles($role1, $role2);
     }
 }

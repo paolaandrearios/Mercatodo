@@ -82,7 +82,7 @@ export default {
             data.append('products', this.importedFile);
 
 
-            axios.post('/evertec/mercatodo/public/api/admin/products/import', data, config).then((response) => {
+            axios.post('/evertec/mercatodo/public/api/admin/import/products', data, config).then((response) => {
                 alert(response.data.message);
             })
             .catch((error)=> {

@@ -200,6 +200,7 @@ return [
         ],
         'data_management' => [
             'import_products' => 'Importar Productos',
+            'export_products' => 'Exportar Productos',
             'import_description' => 'El archivo de importación debe estar en formato xlsx. Para importar los productos correctamente, por favor descargue el archivo de ejemplo con el formato requerido.',
         ],
     ],
