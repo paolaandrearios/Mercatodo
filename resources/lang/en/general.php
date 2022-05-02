@@ -204,6 +204,10 @@ return [
             'import_products' => 'Import Products',
             'export_products' => 'Export Products',
             'import_description' => 'The import file must be in xlsx format. In order to import the products correctly, please download the sample file with the required format.',
+            'all_products' => 'All Products',
+            'active_products' => 'Active Products',
+            'inactive_products' => 'Inactive Products',
+            'export_description' => 'Please select the option according to the products you want to export',
         ],
     ],
 

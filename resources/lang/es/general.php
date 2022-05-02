@@ -202,6 +202,10 @@ return [
             'import_products' => 'Importar Productos',
             'export_products' => 'Exportar Productos',
             'import_description' => 'El archivo de importación debe estar en formato xlsx. Para importar los productos correctamente, por favor descargue el archivo de ejemplo con el formato requerido.',
+            'all_products' => 'Todos los productos',
+            'active_products' => 'Productos Activos',
+            'inactive_products' => 'Productos Inactivos',
+            'export_description' => 'Por favor seleccione la opción de acuerdo a los productos que desea exportar',
         ],
     ],
 
