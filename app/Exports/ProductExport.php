@@ -8,19 +8,36 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ProductExport implements FromCollection
 {
-    private string $status;
+    private ?string $status;
+    private ?string $category;
 
-    public function __construct(String $status)
+    public function __construct(String $status = null, String $category = null)
     {
         $this->status = $status;
+        $this->category = $category;
     }
 
     public function collection(): Collection
     {
-        if($this->status === 'all'){
-            return Product::all();
+        $products = null;
+        if(!is_null($this->category)) {
+            $products = Product::query()
+                ->with('categories')
+                ->whereHas('categories', function($query) {
+                    $query->where('category_id', $this->category);
+                });
         } else {
-            return Product::query()->where('status', $this->status)->get();
+            $products = Product::query()->with('categories');
         }
+
+        if(!is_null($this->status)) {
+            $products = $products->where('status', $this->status);
+        }
+
+
+        return $products->get();
+
     }
+
+
 }

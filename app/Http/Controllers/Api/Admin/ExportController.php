@@ -13,6 +13,8 @@ class ExportController extends Controller
    public function export(Request $request): BinaryFileResponse
    {
        $status = $request->query('status');
-       return Excel::download(new ProductExport($status),'products.xlsx');
+       $category = $request->query('category');
+
+       return Excel::download(new ProductExport($status, $category),'products.xlsx');
    }
 }

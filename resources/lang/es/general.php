@@ -206,6 +206,8 @@ return [
             'active_products' => 'Productos Activos',
             'inactive_products' => 'Productos Inactivos',
             'export_description' => 'Por favor seleccione la opción de acuerdo a los productos que desea exportar',
+            'by_status' => 'Por Estado',
+            'by_category' => 'Por Categoría',
         ],
     ],
 

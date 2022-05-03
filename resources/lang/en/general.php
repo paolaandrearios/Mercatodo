@@ -208,6 +208,8 @@ return [
             'active_products' => 'Active Products',
             'inactive_products' => 'Inactive Products',
             'export_description' => 'Please select the option according to the products you want to export',
+            'by_status' => 'By Status',
+            'by_category' => 'By Category',
         ],
     ],
 
