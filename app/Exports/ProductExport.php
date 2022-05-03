@@ -22,7 +22,7 @@ class ProductExport implements FromCollection
         $products = null;
         if(!is_null($this->category)) {
             $products = Product::query()
-                ->with('categories')
+                ->with(['categories', 'images'])
                 ->whereHas('categories', function($query) {
                     $query->where('category_id', $this->category);
                 });

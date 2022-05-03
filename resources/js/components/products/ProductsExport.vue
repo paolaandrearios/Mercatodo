@@ -62,7 +62,7 @@ export default {
     methods: {
         ExportProducts: function () {
             let date = (new Date()).toISOString().split('T')[0];
-
+            console.log(this.category)
             const config = {
                 headers: {
                     'content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -75,12 +75,13 @@ export default {
                 let fileLink = document.createElement('a');
 
                 fileLink.href = fileURL;
-                if(this.category != null){
-                    fileLink.setAttribute('download', date + '_' + this.status + '_' +  this.categories[Number(this.category)]['name_en'] +'_products.xlsx');
-                }
+
                 if(this.category === ''){
                     fileLink.setAttribute('download', date + '_' + this.status +'_products.xlsx');
+                } else {
+                    fileLink.setAttribute('download', date + '_' + this.status + '_' +  this.categories[Number(this.category)-1]['name_en'] +'_products.xlsx');
                 }
+
                 document.body.appendChild(fileLink);
 
                 fileLink.click();

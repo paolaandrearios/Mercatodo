@@ -44,6 +44,12 @@
                 >
                     {{ __('general.web.data_management.import_products') }}
                 </a>
+                <a
+                    @click="goExportProducts"
+                    class="block cursor-pointer px-4 py-2 text-xs font-extrabold uppercase text-orangePantone hover:bg-orangePantone hover:text-white"
+                >
+                    {{ __('general.web.data_management.export_products') }}
+                </a>
             </div>
         </div>
     </div>
@@ -72,7 +78,10 @@ export default {
             window.location.href = '/evertec/mercatodo/public/admin/orders/index';
         },
         goImportProducts() {
-            window.location.href = '/evertec/mercatodo/public/admin/products/import';
+            window.location.href = '/evertec/mercatodo/public/admin/import/products';
+        },
+        goExportProducts() {
+            window.location.href = '/evertec/mercatodo/public/admin/export/products';
         },
     },
 };
