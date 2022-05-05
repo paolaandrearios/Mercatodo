@@ -28,9 +28,14 @@ class ProductImport implements ToModel, WithValidation, WithHeadingRow
             $currentImage = $row['images' . $i];
             if(!is_null($currentImage)) {
                 $filePath = 'imported-products/imported-images/'.time().'.jpg';
-                copy($currentImage, storage_path('/app/public/' . $filePath));
-
-                $image = (new Image(['url'=> 'storage/' . $filePath, 'product_id' => $product->id]))->save();
+                try {
+                    copy($currentImage, storage_path('/app/public/' . $filePath));
+                    $image = (new Image(['url'=> 'storage/' . $filePath, 'product_id' => $product->id]))->save();
+                } catch(\Exception $err) {
+                    $file = file_exists(storage_path('/app/public/' . $filePath));
+                    $image = (new Image(['url'=> '/images/new-product.jpg' , 'product_id' => $product->id]))->save();
+                    $product['status'] = 'inactive';
+                }
             }
         }
 
@@ -39,7 +44,7 @@ class ProductImport implements ToModel, WithValidation, WithHeadingRow
 
     public function headingRow(): int
     {
-        return 2;
+        return 17;
     }
 
     public function prepareForValidation(array $row): array
@@ -63,6 +68,13 @@ class ProductImport implements ToModel, WithValidation, WithHeadingRow
 
         foreach ($conversions as $conversion){
             $row = Helper::replace_key($row, $conversion['current'], $conversion['base']);
+        }
+
+        if(strtolower($row['status']) === strtolower(__('general.web.product.active'))){
+            $row['status'] = str_replace($row['status'], strtolower('active'), $row['status']);
+        }
+        if(strtolower($row['status']) === strtolower(__('general.web.product.inactive'))){
+            $row['status'] = str_replace($row['status'], strtolower('inactive'), $row['status']);
         }
 
         return $row;
