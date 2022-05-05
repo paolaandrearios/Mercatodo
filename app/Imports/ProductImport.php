@@ -19,11 +19,19 @@ class ProductImport implements ToModel, WithValidation, WithHeadingRow
     public function model(array $row): Product
     {
         $row['slug'] = Helper::generateSlug(Arr::get($row, 'name_en'));
-        $product = new Product($row);
+        $row['id'] = Arr::get($row, 'id');
+        $row['sku'] = Arr::get($row, 'sku');
+        if(!is_null($row['id'])){
+           $product = Product::with(['categories', 'images'])->where('id', $row['id'])->first();
+            $product->update($row);
+            $product->categories()->sync($row['category_id']);
+            $product->images()->delete();
+        } else {
+            $product = new Product($row);
+            $product->save();
+            $product->categories()->attach($row['category_id']);
+        }
 
-        $product->save();
-
-        $product->categories()->attach($row['category_id']);
         for ($i = 0; $i < 5; $i++) {
             $currentImage = $row['images' . $i];
             if(!is_null($currentImage)) {
