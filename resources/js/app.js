@@ -69,12 +69,14 @@ Vue.component('order-edit-modal', require('./components/orders/modals/OrderEditM
 Vue.component('order-index-modal', require('./components/orders/modals/OrderIndexModal.vue').default);
 Vue.component('payment-thanks', require('./components/orders/PaymentThanks').default);
 
-//Home page
+//Home page and others pages
 Vue.component('home-page', require('./components/pages/homePage/HomePage.vue').default);
 Vue.component('header-home-page', require('./components/pages/homePage/HeaderHomePage.vue').default);
 Vue.component('banner-home-page', require('./components/pages/homePage/BannerHomePage.vue').default);
-
 Vue.component('category-home-page', require('./components/pages/homePage/CategoryHomePage.vue').default);
+
+Vue.component('reports', require('./components/pages/Reports.vue').default);
+
 //utils
 Vue.component('modal', require('./components/utils/Modal.vue').default);
 Vue.component('error', require('./components/utils/Error.vue').default);

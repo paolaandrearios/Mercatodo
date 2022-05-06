@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ExportController;
 use App\Http\Controllers\Admin\ImportController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\Order\CartController;
 use App\Http\Controllers\Client\Order\CheckoutController;
@@ -41,6 +42,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
         Route::get('/products', [ProductController::class, 'index'])->middleware('can:admin.product.index')->name('product.index');
         Route::get('/import/products', [ImportController::class, 'show'])->middleware('can:admin.products.import')->name('products.import');
         Route::get('/export/products', [ExportController::class, 'show'])->middleware('can:admin.products.export')->name('products.export');
+        Route::get('/reports', [ReportController::class, 'show'])->middleware('can:admin.reports')->name('reports');
         Route::get('/orders/index', [OrderController::class, 'show'])->middleware('can:admin.orders.index')->name('orders.index');
     });
 });

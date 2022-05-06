@@ -50,6 +50,12 @@
                 >
                     {{ __('general.web.data_management.export_products') }}
                 </a>
+                <a
+                    @click="goReports"
+                    class="block cursor-pointer px-4 py-2 text-xs font-extrabold uppercase text-orangePantone hover:bg-orangePantone hover:text-white"
+                >
+                    {{ __('general.web.data_management.reports') }}
+                </a>
             </div>
         </div>
     </div>
@@ -82,6 +88,9 @@ export default {
         },
         goExportProducts() {
             window.location.href = '/evertec/mercatodo/public/admin/export/products';
+        },
+        goReports() {
+            window.location.href = '/evertec/mercatodo/public/admin/reports';
         },
     },
 };
