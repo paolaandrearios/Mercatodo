@@ -9,7 +9,6 @@ use App\Rules\Api\Admin\ProductRules;
 use Illuminate\Support\Arr;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 
@@ -17,6 +16,8 @@ HeadingRowFormatter::default('none');
 
 class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow
 {
+    private bool $is_new_product = true;
+
     public function model(array $row): Product
     {
         $row['slug'] = Helper::generateSlug(Arr::get($row, 'name_en'));
@@ -81,12 +82,45 @@ class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow
             $row['status'] = str_replace($row['status'], strtolower('inactive'), $row['status']);
         }
 
+        if(!is_null($row['id'])){
+            $product = Product::with(['categories', 'images'])->where('id', $row['id'])->first();
+            if($product['sku'] == $row['sku']
+                || $product['name_es'] == $row['name_es']
+                || $product['name_en'] == $row['name_en']){
+                $this->is_new_product = false;
+            }
+        }
+
         return $row;
     }
 
     public function rules(): array
     {
-        return ProductRules::toArray();
+        if($this->is_new_product === true){
+            return ProductRules::toArray();
+        } else {
+            $base = ProductRules::toArray();
+            $replacement = [
+                'sku' => [
+                    'required',
+                    'alpha_num',
+                    'min:5',
+                    'max:10',
+                ],
+                'name_es' => [
+                    'required',
+                    'min:4',
+                    'max:60',
+                ],
+                'name_en' => [
+                    'required',
+                    'min:4',
+                    'max:60',
+                ],
+            ];
+
+            return array_replace($base,$replacement);
+        }
     }
 
 }
