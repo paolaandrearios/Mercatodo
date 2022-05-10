@@ -26,7 +26,6 @@ class ImportHasFailedNotification extends Notification implements ShouldQueue
         return ['mail'];
     }
 
-
     public function toMail($notifiable): MailMessage
     {
          return  (new MailMessage)->markdown('vendor.notifications.failednotification', [
@@ -35,13 +34,6 @@ class ImportHasFailedNotification extends Notification implements ShouldQueue
              'importFile' => $this->importFile,
              'actionText' => __('general.web.data_management.go_store')
 
-         ])->subject(__('general.web.data_management.error_mail_products'));
-    }
-
-    public function toArray($notifiable): array
-    {
-        return [
-            //
-        ];
+         ])->subject(__('general.web.data_management.error_mail_products', ['fileName'=> $this->importFile]));
     }
 }

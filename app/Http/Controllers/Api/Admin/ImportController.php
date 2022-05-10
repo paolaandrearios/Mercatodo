@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Imports\ProductImport;
 use App\Models\User;
 use App\Notifications\ImportHasFailedNotification;
+use App\Notifications\ProductsWereImported;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Validation\ValidationException;
@@ -26,6 +27,8 @@ class ImportController extends Controller
                 $importFile,
                 $importFile->storeAs('imported-products', $fileName, 'public')
             );
+            $user->notify(new ProductsWereImported($importFile->getClientOriginalName()));
+
         }catch (ValidationException  $e){
             $user->notify(new ImportHasFailedNotification($e->errors(), $importFile->getClientOriginalName()));
         }
