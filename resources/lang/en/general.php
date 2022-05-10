@@ -39,7 +39,7 @@ return [
         ],
 
         'data_management' => [
-            'import_status_success' => 'Successfully imported products',
+            'import_status' => 'The data is being processed, a notification will be sent to your e-mail when the process is finished.',
         ],
 
         'exceptions' => [

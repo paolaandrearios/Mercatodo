@@ -12,16 +12,18 @@ HeadingRowFormatter::default('none');
 class ProductImport implements WithMultipleSheets
 {
     private User $importedBy;
+    private string $locale;
 
-    public function __construct(User $importedBy)
+    public function __construct(User $importedBy, string $locale)
     {
         $this->importedBy = $importedBy;
+        $this->locale = $locale;
     }
 
     public function sheets(): array
     {
         return [
-            new FirstSheetImport($this->importedBy),
+            new FirstSheetImport($this->importedBy, $this->locale),
         ];
     }
 }

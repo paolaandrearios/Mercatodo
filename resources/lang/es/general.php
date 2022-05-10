@@ -38,7 +38,7 @@ return [
         ],
 
         'data_management' => [
-            'import_status_success' => 'Productos importados exitosamente',
+            'import_status' => 'Los datos están siendo procesados, a su correo electrónico llegará una notificación cuando el proceso haya finalizado.',
         ],
 
         'exceptions' => [

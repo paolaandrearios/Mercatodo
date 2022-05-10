@@ -6,29 +6,30 @@ use App\Helpers\Helper;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\User;
-use App\Notifications\ImportHasFailedNotification;
 use App\Rules\Api\Admin\ProductRules;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
-use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
-use Maatwebsite\Excel\Events\ImportFailed;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 
 HeadingRowFormatter::default('none');
 
-class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithChunkReading, ShouldQueue, WithEvents
+class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithChunkReading, ShouldQueue
 {
     private bool $is_new_product = true;
     private User $importedBy;
+    private string $locale;
 
-    public function __construct(User $importedBy)
+    public function __construct(User $importedBy, string $locale)
     {
         $this->importedBy = $importedBy;
+        $this->locale = $locale;
     }
+
 
     public function model(array $row): Product
     {
@@ -67,21 +68,24 @@ class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithC
     public function prepareForValidation(array $row): array
     {
         $conversions = [
-            ['current' => __('general.web.product.name_en'), 'base' => 'name_en'],
-            ['current' => __('general.web.product.description_en'), 'base' => 'description_en'],
-            ['current' => __('general.web.product.name_es'), 'base' => 'name_es'],
-            ['current' => __('general.web.product.description_es'), 'base' => 'description_es'],
-            ['current' => __('general.web.product.price'), 'base' => 'price'],
-            ['current' => __('general.web.product.taxes'), 'base' => 'taxes'],
-            ['current' => __('general.web.product.status'), 'base' => 'status'],
-            ['current' => __('general.web.product.stock'), 'base' => 'stock'],
-            ['current' => __('general.web.category.category'), 'base' => 'category_id'],
-            ['current' => __('general.web.product.images0'), 'base' => 'images0'],
-            ['current' => __('general.web.product.images1'), 'base' => 'images1'],
-            ['current' => __('general.web.product.images2'), 'base' => 'images2'],
-            ['current' => __('general.web.product.images3'), 'base' => 'images3'],
-            ['current' => __('general.web.product.images4'), 'base' => 'images4'],
+            ['current' => __('general.web.product.name_en', [], $this->locale), 'base' => 'name_en'],
+            ['current' => __('general.web.product.description_en', [], $this->locale), 'base' => 'description_en'],
+            ['current' => __('general.web.product.name_es', [], $this->locale), 'base' => 'name_es'],
+            ['current' => __('general.web.product.description_es', [], $this->locale), 'base' => 'description_es'],
+            ['current' => __('general.web.product.price', [], $this->locale), 'base' => 'price'],
+            ['current' => __('general.web.product.taxes', [], $this->locale), 'base' => 'taxes'],
+            ['current' => __('general.web.product.status', [], $this->locale), 'base' => 'status'],
+            ['current' => __('general.web.product.stock', [], $this->locale), 'base' => 'stock'],
+            ['current' => __('general.web.category.category', [], $this->locale), 'base' => 'category_id'],
+            ['current' => __('general.web.product.images0', [], $this->locale), 'base' => 'images0'],
+            ['current' => __('general.web.product.images1', [], $this->locale), 'base' => 'images1'],
+            ['current' => __('general.web.product.images2', [], $this->locale), 'base' => 'images2'],
+            ['current' => __('general.web.product.images3', [], $this->locale), 'base' => 'images3'],
+            ['current' => __('general.web.product.images4', [], $this->locale), 'base' => 'images4'],
         ];
+
+        Log::debug(json_encode($conversions));
+
 
         foreach ($conversions as $conversion){
             $row = Helper::replace_key($row, $conversion['current'], $conversion['base']);
@@ -140,21 +144,14 @@ class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithC
         return 100;
     }
 
-    public function registerEvents(): array
-    {
-        return [
-            ImportFailed::class => function(ImportFailed $event) {
-
-
-//                foreach($event->getException()->failures() as $failure){
-//                    $error = $failure->toArray();
-//                };
-
-
-                $this->importedBy->notify(new ImportHasFailedNotification);
-
-            },
-        ];
-    }
+//    public function registerEvents(): array
+//    {
+//        return [
+//            ImportFailed::class => function(ImportFailed $event) {
+//
+//                $this->importedBy->notify(new ImportHasFailedNotification);
+//            },
+//        ];
+//    }
 }
 
