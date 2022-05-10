@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\PaymentSyncStatusController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,3 +89,11 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'client', 'as'=>'clien
     Route::get('orders/order/{order}', [OrderController::class, 'show'])->name('order.history');
     Route::patch('orders/order/{order}', [OrderController::class, 'update'])->name('order.edit');
 });
+
+
+/*******************************************/
+
+/*Route::get('/test', function () {
+    $user = \App\Models\User::find(1);
+    $user->notify(new \App\Notifications\ImportHasFailedNotification);
+});*/

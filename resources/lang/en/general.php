@@ -49,6 +49,11 @@ return [
     ],
 
     'web' => [
+        'errors' => 'Errors!',
+        'hello' => 'Hello!',
+        'thanks_use_application' => 'Thank you for using our application!',
+        'regards' => 'Regards',
+        'mercatodo' => 'MercaTodo',
         'close' => 'Close',
         'save' => 'Save',
         'show' => 'Show',
@@ -219,6 +224,9 @@ return [
             'abandoned_carts' => 'Abandoned Carts',
             'best_selling_category' => 'Best selling category',
             'reports_description' => 'For an adequate management of your business it is necessary to generate reports that allow you to take action, select below the report you wish to generate.',
+            'error_email_description' => 'Sorry, the products in the :fileName file could not be imported, please try again',
+            'error_mail_products' => 'The products could not be imported',
+            'go_store' => 'Go to the store',
         ],
     ],
 

@@ -47,7 +47,11 @@ return [
     ],
 
     'web' => [
-
+        'errors' => 'Errores!',
+        'hello' => 'Hola!',
+        'thanks_use_application' => 'Gracias por usar nuestra aplicación!',
+        'regards' => 'Saludos',
+        'mercatodo' => 'MercaTodo',
         'close' => 'Cerrar',
         'save' => 'Guardar',
         'show' => 'Ver',
@@ -217,6 +221,9 @@ return [
             'abandoned_carts' => 'Carritos abandonados',
             'best_selling_category' => 'Categoría más vendida',
             'reports_description' => 'Para una adecuada gestión de su negocio es necesario generar reportes que le permitan tomar acción, seleccione a continuación el reporte que desea generar.',
+            'error_email_description' => 'Lo sentimos, los productos del archivo :fileName no pudieron ser importados, intente nuevamente',
+            'error_mail_products' => 'Los productos no pudieron ser importados',
+            'go_store' => 'Ir a la tienda',
         ],
     ],
 

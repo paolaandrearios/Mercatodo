@@ -5,18 +5,30 @@ namespace App\Imports;
 use App\Helpers\Helper;
 use App\Models\Image;
 use App\Models\Product;
+use App\Models\User;
+use App\Notifications\ImportHasFailedNotification;
 use App\Rules\Api\Admin\ProductRules;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Arr;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
+use Maatwebsite\Excel\Events\ImportFailed;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 
 HeadingRowFormatter::default('none');
 
-class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow
+class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithChunkReading, ShouldQueue, WithEvents
 {
     private bool $is_new_product = true;
+    private User $importedBy;
+
+    public function __construct(User $importedBy)
+    {
+        $this->importedBy = $importedBy;
+    }
 
     public function model(array $row): Product
     {
@@ -123,5 +135,26 @@ class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow
         }
     }
 
+    public function chunkSize(): int
+    {
+        return 100;
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            ImportFailed::class => function(ImportFailed $event) {
+
+
+//                foreach($event->getException()->failures() as $failure){
+//                    $error = $failure->toArray();
+//                };
+
+
+                $this->importedBy->notify(new ImportHasFailedNotification);
+
+            },
+        ];
+    }
 }
 
