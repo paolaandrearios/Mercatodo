@@ -3,20 +3,23 @@
 namespace App\Exports;
 
 use App\Models\Product;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class ProductExport implements FromCollection, WithMapping, WithHeadings
+class ProductExport implements FromCollection, WithMapping, WithHeadings, ShouldQueue
 {
     private ?string $status;
     private ?string $category;
+    private string $locale;
 
-    public function __construct(String $status = null, String $category = null)
+    public function __construct(String $status = null, String $category = null, string $locale)
     {
         $this->status = $status;
         $this->category = $category;
+        $this->locale = $locale;
     }
 
     public function collection(): Collection
@@ -84,20 +87,20 @@ class ProductExport implements FromCollection, WithMapping, WithHeadings
         return [
             'id',
             'sku',
-            __('general.web.product.name_en'),
-            __('general.web.product.description_en'),
-            __('general.web.product.name_es'),
-            __('general.web.product.description_es'),
-            __('general.web.product.price'),
-            __('general.web.product.taxes'),
-            __('general.web.category.category'),
-            __('general.web.product.status'),
-            __('general.web.product.stock'),
-            __('general.web.product.images0'),
-            __('general.web.product.images1'),
-            __('general.web.product.images2'),
-            __('general.web.product.images3'),
-            __('general.web.product.images4'),
+            __('general.web.product.name_en', [], $this->locale),
+            __('general.web.product.description_en', [], $this->locale),
+            __('general.web.product.name_es', [], $this->locale),
+            __('general.web.product.description_es', [], $this->locale),
+            __('general.web.product.price', [], $this->locale),
+            __('general.web.product.taxes', [], $this->locale),
+            __('general.web.category.category', [], $this->locale),
+            __('general.web.product.status', [], $this->locale),
+            __('general.web.product.stock', [], $this->locale),
+            __('general.web.product.images0', [], $this->locale),
+            __('general.web.product.images1', [], $this->locale),
+            __('general.web.product.images2', [], $this->locale),
+            __('general.web.product.images3', [], $this->locale),
+            __('general.web.product.images4', [], $this->locale),
         ];
     }
 }

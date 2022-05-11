@@ -40,6 +40,7 @@ return [
 
         'data_management' => [
             'import_status' => 'The data is being processed, a notification will be sent to your e-mail when the process is finished.',
+            'export_status' => 'Your request is being processed, once it is finished, you will receive an excel file for download.',
         ],
 
         'exceptions' => [
@@ -228,7 +229,11 @@ return [
             'success_email_description' => 'We inform you that the products in the file ":fileName" were successfully imported.',
             'error_mail_products' => 'The products could not be imported (file: :fileName)',
             'success_mail_products' => 'Successfully imported products (file: :fileName)',
+            'success_mail_exported_products' => 'Successfully Exported products (file: :fileName)',
             'go_store' => 'Go to the store',
+            'download_file' => 'Download File',
+            'success_export_email_description' => 'We inform you that the requested products were successfully exported, below you will find a button for downloading, file ":fileName".',
+
         ],
     ],
 

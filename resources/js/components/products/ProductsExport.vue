@@ -13,7 +13,6 @@
             <div class="w-2/4 mx-auto grid grid-cols-1 md:grid-cols-2 gap-2">
                 <select id="status" v-model="status" class="bg-gray-300 p-2 rounded-xl focus:outline-none truncate">
                     <option value="">{{ __('general.web.data_management.by_status') }}</option>
-                    <option value="all">{{ __('general.web.data_management.all_products') }}</option>
                     <option value="active">{{ __('general.web.data_management.active_products') }}</option>
                     <option value="inactive">{{ __('general.web.data_management.inactive_products') }}</option>
                 </select>
@@ -67,28 +66,10 @@ export default {
                 headers: {
                     'content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                 },
-                responseType: 'blob',
             };
 
             axios.get(`/evertec/mercatodo/public/api/admin/export/products?status=${this.status}&category=${this.category}`, config).then((response) => {
-                let fileURL = window.URL.createObjectURL(new Blob([response.data]));
-                let fileLink = document.createElement('a');
-
-                fileLink.href = fileURL;
-
-                if(this.category === ''){
-                    fileLink.setAttribute('download', date + '_' + this.status +'_products.xlsx');
-                } else {
-                    fileLink.setAttribute('download', date + '_' + this.status + '_' +  this.categories[Number(this.category)-1]['name_en'] +'_products.xlsx');
-                }
-
-                document.body.appendChild(fileLink);
-
-                fileLink.click();
-            })
-            .catch((error)=> {
-                this.errors = error.response.data.errors;
-                alert(error.response.data.message);
+                alert(response.data.message);
             });
         },
         getAllCategories: function () {

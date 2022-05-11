@@ -30,7 +30,6 @@ class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithC
         $this->locale = $locale;
     }
 
-
     public function model(array $row): Product
     {
         $row['slug'] = Helper::generateSlug(Arr::get($row, 'name_en'));
@@ -83,9 +82,6 @@ class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithC
             ['current' => __('general.web.product.images3', [], $this->locale), 'base' => 'images3'],
             ['current' => __('general.web.product.images4', [], $this->locale), 'base' => 'images4'],
         ];
-
-        Log::debug(json_encode($conversions));
-
 
         foreach ($conversions as $conversion){
             $row = Helper::replace_key($row, $conversion['current'], $conversion['base']);
@@ -143,15 +139,5 @@ class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithC
     {
         return 100;
     }
-
-//    public function registerEvents(): array
-//    {
-//        return [
-//            ImportFailed::class => function(ImportFailed $event) {
-//
-//                $this->importedBy->notify(new ImportHasFailedNotification);
-//            },
-//        ];
-//    }
 }
 
