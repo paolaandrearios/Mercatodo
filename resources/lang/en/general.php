@@ -40,7 +40,7 @@ return [
 
         'data_management' => [
             'import_status' => 'The data is being processed, a notification will be sent to your e-mail when the process is finished.',
-            'export_status' => 'Your request is being processed, once it is finished, you will receive an excel file for download.',
+            'export_status' => 'Your request is being processed, once completed, you will receive an email notification with a link to download the excel file.',
         ],
 
         'exceptions' => [

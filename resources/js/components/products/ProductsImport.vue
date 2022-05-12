@@ -83,7 +83,10 @@ export default {
 
 
             axios.post('/evertec/mercatodo/public/api/admin/import/products', data, config).then((response) => {
-                alert(response.data.message);
+                function alertFunc(){
+                    alert(response.data.message)
+                }
+                setTimeout(alertFunc, 2000);
             })
             .catch((error)=> {
                 // this.errors = error.response.data.errors;

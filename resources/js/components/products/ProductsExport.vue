@@ -69,7 +69,10 @@ export default {
             };
 
             axios.get(`/evertec/mercatodo/public/api/admin/export/products?status=${this.status}&category=${this.category}`, config).then((response) => {
-                alert(response.data.message);
+               function alertFunc(){
+                   alert(response.data.message)
+               }
+                setTimeout(alertFunc, 2000);
             });
         },
         getAllCategories: function () {

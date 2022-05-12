@@ -39,7 +39,7 @@ return [
 
         'data_management' => [
             'import_status' => 'Los datos están siendo procesados, a su correo electrónico llegará una notificación cuando el proceso haya finalizado.',
-            'export_status' => 'Su solicitud esta siendo procesada, una vez finalice, a su correo eléctronico llegará el archivo de excel para su descarga.',
+            'export_status' => 'Tu solicitud está siendo procesada, una vez terminada, recibirás una notificación por correo electrónico, con un enlace para descargar el archivo de excel.',
         ],
 
         'exceptions' => [
