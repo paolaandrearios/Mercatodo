@@ -3,14 +3,13 @@
 namespace App\Jobs;
 
 use App\Models\User;
+use App\Notifications\ReportWasGenerated;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 
 class ReportsJob implements ShouldQueue
 {
@@ -19,22 +18,22 @@ class ReportsJob implements ShouldQueue
     private string $reportOption;
     private array $reports;
     private string $locale;
-    private User $ReportBy;
+    private User $reportBy;
 
-    public function __construct(string $reportOption, array $reports, string $locale, User $ReportBy)
+    public function __construct(string $reportOption, array $reports, string $locale, User $reportBy)
     {
         $this->reportOption = $reportOption;
         $this->reports = $reports;
         $this->locale = $locale;
-        $this->ReportBy = $ReportBy;
+        $this->reportBy = $reportBy;
     }
 
     public function handle(): void
     {
-        $pdf = Pdf::loadView('admin.reports.'.$this->reportOption, ['reports' => $this->reports]);
-        Log::debug($this->reports);
-        Log::debug($this->reportOption);
+        $pdf = Pdf::setPaper('a4', 'landscape')->loadView('admin.reports.'.$this->reportOption, ['reports' => $this->reports]);
 
         $pdf->save(public_path('storage/reports/'.time().'_'.$this->reportOption.'.pdf'));
+        $fileName = time().'_'.$this->reportOption.'.pdf';
+        $this->reportBy->notify(new ReportWasGenerated($fileName));
     }
 }

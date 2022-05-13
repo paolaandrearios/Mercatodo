@@ -22,7 +22,7 @@ class ReportController extends Controller
     public function generate(GenerateReportRequest $request)
     {
         $authUser = auth()->user();
-        $ReportBy = User::query()->where('id',$authUser['id'])->first();
+        $reportBy = User::query()->where('id',$authUser['id'])->first();
 
         $initialDate = $request->query('initial-date');
         $endDate = $request->query('end-date');
@@ -31,6 +31,8 @@ class ReportController extends Controller
 
         $reports = $this->reportRepository->get($initialDate, $endDate, $reportOption);
 
-        $this->dispatch(new ReportsJob($reportOption, $reports, $locale, $ReportBy));
+        $this->dispatch(new ReportsJob($reportOption, $reports, $locale, $reportBy));
+
+        return response()->json(['message' => __('general.api.data_management.report_status')]);
     }
 }

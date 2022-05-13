@@ -40,6 +40,7 @@ return [
         'data_management' => [
             'import_status' => 'Los datos están siendo procesados, a su correo electrónico llegará una notificación cuando el proceso haya finalizado.',
             'export_status' => 'Tu solicitud está siendo procesada, una vez terminada, recibirás una notificación por correo electrónico, con un enlace para descargar el archivo de excel.',
+            'report_status' => 'Tu solicitud está siendo procesada, una vez terminada, recibirás una notificación por correo electrónico, con un enlace para descargar el archivo de excel.',
         ],
 
         'exceptions' => [
@@ -67,6 +68,8 @@ return [
         'file_import' => 'Archivo para importar',
         'choose_file' => 'Escoger archivo',
         'download' => 'Descargar',
+        'created_at' => 'Creado en',
+        'updated_at' => 'Actualizado en',
 
         'user' => [
             'user_list' => 'Lista de Usuarios',
@@ -227,9 +230,11 @@ return [
             'error_mail_products' => 'Los productos no pudieron ser importados (archivo: :fileName)',
             'success_mail_products' => 'Los productos fueron exitosamente importados (archivo: :fileName)',
             'success_mail_exported_products' => 'Productos exitosamente exportados (Archivo: :fileName)',
+            'success_mail_report_generated' => 'Reporte generado exitosamente (Archivo: :fileName)',
             'go_store' => 'Ir a la tienda',
             'download_file' => 'Descargar Archivo',
             'success_export_email_description' => 'Te informamos que los productos solicitados fueron exportados con éxito, a continuación encontrarás un botón para su descarga, archivo ":fileName".',
+            'success_report_email_description' => 'Te informamos que el informe solicitado fue generado con éxito, a continuación encontrarás un botón para su descarga, archivo ":fileName".',
         ],
     ],
 
