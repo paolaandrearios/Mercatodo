@@ -60,8 +60,7 @@ export default {
     },
     methods: {
         ExportProducts: function () {
-            let date = (new Date()).toISOString().split('T')[0];
-            console.log(this.category)
+
             const config = {
                 headers: {
                     'content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',

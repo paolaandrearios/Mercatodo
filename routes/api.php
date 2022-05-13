@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Admin\ImportController;
 use App\Http\Controllers\Api\Admin\OrderAdminController;
 use App\Http\Controllers\Api\Admin\ProductController as ProductAdminController;
 use App\Http\Controllers\Api\Admin\ProductStatusController;
+use App\Http\Controllers\Api\Admin\ReportController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Admin\UserStatusController;
 use App\Http\Controllers\Api\CategoryController;
@@ -56,6 +57,8 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     Route::post('/import/products', [ImportController::class, 'import'])->name('products.import');
 
     Route::get('/export/products', [ExportController::class, 'export'])->name('products.export');
+
+    Route::get('/reports', [ReportController::class, 'generate'])->name('reports');
 
     Route::resource('orders', OrderAdminController::class)->only([
         'index',
