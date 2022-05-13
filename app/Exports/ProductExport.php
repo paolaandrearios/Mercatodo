@@ -13,13 +13,17 @@ class ProductExport implements FromCollection, WithMapping, WithHeadings, Should
 {
     private ?string $status;
     private ?string $category;
+    private string $initialDate;
+    private string $endDate;
     private string $locale;
 
-    public function __construct(String $status = null, String $category = null, string $locale)
+    public function __construct(String $status = null, String $category = null, string $locale, $initialDate, $endDate)
     {
         $this->status = $status;
         $this->category = $category;
         $this->locale = $locale;
+        $this->initialDate = $initialDate;
+        $this->endDate = $endDate;
     }
 
     public function collection(): Collection
@@ -43,13 +47,16 @@ class ProductExport implements FromCollection, WithMapping, WithHeadings, Should
                 ->select($data_product)
                 ->whereHas('categories', function($query) {
                     $query->select('category_id')->where('category_id', $this->category);
-                });
+                })->whereDate('created_at', '>=', $this->initialDate)
+                ->whereDate('created_at', '<=', $this->endDate);
         } else {
-            $products = Product::query()->with(['categories', 'images'])->select($data_product);
+            $products = Product::query()->with(['categories', 'images'])->select($data_product)->whereDate('created_at', '>=', $this->initialDate)
+                ->whereDate('created_at', '<=', $this->endDate);;
         }
 
         if(!is_null($this->status)) {
-            $products = $products->select($data_product)->where('status', $this->status);
+            $products = $products->select($data_product)->where('status', $this->status)->whereDate('created_at', '>=', $this->initialDate)
+                ->whereDate('created_at', '<=', $this->endDate);
         }
 
         return $products->get();

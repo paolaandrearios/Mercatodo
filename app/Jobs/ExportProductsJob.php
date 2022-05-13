@@ -22,13 +22,17 @@ class ExportProductsJob implements ShouldQueue
     private ?string $category;
     private string $locale;
     private User $exportedBy;
+    private string $initialDate;
+    private string $endDate;
 
-    public function __construct(?string $status, ?string $category, string $locale, User $exportedBy)
+    public function __construct(?string $status, ?string $category, string $locale, User $exportedBy, $initialDate, $endDate)
     {
         $this->status = $status;
         $this->category = $category;
         $this->locale = $locale;
         $this->exportedBy = $exportedBy;
+        $this->initialDate = $initialDate;
+        $this->endDate = $endDate;
     }
 
     public function handle(): void
@@ -51,7 +55,7 @@ class ExportProductsJob implements ShouldQueue
             $filePath = '/exported-products/'.time().'_'.$name_category.'_'.$this->status.'_products.xlsx';
         }
 
-        Excel::store(new ProductExport($this->status, $this->category, $this->locale),$filePath,'public');
+        Excel::store(new ProductExport($this->status, $this->category, $this->locale, $this->initialDate, $this->endDate),$filePath,'public');
         $this->exportedBy->notify(new ProductsWereExported($filePath));
 
     }

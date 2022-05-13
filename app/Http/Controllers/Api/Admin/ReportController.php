@@ -7,8 +7,7 @@ use App\Http\Requests\Api\GenerateReportRequest;
 use App\Jobs\ReportsJob;
 use App\Models\User;
 use App\Repositories\ReportRepository;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 class ReportController extends Controller
 {
@@ -19,7 +18,7 @@ class ReportController extends Controller
         $this->reportRepository = $reportRepository;
     }
 
-    public function generate(GenerateReportRequest $request)
+    public function generate(GenerateReportRequest $request): JsonResponse
     {
         $authUser = auth()->user();
         $reportBy = User::query()->where('id',$authUser['id'])->first();

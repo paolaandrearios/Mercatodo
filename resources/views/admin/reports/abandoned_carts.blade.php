@@ -18,8 +18,6 @@
             <th>{{__('general.web.order.email')}}</th>
             <th>{{__('general.web.order.phone')}}</th>
             <th>{{__('general.web.order.total')}}</th>
-            <th>{{__('general.web.created_at')}}</th>
-            <th>{{__('general.web.updated_at')}}</th>
         </thead>
         <tbody>
             @foreach($reports as $report)
@@ -31,8 +29,6 @@
                     <td>{{ $report['email'] }}</td>
                     <td>{{ $report['phone'] }}</td>
                     <td>{{ $report['total'] }}</td>
-                    <td>{{ ($report['created_at'])}}</td>
-                    <td>{{ ($report['updated_at'])}}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -10,6 +10,40 @@
             {{ __('general.web.data_management.export_description') }}
        </p>
         <form class="my-8" v-on:submit.prevent="" enctype="multipart/form-data">
+            <div class="w-2/4 flex flex-col md:flex-row justify-items-center mx-auto mb-4">
+                <div class="w-1/2 flex flex-col">
+                    <label class="font-bold text-dimGray" for="initial-date">Initial Date</label>
+                    <div>
+                        <input
+                            v-model="initialDate"
+                            min="2021-12-01"
+                            max="2022-05-16"
+                            name="initial-date"
+                            id="initial-date"
+                            type="date"
+                            required
+                            placeholder="Select date"
+                            class="bg-gray-300 p-2 rounded-xl focus:outline-none"
+                        >
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    <label class="font-bold text-dimGray" for="end-date">End Date</label>
+                    <div>
+                        <input
+                            v-model="endDate"
+                            min="2021-12-01"
+                            max="2022-05-16"
+                            name="initial-date"
+                            id="end-date"
+                            type="date"
+                            required
+                            placeholder="Select date"
+                            class="bg-gray-300 p-2 rounded-xl focus:outline-none"
+                        >
+                    </div>
+                </div>
+            </div>
             <div class="w-2/4 mx-auto grid grid-cols-1 md:grid-cols-2 gap-2">
                 <select id="status" v-model="status" class="bg-gray-300 p-2 rounded-xl focus:outline-none truncate">
                     <option value="">{{ __('general.web.data_management.by_status') }}</option>
@@ -53,6 +87,8 @@ export default {
            status: '',
            category: '',
            categories: [],
+           initialDate: '',
+           endDate: '',
         };
     },
     mounted() {
@@ -67,7 +103,7 @@ export default {
                 },
             };
 
-            axios.get(`/evertec/mercatodo/public/api/admin/export/products?status=${this.status}&category=${this.category}`, config).then((response) => {
+            axios.get(`/evertec/mercatodo/public/api/admin/export/products?status=${this.status}&category=${this.category}&initial-date=${this.initialDate}&end-date=${this.endDate}`, config).then((response) => {
                function alertFunc(){
                    alert(response.data.message)
                }

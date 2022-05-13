@@ -18,10 +18,12 @@ class ExportController extends Controller
 
        $status = $request->query('status');
        $category = $request->query('category');
+       $initialDate = $request->query('initial-date');
+       $endDate = $request->query('end-date');
        $locale =  $request->headers->get('locale');
 
 
-       $this->dispatch(new ExportProductsJob($status, $category, $locale, $exportedBy));
+       $this->dispatch(new ExportProductsJob($status, $category, $locale, $exportedBy, $initialDate, $endDate));
 
        return response()->json(['message' => __('general.api.data_management.export_status')]);
    }
