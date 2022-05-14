@@ -18,6 +18,10 @@
                         <td>{{ __('general.web.user.email') }}</td>
                         <td>{{ user.email }}</td>
                     </tr>
+                    <tr>
+                        <td>{{ __('general.web.user.role') }}</td>
+                        <td>{{__('general.web.user.'+ user.role) }}</td>
+                    </tr>
                 </table>
 
                 <div class="mt-3 p-2 text-center">

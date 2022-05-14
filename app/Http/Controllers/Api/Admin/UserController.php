@@ -16,7 +16,31 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user): JsonResponse
     {
+        $user->removeRole($user->role);
+
         $user->name = $request->name;
+        $user->role = $request->role;
+
+        switch ($request->role){
+            case 'administrator':
+                $user->assignRole('administrator');
+                break;
+            case 'client':
+                $user->assignRole('client');
+                break;
+            case 'stock_assistant':
+                $user->assignRole('stock_assistant');
+                break;
+            case 'financial_assistant':
+                $user->assignRole('financial_assistant');
+                break;
+            case 'logistic_assistant':
+                $user->assignRole('logistic_assistant');
+                break;
+            case 'marketing_assistant':
+                $user->assignRole('marketing_assistant');
+                break;
+        }
 
         if ($user->save()) {
             return response()->json([

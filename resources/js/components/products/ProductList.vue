@@ -94,6 +94,7 @@ export default {
             isOpenEdit: false,
             isOpenShow: false,
             pagination: {},
+            role: '',
         };
     },
     mounted() {
@@ -141,6 +142,11 @@ export default {
                     this.getAllProducts();
                     alert(response.data.message);
                 });
+        },
+        getRole: function () {
+            axios.get('/evertec/mercatodo/public/api/user').then((response) => {
+                this.role = response.data.role;
+            });
         },
     },
 };

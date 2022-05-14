@@ -66,7 +66,7 @@ class LoginController extends Controller
             return new JsonResponse([], 204);
         }
 
-        if (Auth::user()->hasRole('Admin')) {
+        if (Auth::user()->hasRole('administrator')) {
             return redirect()->intended(route('admin.dashboard.index'));
         }
 

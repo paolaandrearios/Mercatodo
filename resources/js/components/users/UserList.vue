@@ -12,6 +12,7 @@
                                     <th>Id</th>
                                     <th>{{ __('general.web.user.name') }}</th>
                                     <th>{{ __('general.web.user.email') }}</th>
+                                    <th>{{ __('general.web.user.role') }}</th>
                                     <th>{{ __('general.web.user.status') }}</th>
                                     <th>{{ __('general.web.user.actions') }}</th>
                                 </tr>
@@ -21,6 +22,7 @@
                                     <td>{{ user.id }}</td>
                                     <td>{{ user.name }}</td>
                                     <td>{{ user.email }}</td>
+                                    <td>{{ __('general.web.user.'+ user.role) }}</td>
                                     <td>
                                         <span>{{ __('general.web.user.' + user.status) }}</span>
                                     </td>
@@ -73,7 +75,7 @@ export default {
     data() {
         return {
             users: [],
-            currentUser: { id: '', name: '' },
+            currentUser: { id: '', name: '', role: ''},
             isOpenEdit: false,
             isOpenShow: false,
             pagination: {},
