@@ -12,7 +12,7 @@
         <form class="my-8" v-on:submit.prevent="" enctype="multipart/form-data">
             <div class="w-2/4 flex flex-col md:flex-row justify-items-center mx-auto mb-4">
                 <div class="w-1/2 flex flex-col">
-                    <label class="font-bold text-dimGray" for="initial-date">Initial Date</label>
+                    <label class="font-bold text-dimGray" for="initial-date">{{ __('general.web.initial_date') }}</label>
                     <div>
                         <input
                             v-model="initialDate"
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="w-1/2">
-                    <label class="font-bold text-dimGray" for="end-date">End Date</label>
+                    <label class="font-bold text-dimGray" for="end-date">{{ __('general.web.end_date') }}</label>
                     <div>
                         <input
                             v-model="endDate"

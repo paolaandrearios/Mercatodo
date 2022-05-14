@@ -44,10 +44,10 @@ class ImportProductsJob implements ShouldQueue
                 $importFile
             );
             $fileName = explode('_',$this->importFilePath)[1];
-            $user->notify(new ProductsWereImported($fileName));
+            $user->notify((new ProductsWereImported($fileName))->locale($this->locale));
 
         }catch (ValidationException  $e){
-            $user->notify(new ImportHasFailedNotification($e->errors(), explode('_',$this->importFilePath)[1]));
+            $user->notify((new ImportHasFailedNotification($e->errors(), explode('_',$this->importFilePath)[1]))->locale($this->locale));
         }catch (\Exception $e){
             Log::debug($e->getMessage());
             Log::debug(json_encode($e));

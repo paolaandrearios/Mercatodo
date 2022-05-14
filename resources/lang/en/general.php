@@ -72,6 +72,8 @@ return [
         'download' => 'Download',
         'created_at' => 'Created at',
         'updated_at' => 'Updated at',
+        'initial_date' => 'Initial Date',
+        'end_date' => 'End Date',
 
         'user' => [
             'user_list' => 'User List',

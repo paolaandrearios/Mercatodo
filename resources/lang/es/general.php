@@ -40,7 +40,7 @@ return [
         'data_management' => [
             'import_status' => 'Los datos están siendo procesados, a su correo electrónico llegará una notificación cuando el proceso haya finalizado.',
             'export_status' => 'Tu solicitud está siendo procesada, una vez terminada, recibirás una notificación por correo electrónico, con un enlace para descargar el archivo de excel.',
-            'report_status' => 'Tu solicitud está siendo procesada, una vez terminada, recibirás una notificación por correo electrónico, con un enlace para descargar el archivo de excel.',
+            'report_status' => 'Tu solicitud está siendo procesada, una vez terminada, recibirás una notificación por correo electrónico, con un enlace para descargar el archivo pdf.',
         ],
 
         'exceptions' => [
@@ -70,6 +70,8 @@ return [
         'download' => 'Descargar',
         'created_at' => 'Creado en',
         'updated_at' => 'Actualizado en',
+        'initial_date' => 'Fecha inicial',
+        'end_date' => 'Fecha final',
 
         'user' => [
             'user_list' => 'Lista de Usuarios',

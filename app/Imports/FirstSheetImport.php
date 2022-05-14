@@ -87,12 +87,15 @@ class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithC
             $row = Helper::replace_key($row, $conversion['current'], $conversion['base']);
         }
 
-        if(strtolower($row['status']) === strtolower(__('general.web.product.active'))){
-            $row['status'] = str_replace($row['status'], strtolower('active'), $row['status']);
+        $status = trim(strtolower($row['status']));
+        if($status == strtolower(__('general.web.product.active', [], $this->locale))){
+           $status = 'active';
         }
-        if(strtolower($row['status']) === strtolower(__('general.web.product.inactive'))){
-            $row['status'] = str_replace($row['status'], strtolower('inactive'), $row['status']);
+        if($status == strtolower(__('general.web.product.inactive', [], $this->locale))){
+           $status = 'inactive';
         }
+        $row['status'] = $status;
+
 
         if(!is_null($row['id'])){
             $product = Product::with(['categories', 'images'])->where('id', $row['id'])->first();

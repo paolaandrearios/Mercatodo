@@ -34,6 +34,6 @@ class ReportsJob implements ShouldQueue
 
         $pdf->save(public_path('storage/reports/'.time().'_'.$this->reportOption.'.pdf'));
         $fileName = time().'_'.$this->reportOption.'.pdf';
-        $this->reportBy->notify(new ReportWasGenerated($fileName));
+        $this->reportBy->notify((new ReportWasGenerated($fileName))->locale($this->locale));
     }
 }

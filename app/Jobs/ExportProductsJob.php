@@ -13,6 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Notifications\Notification;
 
 class ExportProductsJob implements ShouldQueue
 {
@@ -56,7 +57,6 @@ class ExportProductsJob implements ShouldQueue
         }
 
         Excel::store(new ProductExport($this->status, $this->category, $this->locale, $this->initialDate, $this->endDate),$filePath,'public');
-        $this->exportedBy->notify(new ProductsWereExported($filePath));
-
+        $this->exportedBy->notify((new ProductsWereExported($filePath))->locale($this->locale));
     }
 }
