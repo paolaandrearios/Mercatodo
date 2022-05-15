@@ -32,6 +32,15 @@ class UpdatePaymentStatusAction
         $order->status = strtolower($status);
         $order->save();
 
+        $orderDetails = $order->orderDetails;
+
+        foreach ($orderDetails as $orderDetail){
+//            dd($orderDetail->product);
+            $product = $orderDetail->product;
+            $product->stock -= $orderDetail->quantity;
+            $product->save();
+        }
+
         return $payment;
     }
 }

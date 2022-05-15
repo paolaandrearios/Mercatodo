@@ -257,6 +257,10 @@ export default {
             axios.get('/evertec/mercatodo/public/api/product/' + url).then((response) => {
                 this.product = response.data.product;
                 this.main_image = this.product.images[0]['url'];
+            }).catch((error) => {
+                if(error.response.status === 404){
+                    window.location.href = '/evertec/mercatodo/public';
+                }
             });
         },
         increment() {
