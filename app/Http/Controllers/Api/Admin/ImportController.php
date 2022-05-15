@@ -20,6 +20,9 @@ class ImportController extends Controller
 
         $this->dispatch(new ImportProductsJob($authUser, $importFilePath, $request->headers->get('locale')));
 
-        return response()->json(['message' => __('general.api.data_management.import_status')]);
+        return response()->json([
+            'message' => __('general.api.data_management.import_status'),
+            'file_name' => $fileName,
+        ]);
     }
 }

@@ -11,6 +11,7 @@ trait RequestFaker
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . $token,
+            'locale' => 'en',
         ];
     }
 }

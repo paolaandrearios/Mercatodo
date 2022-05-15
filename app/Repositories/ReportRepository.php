@@ -89,7 +89,6 @@ class ReportRepository
                         order by quantity desc"));
         }
 
-        dd($reports);
         return $reports;
     }
 }

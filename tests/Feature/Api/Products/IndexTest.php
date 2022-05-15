@@ -28,9 +28,9 @@ class IndexTest extends TestCase
     public function test_check_all_products(): void
     {
         $keyword = '';
-        $category = Category::factory(3)->create();
-        $products = Product::factory(3)->create()->each(function ($product) {
-            $product->categories()->attach(rand(1, 3));
+        $categories = Category::factory(3)->create();
+        Product::factory(3)->create()->each(function ($product) use ($categories) {
+            $product->categories()->attach(rand($categories[0]->id, $categories[2]->id));
         });
         $response = $this->get($this->endPoint . '?page=1&keyword=' . $keyword);
 

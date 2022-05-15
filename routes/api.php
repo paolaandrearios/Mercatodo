@@ -36,8 +36,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Protected routes
 
-//Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'admin', 'as'=>'admin.'], function () {
-Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'admin', 'as'=>'admin.'], function () {
+//Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     Route::resource('users', UserController::class)->only([
         'index', 'update',
     ]);

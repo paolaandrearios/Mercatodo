@@ -6,6 +6,7 @@ use App\Imports\ProductImport;
 use App\Models\User;
 use App\Notifications\ImportHasFailedNotification;
 use App\Notifications\ProductsWereImported;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,7 +33,7 @@ class ImportProductsJob implements ShouldQueue
     }
 
 
-    public function handle(): void
+    public function handle()
     {
         $user = User::query()->where('id',$this->authUser['id'])->first();
         $importedBy = app(User::class, $user->toArray());
@@ -45,12 +46,22 @@ class ImportProductsJob implements ShouldQueue
             );
             $fileName = explode('_',$this->importFilePath)[1];
             $user->notify((new ProductsWereImported($fileName))->locale($this->locale));
-
         }catch (ValidationException  $e){
             $user->notify((new ImportHasFailedNotification($e->errors(), explode('_',$this->importFilePath)[1]))->locale($this->locale));
-        }catch (\Exception $e){
-            Log::debug($e->getMessage());
-            Log::debug(json_encode($e));
+            return ValidationException::class;
+        }catch (Exception $e){
+            return Exception::class;
         }
+        return true;
     }
+
+    /**
+     * @return string
+     */
+    public function getImportFilePath(): string
+    {
+        return $this->importFilePath;
+    }
+
+
 }

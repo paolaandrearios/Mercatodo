@@ -32,6 +32,9 @@ class ReportController extends Controller
 
         $this->dispatch(new ReportsJob($reportOption, $reports, $locale, $reportBy));
 
-        return response()->json(['message' => __('general.api.data_management.report_status')]);
+        return response()->json([
+            'message' => __('general.api.data_management.report_status'),
+            'quantity' => count($reports),
+        ]);
     }
 }
