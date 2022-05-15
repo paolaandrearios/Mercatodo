@@ -15,10 +15,13 @@ class OrderSeeder extends Seeder
     {
         $products = Product::all();
         $clients = User::query()->where('role', 'client')->get('id');
+        $dates = $this->getBetweenDates('2022-04-01', date('Y-m-d'));
         foreach ($clients as $client){
             $quantity = rand(1, 20);
+            $randomDate = rand(0, count($dates) - 1);
+            $randomDate = $dates[$randomDate];
 
-            Order::factory($quantity)->create(['user_id' => $client->id])->each(function ($order) use($products) {
+            Order::factory($quantity)->create(['user_id' => $client->id, 'status' => 'approved'])->each(function ($order) use($products, $randomDate) {
                 $productIndex = rand(0, count($products)-1);
                 $product = $products[$productIndex];
 
@@ -33,8 +36,26 @@ class OrderSeeder extends Seeder
                 $order->taxes = $product->taxes;
                 $order->subtotal = $product->price * (1 - $product->taxes / 100);
                 $order->total = $product->price;
+                $order->updated_at = $randomDate;
                 $order->save();
             });
         }
+    }
+
+    function getBetweenDates($startDate, $endDate)
+    {
+        $rangArray = [];
+
+        $startDate = strtotime($startDate);
+        $endDate = strtotime($endDate);
+
+        for ($currentDate = $startDate; $currentDate <= $endDate;
+             $currentDate += (86400)) {
+
+            $date = date('Y-m-d', $currentDate);
+            $rangArray[] = $date;
+        }
+
+        return $rangArray;
     }
 }

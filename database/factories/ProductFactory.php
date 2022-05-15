@@ -25,6 +25,8 @@ class ProductFactory extends Factory
             'stock' => $this->faker->randomDigitNot(0),
             'slug' => $this->faker->slug(),
             'status' => 'active',
+            'created_at' => '2022-04-01',
+            'updated_at' => '2022-04-01'
         ];
     }
 }

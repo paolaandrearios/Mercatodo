@@ -20,6 +20,8 @@ class OrderFactory extends Factory
             'postcode' => strval(rand(100000, 999999)),
             'phone' => strval($this->faker->numberBetween(1000000000, 9999999999)),
             'notes' => $this->faker->text(255),
+            'created_at' => '2022-04-01',
+            'updated_at' => '2022-04-01',
         ];
     }
 }
