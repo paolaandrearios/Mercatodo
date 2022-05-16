@@ -25,7 +25,7 @@ class GenerateReportRequest extends FormRequest
             ],
             'report-option' => [
                 'required',
-                'in:most_visited,best_selling_products,least_sold_products,abandoned_carts,best_selling_category'
+                'in:most_visited,least_visited,best_selling_products,least_sold_products,abandoned_carts,best_selling_categories'
             ],
         ];
     }

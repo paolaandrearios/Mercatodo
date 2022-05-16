@@ -3,15 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
 class ReportRepository
 {
     public function get(string $initialDate, string $endDate, String $reportOption, int $quantity = 10): array
     {
-        $products = Product::with('categories', 'images');
-
         $reports = '';
 
         if($reportOption === 'most_visited'){
@@ -25,7 +22,7 @@ class ReportRepository
                         where p.id = pvpd.product_id"));
         }
 
-        if($reportOption === 'less_visited'){
+        if($reportOption === 'least_visited'){
             $reports = DB::select(DB::raw(
                 "select pvpd.*, p.name_en, p.name_es, p.price, p.stock from products p,
                         (select sum(pvpd.count) quantity, pvpd.product_id from product_visits_per_days pvpd
@@ -75,7 +72,7 @@ class ReportRepository
 
         }
 
-        if($reportOption === 'best_selling_category'){
+        if($reportOption === 'best_selling_categories'){
             $reports = DB::select(DB::raw(
                 "select  count(od.quantity) quantity, c.id, c.name_es, c.name_en
                         from orders o, order_details od, category_product cp, categories c

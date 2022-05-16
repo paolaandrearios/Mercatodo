@@ -51,10 +51,11 @@
                 <select class="bg-gray-300 p-2 rounded-xl focus:outline-none truncate" v-model="reportOption">
                     <option value="">{{ __('general.web.data_management.select_report_type') }}</option>
                     <option value="most_visited">{{ __('general.web.data_management.most_visited_products') }}</option>
+                    <option value="least_visited">{{ __('general.web.data_management.least_visited_products') }}</option>
                     <option value="best_selling_products">{{ __('general.web.data_management.best_selling_products') }}</option>
                     <option value="least_sold_products">{{ __('general.web.data_management.least_sold_products') }}</option>
                     <option value="abandoned_carts">{{ __('general.web.data_management.abandoned_carts') }}</option>
-                    <option value="best_selling_category">{{ __('general.web.data_management.best_selling_category') }}</option>
+                    <option value="best_selling_categories">{{ __('general.web.data_management.best_selling_categories') }}</option>
                 </select>
             </div>
             <div class="mt-7 w-3/4 md:w-1/5 mx-auto grid grid-cols-1 grid-rows-1">

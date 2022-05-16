@@ -6,16 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\GenerateReportRequest;
 use App\Jobs\ReportsJob;
 use App\Models\User;
-use App\Repositories\ReportRepository;
 use Illuminate\Http\JsonResponse;
 
 class ReportController extends Controller
 {
-    private ReportRepository $reportRepository;
 
-    public function __construct(ReportRepository $reportRepository)
+    public function __construct()
     {
-        $this->reportRepository = $reportRepository;
     }
 
     public function generate(GenerateReportRequest $request): JsonResponse
@@ -28,13 +25,10 @@ class ReportController extends Controller
         $reportOption = $request->query('report-option');
         $locale =  $request->headers->get('locale');
 
-        $reports = $this->reportRepository->get($initialDate, $endDate, $reportOption);
-
-        $this->dispatch(new ReportsJob($reportOption, $reports, $locale, $reportBy));
+        $this->dispatch(new ReportsJob($reportOption, $locale, $reportBy, $initialDate, $endDate));
 
         return response()->json([
             'message' => __('general.api.data_management.report_status'),
-            'quantity' => count($reports),
         ]);
     }
 }

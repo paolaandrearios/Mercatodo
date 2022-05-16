@@ -13,7 +13,7 @@
         <h1>MercaTodo</h1>
     </header>
     <main>
-        <h3>{{ __('general.web.data_management.report_abandoned_carts') }}</h3>
+        <h3>{{ __('general.web.data_management.report_best_selling_categories') }}</h3>
         <p>(From {{ $initialDate }} to {{ $endDate }})</p>
 
         @if(count($reports))
@@ -21,25 +21,18 @@
                 <thead>
                 <th>#</th>
                 <th>Id</th>
-                <th>{{__('general.web.order.reference')}}</th>
-                <th>{{__('general.web.order.first_name')}}</th>
-                <th>{{__('general.web.order.last_name')}}</th>
-                <th>{{__('general.web.order.email')}}</th>
-                <th>{{__('general.web.order.phone')}}</th>
-                <th>{{__('general.web.order.total')}}</th>
+                <th>{{__('general.web.product.name_es')}}</th>
+                <th>{{__('general.web.product.name_en')}}</th>
+                <th>{{__('general.web.data_management.sold_products')}}</th>
                 </thead>
                 <tbody>
-
                 @foreach($reports as $key => $report)
                     <tr>
-                        <td>{{ $key+1}}</td>
-                        <td>{{ $report['id']  }}</td>
-                        <td>{{ $report['reference'] }}</td>
-                        <td>{{ $report['first_name'] }}</td>
-                        <td>{{ $report['last_name'] }}</td>
-                        <td>{{ $report['email'] }}</td>
-                        <td>{{ $report['phone'] }}</td>
-                        <td>{{ $report['total'] }}</td>
+                        <td>{{ $key+1 }}</td>
+                        <td>{{ $report->id  }}</td>
+                        <td>{{ $report->name_es }}</td>
+                        <td>{{ $report->name_en }}</td>
+                        <td>{{ $report->quantity }}</td>
                     </tr>
                 @endforeach
                 </tbody>

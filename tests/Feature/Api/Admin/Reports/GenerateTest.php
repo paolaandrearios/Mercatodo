@@ -54,7 +54,6 @@ class GenerateTest extends TestCase
         $response->assertSessionHasNoErrors();
         $response->assertJsonFragment(['message' => __('general.api.data_management.report_status')]);
 
-        $this->assertTrue($response->json()['quantity'] > 0);
 
         Queue::assertPushed(ReportsJob::class);
 
