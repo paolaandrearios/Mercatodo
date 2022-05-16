@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GenerateReportRequest extends FormRequest
+class ExportProductRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -23,10 +23,6 @@ class GenerateReportRequest extends FormRequest
                 'required',
                 'date',
                 'after:initial-date'
-            ],
-            'report-option' => [
-                'required',
-                'in:most_visited,least_visited,best_selling_products,least_sold_products,abandoned_carts,best_selling_categories'
             ],
         ];
     }

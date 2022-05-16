@@ -19,6 +19,8 @@ class UpdateProductAction
 
     public function execute(Product $product, Request $request): bool
     {
+        Helper::forgetProducts();
+
         $product->sku = $request->input('sku');
         $product->name_es = $request->input('name_es');
         $product->name_en = $request->input('name_en');

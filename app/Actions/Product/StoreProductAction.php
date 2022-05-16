@@ -20,6 +20,8 @@ class StoreProductAction
 
     public function execute(CreateProductRequest $request): Product
     {
+        Helper::forgetProducts();
+
         $product = new Product();
 
         $product->sku = $request->input('sku');

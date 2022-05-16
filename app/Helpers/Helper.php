@@ -62,4 +62,30 @@ class Helper
         }
         return $array;
     }
+
+    public static function setProductsKey($key){
+        $queries = self::getProductsKey();
+        if(in_array($key, $queries)){
+            return $queries;
+        }
+        Cache::forget('get_products_queries');
+        array_push($queries, $key);
+        return Cache::remember('get_products_queries', Carbon::now()->endOfDay(), function () use ($queries)  {
+            return $queries;
+        });
+    }
+
+    public static function getProductsKey(){
+        return Cache::remember('get_products_queries', Carbon::now()->endOfDay(), function ()  {
+            return [];
+        });
+    }
+
+    public static function forgetProducts(){
+        $keys = self::getProductsKey();
+        foreach ($keys as $key){
+            Cache::forget($key);
+        }
+        Cache::forget('get_products_queries');
+    }
 }

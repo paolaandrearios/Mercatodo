@@ -19,8 +19,7 @@
                     <div>
                         <input
                             v-model="initialDate"
-                            min="2021-12-01"
-                            max="2022-05-16"
+                            min="2022-04-01"
                             name="initial-date"
                             id="initial-date"
                             type="date"
@@ -35,8 +34,7 @@
                     <div>
                         <input
                             v-model="endDate"
-                            min="2021-12-01"
-                            max="2022-05-16"
+                            min="2022-04-01"
                             name="initial-date"
                             id="end-date"
                             type="date"
@@ -82,6 +80,7 @@ export default {
             initialDate: '',
             endDate: '',
             reportOption: '',
+            currentDate: new Date(),
         }
     },
     methods: {
@@ -94,11 +93,15 @@ export default {
             };
 
             axios.get(`/evertec/mercatodo/public/api/admin/reports?initial-date=${this.initialDate}&end-date=${this.endDate}&report-option=${this.reportOption}`, config).then((response) => {
-
-                function alertFunc(){
-                    alert(response.data.message)
-                }
-                setTimeout(alertFunc, 2000);
+                alert(response.data.message)
+            })
+            .catch((error) => {
+                let messages = ''
+                let errors = error.response.data.errors
+                Object.keys(errors).forEach(function(key) {
+                    messages += '-' + errors[key] + '\n';
+                })
+                alert(messages);
             });
         }
     }

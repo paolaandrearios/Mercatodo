@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Actions\Export\ExportProductAction;
 use App\Models\Product;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Collection;
@@ -28,38 +29,7 @@ class ProductExport implements FromCollection, WithMapping, WithHeadings, Should
 
     public function collection(): Collection
     {
-        $data_product = [
-            'id',
-            'sku',
-            'name_en',
-            'description_en',
-            'name_es',
-            'description_es',
-            'price',
-            'taxes',
-            'status',
-            'stock'
-        ];
-        $products = null;
-        if(!is_null($this->category)) {
-            $products = Product::query()
-                ->with(['categories', 'images'])
-                ->select($data_product)
-                ->whereHas('categories', function($query) {
-                    $query->select('category_id')->where('category_id', $this->category);
-                })->whereDate('created_at', '>=', $this->initialDate)
-                ->whereDate('created_at', '<=', $this->endDate);
-        } else {
-            $products = Product::query()->with(['categories', 'images'])->select($data_product)->whereDate('created_at', '>=', $this->initialDate)
-                ->whereDate('created_at', '<=', $this->endDate);;
-        }
-
-        if(!is_null($this->status)) {
-            $products = $products->select($data_product)->where('status', $this->status)->whereDate('created_at', '>=', $this->initialDate)
-                ->whereDate('created_at', '<=', $this->endDate);
-        }
-
-        return $products->get();
+        return (new ExportProductAction())->execute($this->initialDate, $this->endDate, $this->category, $this->status);
     }
 
     public function map($product): array
@@ -94,20 +64,24 @@ class ProductExport implements FromCollection, WithMapping, WithHeadings, Should
         return [
             'id',
             'sku',
-            __('general.web.product.name_en', [], $this->locale),
-            __('general.web.product.description_en', [], $this->locale),
-            __('general.web.product.name_es', [], $this->locale),
-            __('general.web.product.description_es', [], $this->locale),
-            __('general.web.product.price', [], $this->locale),
-            __('general.web.product.taxes', [], $this->locale),
+            $this->getTranslation('name_en'),
+            $this->getTranslation('description_en'),
+            $this->getTranslation('name_es'),
+            $this->getTranslation('description_es'),
+            $this->getTranslation('price'),
+            $this->getTranslation('taxes'),
             __('general.web.category.category', [], $this->locale),
-            __('general.web.product.status', [], $this->locale),
-            __('general.web.product.stock', [], $this->locale),
-            __('general.web.product.images0', [], $this->locale),
-            __('general.web.product.images1', [], $this->locale),
-            __('general.web.product.images2', [], $this->locale),
-            __('general.web.product.images3', [], $this->locale),
-            __('general.web.product.images4', [], $this->locale),
+            $this->getTranslation('status'),
+            $this->getTranslation('stock'),
+            $this->getTranslation('images0'),
+            $this->getTranslation('images1'),
+            $this->getTranslation('images2'),
+            $this->getTranslation('images3'),
+            $this->getTranslation('images4'),
         ];
+    }
+
+    private function getTranslation($field){
+        return __("general.web.product.{$field}", [], $this->locale);
     }
 }

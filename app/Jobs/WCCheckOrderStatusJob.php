@@ -12,7 +12,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-class WCCheckOrderStatusJob implements ShouldQueue
+class
+WCCheckOrderStatusJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -23,7 +24,6 @@ class WCCheckOrderStatusJob implements ShouldQueue
 
     public function handle(UpdatePaymentStatusAction $updatePaymentStatusAction): int
     {
-//        Log::debug('ejecutando');
         $pendingPayments = Payment::query()->with('order')->where('status', 'pending')->get();
         foreach ($pendingPayments as $pendingPayment) {
             $updatePaymentStatusAction->execute($pendingPayment);

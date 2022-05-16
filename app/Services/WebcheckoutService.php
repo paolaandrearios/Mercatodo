@@ -32,7 +32,6 @@ class WebcheckoutService implements WebcheckoutContract
 
         $data = $createSessionRequest->toArray();
         $url = $createSessionRequest::url(null);
-//        Log::debug(json_encode($data));
         return $this->request($data, $url);
     }
 

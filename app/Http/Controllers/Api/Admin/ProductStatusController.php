@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\StatusProductRequest;
 use App\Models\Product;
@@ -11,6 +12,8 @@ class ProductStatusController extends Controller
 {
     public function update(StatusProductRequest $request, Product $product, string $status): JsonResponse
     {
+        Helper::forgetProducts();
+
         $data = [
             'status' => $status,
         ];

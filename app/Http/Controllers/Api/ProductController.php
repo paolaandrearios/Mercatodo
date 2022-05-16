@@ -20,6 +20,7 @@ class ProductController extends Controller
     public function index(SearchProductRequest $request): JsonResponse
     {
         $products = $this->productRepository->get(
+            implode(':', $request->query()),
             $request->input('keyword') ?? '',
             'active',
             'active',

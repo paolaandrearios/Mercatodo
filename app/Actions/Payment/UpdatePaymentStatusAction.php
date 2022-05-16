@@ -2,6 +2,7 @@
 
 namespace App\Actions\Payment;
 
+use App\Helpers\Helper;
 use App\Models\Payment;
 use App\Services\WebcheckoutService;
 use Illuminate\Support\Facades\Log;
@@ -24,7 +25,6 @@ class UpdatePaymentStatusAction
             $status = $currentPaymentStatus['payment'][0]['status']['status'];
         }
 
-//        Log::debug(json_encode($currentPaymentStatus));
         $payment->status = strtolower($status);
         $payment->save();
 
@@ -35,10 +35,13 @@ class UpdatePaymentStatusAction
         $orderDetails = $order->orderDetails;
 
         foreach ($orderDetails as $orderDetail){
-//            dd($orderDetail->product);
             $product = $orderDetail->product;
             $product->stock -= $orderDetail->quantity;
             $product->save();
+
+            if($product->stock <= 0){
+                Helper::forgetProducts();
+            }
         }
 
         return $payment;
