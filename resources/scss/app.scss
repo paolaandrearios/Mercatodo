@@ -1,99 +1,98 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-@import "resources/scss/welcomePage";
-@import "resources/scss/login";
-@import "resources/scss/register";
-@import "resources/scss/table";
-@import "resources/scss/pages";
+@import 'resources/scss/welcomePage';
+@import 'resources/scss/login';
+@import 'resources/scss/register';
+@import 'resources/scss/table';
+@import 'resources/scss/pages';
+@import 'resources/scss/data_management';
 
 .logo {
-    @apply flex justify-center items-center py-4 font-extrabold;
+    @apply flex items-center justify-center py-4 font-extrabold;
     img {
-        @apply p-2 w-15;
+        @apply w-15 p-2;
     }
 }
 
 .search {
-    @apply bg-white flex-auto flex space-x-2 pl-2 sm:px-1 items-center border-2 border-gray-200 sm:rounded-full h-12;
+    @apply flex h-12 flex-auto items-center space-x-2 border-2 border-gray-200 bg-white pl-2 sm:rounded-full sm:px-1;
     &__input {
-        @apply flex-1 py-1 focus:outline-none w-1/2;
+        @apply focus:outline-none w-1/2 flex-1 py-1;
     }
     &__button {
-        @apply inline bg-orangePantone hover:bg-orange-600 sm:rounded-full w-1/6 sm:w-auto sm:h-8 h-full text-white focus:outline-none px-2 text-center truncate;
+        @apply focus:outline-none truncate inline h-full w-1/6 bg-orangePantone px-2 text-center text-white hover:bg-orange-600 sm:h-8 sm:w-auto sm:rounded-full;
     }
     i {
-        @apply text-gray-400 p-2;
+        @apply p-2 text-gray-400;
     }
 }
 
 .header {
-    @apply block md:flex bg-orangePantone justify-between ;
+    @apply block justify-between bg-orangePantone md:flex;
     &__logo {
-        @apply text-white flex justify-center md:justify-between;
+        @apply flex justify-center text-white md:justify-between;
         img {
-            @apply self-center w-14 m-3;
+            @apply m-3 w-14 self-center;
         }
         a {
-            @apply self-center font-extrabold text-4xl;
+            @apply self-center text-4xl font-extrabold;
         }
     }
     &__navbar {
-        @apply flex text-center justify-center m-3;
-        }
+        @apply m-3 flex justify-center text-center;
+    }
 }
 
 .sidebar {
-    @apply h-full m-5 shadow-2xl;
+    @apply m-5 h-full shadow-2xl;
     &__menu {
         @apply hidden md:block;
         li {
-            @apply text-center pt-5 font-bold text-lg text-dimGray hover:text-orangePantone;
+            @apply pt-5 text-center text-lg font-bold text-dimGray hover:text-orangePantone;
         }
     }
 }
 
 .input {
-    @apply m-3 px-3 py-2 rounded-3xl border-solid border-gray-400 border-2 hover:bg-gainsboroGray text-black;
+    @apply m-3 rounded-3xl border-2 border-solid border-gray-400 px-3 py-2 text-black hover:bg-gainsboroGray;
 }
 
-
 .button {
-    @apply bg-orangePantone p-3 rounded-3xl border-2 text-white font-bold hover:bg-orange-600 m-3;
+    @apply m-3 rounded-3xl border-2 bg-orangePantone p-3 font-bold text-white hover:bg-orange-600;
 }
 
 .modal-error {
-    @apply ml-3 mb-2 text-xs text-orangePantone font-bold;
+    @apply ml-3 mb-2 text-xs font-bold text-orangePantone;
 }
 
 .modal {
     @apply container mx-auto;
     &__tabs {
-        @apply flex flex-wrap border-b border-gray-200;
+        @apply border-b flex flex-wrap border-gray-200;
     }
     &-previous-next {
-        @apply inline-flex items-center py-2 px-4 mr-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer;
+        @apply border mr-3 inline-flex cursor-pointer items-center rounded-lg border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700;
     }
     &__container {
         @apply flex justify-center align-middle;
         &--bg {
-            @apply fixed inset-0 flex items-center justify-center align-middle bg-gray-700 bg-opacity-50;
+            @apply fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 align-middle;
         }
     }
     &__content {
-        @apply text-xs md:text-sm p-2 max-w-lg max-h-5/6 overflow-x-hidden p-6 bg-white rounded-md shadow-xl;
+        @apply max-h-5/6 max-w-lg overflow-x-hidden rounded-md bg-white p-2 p-6 text-xs shadow-xl md:text-sm;
         &--header {
-            @apply flex items-center justify-between text-lg md:text-xl font-extrabold;
+            @apply flex items-center justify-between text-lg font-extrabold md:text-xl;
         }
         &--title {
-            @apply mx-auto mb-4 text-center font-bold text-dimGray ;
+            @apply mx-auto mb-4 text-center font-bold text-dimGray;
         }
     }
 
     .form {
-        @apply flex flex-col m-2;
+        @apply m-2 flex flex-col;
         .div-form {
             @apply block md:flex md:justify-between;
         }
@@ -110,41 +109,41 @@
             }
         }
         label {
-            @apply font-bold text-dimGray my-auto;
+            @apply my-auto font-bold text-dimGray;
         }
-        input, select, textarea {
-            @apply w-full my-1 mx-2 px-1 py-1 rounded-xl border-solid border-gray-300 border-2 hover:bg-gray-200 text-black;
+        input,
+        select,
+        textarea {
+            @apply my-1 mx-2 w-full rounded-xl border-2 border-solid border-gray-300 px-1 py-1 text-black hover:bg-gray-200;
             &:hover {
                 @apply outline-none;
             }
         }
-
     }
 
     table {
         @apply m-2;
         tr {
-            @apply grid grid-cols-1 items-start md:items-center md:grid-cols-2 mx-4;
+            @apply mx-4 grid grid-cols-1 items-start md:grid-cols-2 md:items-center;
         }
         .label-table {
-            @apply my-0 md:my-2 mb-2 md:mb-0 font-bold text-dimGray;
+            @apply my-0 mb-2 font-bold text-dimGray md:my-2 md:mb-0;
         }
         .input-table {
-            @apply w-full my-1 md:my-2 mx-2 px-1 py-1 rounded-xl border-solid border-gray-300 border-2 hover:bg-gray-200 text-black;
+            @apply my-1 mx-2 w-full rounded-xl border-2 border-solid border-gray-300 px-1 py-1 text-black hover:bg-gray-200 md:my-2;
             &:hover {
-                @apply bg-gainsboroGray outline-none;
+                @apply outline-none bg-gainsboroGray;
             }
         }
     }
     .modal-error {
-        @apply ml-3 mb-2 text-xs text-orangePantone font-bold;
+        @apply ml-3 mb-2 text-xs font-bold text-orangePantone;
     }
 
     .active-tab {
-        @apply inline-block py-4 px-4 text-sm font-medium text-center text-orangePantone bg-gray-300 rounded-t-lg cursor-pointer;
+        @apply inline-block cursor-pointer rounded-t-lg bg-gray-300 py-4 px-4 text-center text-sm font-medium text-orangePantone;
     }
     .inactive-tab {
-        @apply inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 cursor-pointer;
+        @apply inline-block cursor-pointer rounded-t-lg py-4 px-4 text-center text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-600;
     }
 }
-

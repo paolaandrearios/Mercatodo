@@ -1,25 +1,26 @@
 .register {
-    @apply  m-auto mb-2 mt-2 text-xs rounded-lg bg-culturedGray w-5/6 md:w-2/4 h-4/5;
+    @apply m-auto mb-2 mt-2 h-4/5 w-5/6 rounded-lg bg-culturedGray text-xs md:w-2/4;
     &__container {
-        @apply flex flex-col lg:grid lg:grid-cols-2 m-1 md:m-6 gap-x-6;
+        @apply m-1 flex flex-col gap-x-6 md:m-6 lg:grid lg:grid-cols-2;
 
         label {
-            @apply text-dimGray font-bold m-3;
+            @apply m-3 font-bold text-dimGray;
         }
-        input, select {
+        input,
+        select {
             @apply input w-11/12;
         }
     }
     &--title {
-        @apply text-dimGray font-bold text-xl md:text-2xl mt-5;
+        @apply mt-5 text-xl font-bold text-dimGray md:text-2xl;
     }
     form {
         @apply w-full;
     }
     .registerError {
-        @apply text-orangePantone text-xs font-bold mb-4 mx-3;
+        @apply mx-3 mb-4 text-xs font-bold text-orangePantone;
     }
     figure {
-        @apply w-8 md:w-10 mx-2 my-5;
+        @apply mx-2 my-5 w-8 md:w-10;
     }
 }

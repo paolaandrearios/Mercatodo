@@ -1,10 +1,12 @@
 
 <div class="sidebar">
     <ul class="sidebar__menu">
+        @can('admin.dashboard.index')
         <li>
             <i class="fas fa-home"></i>
             <a href="{{ route('admin.dashboard.index') }}">{{ __('general.sidebar.home') }}</a>
         </li>
+        @endcan
 
         @can('admin.user.index')
         <li>
@@ -24,10 +26,30 @@
                 <a href="{{ route('admin.product.index') }}">{{ __('general.sidebar.products') }}</a>
             </li>
         @endcan
+        @can('admin.orders.index')
         <li>
             <i class="fas fa-box-open"></i>
             <a href="{{ route('admin.orders.index') }}">{{ __('general.sidebar.customer_orders') }}</a>
         </li>
+        @endcan
+        @can('admin.products.import')
+            <li>
+                <i class="fas fa-file-import"></i>
+                <a href="{{ route('admin.products.import') }}">{{ __('general.web.data_management.import_products') }}</a>
+            </li>
+        @endcan
+        @can('admin.products.export')
+            <li>
+                <i class="fas fa-file-export"></i>
+                <a href="{{ route('admin.products.export') }}">{{ __('general.web.data_management.export_products') }}</a>
+            </li>
+        @endcan
+        @can('admin.reports')
+            <li>
+                <i class="fas fa-file-pdf"></i>
+                <a href="{{ route('admin.reports') }}">{{ __('general.web.data_management.reports') }}</a>
+            </li>
+        @endcan
         <li>
             <i class="fas fa-shopping-cart"></i>
             <a href="{{ route('client.product.index') }}">{{ __('general.sidebar.e-commerce') }}</a>

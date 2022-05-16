@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ExportController;
+use App\Http\Controllers\Admin\ImportController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\Order\CartController;
 use App\Http\Controllers\Client\Order\CheckoutController;
@@ -33,20 +36,27 @@ Auth::routes(['verify' => true]);
 // Admin Routes
 Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     Route::middleware(['auth', 'verified', 'active'])->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('can:admin.dashboard.index')->name('dashboard.index');
         Route::get('/users', [UserController::class, 'index'])->middleware('can:admin.user.index')->name('user.index');
         Route::get('/categories', [CategoryController::class, 'index'])->middleware('can:admin.category.index')->name('category.index');
         Route::get('/products', [ProductController::class, 'index'])->middleware('can:admin.product.index')->name('product.index');
-        Route::get('/orders/index', [OrderController::class, 'show'])->name('orders.index');
+        Route::get('/import/products', [ImportController::class, 'show'])->middleware('can:admin.products.import')->name('products.import');
+        Route::get('/export/products', [ExportController::class, 'show'])->middleware('can:admin.products.export')->name('products.export');
+        Route::get('/reports', [ReportController::class, 'show'])->middleware('can:admin.reports')->name('reports');
+        Route::get('/orders/index', [OrderController::class, 'show'])->middleware('can:admin.orders.index')->name('orders.index');
     });
 });
 
 // Client Routes
 Route::group(['as'=>'client.'], function () {
-    Route::get('/', [ClientProductController::class, 'index'])->name('product.index');
-    Route::get('/product/{slug}', [ClientProductController::class, 'show'])->name('product.show');
-    Route::get('/order/cart', [CartController::class, 'show'])->name('order.cart');
-    Route::get('/order/thanks/{order}', [OrderThanksController::class, 'show'])->name('order.thanks');
+    Route::middleware(['active'])->group(function () {
+        Route::get('/', [ClientProductController::class, 'index'])->name('product.index');
+        Route::get('/product/{slug}', [ClientProductController::class, 'show'])
+            ->name('product.show')
+            ->middleware('product.visit');
+        Route::get('/order/cart', [CartController::class, 'show'])->name('order.cart');
+        Route::get('/order/thanks/{order}', [OrderThanksController::class, 'show'])->name('order.thanks');
+    });
 });
 
 // Client Routes Authenticated

@@ -11,27 +11,26 @@ const mix = require('laravel-mix');
  |
  */
 
-mix
-  .js('resources/js/app.js', 'public/js').vue({ version: 2 })
+mix.js('resources/js/app.js', 'public/js')
+    .vue({ version: 2 })
     .sass('resources/scss/app.scss', 'public/css')
     .options({
-        postCss: ([
+        postCss: [
             require('postcss-import'),
             require('@tailwindcss/nesting')(require('postcss-nesting')),
             require('tailwindcss'),
             require('autoprefixer'),
             require('postcss-preset-env')({
-                "features": { 'nesting-rules': false }
+                features: { 'nesting-rules': false },
             }),
-        ])
+        ],
     })
     .webpackConfig({
         stats: {
-            children: true
-        }
-    })
+            children: true,
+        },
+    });
 
 if (mix.inProduction()) {
-  mix
-    .version();
+    mix.version();
 }

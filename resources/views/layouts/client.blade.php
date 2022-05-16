@@ -39,7 +39,7 @@
                 <img class="cursor-pointer w-6 h-6 transform hover:translate-y-1 hover:scale-105 transition-all duration-300" src="{{asset('images/spain.png')}}"/>
             </a>
 
-            @can('admin.user.index')
+            @can('see_admin_menu')
                 <div>
                     @yield('dropdown-admin')
                 </div>

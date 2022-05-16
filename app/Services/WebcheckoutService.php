@@ -6,7 +6,6 @@ use App\Contracts\WebcheckoutContract;
 use App\Request\CreateSessionRequest;
 use App\Request\GetInformationRequest;
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Log;
 
 class WebcheckoutService implements WebcheckoutContract
 {
@@ -32,7 +31,7 @@ class WebcheckoutService implements WebcheckoutContract
 
         $data = $createSessionRequest->toArray();
         $url = $createSessionRequest::url(null);
-//        Log::debug(json_encode($data));
+
         return $this->request($data, $url);
     }
 

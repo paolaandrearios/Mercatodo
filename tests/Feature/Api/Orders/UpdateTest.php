@@ -39,7 +39,7 @@ class UpdateTest extends TestCase
         $user = $this->userConfig;
 
         $products = Product::factory(3)->create();
-        //dd(json_encode($products));
+//        dd(json_encode($products));
         $order = Order::factory(1)->create(['user_id' => $user['user']['id']])->first();
 
         OrderDetail::factory(1)->create(['order_id' => $order->id, 'product_id' => $products[0]->id]);
@@ -50,7 +50,7 @@ class UpdateTest extends TestCase
             [
                 'id' => 2,
                 'quantity' => 18,
-                'product_id' => 2,
+                'product_id' => $products[1]->id,
                 'order_id' => $order->id,
             ],
 

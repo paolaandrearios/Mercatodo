@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Models\Payment;
 use App\Services\WebcheckoutService;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Log;
 
 class CreatePaymentAction
 {
@@ -54,7 +53,7 @@ class CreatePaymentAction
         $data['returnUrl'] = route('client.order.thanks', $order->id);
         $data['cancelUrl'] = route('client.order.thanks', $order->id);
         $data['expiration'] = date('c', strtotime(config('webcheckout.expiration_time')));
-//        Log::debug(json_encode($data));
+
         return (new WebcheckoutService())->createSession($data);
     }
 }

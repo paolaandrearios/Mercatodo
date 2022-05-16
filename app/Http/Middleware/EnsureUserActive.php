@@ -14,12 +14,14 @@ class EnsureUserActive
 {
     public function handle(Request $request, Closure $next): Response|RedirectResponse
     {
-        if (!$request->user() ||
-            !$request->user()->isActive()) {
-            Auth::logout();
+        if (!is_null($request->user())) {
+            if (!$request->user() ||
+                !$request->user()->isActive()) {
+                Auth::logout();
 
-            return Redirect::guest(URL::route('login'))
-                ->withErrors(['msg' => __('validation.user.inactive')]);
+                return Redirect::guest(URL::route('login'))
+                    ->withErrors(['msg' => __('validation.user.inactive')]);
+            }
         }
 
         return $next($request);

@@ -1,72 +1,71 @@
 .bodyLogin {
     @apply flex bg-white md:bg-orangePantone;
     &__image {
-        @apply absolute w-1/5 md:w-1/6 right-1/12 md:right-2/6 top-1/4 md:top-2/5;
+        @apply absolute right-1/12 top-1/4 w-1/5 md:right-2/6 md:top-2/5 md:w-1/6;
     }
 }
 
 .login {
-    @apply flex bg-white w-screen md:w-3/5 h-screen justify-center align-middle relative;
+    @apply relative flex h-screen w-screen justify-center bg-white align-middle md:w-3/5;
     &__container {
         @apply mx-2;
         &--logo {
-            @apply flex flex-row font-bold my-10 md:m-16 justify-center;
+            @apply my-10 flex flex-row justify-center font-bold md:m-16;
             img {
                 @apply w-14 md:w-24;
             }
             h1 {
-                @apply text-black font-extrabold text-4xl md:text-5xl m-2;
+                @apply m-2 text-4xl font-extrabold text-black md:text-5xl;
             }
         }
         &--title {
-            @apply font-bold text-black text-2xl mb-10 mx-auto;
+            @apply mx-auto mb-10 text-2xl font-bold text-black;
         }
         &--form {
-            @apply justify-center m-3 text-xs md:text-sm;
-            label{
+            @apply m-3 justify-center text-xs md:text-sm;
+            label {
                 @apply font-bold text-dimGray;
             }
             input {
-                @apply my-2 px-3 py-2 w-full md:w-8/12 rounded-3xl border-solid border-gray-400 border-2 hover:bg-gainsboroGray;
-
+                @apply my-2 w-full rounded-3xl border-2 border-solid border-gray-400 px-3 py-2 hover:bg-gainsboroGray md:w-8/12;
             }
         }
     }
     .input-error {
-        @apply text-orangePantone mb-3 text-xs;
+        @apply mb-3 text-xs text-orangePantone;
     }
     .input-checkbox {
-        @apply flex justify-center w-2/3 mx-auto md:mr-1/2;
+        @apply mx-auto flex w-2/3 justify-center md:mr-1/2;
         input {
             @apply w-auto;
         }
         label {
-            @apply font-normal mx-2 mt-1;
+            @apply mx-2 mt-1 font-normal;
         }
     }
     .login-button {
-        @apply flex flex-col align-middle mt-3 w-full md:w-2/3;
+        @apply mt-3 flex w-full flex-col align-middle md:w-2/3;
         button {
-            @apply bg-orangePantone w-full p-3 rounded-3xl border-2 text-white font-bold hover:bg-orange-600 mx-auto;
+            @apply mx-auto w-full rounded-3xl border-2 bg-orangePantone p-3 font-bold text-white hover:bg-orange-600;
         }
         a {
-            @apply font-bold underline text-xs mx-auto;
+            @apply mx-auto text-xs font-bold underline;
         }
     }
 }
 
 .resetLink {
-    @apply flex justify-center font-poppins relative text-xs md:text-sm;
+    @apply relative flex justify-center font-poppins text-xs md:text-sm;
     &__container {
-        @apply p-5 bg-culturedGray w-5/6 lg:w-2/5 rounded-xl;
+        @apply w-5/6 rounded-xl bg-culturedGray p-5 lg:w-2/5;
         &--title {
-            @apply text-dimGray font-bold text-center text-xl md:text-2xl mb-8;
+            @apply mb-8 text-center text-xl font-bold text-dimGray md:text-2xl;
         }
         figure {
             @apply m-auto hidden w-20 md:block;
         }
         label {
-            @apply text-dimGray font-bold m-3;
+            @apply m-3 font-bold text-dimGray;
         }
         input {
             @apply input w-11/12 md:w-5/6;
@@ -75,23 +74,23 @@
             @apply w-11/12 md:w-5/6;
         }
         .resetLinkMessage {
-            @apply text-orangePantone text-xs font-bold mb-4 mx-3;
+            @apply mx-3 mb-4 text-xs font-bold text-orangePantone;
         }
     }
 }
 
 .resetPassword {
-    @apply flex justify-center font-poppins relative text-xs md:text-sm;
+    @apply relative flex justify-center font-poppins text-xs md:text-sm;
     &__container {
-        @apply p-5 bg-culturedGray w-5/6 lg:w-2/5 rounded-xl;
+        @apply w-5/6 rounded-xl bg-culturedGray p-5 lg:w-2/5;
         &--title {
-            @apply text-dimGray font-bold text-center text-xl md:text-2xl mb-8;
+            @apply mb-8 text-center text-xl font-bold text-dimGray md:text-2xl;
         }
         figure {
             @apply mt-1/5 mr-4 hidden md:block;
         }
         label {
-            @apply text-dimGray font-bold m-3;
+            @apply m-3 font-bold text-dimGray;
         }
         input {
             @apply input w-11/12 md:w-5/6;
@@ -101,22 +100,22 @@
         }
     }
     .resetError {
-        @apply text-orangePantone text-xs font-bold mb-4 mx-3;
+        @apply mx-3 mb-4 text-xs font-bold text-orangePantone;
     }
 }
 
 .verifyEmail {
-    @apply flex justify-center font-poppins relative text-xs md:text-sm;
+    @apply relative flex justify-center font-poppins text-xs md:text-sm;
     &__container {
-        @apply flex p-5 bg-culturedGray w-5/6 lg:w-2/5 rounded-xl;
+        @apply flex w-5/6 rounded-xl bg-culturedGray p-5 lg:w-2/5;
         &--title {
-            @apply text-dimGray font-bold text-center text-xl md:text-2xl mb-8;
+            @apply mb-8 text-center text-xl font-bold text-dimGray md:text-2xl;
         }
         figure {
             @apply mt-1/5 mr-4 hidden md:block;
         }
         label {
-            @apply text-dimGray font-bold m-3;
+            @apply m-3 font-bold text-dimGray;
         }
         input {
             @apply input w-11/12 md:w-5/6;
@@ -125,8 +124,7 @@
             @apply w-11/12 md:w-5/6;
         }
         .message {
-            @apply text-orangePantone text-xs text-center font-bold mb-4 mx-3;
+            @apply mx-3 mb-4 text-center text-xs font-bold text-orangePantone;
         }
     }
-
 }

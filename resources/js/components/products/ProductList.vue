@@ -1,77 +1,83 @@
 <template>
-
     <div class="section__container">
         <div>
             <div>
                 <div>
-                    <div class="section__container--title">{{__('general.web.product.product_list')}}</div>
+                    <div class="section__container--title">{{ __('general.web.product.product_list') }}</div>
                     <div class="section__container--add">
-                        <button v-on:click="add()"><i class="text-white pr-1 fas fa-plus-circle"></i>{{__('general.web.product.add')}}</button>
+                        <button v-on:click="add()">
+                            <i class="fas fa-plus-circle pr-1 text-white"></i>{{ __('general.web.product.add') }}
+                        </button>
                     </div>
                     <div class="table__container">
                         <table>
                             <thead class="table__container--header">
-                            <tr>
-                                <th>Id</th>
-                                <th>{{__('general.web.product.name')}}</th>
-                                <th>{{__('general.web.product.price')}}</th>
-                                <th>{{__('general.web.product.stock')}}</th>
-                                <th>{{__('general.web.product.status')}}</th>
-                                <th>{{__('general.web.product.actions')}}</th>
-                            </tr>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>{{ __('general.web.product.name') }}</th>
+                                    <th>{{ __('general.web.product.price') }}</th>
+                                    <th>{{ __('general.web.product.stock') }}</th>
+                                    <th>{{ __('general.web.product.status') }}</th>
+                                    <th>{{ __('general.web.product.actions') }}</th>
+                                </tr>
                             </thead>
                             <tbody class="table__container--body">
-                            <tr v-for="product in products">
-                                <td>{{product.id}}</td>
-                                <td>{{product['name_' + __locale()]}}</td>
-                                <td>{{__currencyFormat(product.price)}}</td>
-                                <td>{{product.stock}}</td>
-                                <td>
-                                    <span>{{__('general.web.product.'+ product.status)}}</span>
-                                </td>
-                                <td>
-                                    <a v-on:click="show(product)" >
-                                        <i class="fas fa-eye"></i>
-                                    </a> |
-                                    <a v-on:click="edit(product)" >
-                                        <i class="fas fa-edit"></i>
-                                    </a> |
-                                    <a v-if="product.status === 'inactive'" v-on:click="setActive(product)" >
-                                        <i class="far fa-check-square text-greenTem font-extrabold"></i>
-                                    </a>
-                                    <a v-if="product.status === 'active'" v-on:click="setInactive(product)" >
-                                        <i class="fas fa-ban text-red-600 font-extrabold"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr v-for="product in products">
+                                    <td>{{ product.id }}</td>
+                                    <td>{{ product['name_' + __locale()] }}</td>
+                                    <td>{{ __currencyFormat(product.price) }}</td>
+                                    <td>{{ product.stock }}</td>
+                                    <td>
+                                        <span>{{ __('general.web.product.' + product.status) }}</span>
+                                    </td>
+                                    <td>
+                                        <a v-on:click="show(product)">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        |
+                                        <a v-on:click="edit(product)">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        |
+                                        <a v-if="product.status === 'inactive'" v-on:click="setActive(product)">
+                                            <i class="far fa-check-square font-extrabold text-greenTem"></i>
+                                        </a>
+                                        <a v-if="product.status === 'active'" v-on:click="setInactive(product)">
+                                            <i class="fas fa-ban font-extrabold text-red-600"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="flex justify-center w-1/2 mx-auto my-3">
-                        <pagination :pagination="pagination" @paginate="getAllProducts" :offset="4"/>
+                    <div class="mx-auto my-3 flex w-1/2 justify-center">
+                        <pagination :pagination="pagination" @paginate="getAllProducts" :offset="4" />
                     </div>
                 </div>
             </div>
         </div>
 
         <product-add :isOpenAdd="isOpenAdd" @close="close" @getAllProducts="getAllProducts"></product-add>
-        <product-show :isOpenShow="isOpenShow" :product="currentProduct" @close="close" ></product-show>
-        <product-edit :isOpenEdit="isOpenEdit" :product="currentProduct" :category_id="currentCategory" @close="close" @getAllProducts="getAllProducts"></product-edit>
-
+        <product-show :isOpenShow="isOpenShow" :product="currentProduct" @close="close"></product-show>
+        <product-edit
+            :isOpenEdit="isOpenEdit"
+            :product="currentProduct"
+            :category_id="currentCategory"
+            @close="close"
+            @getAllProducts="getAllProducts"
+        ></product-edit>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
-import ProductAdd from "./modals/ProductAdd";
-import ProductEdit from "./modals/ProductEdit";
-import ProductShow from "./modals/ProductShow";
-import Pagination from "../utils/Pagination";
-
+import ProductAdd from './modals/ProductAdd';
+import ProductEdit from './modals/ProductEdit';
+import ProductShow from './modals/ProductShow';
+import Pagination from '../utils/Pagination';
 
 export default {
-
-    name: "ProductList",
+    name: 'ProductList',
     components: {
         ProductAdd,
         ProductEdit,
@@ -79,7 +85,7 @@ export default {
         Pagination,
     },
 
-    data () {
+    data() {
         return {
             products: [],
             currentProduct: {},
@@ -88,33 +94,31 @@ export default {
             isOpenEdit: false,
             isOpenShow: false,
             pagination: {},
-        }
+            role: '',
+        };
     },
     mounted() {
-        this.getAllProducts()
+        this.getAllProducts();
     },
     methods: {
-        getAllProducts:  function () {
-
+        getAllProducts: function () {
             let currentPage = this.pagination.current_page;
-            let pageNum = currentPage ? currentPage: 1;
+            let pageNum = currentPage ? currentPage : 1;
 
-            axios
-                .get(`/evertec/mercatodo/public/api/admin/products?page=${pageNum}`)
-                .then(response => {
-                    this.products = response.data.products.data;
-                    this.pagination = response.data.products;
-                })
+            axios.get(`/evertec/mercatodo/public/api/admin/products?page=${pageNum}`).then((response) => {
+                this.products = response.data.products.data;
+                this.pagination = response.data.products;
+            });
         },
         add: function () {
             this.isOpenAdd = true;
         },
-        edit: function(product) {
+        edit: function (product) {
             this.currentProduct = product;
             this.currentCategory = product.categories[0].id;
             this.isOpenEdit = true;
         },
-        show: function(product) {
+        show: function (product) {
             this.currentProduct = product;
             this.isOpenShow = true;
         },
@@ -123,20 +127,27 @@ export default {
             this.isOpenEdit = false;
             this.isOpenShow = false;
         },
-        setActive: function(product) {
-            axios.put('/evertec/mercatodo/public/api/admin/products/'+product.id+'/status/active').then(response => {
-                this.getAllProducts()
-                alert(response.data.message)
-            })
+        setActive: function (product) {
+            axios
+                .put('/evertec/mercatodo/public/api/admin/products/' + product.id + '/status/active')
+                .then((response) => {
+                    this.getAllProducts();
+                    alert(response.data.message);
+                });
         },
-        setInactive: function(product) {
-            axios.put('/evertec/mercatodo/public/api/admin/products/'+product.id+'/status/inactive').then(response => {
-                this.getAllProducts()
-                alert(response.data.message)
-            })
+        setInactive: function (product) {
+            axios
+                .put('/evertec/mercatodo/public/api/admin/products/' + product.id + '/status/inactive')
+                .then((response) => {
+                    this.getAllProducts();
+                    alert(response.data.message);
+                });
         },
-    }
+        getRole: function () {
+            axios.get('/evertec/mercatodo/public/api/user').then((response) => {
+                this.role = response.data.role;
+            });
+        },
+    },
 };
-
 </script>
-

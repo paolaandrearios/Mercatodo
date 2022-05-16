@@ -7,7 +7,9 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "lint": "npx prettier --write .",
+        "lint:check": "npx prettier --check ."
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",
@@ -21,6 +23,8 @@
         "postcss-nested": "^4.2",
         "postcss-nesting": "^10.1.0",
         "postcss-preset-env": "^7.1.0",
+        "prettier": "^2.6.2",
+        "prettier-plugin-tailwindcss": "^0.1.8",
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",

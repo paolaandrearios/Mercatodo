@@ -2,9 +2,9 @@
 
 namespace App\Actions\Payment;
 
+use App\Helpers\Helper;
 use App\Models\Payment;
 use App\Services\WebcheckoutService;
-use Illuminate\Support\Facades\Log;
 
 class UpdatePaymentStatusAction
 {
@@ -19,20 +19,29 @@ class UpdatePaymentStatusAction
     {
         $currentPaymentStatus = $this->webCheckoutService->getInformation($payment->session['requestId']);
 
-        $status = '';
+        $status = $currentPaymentStatus['status']['status'];
         if (isset($currentPaymentStatus['payment'][0]['status']['status'])) {
             $status = $currentPaymentStatus['payment'][0]['status']['status'];
-        } else {
-            $status = $currentPaymentStatus['status']['status'];
         }
 
-//        Log::debug(json_encode($currentPaymentStatus));
         $payment->status = strtolower($status);
         $payment->save();
 
         $order = $payment->order;
         $order->status = strtolower($status);
         $order->save();
+
+        $orderDetails = $order->orderDetails;
+
+        foreach ($orderDetails as $orderDetail) {
+            $product = $orderDetail->product;
+            $product->stock -= $orderDetail->quantity;
+            $product->save();
+
+            if ($product->stock <= 0) {
+                Helper::forgetProducts();
+            }
+        }
 
         return $payment;
     }

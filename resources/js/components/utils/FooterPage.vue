@@ -1,30 +1,30 @@
 <template>
-    <div class="flex flex-col justify-between mt-3 h-96 md:h-72 w-screen bg-culturedGray font-poppins">
-        <div class="block items-center md:flex md:justify-between align-middle">
-            <div class="w-full sm:w-1/3 md:w-4/12 mx-auto">
-                <logo class="text-lg md:text-2xl text-black"></logo>
-                <p class="text-xs text-dimGray text-center mx-5">{{__('general.welcome.welcome_description')}}</p>
+    <div class="mt-3 flex h-96 w-screen flex-col justify-between bg-culturedGray font-poppins md:h-72">
+        <div class="block items-center align-middle md:flex md:justify-between">
+            <div class="mx-auto w-full sm:w-1/3 md:w-4/12">
+                <logo class="text-lg text-black md:text-2xl"></logo>
+                <p class="mx-5 text-center text-xs text-dimGray">{{ __('general.welcome.welcome_description') }}</p>
             </div>
-            <div class="flex flex-col w-full sm:w-1/3 mx-auto">
-                <p class="text-center m-8 text-dimGray font-bold">{{__('general.web.follow_us')}}</p>
-                 <div class="flex justify-center">
-                     <img class="w-10 h-10" :src="__asset('images/facebook.png')"/>
-                     <img class="w-10 h-10" :src="__asset('images/instagram.png')"/>
-                     <img class="w-10 h-10" :src="__asset('images/twitter.png')"/>
-                 </div>
+            <div class="mx-auto flex w-full flex-col sm:w-1/3">
+                <p class="m-8 text-center font-bold text-dimGray">{{ __('general.web.follow_us') }}</p>
+                <div class="flex justify-center">
+                    <img class="h-10 w-10" :src="__asset('images/facebook.png')" />
+                    <img class="h-10 w-10" :src="__asset('images/instagram.png')" />
+                    <img class="h-10 w-10" :src="__asset('images/twitter.png')" />
+                </div>
             </div>
-            <div class="flex flex-col w-full sm:w-1/3 mx-auto">
-                <img class="w-40 mx-auto" :src="__asset('images/evertec.png')"/>
-                <div class="flex justify-center mb-10">
-                    <img class="w-10 h-10" :src="__asset('images/pse.png')"/>
-                    <img class="w-10 h-10" :src="__asset('images/visa.png')"/>
-                    <img class="w-10 h-10" :src="__asset('images/maestro.png')"/>
-                    <img class="w-10 h-10" :src="__asset('images/american-express.png')"/>
+            <div class="mx-auto flex w-full flex-col sm:w-1/3">
+                <img class="mx-auto w-40" :src="__asset('images/evertec.png')" />
+                <div class="mb-10 flex justify-center">
+                    <img class="h-10 w-10" :src="__asset('images/pse.png')" />
+                    <img class="h-10 w-10" :src="__asset('images/visa.png')" />
+                    <img class="h-10 w-10" :src="__asset('images/maestro.png')" />
+                    <img class="h-10 w-10" :src="__asset('images/american-express.png')" />
                 </div>
             </div>
         </div>
-        <div class="w-5/6 mx-auto text-dimGray text-xs text-center">
-            <hr>
+        <div class="mx-auto w-5/6 text-center text-xs text-dimGray">
+            <hr />
             <div class="mb-5">
                 <i class="far fa-copyright"></i>
                 <span>Ecommerce by MercaTodo</span>
@@ -34,12 +34,12 @@
 </template>
 
 <script>
-import Logo from "./Logo";
+import Logo from './Logo';
 
 export default {
-    name: "FooterPage.vue",
+    name: 'FooterPage.vue',
     components: {
-      Logo,
+        Logo,
     },
-}
+};
 </script>

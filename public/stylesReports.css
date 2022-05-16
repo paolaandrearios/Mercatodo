@@ -1,0 +1,65 @@
+@page {
+    margin: 0cm 0cm;
+    font-family: Arial;
+}
+
+body {
+    margin: 3cm 2cm 2cm;
+}
+
+header {
+    position: fixed;
+    top: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 2cm;
+    background-color: #FF5500;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+}
+
+table {
+    border-radius: 30px;
+    width: 100%;
+}
+
+thead {
+    background-color: #aaaaaa;
+    text-align: center;
+    justify-content: center;
+}
+
+
+th {
+    font-weight: bold;
+    padding: 3px;
+}
+
+tr {
+    background-color: #EEEEEE;
+    border: 1px solid #828282;
+}
+
+td {
+    padding: 3px;
+    text-align: center;
+    justify-content: center;
+}
+
+p {
+    font-size: 12px;
+    padding-bottom: 3px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 2cm;
+    background-color: #FF5500;
+    color: white;
+    text-align: center;
+    line-height: 35px;
+}

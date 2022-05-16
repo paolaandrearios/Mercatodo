@@ -20,6 +20,7 @@ class ProductController extends Controller
     public function index(SearchProductRequest $request): JsonResponse
     {
         $products = $this->productRepository->get(
+            implode(':', $request->query()),
             $request->input('keyword') ?? '',
             'active',
             'active',
@@ -31,7 +32,10 @@ class ProductController extends Controller
 
     public function show($slug): JsonResponse
     {
-        $product = Product::with('images', 'categories')->where('slug', $slug)->firstOrFail();
+        $product = Product::with('images', 'categories')
+            ->where('slug', $slug)
+            ->where('stock', '>', 0)
+            ->firstOrFail();
 
         return response()->json(compact('product'));
     }

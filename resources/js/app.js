@@ -6,7 +6,7 @@
 
 // require('./bootstrap')
 
-import Vue from "vue";
+import Vue from 'vue';
 
 window.Vue = require('vue').default;
 Vue.mixin(require('./helper'));
@@ -15,10 +15,9 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.headers.common['locale'] = window._locale;
-if(window._token !== ''){
+if (window._token !== '') {
     window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + window._token;
 }
-
 
 /**
  * The following block of codeL may be used to automatically register your
@@ -30,7 +29,6 @@ if(window._token !== ''){
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
 
 //user
 Vue.component('user-list', require('./components/users/UserList.vue').default);
@@ -54,6 +52,9 @@ Vue.component('product-grid', require('./components/products/ProductGrid.vue').d
 Vue.component('product-detail', require('./components/products/ProductDetail.vue').default);
 Vue.component('add-cart-modal', require('./components/products/modals/AddToCartModal.vue').default);
 
+Vue.component('products-import', require('./components/products/ProductsImport.vue').default);
+Vue.component('products-export', require('./components/products/ProductsExport.vue').default);
+
 //orders
 Vue.component('order-cart', require('./components/orders/Cart.vue').default);
 Vue.component('cart-button', require('./components/orders/CartButton.vue').default);
@@ -68,12 +69,14 @@ Vue.component('order-edit-modal', require('./components/orders/modals/OrderEditM
 Vue.component('order-index-modal', require('./components/orders/modals/OrderIndexModal.vue').default);
 Vue.component('payment-thanks', require('./components/orders/PaymentThanks').default);
 
-//Home page
+//Home page and others pages
 Vue.component('home-page', require('./components/pages/homePage/HomePage.vue').default);
 Vue.component('header-home-page', require('./components/pages/homePage/HeaderHomePage.vue').default);
 Vue.component('banner-home-page', require('./components/pages/homePage/BannerHomePage.vue').default);
-
 Vue.component('category-home-page', require('./components/pages/homePage/CategoryHomePage.vue').default);
+
+Vue.component('reports', require('./components/pages/Reports.vue').default);
+
 //utils
 Vue.component('modal', require('./components/utils/Modal.vue').default);
 Vue.component('error', require('./components/utils/Error.vue').default);
@@ -94,4 +97,3 @@ Vue.component('dropdown-admin', require('./components/utils/DropdownAdmin.vue').
 const app = new Vue({
     el: '#app',
 });
-

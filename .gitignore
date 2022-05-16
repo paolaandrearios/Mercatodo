@@ -5,6 +5,7 @@ node_modules
 /public/mix-manifest.json
 /storage/*.key
 /vendor
+/public/storage/imported-products/**
 .env
 .env.testing
 .env.backup
@@ -60,3 +61,4 @@ Thumbs.db
 
 .php-cs-fixer.cache
 
+coverage/

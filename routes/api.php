@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Api\Admin\CategoryController as CategoryAdminController;
 use App\Http\Controllers\Api\Admin\CategoryStatusController;
+use App\Http\Controllers\Api\Admin\ExportController;
+use App\Http\Controllers\Api\Admin\ImportController;
 use App\Http\Controllers\Api\Admin\OrderAdminController;
 use App\Http\Controllers\Api\Admin\ProductController as ProductAdminController;
 use App\Http\Controllers\Api\Admin\ProductStatusController;
+use App\Http\Controllers\Api\Admin\ReportController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Admin\UserStatusController;
 use App\Http\Controllers\Api\CategoryController;
@@ -33,6 +36,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Protected routes
 
 Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'admin', 'as'=>'admin.'], function () {
+    //Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     Route::resource('users', UserController::class)->only([
         'index', 'update',
     ]);
@@ -48,6 +52,12 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'admin', 'as'=>'admin.
     Route::resource('products', ProductAdminController::class)->only([
         'store', 'show', 'index', 'update',
     ]);
+
+    Route::post('/import/products', [ImportController::class, 'import'])->name('products.import');
+
+    Route::get('/export/products', [ExportController::class, 'export'])->name('products.export');
+
+    Route::get('/reports', [ReportController::class, 'generate'])->name('reports');
 
     Route::resource('orders', OrderAdminController::class)->only([
         'index',
@@ -81,3 +91,10 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'client', 'as'=>'clien
     Route::get('orders/order/{order}', [OrderController::class, 'show'])->name('order.history');
     Route::patch('orders/order/{order}', [OrderController::class, 'update'])->name('order.edit');
 });
+
+/*******************************************/
+
+/*Route::get('/test', function () {
+    $user = \App\Models\User::find(1);
+    $user->notify(new \App\Notifications\ImportHasFailedNotification);
+});*/

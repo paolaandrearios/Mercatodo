@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import HeaderHomePage from "./HeaderHomePage";
-import BannerHomePage from "./BannerHomePage";
-import CategoryHomePage from "./CategoryHomePage";
-import ProductGrid from "../../products/ProductGrid";
+import HeaderHomePage from './HeaderHomePage';
+import BannerHomePage from './BannerHomePage';
+import CategoryHomePage from './CategoryHomePage';
+import ProductGrid from '../../products/ProductGrid';
 
 export default {
-    name: "HomePage.vue",
+    name: 'HomePage.vue',
     components: {
         HeaderHomePage,
         BannerHomePage,
@@ -22,11 +22,11 @@ export default {
         ProductGrid,
     },
     data() {
-        return{
+        return {
             keyword: '',
             errors: [],
-            category: {id:''},
-        }
+            category: { id: '' },
+        };
     },
     emit: ['searchProducts', 'getErrors'],
     methods: {
@@ -36,10 +36,9 @@ export default {
         getErrors: function (errors) {
             this.errors = errors;
         },
-        categoryFilter: function(category) {
-            this.category = category
-        }
-    }
-
+        categoryFilter: function (category) {
+            this.category = category;
+        },
+    },
 };
 </script>

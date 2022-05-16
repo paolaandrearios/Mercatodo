@@ -30,23 +30,23 @@ class StoreTest extends TestCase
     {
         $user = $this->userConfig;
 
-        Product::factory(3)->create();
+        $products = Product::factory(3)->create();
         $shipping = Order::factory(1)->create(['user_id' => $user['user']['id']])->first();
         $cartItems = [
             [
-                'id' => 1,
+                'id' => $products[0]->id,
                 'quantity' => 2,
-                'product_id' => 1,
+                'product_id' => $products[0]->id,
             ],
             [
-                'id' => 2,
+                'id' => $products[1]->id,
                 'quantity' => 4,
-                'product_id' => 2,
+                'product_id' => $products[1]->id,
             ],
             [
-                'id' => 3,
+                'id' => $products[2]->id,
                 'quantity' => 1,
-                'product_id' => 3,
+                'product_id' => $products[2]->id,
             ],
 
         ];
@@ -57,6 +57,7 @@ class StoreTest extends TestCase
         ];
 
         $response = $this->postJson($this->endPoint, $data, $this->headers);
+
         $response->assertOk();
         $response->assertJsonFragment(['message' => __('general.api.order.create_status_success')]);
     }
