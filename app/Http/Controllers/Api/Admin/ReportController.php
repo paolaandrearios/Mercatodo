@@ -10,7 +10,6 @@ use Illuminate\Http\JsonResponse;
 
 class ReportController extends Controller
 {
-
     public function __construct()
     {
     }
@@ -18,12 +17,12 @@ class ReportController extends Controller
     public function generate(GenerateReportRequest $request): JsonResponse
     {
         $authUser = auth()->user();
-        $reportBy = User::query()->where('id',$authUser['id'])->first();
+        $reportBy = User::query()->where('id', $authUser['id'])->first();
 
         $initialDate = $request->query('initial-date');
         $endDate = $request->query('end-date');
         $reportOption = $request->query('report-option');
-        $locale =  $request->headers->get('locale');
+        $locale = $request->headers->get('locale');
 
         $this->dispatch(new ReportsJob($reportOption, $locale, $reportBy, $initialDate, $endDate));
 

@@ -5,10 +5,6 @@ namespace Tests\Feature\Api\Admin\Import\Product;
 use App\Jobs\ImportProductsJob;
 use App\Models\Category;
 use App\Models\Product;
-use Database\Seeders\CategorySeeder;
-use Database\Seeders\ProductSeeder;
-use Database\Seeders\RoleSeeder;
-use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
@@ -42,21 +38,19 @@ class ImportTest extends TestCase
         $response->assertSessionHasNoErrors();
         $response->assertJsonFragment(['message' => __('general.api.data_management.import_status')]);
 
-        Queue::assertPushed(ImportProductsJob::class, function ($job) use($response) {
+        Queue::assertPushed(ImportProductsJob::class, function ($job) use ($response) {
             return $job->getImportFilePath() === 'imported-products/' . $response->json()['file_name'];
         });
 
-        $job = new ImportProductsJob($this->userConfig['user'], 'imported-products/' . $response->json()['file_name'], $this->headers['locale'] );
+        $job = new ImportProductsJob($this->userConfig['user'], 'imported-products/' . $response->json()['file_name'], $this->headers['locale']);
         $job->handle();
 
         $products = Product::all();
         $this->assertCount(2, $products);
-
     }
 
     public function test_product_import_from_file_and_job_validation_errors()
     {
-
         Queue::fake();
         Notification::fake();
         Mail::fake();
@@ -72,18 +66,17 @@ class ImportTest extends TestCase
         $response->assertSessionHasNoErrors();
         $response->assertJsonFragment(['message' => __('general.api.data_management.import_status')]);
 
-        Queue::assertPushed(ImportProductsJob::class, function ($job) use($response) {
+        Queue::assertPushed(ImportProductsJob::class, function ($job) use ($response) {
             return $job->getImportFilePath() === 'imported-products/' . $response->json()['file_name'];
         });
 
-        $job = new ImportProductsJob($this->userConfig['user'], 'imported-products/' . $response->json()['file_name'], $this->headers['locale'] );
+        $job = new ImportProductsJob($this->userConfig['user'], 'imported-products/' . $response->json()['file_name'], $this->headers['locale']);
 
         $response = $job->handle();
-        if($response !== true){
+        if ($response !== true) {
             $this->assertEquals(ValidationException::class, $response);
         } else {
             $this->assertTrue(false);
         }
     }
-
 }

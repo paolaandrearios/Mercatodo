@@ -7,13 +7,12 @@ use App\Jobs\ImportProductsJob;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-
 class ImportController extends Controller
 {
     public function import(Request $request): JsonResponse
     {
         $authUser = auth()->user();
-        $importFile =  $request->file('products');
+        $importFile = $request->file('products');
         $fileName = time() . '_' . $importFile->getClientOriginalName();
 
         $importFilePath = $importFile->storeAs('imported-products', $fileName, 'public');

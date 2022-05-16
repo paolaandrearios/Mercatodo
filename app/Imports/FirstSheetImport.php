@@ -52,25 +52,24 @@ class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithC
             ['current' => $this->getTranslation('images4'), 'base' => 'images4'],
         ];
 
-        foreach ($conversions as $conversion){
+        foreach ($conversions as $conversion) {
             $row = Helper::replace_key($row, $conversion['current'], $conversion['base']);
         }
 
         $status = trim(strtolower($row['status']));
-        if($status == strtolower(__('general.web.product.active', [], $this->locale))){
-           $status = 'active';
+        if ($status == strtolower(__('general.web.product.active', [], $this->locale))) {
+            $status = 'active';
         }
-        if($status == strtolower(__('general.web.product.inactive', [], $this->locale))){
-           $status = 'inactive';
+        if ($status == strtolower(__('general.web.product.inactive', [], $this->locale))) {
+            $status = 'inactive';
         }
         $row['status'] = $status;
 
-
-        if(!is_null($row['id'])){
+        if (!is_null($row['id'])) {
             $product = Product::with(['categories', 'images'])->where('id', $row['id'])->first();
-            if($product['sku'] == $row['sku']
+            if ($product['sku'] == $row['sku']
                 || $product['name_es'] == $row['name_es']
-                || $product['name_en'] == $row['name_en']){
+                || $product['name_en'] == $row['name_en']) {
                 $this->is_new_product = false;
             }
         }
@@ -80,7 +79,7 @@ class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithC
 
     public function rules(): array
     {
-        if($this->is_new_product === true){
+        if ($this->is_new_product === true) {
             return ProductRules::toArray();
         } else {
             $base = ProductRules::toArray();
@@ -103,7 +102,7 @@ class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithC
                 ],
             ];
 
-            return array_replace($base,$replacement);
+            return array_replace($base, $replacement);
         }
     }
 
@@ -112,8 +111,8 @@ class FirstSheetImport implements ToModel, WithValidation, WithHeadingRow, WithC
         return 100;
     }
 
-    private function getTranslation($field){
+    private function getTranslation($field)
+    {
         return __("general.web.product.{$field}", [], $this->locale);
     }
 }
-

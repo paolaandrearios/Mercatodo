@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\ProductVisitsPerDay;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

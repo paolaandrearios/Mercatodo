@@ -3,7 +3,6 @@
 namespace App\Imports;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 
@@ -27,4 +26,3 @@ class ProductImport implements WithMultipleSheets
         ];
     }
 }
-

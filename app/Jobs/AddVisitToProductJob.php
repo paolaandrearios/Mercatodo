@@ -4,19 +4,17 @@ namespace App\Jobs;
 
 use App\Models\ProductVisitsPerDay;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 
 class AddVisitToProductJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private int $productId;
+
     /**
      * Create a new job instance.
      *
@@ -39,7 +37,7 @@ class AddVisitToProductJob implements ShouldQueue
             ->where('date', date('Y-m-d'))
             ->first();
 
-        if($productVisitPerDay){
+        if ($productVisitPerDay) {
             $productVisitPerDay->count++;
             $productVisitPerDay->save();
         } else {
@@ -47,7 +45,6 @@ class AddVisitToProductJob implements ShouldQueue
             $productVisitPerDay->product_id = $this->productId;
             $productVisitPerDay->count = 1;
             $productVisitPerDay->save();
-
         }
     }
 }

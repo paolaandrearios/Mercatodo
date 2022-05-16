@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Models\Payment;
 use App\Services\WebcheckoutService;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Log;
 
 class CreatePaymentAction
 {

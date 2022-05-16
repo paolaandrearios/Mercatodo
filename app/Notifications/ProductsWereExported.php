@@ -27,14 +27,13 @@ class ProductsWereExported extends Notification implements ShouldQueue
     {
         $fileName = (explode('/', $this->filePath))[2];
 
-        $filePath = 'http://localhost/evertec/mercatodo/public/storage/exported-products/'.$fileName;
+        $filePath = 'http://localhost/evertec/mercatodo/public/storage/exported-products/' . $fileName;
 
         return  (new MailMessage)->markdown('vendor.notifications.productsExportedNotification', [
             'actionUrl' => $filePath,
             'exportFile' => $fileName,
-            'actionText' => __('general.web.data_management.download_file')
+            'actionText' => __('general.web.data_management.download_file'),
 
         ])->subject(__('general.web.data_management.success_mail_exported_products', ['fileName'=> $fileName]));
     }
-
 }

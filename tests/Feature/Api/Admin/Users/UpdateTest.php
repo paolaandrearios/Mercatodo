@@ -34,16 +34,16 @@ class UpdateTest extends TestCase
         $response->assertJsonFragment(['message' => __('general.api.exceptions.model_not_found')]);
     }
 
-   /* public function test_update_existent_user(): void
-    {
-        $this->seed(RoleSeeder::class);
-        $user = User::factory(1)->create(['name' => 'Josh', 'role' => 'client'])->first();
-        $user->assignRole('client');
-        $response = $this->putJson($this->endPoint . '/' . $user->id, ['name' => 'David', 'role' => 'client'], $this->headers);
-        $response->assertOk();
-        $response->assertJsonFragment(['message' => __('general.api.user.update_status_success')]);
+    /* public function test_update_existent_user(): void
+     {
+         $this->seed(RoleSeeder::class);
+         $user = User::factory(1)->create(['name' => 'Josh', 'role' => 'client'])->first();
+         $user->assignRole('client');
+         $response = $this->putJson($this->endPoint . '/' . $user->id, ['name' => 'David', 'role' => 'client'], $this->headers);
+         $response->assertOk();
+         $response->assertJsonFragment(['message' => __('general.api.user.update_status_success')]);
 
-        $userUpdated = User::query()->where('id', $user->id)->first();
-        $this->assertEquals('David', $userUpdated->name);
-    }*/
+         $userUpdated = User::query()->where('id', $user->id)->first();
+         $this->assertEquals('David', $userUpdated->name);
+     }*/
 }

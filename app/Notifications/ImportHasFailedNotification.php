@@ -7,7 +7,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-
 class ImportHasFailedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
@@ -28,11 +27,11 @@ class ImportHasFailedNotification extends Notification implements ShouldQueue
 
     public function toMail($notifiable): MailMessage
     {
-         return  (new MailMessage)->markdown('vendor.notifications.failednotification', [
+        return  (new MailMessage)->markdown('vendor.notifications.failednotification', [
              'errors' => $this->error,
              'actionUrl' => 'http://localhost/evertec/mercatodo/public/',
              'importFile' => $this->importFile,
-             'actionText' => __('general.web.data_management.go_store')
+             'actionText' => __('general.web.data_management.go_store'),
 
          ])->subject(__('general.web.data_management.error_mail_products', ['fileName'=> $this->importFile]));
     }

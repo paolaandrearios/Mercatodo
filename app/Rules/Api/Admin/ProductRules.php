@@ -1,12 +1,9 @@
 <?php
 
-
 namespace App\Rules\Api\Admin;
-
 
 class ProductRules implements Rules
 {
-
     public static function toArray(): array
     {
         return [

@@ -254,14 +254,17 @@ export default {
         getProduct: function () {
             let url = window.location.href;
             url = url.split('/').slice(-1);
-            axios.get('/evertec/mercatodo/public/api/product/' + url).then((response) => {
-                this.product = response.data.product;
-                this.main_image = this.product.images[0]['url'];
-            }).catch((error) => {
-                if(error.response.status === 404){
-                    window.location.href = '/evertec/mercatodo/public';
-                }
-            });
+            axios
+                .get('/evertec/mercatodo/public/api/product/' + url)
+                .then((response) => {
+                    this.product = response.data.product;
+                    this.main_image = this.product.images[0]['url'];
+                })
+                .catch((error) => {
+                    if (error.response.status === 404) {
+                        window.location.href = '/evertec/mercatodo/public';
+                    }
+                });
         },
         increment() {
             this.count += 1;

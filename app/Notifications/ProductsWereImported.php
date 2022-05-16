@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -28,9 +27,8 @@ class ProductsWereImported extends Notification
         return  (new MailMessage)->markdown('vendor.notifications.productsImportedNotification', [
             'actionUrl' => 'http://localhost/evertec/mercatodo/public/',
             'importFile' => $this->importFile,
-            'actionText' => __('general.web.data_management.go_store')
+            'actionText' => __('general.web.data_management.go_store'),
 
         ])->subject(__('general.web.data_management.success_mail_products', ['fileName'=> $this->importFile]));
     }
-
 }

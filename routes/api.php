@@ -16,7 +16,6 @@ use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\PaymentSyncStatusController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +36,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Protected routes
 
 Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'admin', 'as'=>'admin.'], function () {
-//Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
+    //Route::group(['prefix' => 'admin', 'as'=>'admin.'], function () {
     Route::resource('users', UserController::class)->only([
         'index', 'update',
     ]);
@@ -92,7 +91,6 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'client', 'as'=>'clien
     Route::get('orders/order/{order}', [OrderController::class, 'show'])->name('order.history');
     Route::patch('orders/order/{order}', [OrderController::class, 'update'])->name('order.edit');
 });
-
 
 /*******************************************/
 

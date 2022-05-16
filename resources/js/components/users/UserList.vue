@@ -22,7 +22,7 @@
                                     <td>{{ user.id }}</td>
                                     <td>{{ user.name }}</td>
                                     <td>{{ user.email }}</td>
-                                    <td>{{ __('general.web.user.'+ user.role) }}</td>
+                                    <td>{{ __('general.web.user.' + user.role) }}</td>
                                     <td>
                                         <span>{{ __('general.web.user.' + user.status) }}</span>
                                     </td>
@@ -75,7 +75,7 @@ export default {
     data() {
         return {
             users: [],
-            currentUser: { id: '', name: '', role: ''},
+            currentUser: { id: '', name: '', role: '' },
             isOpenEdit: false,
             isOpenShow: false,
             pagination: {},

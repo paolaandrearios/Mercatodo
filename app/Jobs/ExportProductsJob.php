@@ -6,14 +6,12 @@ use App\Exports\ProductExport;
 use App\Models\Category;
 use App\Models\User;
 use App\Notifications\ProductsWereExported;
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Notifications\Notification;
 
 class ExportProductsJob implements ShouldQueue
 {
@@ -40,23 +38,23 @@ class ExportProductsJob implements ShouldQueue
     {
         $name_category = '';
 
-        if(!is_null($this->category)){
+        if (!is_null($this->category)) {
             $product_category = Category::query()->where('id', $this->category)->first();
-            $name_category = $product_category['name_'.$this->locale];
+            $name_category = $product_category['name_' . $this->locale];
         }
 
         $filePath = '';
-        if(is_null($this->category)){
-            $filePath = '/exported-products/'.time().'_'.$this->status.'_products.xlsx';
-        } else if(is_null($this->status)){
-            $filePath = '/exported-products/'.time().'_'.$name_category.'_products.xlsx';
-        } else if(is_null($this->status) && is_null($this->category)){
-            $filePath = '/exported-products/'.time().'_products.xlsx';
+        if (is_null($this->category)) {
+            $filePath = '/exported-products/' . time() . '_' . $this->status . '_products.xlsx';
+        } elseif (is_null($this->status)) {
+            $filePath = '/exported-products/' . time() . '_' . $name_category . '_products.xlsx';
+        } elseif (is_null($this->status) && is_null($this->category)) {
+            $filePath = '/exported-products/' . time() . '_products.xlsx';
         } else {
-            $filePath = '/exported-products/'.time().'_'.$name_category.'_'.$this->status.'_products.xlsx';
+            $filePath = '/exported-products/' . time() . '_' . $name_category . '_' . $this->status . '_products.xlsx';
         }
 
-        Excel::store(new ProductExport($this->status, $this->category, $this->locale, $this->initialDate, $this->endDate),$filePath,'public');
+        Excel::store(new ProductExport($this->status, $this->category, $this->locale, $this->initialDate, $this->endDate), $filePath, 'public');
         $this->exportedBy->notify((new ProductsWereExported($filePath))->locale($this->locale));
     }
 }

@@ -5,7 +5,6 @@ namespace App\Actions\Payment;
 use App\Helpers\Helper;
 use App\Models\Payment;
 use App\Services\WebcheckoutService;
-use Illuminate\Support\Facades\Log;
 
 class UpdatePaymentStatusAction
 {
@@ -34,12 +33,12 @@ class UpdatePaymentStatusAction
 
         $orderDetails = $order->orderDetails;
 
-        foreach ($orderDetails as $orderDetail){
+        foreach ($orderDetails as $orderDetail) {
             $product = $orderDetail->product;
             $product->stock -= $orderDetail->quantity;
             $product->save();
 
-            if($product->stock <= 0){
+            if ($product->stock <= 0) {
                 Helper::forgetProducts();
             }
         }

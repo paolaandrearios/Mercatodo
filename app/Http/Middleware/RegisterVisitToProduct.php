@@ -6,7 +6,6 @@ use App\Jobs\AddVisitToProductJob;
 use App\Models\Product;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class RegisterVisitToProduct
 {
@@ -19,12 +18,13 @@ class RegisterVisitToProduct
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->route()->hasParameter('slug')) {
+        if ($request->route()->hasParameter('slug')) {
             $product = Product::query()
                 ->where('slug', $request->route()->parameter('slug'))
                 ->firstOrFail('id');
             dispatch(new AddVisitToProductJob($product->id));
         }
+
         return $next($request);
     }
 }

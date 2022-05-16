@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Rules\Api\Admin;
-
 
 interface Rules
 {

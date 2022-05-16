@@ -25,14 +25,13 @@ class ReportWasGenerated extends Notification implements ShouldQueue
 
     public function toMail($notifiable): MailMessage
     {
-        $filePath = 'http://localhost/evertec/mercatodo/public/storage/reports/'.$this->fileName;
+        $filePath = 'http://localhost/evertec/mercatodo/public/storage/reports/' . $this->fileName;
 
         return  (new MailMessage)->markdown('vendor.notifications.reportWasGeneratedNotification', [
             'actionUrl' => $filePath,
             'reportFile' => $this->fileName,
-            'actionText' => __('general.web.data_management.download_file')
+            'actionText' => __('general.web.data_management.download_file'),
 
         ])->subject(__('general.web.data_management.success_mail_report_generated', ['fileName'=> $this->fileName]));
     }
-
 }

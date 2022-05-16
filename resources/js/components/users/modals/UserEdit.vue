@@ -24,13 +24,19 @@
                         <td>{{ __('general.web.user.role') }}</td>
                         <td>
                             <select v-model="user.role" class="focus:outline-none">
-                                <option value="">{{__('general.web.user.'+ user.role)}}</option>
+                                <option value="">{{ __('general.web.user.' + user.role) }}</option>
                                 <option value="administrator">{{ __('general.web.user.administrator') }}</option>
                                 <option value="client">{{ __('general.web.user.client') }}</option>
                                 <option value="stock_assistant">{{ __('general.web.user.stock_assistant') }}</option>
-                                <option value="financial_assistant">{{ __('general.web.user.financial_assistant') }}</option>
-                                <option value="logistic_assistant">{{ __('general.web.user.logistic_assistant') }}</option>
-                                <option value="marketing_assistant">{{ __('general.web.user.marketing_assistant') }}</option>
+                                <option value="financial_assistant">
+                                    {{ __('general.web.user.financial_assistant') }}
+                                </option>
+                                <option value="logistic_assistant">
+                                    {{ __('general.web.user.logistic_assistant') }}
+                                </option>
+                                <option value="marketing_assistant">
+                                    {{ __('general.web.user.marketing_assistant') }}
+                                </option>
                             </select>
                         </td>
                     </tr>

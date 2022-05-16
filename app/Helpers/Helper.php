@@ -55,35 +55,41 @@ class Helper
 
     public static function replace_key(array $array, string $oldKey, string $newKey): array
     {
-        if(array_key_exists($oldKey, $array)) {
+        if (array_key_exists($oldKey, $array)) {
             $keys = array_keys($array);
             $keys[array_search($oldKey, $keys)] = $newKey;
+
             return array_combine($keys, $array);
         }
+
         return $array;
     }
 
-    public static function setProductsKey($key){
+    public static function setProductsKey($key)
+    {
         $queries = self::getProductsKey();
-        if(in_array($key, $queries)){
+        if (in_array($key, $queries)) {
             return $queries;
         }
         Cache::forget('get_products_queries');
         array_push($queries, $key);
-        return Cache::remember('get_products_queries', Carbon::now()->endOfDay(), function () use ($queries)  {
+
+        return Cache::remember('get_products_queries', Carbon::now()->endOfDay(), function () use ($queries) {
             return $queries;
         });
     }
 
-    public static function getProductsKey(){
-        return Cache::remember('get_products_queries', Carbon::now()->endOfDay(), function ()  {
+    public static function getProductsKey()
+    {
+        return Cache::remember('get_products_queries', Carbon::now()->endOfDay(), function () {
             return [];
         });
     }
 
-    public static function forgetProducts(){
+    public static function forgetProducts()
+    {
         $keys = self::getProductsKey();
-        foreach ($keys as $key){
+        foreach ($keys as $key) {
             Cache::forget($key);
         }
         Cache::forget('get_products_queries');

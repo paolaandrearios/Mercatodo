@@ -11,18 +11,17 @@ class ExportProductRequest extends FormRequest
         return true;
     }
 
-
     public function rules(): array
     {
         return [
             'initial-date' => [
                 'required',
-                'date'
+                'date',
             ],
             'end-date' => [
                 'required',
                 'date',
-                'after:initial-date'
+                'after:initial-date',
             ],
         ];
     }

@@ -3,7 +3,6 @@
 namespace App\Exports;
 
 use App\Actions\Export\ExportProductAction;
-use App\Models\Product;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -48,10 +47,10 @@ class ProductExport implements FromCollection, WithMapping, WithHeadings, Should
             $product->stock,
         ];
 
-        for($i = 0; $i <= 4; $i++){
+        for ($i = 0; $i <= 4; $i++) {
             $image = '';
-            if(isset($product->images[$i])){
-                $image = public_path()."/".$product->images[$i]['url'];
+            if (isset($product->images[$i])) {
+                $image = public_path() . '/' . $product->images[$i]['url'];
             }
             $result[] = $image;
         }
@@ -81,7 +80,8 @@ class ProductExport implements FromCollection, WithMapping, WithHeadings, Should
         ];
     }
 
-    private function getTranslation($field){
+    private function getTranslation($field)
+    {
         return __("general.web.product.{$field}", [], $this->locale);
     }
 }

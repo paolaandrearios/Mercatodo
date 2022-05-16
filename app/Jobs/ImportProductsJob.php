@@ -13,7 +13,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -32,26 +31,27 @@ class ImportProductsJob implements ShouldQueue
         $this->locale = $locale;
     }
 
-
     public function handle()
     {
-        $user = User::query()->where('id',$this->authUser['id'])->first();
+        $user = User::query()->where('id', $this->authUser['id'])->first();
         $importedBy = app(User::class, $user->toArray());
 
-        try{
+        try {
             $importFile = public_path() . '/storage/' . $this->importFilePath;
             Excel::import(
                 new ProductImport($importedBy, $this->locale),
                 $importFile
             );
-            $fileName = explode('_',$this->importFilePath)[1];
+            $fileName = explode('_', $this->importFilePath)[1];
             $user->notify((new ProductsWereImported($fileName))->locale($this->locale));
-        }catch (ValidationException  $e){
-            $user->notify((new ImportHasFailedNotification($e->errors(), explode('_',$this->importFilePath)[1]))->locale($this->locale));
+        } catch (ValidationException  $e) {
+            $user->notify((new ImportHasFailedNotification($e->errors(), explode('_', $this->importFilePath)[1]))->locale($this->locale));
+
             return ValidationException::class;
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return Exception::class;
         }
+
         return true;
     }
 
@@ -62,6 +62,4 @@ class ImportProductsJob implements ShouldQueue
     {
         return $this->importFilePath;
     }
-
-
 }

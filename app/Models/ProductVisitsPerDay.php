@@ -10,6 +10,6 @@ class ProductVisitsPerDay extends Model
     use HasFactory;
 
     protected $fillable = [
-        'count'
+        'count',
     ];
 }

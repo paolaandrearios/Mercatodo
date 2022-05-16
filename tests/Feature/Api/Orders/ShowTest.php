@@ -10,7 +10,6 @@ use Database\Seeders\ProductVisitsPerDaySeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\Feature\Common\RequestFaker;
 use Tests\Feature\Common\User\UserApiFaker;
 use Tests\TestCase;
@@ -32,7 +31,6 @@ class ShowTest extends TestCase
         $response->assertStatus(401);
     }
 
-
     public function test_check_order_not_exists(): void
     {
         $response = $this->get($this->endPoint . '1', $this->headers);
@@ -42,7 +40,6 @@ class ShowTest extends TestCase
 
     public function test_check_order_exists(): void
     {
-
         $this->seed(RoleSeeder::class);
         $this->seed(UserSeeder::class);
         $this->seed(CategorySeeder::class);

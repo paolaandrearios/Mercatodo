@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class ProductVisitsPerDayFactory extends Factory
 {
     protected $model = ProductVisitsPerDay::class;
+
     /**
      * Define the model's default state.
      *

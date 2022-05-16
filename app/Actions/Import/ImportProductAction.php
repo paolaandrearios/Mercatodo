@@ -3,9 +3,9 @@
 namespace App\Actions\Import;
 
 use App\Helpers\Helper;
+use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Support\Arr;
-use App\Models\Image;
 
 class ImportProductAction
 {
@@ -16,7 +16,7 @@ class ImportProductAction
         $row['slug'] = Helper::generateSlug(Arr::get($row, 'name_en'));
         $row['id'] = Arr::get($row, 'id');
         $row['sku'] = Arr::get($row, 'sku');
-        if(!is_null($row['id'])){
+        if (!is_null($row['id'])) {
             $product = Product::with(['categories', 'images'])->where('id', $row['id'])->first();
             $product->update($row);
             $product->categories()->sync($row['category_id']);
@@ -29,14 +29,14 @@ class ImportProductAction
 
         for ($i = 0; $i < 5; $i++) {
             $currentImage = $row['images' . $i];
-            if(!is_null($currentImage)) {
-                $filePath = 'imported-products/imported-images/'.time().'.jpg';
+            if (!is_null($currentImage)) {
+                $filePath = 'imported-products/imported-images/' . time() . '.jpg';
                 try {
                     copy($currentImage, storage_path('/app/public/' . $filePath));
                     $image = (new Image(['url'=> 'storage/' . $filePath, 'product_id' => $product->id]))->save();
-                } catch(\Exception $err) {
+                } catch (\Exception $err) {
                     $file = file_exists(storage_path('/app/public/' . $filePath));
-                    $image = (new Image(['url'=> '/images/new-product.jpg' , 'product_id' => $product->id]))->save();
+                    $image = (new Image(['url'=> '/images/new-product.jpg', 'product_id' => $product->id]))->save();
                     $product['status'] = 'inactive';
                 }
             }
@@ -44,5 +44,4 @@ class ImportProductAction
 
         return $product;
     }
-
 }

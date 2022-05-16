@@ -26,7 +26,7 @@ class ProductFactory extends Factory
             'slug' => $this->faker->slug(),
             'status' => 'active',
             'created_at' => '2022-04-01',
-            'updated_at' => '2022-04-01'
+            'updated_at' => '2022-04-01',
         ];
     }
 }

@@ -21,7 +21,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->role = $request->role;
 
-        switch ($request->role){
+        switch ($request->role) {
             case 'administrator':
                 $user->assignRole('administrator');
                 break;

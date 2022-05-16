@@ -1,23 +1,25 @@
 <template>
-    <div class="m-10 text-center">
-        <div class="flex items-center justify-between text-lg font-bold md:text-xl flex-col">
-            <img class="mx-auto w-20 md:w-32" :src="__asset('images/import.png')" />
-            <p class="mt-4 mb-2 text-sm text-dimGray md:text-xl">
+    <div class="dataMa">
+        <div class="dataMa__header">
+            <img :src="__asset('images/import.png')" />
+            <p>
                 {{ __('general.web.data_management.import_products') }}
             </p>
         </div>
-        <p class="mt-2 mb-5 md:mx-1/4 text-dimGray">
+        <p class="dataMa__description">
             {{ __('general.web.data_management.import_description') }}
         </p>
-        <button class="flex mx-auto items-center text-dimGray focus:outline-none hover:text-gray-600 hover:font-bold">
+        <button class="focus:outline-none mx-auto flex items-center text-dimGray hover:font-bold hover:text-gray-600">
             <i class="fas fa-download mr-2"></i>
-            <a :href="__asset('files/example-import-products_'+ __locale() + '.xlsx')" download>{{__('general.web.download')}}</a>
+            <a :href="__asset('files/example-import-products_' + __locale() + '.xlsx')" download>{{
+                __('general.web.download')
+            }}</a>
         </button>
         <form v-on:submit.prevent="" enctype="multipart/form-data">
-            <div class="form-file mt-10 mb-10 flex flex-col justify-center items-center">
+            <div class="dataMa__file">
                 <div>
-                    <label class="p-2 mr-2" for="uploadFile">{{ __('general.web.file_import') }}</label>
-                    <label class="bg-gray-400 hover:bg-gray-500 p-2 mr-2 rounded-xl" for="uploadFile">{{ __('general.web.choose_file') }}</label>
+                    <label class="dataMa__file--label1" for="uploadFile">{{ __('general.web.file_import') }}</label>
+                    <label class="dataMa__file--label2" for="uploadFile">{{ __('general.web.choose_file') }}</label>
                 </div>
                 <div class="mt-3 mb-5">
                     <div>{{ this.fileName }}</div>
@@ -33,9 +35,8 @@
                     <error :errors="error"></error>
                 </div>
             </div>
-            <div class="mt-7 w-3/4 md:w-1/5 mx-auto grid grid-cols-1 grid-rows-1">
-                <button @click="importProducts"
-                        class="focus:outline-none w-full transform cursor-pointer rounded-2xl border-0 bg-orangePantone p-4 text-white transition-all duration-300 hover:scale-105 hover:bg-orange-600 focus:bg-orange-600">
+            <div class="dataMa__buttonContainer">
+                <button @click="importProducts">
                     <span>
                         {{ __('general.web.data_management.import_products') }}
                     </span>
@@ -43,24 +44,23 @@
             </div>
         </form>
     </div>
-
 </template>
 
 <script>
-import axios from "axios";
-import Error from "../utils/Error";
+import axios from 'axios';
+import Error from '../utils/Error';
 
 export default {
-    name: "ProductsImport",
+    name: 'ProductsImport',
     components: {
         Error,
     },
 
     data() {
-       return {
-           fileName:'',
-           importedFile:'',
-           errors: [],
+        return {
+            fileName: '',
+            importedFile: '',
+            errors: [],
         };
     },
 
@@ -70,7 +70,6 @@ export default {
             this.importedFile = e.target.files[0];
         },
         importProducts: function () {
-
             const config = {
                 headers: {
                     'content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -81,23 +80,22 @@ export default {
 
             data.append('products', this.importedFile);
 
-
-            axios.post('/evertec/mercatodo/public/api/admin/import/products', data, config).then((response) => {
-                alert(response.data.message)
-            })
-            .catch((error)=> {
-                let messages = ''
-                let errors = error.response.data.errors
-                Object.keys(errors).forEach(function(key) {
-                    messages += '-' + errors[key] + '\n';
+            axios
+                .post('/evertec/mercatodo/public/api/admin/import/products', data, config)
+                .then((response) => {
+                    alert(response.data.message);
                 })
-                alert(messages);
-            });
+                .catch((error) => {
+                    let messages = '';
+                    let errors = error.response.data.errors;
+                    Object.keys(errors).forEach(function (key) {
+                        messages += '-' + errors[key] + '\n';
+                    });
+                    alert(messages);
+                });
         },
-    }
-}
+    },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

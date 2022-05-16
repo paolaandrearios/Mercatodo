@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,7 +14,7 @@ class EnsureUserActive
 {
     public function handle(Request $request, Closure $next): Response|RedirectResponse
     {
-        if(!is_null($request->user())) {
+        if (!is_null($request->user())) {
             if (!$request->user() ||
                 !$request->user()->isActive()) {
                 Auth::logout();

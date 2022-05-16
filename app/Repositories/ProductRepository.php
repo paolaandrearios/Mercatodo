@@ -3,12 +3,10 @@
 namespace App\Repositories;
 
 use App\Helpers\Helper;
-use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
 
 class ProductRepository
 {
@@ -18,7 +16,6 @@ class ProductRepository
         Helper::setProductsKey($key);
 
         return Cache::remember($key, Carbon::now()->endOfDay(), function () use ($keyword, $status, $statusCategory, $category) {
-
             $products = Product::with('categories', 'images');
 
             if (!empty($keyword)) {

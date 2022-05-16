@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 class OrderSeeder extends Seeder
@@ -16,13 +15,13 @@ class OrderSeeder extends Seeder
         $products = Product::all();
         $clients = User::query()->where('role', 'client')->get('id');
         $dates = $this->getBetweenDates('2022-04-01', date('Y-m-d'));
-        foreach ($clients as $client){
+        foreach ($clients as $client) {
             $quantity = rand(1, 20);
             $randomDate = rand(0, count($dates) - 1);
             $randomDate = $dates[$randomDate];
 
-            Order::factory($quantity)->create(['user_id' => $client->id, 'status' => 'approved'])->each(function ($order) use($products, $randomDate) {
-                $productIndex = rand(0, count($products)-1);
+            Order::factory($quantity)->create(['user_id' => $client->id, 'status' => 'approved'])->each(function ($order) use ($products, $randomDate) {
+                $productIndex = rand(0, count($products) - 1);
                 $product = $products[$productIndex];
 
                 OrderDetail::factory()->create([
@@ -42,7 +41,7 @@ class OrderSeeder extends Seeder
         }
     }
 
-    function getBetweenDates($startDate, $endDate)
+    public function getBetweenDates($startDate, $endDate)
     {
         $rangArray = [];
 
@@ -51,7 +50,6 @@ class OrderSeeder extends Seeder
 
         for ($currentDate = $startDate; $currentDate <= $endDate;
              $currentDate += (86400)) {
-
             $date = date('Y-m-d', $currentDate);
             $rangArray[] = $date;
         }

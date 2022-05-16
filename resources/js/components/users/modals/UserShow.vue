@@ -20,7 +20,7 @@
                     </tr>
                     <tr>
                         <td>{{ __('general.web.user.role') }}</td>
-                        <td>{{__('general.web.user.'+ user.role) }}</td>
+                        <td>{{ __('general.web.user.' + user.role) }}</td>
                     </tr>
                 </table>
 

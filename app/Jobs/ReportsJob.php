@@ -35,14 +35,14 @@ class ReportsJob implements ShouldQueue
     {
         $reports = $reportRepository->get($this->initialDate, $this->endDate, $this->reportOption);
 
-        $pdf = Pdf::loadView('admin.reports.'.$this->reportOption, [
+        $pdf = Pdf::loadView('admin.reports.' . $this->reportOption, [
             'reports' => $reports,
             'initialDate' => $this->initialDate,
             'endDate' => $this->endDate,
         ]);
 
-        $fileName = time().'_'.$this->reportOption.'.pdf';
-        $pdf->save(public_path('storage/reports/'.$fileName));
+        $fileName = time() . '_' . $this->reportOption . '.pdf';
+        $pdf->save(public_path('storage/reports/' . $fileName));
         $this->reportBy->notify((new ReportWasGenerated($fileName))->locale($this->locale));
     }
 }

@@ -17,7 +17,7 @@ class RoleSeeder extends Seeder
         $logistic = Role::create(['name' => 'logistic_assistant']);
         $marketing = Role::create(['name' => 'marketing_assistant']);
 
-        Permission::create(['name' => 'see_admin_menu'])->syncRoles($admin, $stock, $financial,$logistic, $marketing);;
+        Permission::create(['name' => 'see_admin_menu'])->syncRoles($admin, $stock, $financial, $logistic, $marketing);
         Permission::create(['name' => 'admin.dashboard.index'])->assignRole($admin);
         Permission::create(['name' => 'admin.user.index'])->assignRole($admin);
         Permission::create(['name' => 'admin.category.index'])->syncRoles($admin, $stock);
