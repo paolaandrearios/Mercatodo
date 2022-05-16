@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] 2022-05-16
+### Added
+- Install prettier code formatter
+- Implement logic to import products with multiple images, within a selected date range
+- Create an excel file explaining the format to import products correctly
+- Implement logic to export products within a selected date range, taking into account status and category
+- Implement product updates when importing products
+- Generate pdf reports of relevant information for the store, using the dompdf library
+- Create code so that products can be managed from a REST API
+- Create permission list for users according to roles using Laravel-permission (ACL)
+
+### Changed
+- Perform massive import and export of products using the laravel excel library.
+- Generate business-relevant reports using dompdf library
+
+
 ## [1.0.3] 2022-03-27
 ### Added
 - Implement logic to add multiple images to the product.
